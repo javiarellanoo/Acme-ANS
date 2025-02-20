@@ -20,6 +20,7 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link1" action="http://www.youtube.com/"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link5" action="https://www.chess.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link2" action="http://www.primevideo.com/"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
