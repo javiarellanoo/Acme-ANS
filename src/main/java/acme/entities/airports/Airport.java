@@ -62,7 +62,7 @@ public class Airport extends AbstractEntity {
 	private String				email;
 
 	@Optional
-	@ValidString(max = 255)
+	@ValidString(min = 0, max = 50)
 	@Automapped
 	private String				address;
 
