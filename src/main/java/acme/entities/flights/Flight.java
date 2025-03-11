@@ -2,7 +2,6 @@
 package acme.entities.flights;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -17,7 +16,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.entities.legs.Leg;
 import acme.entities.legs.LegRepository;
 import acme.realms.Manager;
 import lombok.Getter;
@@ -60,9 +58,7 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		List<Leg> legs = repository.findAllLegsByFlightId(this.getId());
-
-		String originCity = legs.get(0).getDepartureAirport().getCity();
+		String originCity = repository.findOriginCity(this.getId());
 		return originCity;
 
 	}
@@ -72,9 +68,7 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		List<Leg> legs = repository.findAllLegsByFlightId(this.getId());
-
-		String destinationCity = legs.get(legs.size() - 1).getDestinationAirport().getCity();
+		String destinationCity = repository.findDestinationCity(this.getId());
 		return destinationCity;
 
 	}
@@ -84,9 +78,7 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		List<Leg> legs = repository.findAllLegsByFlightId(this.getId());
-
-		Date scheduledDeparture = legs.get(0).getScheduledDeparture();
+		Date scheduledDeparture = repository.findDepartureTime(this.getId());
 		return scheduledDeparture;
 	}
 
@@ -95,9 +87,8 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		List<Leg> legs = repository.findAllLegsByFlightId(this.getId());
 
-		Date scheduledArrival = legs.get(legs.size() - 1).getScheduledArrival();
+		Date scheduledArrival = repository.findArrivalTime(this.getId());
 		return scheduledArrival;
 	}
 
@@ -105,8 +96,8 @@ public class Flight extends AbstractEntity {
 	public Integer getNumberOfLayovers() {
 		LegRepository repository;
 		repository = SpringHelper.getBean(LegRepository.class);
-		List<Leg> legs = repository.findAllLegsByFlightId(this.getId());
-		return legs.size() - 1;
+		Integer legs = repository.findLayovers(this.getId());
+		return legs;
 	}
 
 
