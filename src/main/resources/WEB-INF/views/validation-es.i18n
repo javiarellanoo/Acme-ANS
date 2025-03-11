@@ -3,3 +3,5 @@
 acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
 
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
+
+acme.validation.flightCrewMember.employeeCode.message = El código de empleado del miembro debe comenzar con sus iniciales.
