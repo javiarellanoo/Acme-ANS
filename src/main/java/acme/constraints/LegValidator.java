@@ -7,9 +7,11 @@ import java.util.Date;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.legs.Leg;
 
+@Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 	@Override
