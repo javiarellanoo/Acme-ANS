@@ -4,8 +4,11 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+
+import acme.client.components.validation.Validator;
 import acme.realms.Customer;
 
+@Validator
 public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer> {
 
 	// ConstraintValidator Interface ----------------------------------------------------------------------------
@@ -21,22 +24,17 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 
 		boolean result;
 
-		if (customer == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			boolean initialsOfTheIdentifier;
 
-			String[] surnames = customer.getIdentity().getSurname().trim().split(" ");
-			char firstSurnameInitial = surnames[0].trim().charAt(0);
-			char nameInitial = customer.getIdentity().getName().trim().charAt(0);
+		boolean initialsOfTheIdentifier;
 
-			initialsOfTheIdentifier = customer.getIdentifier().charAt(0) != nameInitial || customer.getIdentifier().charAt(1) != firstSurnameInitial;
+		String[] surnames = customer.getIdentity().getSurname().trim().split(" ");
+		char firstSurnameInitial = surnames[0].trim().charAt(0);
+		char nameInitial = customer.getIdentity().getName().trim().charAt(0);
 
-			if (surnames.length == 2)
-				initialsOfTheIdentifier = initialsOfTheIdentifier && customer.getIdentifier().charAt(2) != surnames[1].trim().charAt(0);
+		initialsOfTheIdentifier = customer.getIdentifier().charAt(0) == nameInitial && customer.getIdentifier().charAt(1) == firstSurnameInitial;
 
-			super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
-		}
+		super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
+
 
 		result = !super.hasErrors(context);
 
