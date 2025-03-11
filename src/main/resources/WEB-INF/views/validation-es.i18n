@@ -3,3 +3,7 @@
 acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
 
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
+
+acme.validation.trackingLog.status.message = El estado del registro de seguimiento debe ser "ACCEPTED" o "REJECTED" solo cuando el porcentaje de resolución es 100%, en cualquier otro caso debe ser "Pending".
+
+acme.validation.trackingLog.resolution.message = Debe haber un mensaje de resolución una vez el seguimiento haya sido finalmente aceptado o rechazado.

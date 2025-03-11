@@ -3,3 +3,7 @@
 acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
+
+acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
+
+acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking is finally "ACCEPTED" or "REJECTED".
