@@ -1,0 +1,6 @@
+# validation-es.i18n
+#
+acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
+acme.validation.leg.flightCode.message = El código de vuelo debe comenzar con el codigo IATA de la aerolínea.
+acme.validation.leg.scheduledArrival.message = La fecha estimada de llegada debe ser posterior a la de salida.
+acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
