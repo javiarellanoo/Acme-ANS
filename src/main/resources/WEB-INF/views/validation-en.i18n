@@ -1,0 +1,3 @@
+# validation-en.i18n
+#
+acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
