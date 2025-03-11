@@ -23,19 +23,17 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 
 		boolean result;
 
-		if (customer == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			boolean initialsOfTheIdentifier;
 
-			String[] surnames = customer.getIdentity().getSurname().trim().split(" ");
-			char firstSurnameInitial = surnames[0].trim().charAt(0);
-			char nameInitial = customer.getIdentity().getName().trim().charAt(0);
+		boolean initialsOfTheIdentifier;
 
-			initialsOfTheIdentifier = customer.getIdentifier().charAt(0) == nameInitial && customer.getIdentifier().charAt(1) == firstSurnameInitial;
+		String[] surnames = customer.getIdentity().getSurname().trim().split(" ");
+		char firstSurnameInitial = surnames[0].trim().charAt(0);
+		char nameInitial = customer.getIdentity().getName().trim().charAt(0);
 
-			super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
-		}
+		initialsOfTheIdentifier = customer.getIdentifier().charAt(0) == nameInitial && customer.getIdentifier().charAt(1) == firstSurnameInitial;
+
+		super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
+		
 
 		result = !super.hasErrors(context);
 
