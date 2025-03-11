@@ -25,23 +25,19 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 		assert context != null;
 
-		if (leg == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			Boolean matches;
-			String airlineCode = leg.getAirline().getIataCode();
-			String flightNumber = leg.getFlightNumber();
+		Boolean matches;
+		String airlineCode = leg.getAirline().getIataCode();
+		String flightNumber = leg.getFlightNumber();
 
-			matches = flightNumber.trim().startsWith(airlineCode);
-			super.state(context, !matches, "flightCode", "acme.validation.leg.flightCode.message");
+		matches = flightNumber.trim().startsWith(airlineCode);
+		super.state(context, !matches, "flightCode", "acme.validation.leg.flightCode.message");
 
-			Date scheduledDeparture = leg.getScheduledDeparture();
-			Date scheduledArrival = leg.getScheduledArrival();
-			Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
-			Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
-			super.state(context, !validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
+		Date scheduledDeparture = leg.getScheduledDeparture();
+		Date scheduledArrival = leg.getScheduledArrival();
+		Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
+		Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
+		super.state(context, validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
 
-		}
 		result = !super.hasErrors(context);
 		return result;
 	}
