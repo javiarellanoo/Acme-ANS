@@ -3,23 +3,14 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.assistanceAgents.AssistanceAgent;
-import acme.entities.assistanceAgents.AssistanceAgentRepository;
+import acme.realms.AssistanceAgent;
 
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
-	// Internal state
-
-	@Autowired
-	private AssistanceAgentRepository repository;
-
 	// ConstraintValidator interface
-
 
 	@Override
 	protected void initialise(final ValidAssistanceAgent annotation) {
@@ -27,21 +18,33 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 	}
 
 	@Override
-	public boolean isValid(final AssistanceAgent value, final ConstraintValidatorContext context) {
-		String employeeCode = value.getEmployeeCode();
-		String fullName = value.getIdentity().getFullName();
+	public boolean isValid(final AssistanceAgent assistanceAgent, final ConstraintValidatorContext context) {
+		Boolean result;
+		assert context != null;
 
-		String[] words = fullName.trim().split("\\s+");
+		if (assistanceAgent == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
 
-		StringBuilder initials = new StringBuilder();
+			String employeeCode = assistanceAgent.getEmployeeCode();
+			String fullName = assistanceAgent.getIdentity().getFullName();
+			Boolean sameLetters;
 
-		for (String word : words)
-			if (!word.isEmpty())
-				initials.append(word.charAt(0));
+			String[] words = fullName.trim().split("\\s+");
 
-		String prefix = employeeCode.substring(0, initials.length());
+			String initials = "";
 
-		return initials.toString().toUpperCase().equals(prefix);
+			for (String word : words)
+				if (!word.trim().isEmpty())
+					initials += word.charAt(0);
+
+			sameLetters = employeeCode.startsWith(initials);
+			super.state(context, !sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+		}
+
+		result = !super.hasErrors(context);
+
+		return result;
 	}
 
 }
