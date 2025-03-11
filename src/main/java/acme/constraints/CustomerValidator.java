@@ -32,10 +32,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 			char firstSurnameInitial = surnames[0].trim().charAt(0);
 			char nameInitial = customer.getIdentity().getName().trim().charAt(0);
 
-			initialsOfTheIdentifier = customer.getIdentifier().charAt(0) != nameInitial || customer.getIdentifier().charAt(1) != firstSurnameInitial;
-
-			if (surnames.length == 2)
-				initialsOfTheIdentifier = initialsOfTheIdentifier && customer.getIdentifier().charAt(2) != surnames[1].trim().charAt(0);
+			initialsOfTheIdentifier = customer.getIdentifier().charAt(0) == nameInitial && customer.getIdentifier().charAt(1) == firstSurnameInitial;
 
 			super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
 		}
