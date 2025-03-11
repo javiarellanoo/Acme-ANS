@@ -6,4 +6,7 @@ acme.validation.leg.scheduledArrival.message = The scheduled arrival must be aft
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
 acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
 acme.validation.customer.identifier.message = The identifier must start with the initials of the customer.
-
+acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
+acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
+acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking is finally "ACCEPTED" or "REJECTED".
+acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented.
