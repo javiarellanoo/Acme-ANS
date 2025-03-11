@@ -1,5 +1,5 @@
 
-package acme.entities.assistanceAgents;
+package acme.realms;
 
 import java.util.Date;
 
@@ -11,15 +11,14 @@ import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
-import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidAssistanceAgent;
+import acme.constraints.ValidManager;
 import acme.entities.airlines.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,47 +26,36 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@ValidAssistanceAgent
-public class AssistanceAgent extends AbstractRole {
+@ValidManager
+public class Manager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	// Attributes
-
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "\"^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	private String				employeeCode;  //implementar con un custom validator 2 primeras letras sean iniciales
+	private String				identifier;
 
 	@Mandatory
-	@ValidString(min = 1, max = 255)
+	@ValidNumber(min = 0, max = 120) //The maximum shall be specified by the client
 	@Automapped
-	private String				spokenLanguages;
+	private Integer				yearsOfExperience;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				employmentMoment;
+	private Date				dateOfBirth;
 
 	@Optional
-	@ValidString(min = 1, max = 255)
+	@ValidUrl()
 	@Automapped
-	private String				bio;
+	private String				profilePicture;
 
-	@Optional
-	@ValidMoney
-	@Automapped
-	private Money				salary;
-
-	@Optional
-	@ValidUrl
-	@Automapped
-	private String				linkPhoto;
-
-	// Relationships
+	//Associations
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Airline				airline;
+
 }

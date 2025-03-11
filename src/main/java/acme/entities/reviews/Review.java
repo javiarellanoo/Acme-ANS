@@ -1,9 +1,8 @@
 
-package acme.entities.airlines;
+package acme.entities.reviews;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,18 +12,16 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidPhone;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Airline extends AbstractEntity {
+public class Review extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -36,33 +33,28 @@ public class Airline extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
-	@Column(unique = true)
-	private String				iataCode;
-
-	@Mandatory
-	@ValidUrl
-	@Automapped
-	private String				website;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private AirlineType			type;
-
-	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				foundationMoment;
+	private Date				postedAt;
+
+	@Mandatory
+	@ValidString(min = 1, max = 50)
+	@Automapped
+	private String				subject;
+
+	@Mandatory
+	@ValidString(min = 1, max = 255)
+	@Automapped
+	private String				description;
 
 	@Optional
-	@ValidEmail
+	@ValidNumber(min = 0, max = 10)
 	@Automapped
-	private String				email;
+	private Double				score;
 
 	@Optional
-	@ValidPhone
+	@Valid
 	@Automapped
-	private String				phoneNumber;
+	private Boolean				recommended;
 
 }

@@ -1,10 +1,10 @@
 
-package acme.entities.airlines;
+package acme.entities.claims;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -16,53 +16,49 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidPhone;
+import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Airline extends AbstractEntity {
+public class Claim extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	// Attributes
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
-	@Automapped
-	private String				name;
-
-	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
-	@Column(unique = true)
-	private String				iataCode;
-
-	@Mandatory
-	@ValidUrl
-	@Automapped
-	private String				website;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private AirlineType			type;
-
-	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				foundationMoment;
+	private Date				registrationMoment;
 
 	@Optional
 	@ValidEmail
 	@Automapped
-	private String				email;
+	private String				passengerEmail;
 
 	@Optional
-	@ValidPhone
+	@ValidString(min = 1, max = 255)
 	@Automapped
-	private String				phoneNumber;
+	private String				description;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private ClaimType			type;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private ClaimStatus			status;
+
+	// Relationships
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private AssistanceAgent		registeredBy;
 
 }

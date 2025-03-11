@@ -1,25 +1,23 @@
 
-package acme.entities.aircrafts;
+package acme.realms;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airlines.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-public class Aircraft extends AbstractEntity {
+@Entity
+public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -28,37 +26,33 @@ public class Aircraft extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(max = 50, min = 1)
-	@Automapped
-	private String				model;
-
-	@Mandatory
-	@ValidString(max = 50, min = 1)
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	private String				registrationNumber;
+	private String				licenseNumber;
 
 	@Mandatory
-	@ValidNumber(max = 255, min = 1)
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
-	private Integer				capacity;
+	private String				phoneNumber;
 
 	@Mandatory
-	@ValidNumber(max = 50000, min = 2000)
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	private Integer				cargoWeight;
+	private String				specialisation;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private AircraftStatus		status;
+	private Boolean				annualHealthTest;
+
+	@Mandatory
+	@ValidNumber(min = 0, max = 120)
+	@Automapped
+	private Integer				experienceYears;
 
 	@Optional
-	@ValidString(max = 255, min = 0)
+	@ValidString
 	@Automapped
-	private String				details;
+	private String				certifications;
 
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
 }

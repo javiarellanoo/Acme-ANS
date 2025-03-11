@@ -3,23 +3,14 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.entities.assistanceAgents.AssistanceAgent;
-import acme.entities.assistanceAgents.AssistanceAgentRepository;
+import acme.realms.AssistanceAgent;
 
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
-	// Internal state
-
-	@Autowired
-	private AssistanceAgentRepository repository;
-
 	// ConstraintValidator interface
-
 
 	@Override
 	protected void initialise(final ValidAssistanceAgent annotation) {
@@ -27,21 +18,22 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 	}
 
 	@Override
-	public boolean isValid(final AssistanceAgent value, final ConstraintValidatorContext context) {
-		String employeeCode = value.getEmployeeCode();
-		String fullName = value.getIdentity().getFullName();
+	public boolean isValid(final AssistanceAgent assistanceAgent, final ConstraintValidatorContext context) {
+		Boolean result;
+		assert context != null;
 
-		String[] words = fullName.trim().split("\\s+");
+		Boolean sameLetters;
+		String employeeCode = assistanceAgent.getEmployeeCode();
+		String initials = "";
+		initials += assistanceAgent.getIdentity().getName().trim().charAt(0);
+		initials += assistanceAgent.getIdentity().getSurname().trim().charAt(0);
 
-		StringBuilder initials = new StringBuilder();
+		sameLetters = employeeCode.startsWith(initials);
+		super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
 
-		for (String word : words)
-			if (!word.isEmpty())
-				initials.append(word.charAt(0));
+		result = !super.hasErrors(context);
 
-		String prefix = employeeCode.substring(0, initials.length());
-
-		return initials.toString().toUpperCase().equals(prefix);
+		return result;
 	}
 
 }
