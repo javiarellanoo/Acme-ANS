@@ -32,7 +32,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 		Boolean hasResolution = true;
 		Boolean correctStatus;
-		Boolean greaterPercentageAndIndex;
+		Boolean greaterPercentage;
 
 		if (trackingLog.getResolutionPercentage() == 100.00) {
 			correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
@@ -40,11 +40,11 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 		} else
 			correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
 
-		greaterPercentageAndIndex = trackingLog.getResolutionPercentage() > this.repository.getLastTrakingLog().getResolutionPercentage() && trackingLog.getTrackLogIndex() > this.repository.getLastTrakingLog().getTrackLogIndex();
+		greaterPercentage = trackingLog.getResolutionPercentage() > this.repository.getLastTrakingLogPercentage();
 
 		super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
 		super.state(context, hasResolution, "resolution", "acme.validation.trackingLog.resolution.message");
-		super.state(context, greaterPercentageAndIndex, "percentage", "acme.validation.trackingLog.percentage.message");
+		super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
 
 		result = !super.hasErrors(context);
 
