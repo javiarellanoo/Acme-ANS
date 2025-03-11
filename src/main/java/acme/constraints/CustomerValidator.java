@@ -4,6 +4,7 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+
 import acme.client.components.validation.Validator;
 import acme.realms.Customer;
 
@@ -33,7 +34,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		initialsOfTheIdentifier = customer.getIdentifier().charAt(0) == nameInitial && customer.getIdentifier().charAt(1) == firstSurnameInitial;
 
 		super.state(context, initialsOfTheIdentifier, "identifier", "acme.validation.customer.identifier.message");
-		
+
 
 		result = !super.hasErrors(context);
 
