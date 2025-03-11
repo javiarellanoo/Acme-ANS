@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.services;
 
 import javax.persistence.Entity;
 
