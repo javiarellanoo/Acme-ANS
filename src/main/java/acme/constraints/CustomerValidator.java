@@ -4,8 +4,10 @@ package acme.constraints;
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.realms.Customer;
 
+@Validator
 public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer> {
 
 	// ConstraintValidator Interface ----------------------------------------------------------------------------
