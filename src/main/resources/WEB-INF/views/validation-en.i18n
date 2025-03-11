@@ -4,3 +4,6 @@ acme.validation.manager.identifier.message = The identifier must start with the 
 acme.validation.leg.flightCode.message = The flightCode must start with the Airline's IATA code.
 acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
+acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
+acme.validation.customer.identifier.message = The identifier must start with the initials of the customer.
+
