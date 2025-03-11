@@ -1,6 +1,7 @@
 
-package acme.entities;
+package acme.entities.services;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractEntity;
@@ -11,6 +12,7 @@ import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidPromotionCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,8 +43,8 @@ public class Service extends AbstractEntity {
 	private Double				averageDwellTime;
 
 	@Optional
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
-	@Automapped
+	@ValidPromotionCode
+	@Column(unique = true)
 	private String				promotionCode;
 
 	@Optional
