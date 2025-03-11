@@ -8,17 +8,12 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PromotionCodeValidator.class)
-@ReportAsSingleViolation
+@Constraint(validatedBy = ServiceValidator.class)
 
-@Pattern(regexp = "^[A-Z]{4}-[0-9]{2}$")
-
-public @interface ValidPromotionCode {
+public @interface ValidService {
 
 	String message() default "";
 
