@@ -1,3 +1,5 @@
 # validation-en.i18n
 #
 acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
+
+acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
