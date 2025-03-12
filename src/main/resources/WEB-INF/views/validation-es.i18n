@@ -1,6 +1,7 @@
 # validation-es.i18n
 #
 acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
+acme.validation.flightCrewMember.employeeCode.message = El código de empleado del miembro debe comenzar con sus iniciales.
 acme.validation.leg.flightCode.message = El código de vuelo debe comenzar con el codigo IATA de la aerolínea.
 acme.validation.leg.scheduledArrival.message = La fecha estimada de llegada debe ser posterior a la de salida.
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
@@ -10,3 +11,4 @@ acme.validation.trackingLog.status.message = El estado del registro de seguimien
 acme.validation.trackingLog.resolution.message = Debe haber un mensaje de resolución una vez el seguimiento haya sido finalmente aceptado o rechazado.
 acme.validation.trackingLog.percentage.message = El porcentaje de resolución debe ser mayor que el último implementado.
 acme.validation.phone.number = El número de telefono dado no es valido.
+
