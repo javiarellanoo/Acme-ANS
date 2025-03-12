@@ -38,7 +38,7 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 
 			Service alreadyExistingService = this.serviceRepository.findServiceByPromotionCode(promotionCode);
 
-			validCode &= alreadyExistingService == null;
+			validCode &= alreadyExistingService == null || alreadyExistingService.getId() == service.getId();
 		}
 
 		super.state(context, validCode, "promotionCode", "acme.validation.service.promotionCode.message");
