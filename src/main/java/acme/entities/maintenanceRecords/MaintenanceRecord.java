@@ -1,64 +1,65 @@
 
-package acme.entities.aircrafts;
+package acme.entities.maintenanceRecords;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Moment;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.entities.airlines.Airline;
+import acme.entities.aircrafts.Aircraft;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Aircraft extends AbstractEntity {
+public class MaintenanceRecord extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(max = 50, min = 1)
+	@ValidMoment
 	@Automapped
-	private String				model;
-
-	@Mandatory
-	@ValidString(max = 50, min = 1)
-	@Column(unique = true)
-	private String				registrationNumber;
-
-	@Mandatory
-	@ValidNumber(max = 255, min = 1)
-	@Automapped
-	private Integer				capacity;
-
-	@Mandatory
-	@ValidNumber(max = 50000, min = 2000)
-	@Automapped
-	private Integer				cargoWeight;
+	private Moment					moment;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private AircraftStatus		status;
+	private MaintenanceRecordStatus	status;
+
+	@Mandatory
+	@ValidMoment
+	@Automapped
+	private Date					nextInspectionDate;
+
+	@Mandatory
+	@ValidMoney
+	@Automapped
+	private Money					estimatedCost;
 
 	@Optional
-	@ValidString(max = 255, min = 0)
+	@ValidString
 	@Automapped
-	private String				details;
+	private String					notes;
+
+	// Relationships
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Airline				airline;
+	private Aircraft				aircraft;
 }

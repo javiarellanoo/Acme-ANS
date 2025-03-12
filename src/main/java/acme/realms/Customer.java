@@ -1,25 +1,24 @@
 
-package acme.entities.aircrafts;
+package acme.realms;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
-import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.airlines.Airline;
+import acme.constraints.ValidCustomer;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Aircraft extends AbstractEntity {
+@ValidCustomer
+public class Customer extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -28,37 +27,33 @@ public class Aircraft extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(max = 50, min = 1)
-	@Automapped
-	private String				model;
-
-	@Mandatory
-	@ValidString(max = 50, min = 1)
+	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
 	@Column(unique = true)
-	private String				registrationNumber;
+	private String				identifier;
 
 	@Mandatory
-	@ValidNumber(max = 255, min = 1)
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
 	@Automapped
-	private Integer				capacity;
+	private String				phoneNumber;
 
 	@Mandatory
-	@ValidNumber(max = 50000, min = 2000)
+	@ValidString(max = 255, min = 1)
 	@Automapped
-	private Integer				cargoWeight;
+	private String				address;
 
 	@Mandatory
-	@Valid
+	@ValidString(max = 50, min = 1)
 	@Automapped
-	private AircraftStatus		status;
+	private String				city;
+
+	@Mandatory
+	@ValidString(max = 50, min = 1)
+	@Automapped
+	private String				country;
 
 	@Optional
-	@ValidString(max = 255, min = 0)
+	@ValidNumber(max = 500000, min = 0)
 	@Automapped
-	private String				details;
+	private Integer				earnedPoints;
 
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
 }
