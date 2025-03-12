@@ -22,28 +22,20 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 		assert context != null;
 
-		if (manager == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			Boolean matches;
-			String initials;
-			String[] surnames;
-			DefaultUserIdentity identity;
+		Boolean matches;
+		String initials;
+		DefaultUserIdentity identity;
 
-			identity = manager.getIdentity();
+		identity = manager.getIdentity();
 
-			surnames = identity.getSurname().split(" ");
+		initials = "";
 
-			initials = "";
+		initials += identity.getName().trim().charAt(0);
 
-			initials += identity.getName().trim().charAt(0);
+		initials += identity.getSurname().trim().charAt(0);
 
-			for (String surname : surnames)
-				initials += surname.trim().charAt(0);
-
-			matches = manager.getIdentifier().trim().startsWith(initials);
-			super.state(context, !matches, "identifier", "acme.validation.manager.identifier.message");
-		}
+		matches = manager.getIdentifier().trim().startsWith(initials);
+		super.state(context, matches, "identifier", "acme.validation.manager.identifier.message");
 		result = !super.hasErrors(context);
 		return result;
 	}

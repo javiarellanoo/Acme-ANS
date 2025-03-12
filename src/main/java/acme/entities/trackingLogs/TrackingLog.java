@@ -1,5 +1,5 @@
 
-package acme.entities.claims;
+package acme.entities.trackingLogs;
 
 import java.util.Date;
 
@@ -13,17 +13,20 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
+import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
-import acme.realms.AssistanceAgent;
+import acme.constraints.ValidTrackingLog;
+import acme.entities.claims.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
 @Setter
-public class Claim extends AbstractEntity {
+@Getter
+@ValidTrackingLog
+public class TrackingLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -32,33 +35,38 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
+	private Date				lastUpdateMoment;
 
-	@Optional
-	@ValidEmail
+	@Mandatory
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				passengerEmail;
+	private String				stepUndergoing;
+
+	@Mandatory
+	@ValidNumber
+	@Automapped
+	private Integer				trackIndex;
+
+	@Mandatory
+	@ValidScore
+	@Automapped
+	private Double				resolutionPercentage;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private TrackingLogStatus	status;
 
 	@Optional
 	@ValidString(min = 1, max = 255)
 	@Automapped
-	private String				description;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private ClaimType			type;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private ClaimStatus			status;
+	private String				resolution;
 
 	// Relationships
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private AssistanceAgent		registeredBy;
+	private Claim				claim;
 
 }
