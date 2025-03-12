@@ -2,10 +2,10 @@ key,key:userAccount,identifier,phone-number,address,city,country,earned-points
 
 # Identifier variations 
 customer-01,user-account-customer-01,TV434456,+123456789,B,Seville,Spain,2000
-customer-02,user-account-customer-02,BCC87654,+123456789012344,Main Avenue 1,Madrid,Spain,1500
+customer-02,user-account-customer-02,BCL876545,+123456789012344,Main Avenue 1,Madrid,Spain,1500
+customer-03,user-account-customer-03,RMM189992,+123456789012345,Random Address,Barcelona,Spain,0
 
 # Phone Number variations 
-customer-03,user-account-customer-04,NV189992,+123456789012345,Random Address,Barcelona,Spain,0
 customer-04,user-account-customer-04,NV654321,+123456789012435,Alameda 23,Valencia,Spain,400
 customer-05,user-account-customer-05,NV098765,+345678901,k,Málaga,Spain,250
 customer-06,user-account-customer-06,NV123456,+123456,Mountain Way 5,Granada,Spain,550

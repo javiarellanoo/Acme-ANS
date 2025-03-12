@@ -7,7 +7,7 @@ user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза 
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
 user-account-customer-01,true,"UserIdentity{name: 'Theodor', surname: 'ValidSurname', email: 'acme@lorem-ipsum.org'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Bing', surname: 'Chil Ling', email: 'a@lorem-ipsum.org'}",customer2,customer2
-user-account-customer-03,true,"UserIdentity{name: 'Name3', surname: 'ValidSurname3', email: 'a@b.e'}",customer3,customer3
+user-account-customer-03,true,"UserIdentity{name: 'Ricardo', surname: 'Milos Pol', email: 'a@b.e'}",customer3,customer3
 user-account-customer-04,true,"UserIdentity{name: 'Name4', surname: 'ValidSurname4', email: 'a@b.es'}",customer4,customer4
 user-account-customer-05,true,"UserIdentity{name: 'Name5', surname: 'ValidSurname5', email: 'a@b.esx'}",customer5,customer5
 user-account-customer-06,true,"UserIdentity{name: 'Name6', surname: 'ValidSurname6', email: 'lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu'}",customer6,customer6
