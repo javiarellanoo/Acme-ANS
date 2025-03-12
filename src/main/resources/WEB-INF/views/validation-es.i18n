@@ -9,3 +9,5 @@ acme.validation.assistanceAgent.employeeCode.message = El código de empleado de
 acme.validation.trackingLog.status.message = El estado del registro de seguimiento debe ser "ACCEPTED" o "REJECTED" solo cuando el porcentaje de resolución es 100%, en cualquier otro caso debe ser "Pending".
 acme.validation.trackingLog.resolution.message = Debe haber un mensaje de resolución una vez el seguimiento haya sido finalmente aceptado o rechazado.
 acme.validation.trackingLog.percentage.message = El porcentaje de resolución debe ser mayor que el último implementado.
+acme.validation.service.promotionCode.message = Los dos últimos carácteres del código de promoción deben corresponder con el año actual y debe ser único.
+acme.validation.technician.licenseNumber.message = El número de licensia debe empezar con las iniciales del cliente.
