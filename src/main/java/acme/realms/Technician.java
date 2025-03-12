@@ -1,24 +1,23 @@
 
-package acme.entities.airports;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-public class Airport extends AbstractEntity {
+@Entity
+public class Technician extends AbstractRole {
 
 	// Serialisation version --------------------------------------------------
 
@@ -27,43 +26,33 @@ public class Airport extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
-	@Automapped
-	private String				name;
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
+	private String				licenseNumber;
 
 	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
-	@Column(unique = true)
-	private String				iataCode;
+	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
+	private String				phoneNumber;
+
+	@Mandatory
+	@ValidString(min = 1, max = 50)
+	@Automapped
+	private String				specialisation;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	private OperationalScope	operationalScope;
+	private Boolean				annualHealthTest;
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
-	private String				city;
-
-	@Mandatory
-	@ValidString(min = 1, max = 50)
-	@Automapped
-	private String				country;
+	private Integer				experienceYears;
 
 	@Optional
-	@ValidUrl
+	@ValidString
 	@Automapped
-	private String				website;
-
-	@Optional
-	@ValidEmail
-	@Automapped
-	private String				email;
-
-	@Optional
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
-	@Automapped
-	private String				phoneNumber;
+	private String				certifications;
 
 }
