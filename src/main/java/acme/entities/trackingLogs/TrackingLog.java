@@ -14,6 +14,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
 import acme.constraints.ValidTrackingLog;
@@ -40,6 +41,11 @@ public class TrackingLog extends AbstractEntity {
 	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				stepUndergoing;
+
+	@Mandatory
+	@ValidNumber
+	@Automapped
+	private Integer				trackIndex;
 
 	@Mandatory
 	@ValidScore
