@@ -1,0 +1,95 @@
+key,key:userAccount,identifier,phone-number,address,city,country,earned-points
+
+# Identifier variations 
+customer-01,user-account-customer-01,TV434456,+123456789,B,Seville,Spain,2000
+customer-02,user-account-customer-02,BCL876545,+123456789012344,Main Avenue 1,Madrid,Spain,1500
+customer-03,user-account-customer-03,RMM189992,+123456789012345,Random Address,Barcelona,Spain,0
+
+# Phone Number variations 
+customer-04,user-account-customer-04,NV654321,+123456789012435,Alameda 23,Valencia,Spain,400
+customer-05,user-account-customer-05,NV098765,+345678901,k,Málaga,Spain,250
+customer-06,user-account-customer-06,NV123456,+123456,Mountain Way 5,Granada,Spain,550
+customer-07,user-account-customer-07,NV765432,+1234567,Market Street 12,Sevilla,Spain,490003
+customer-08,user-account-customer-08,NV543200,+123456,Park Lane 75,Toledo,Spain,0
+customer-09,user-account-customer-09,NV111222,+123458,Sunset Boulevard 20,Zaragoza,Spain,75
+customer-10,user-account-customer-10,NV987054,+12346789,Lakeside 3,Bilbao,Spain,190
+customer-11,user-account-customer-11,NV123546,+12345678,Loopy Lane 18,Alicante,Spain,1
+customer-12,user-account-customer-12,NV156056,+123456789,Beachfront Rd 99,Salamanca,Spain,650
+customer-13,user-account-customer-13,NV636563,+1234567890,Long Text: โลเร็ม อิปซัม,Barcelona,Spain,720
+customer-14,user-account-customer-14,NV556301,+12345678901,Small Town: <script>alert('Hacked!');</script,Madrid,Spain,499999
+customer-15,user-account-customer-15,NV000001,+123456789012,Lorem ipsum dolor sit amet,Valencia,Spain,920
+customer-16,user-account-customer-16,NV444423,+1234567890123,<marquee>Hacked</marquee>,Sevilla,Spain,0
+
+# General texts variants 
+customer-17,user-account-customer-17,NV987123,+1555552,另一个地址,G,A,1100
+customer-18,user-account-customer-18,NV976001,+433333,لوريم إيبسوم: Lorem ipsum dolor sit amet,AMP,Spain,0
+customer-19,user-account-customer-19,NV303030,+34553333,โลเร็ม อิปซัม,LOC,LA,500
+customer-20,user-account-customer-20,NV444424,2233333,<marquee>Hacked</marquee>,Toledo,Spain,25
+customer-21,user-account-customer-21,NV567890,+134567890,Random Text: Sed do eiusmod tempor incididunt,Barcelona,Spain,500000
+customer-22,user-account-customer-22,NV234561,+145678901,Example Address: Duis aute irure dolor,<script>alert(‘Hacked!’);</script>,Spain,450
+customer-23,user-account-customer-23,NV762432,+156789012,'' or 'A' = 'A ,Seville,Spain,720
+
+# Address variants
+customer-24,user-account-customer-24,NV123123,+167890123,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",Madrid,Spain,800
+customer-26,user-account-customer-26,NV345678,+189012345,L,Malaga,Spain,310
+customer-27,user-account-customer-27,NV987651,+190123456,Lo,Toledo,Spain,500
+customer-28,user-account-customer-28,NV123156,+201234567,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",Zaragoza,Spain,0
+customer-29,user-account-customer-29,NV987652,+212345678,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",Madrid,Spain,620
+
+# City variants
+customer-30,user-account-customer-30,NV123452,+223456789,Enhanced View: Lorem ipsum dolor sit amet,Lorem ipsum dolor sit ame,Spain,400
+customer-31,user-account-customer-31,NV234562,+234567890,Unique Spot: Sed do eiusmod tempor incididunt,L,Spain,710
+customer-32,user-account-customer-32,NV456788,+245678901,Breathtaking Scene: consectetur adipiscing elit,Lo,Spain,260
+customer-33,user-account-customer-33,NV567123,+256789012,Filtered Place: Ut enim ad minim veniam,"Lorem ipsum dolor sit amet, consectetur adipiscin",Spain,350
+customer-34,user-account-customer-34,NV234512,+267890123,AFalse Statement: Lorem ipsum dolor sit amet,"Lorem ipsum dolor sit amet, consectetur adipiscing",Spain,510
+
+# Country variants
+customer-35,user-account-customer-35,NV567891,+278901234,Fiery Background: Duis aute irure dolor,Málaga,Lorem ipsum dolor sit ame,200
+customer-36,user-account-customer-36,NV987612,+289012345,Creative Solution: Quis nostrud exercitation,Seville,L,940
+customer-37,user-account-customer-37,NV235256,+290123456,Innovative Ideas: <script>alert('Hacked!');</script,Malaga,Lo,150
+customer-38,user-account-customer-38,NV456787,+301234567,Imaginative Space: โลเร็ม อิปซัม,Barcelona,"Lorem ipsum dolor sit amet, consectetur adipiscin",620
+customer-39,user-account-customer-39,NV765232,+312345678,Odd Situations: A moment of truth,Madrid,"Lorem ipsum dolor sit amet, consectetur adipiscing",300
+
+# Earned Points variants
+customer-40,user-account-customer-40,NV890123,+323456789,Situational Awareness: <marquee>Watch Out</marquee,Toledo,Spain,1
+customer-41,user-account-customer-41,NV123457,+334567890,East Side: Lollipop & Rainbows,Seville,Spain,2
+customer-42,user-account-customer-42,NV234568,+345678901,Beautiful Street: <script>alert('Oops!');</script,Madrid,Spain,250000
+customer-43,user-account-customer-43,NV987654,+456789012,Unknown Place: Lorem ipsum dolor sit amet,Granada,Spain,60
+customer-44,user-account-customer-44,NV345671,+567890123,The Great Escape: Duis aute irure,Málaga,Spain,990
+customer-45,user-account-customer-45,NV456785,+678901234,Cloud Nine: <marquee>Stay Safe!</marquee,Valencia,Spain,3100
+customer-46,user-account-customer-46,NV567892,+789012345,Privileged Area: Quis nostrud exercitation,Barcelona,Spain,41000
+
+customer-47,user-account-customer-47,NV678901,+890123456,Secret Garden: Sed do eiusmod tempor,Toledo,Spain,750
+customer-48,user-account-customer-48,NV789010,+901234567,Distant Space: <script>alert('Hacked');</script,Zaragoza,Spain,0
+customer-49,user-account-customer-49,NV891123,+987654321,Nowhere Land: ' or 'A' = 'A,Madrid,Spain,450
+customer-50,user-account-customer-50,NV012345,+876543210,Peaceful Valley: Lorem ipsum dolor sit amet,Valencia,Spain,800
+customer-51,user-account-customer-51,NV563456,+765432109,Amazing Heights: Sed ut perspiciatis,Granada,Spain,990
+customer-52,user-account-customer-52,NV234567,+654321098,Wonderful Place: Quis nostrud exercitation,Sevilla,Spain,120
+customer-53,user-account-customer-53,NV345672,+543210987,Effervescent Spot: Duis aute irure dolor,Málaga,Spain,650
+customer-54,user-account-customer-54,NV456784,+432109876,Illuminated Path: <marquee>Watch Out!</marquee,Toledo,Spain,540
+customer-55,user-account-customer-55,NV567893,+321098765,Twilight Zone: Lorem ipsum dolor sit amet,Zaragoza,Spain,320
+customer-56,user-account-customer-56,NV678905,+210987654,Hidden Avenue: ' or 'A' = 'A,Madrid,Spain,930
+customer-57,user-account-customer-57,NV789015,+109876543,Dreamy Hideaway: <script>alert('Surprise!');</script,Valencia,Spain,490
+customer-58,user-account-customer-58,NV890128,+098765432,Serenity Place: โลเร็ม อิปซัม,Barcelona,Spain,800
+customer-59,user-account-customer-59,NV901234,+198765432,Charm Valley: Sed do eiusmod tempor,Granada,Spain,560
+customer-60,user-account-customer-60,NV012645,+299876543,Vivid Area: Out of this world,Sevilla,Spain,213
+customer-61,user-account-customer-61,NV456783,+321234567,Riverside Drive 22,Madrid,Spain,1200
+customer-62,user-account-customer-62,NV678906,+322345678,Greenway Blvd 15,Seville,Spain,800
+customer-63,user-account-customer-63,NV543210,+323456789,Blooming Street 32,Barcelona,Spain,1500
+customer-64,user-account-customer-64,NV755432,+324567890,Hillside Avenue 4,Valencia,Spain,950
+customer-65,user-account-customer-65,NV890129,+325678901,Coastal Road 11,Málaga,Spain,600
+customer-66,user-account-customer-66,NV011345,+326789012,Desert Hills 83,Granada,Spain,330
+customer-67,user-account-customer-67,NV196456,+327890123,Sunny Corner 45,Zaragoza,Spain,220
+customer-68,user-account-customer-68,NV456782,+328901234,Rainy Path 1,Toledo,Spain,750
+customer-69,user-account-customer-69,NV789011,+329012345,Quiet Lane 6,Salamanca,Spain,0
+customer-70,user-account-customer-70,NV234564,+321098765,Crescent Drive 11,Toledo,Portugal,980
+customer-71,user-account-customer-71,NV345673,+320987654,Peaceful Avenue 4,Vigo,Spain,453
+customer-72,user-account-customer-72,NV456781,+319876543,Mountain Pass 19,Bilbao,Spain,1300
+customer-73,user-account-customer-73,NV567895,+318765432,Rural Route 88,La Coruna,Spain,400
+customer-74,user-account-customer-74,NV123996,+317654321,Seaside Park 77,Cadiz,Spain,850
+customer-75,user-account-customer-75,NV234563,+316543210,Forest Lane 5,Murcia,Spain,70
+customer-76,user-account-customer-76,NV345674,+315432109,City Center 33,Malaga,Spain,350
+customer-77,user-account-customer-77,NV456780,+314321098,Park View 47,Alicante,Spain,990
+customer-78,user-account-customer-78,NV134675,+313210987,River Bend 21,Tarragona,Spain,55
+customer-79,user-account-customer-79,NV678907,+312109876,Field Drive 12,Cordoba,Spain,1500
+customer-80,user-account-customer-80,NV789012,+311098765,Marina Blvd 20,Asturias,Spain,275
