@@ -79,3 +79,6 @@ user-account-member-2,true,"UserIdentity{name: 'Sonsoles', surname: 'Garcia', em
 user-account-member-3,true,"UserIdentity{name: 'Alvaro', surname: 'Barragan', email: 'barra123@acme.com'}",member3,member3
 user-account-member-4,true,"UserIdentity{name: 'Martin', surname: 'Ozandar', email: 'martozan@acme.com'}",member4,member4
 user-account-member-5,true,"UserIdentity{name: 'Gabriela', surname: 'Jimenez', email: 'gabijim@acme.com'}",member5,member5
+# Admin
+user-account-administrator-1,true,"UserIdentity{name: 'Admin1', surname: 'Admin', email: 'admin1@acme.com'}",administrator1,administrator1
+user-account-administrator-2,true,"UserIdentity{name: 'Admin2', surname: 'Admin', email: 'admin2@acme.com'}",administrator2,administrator2
