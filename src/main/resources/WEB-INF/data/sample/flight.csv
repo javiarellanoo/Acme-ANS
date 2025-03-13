@@ -1,0 +1,51 @@
+key,key:airline,key:manager,tag,draft-mode,requires-self-transfer,cost, description
+#Base-entity
+flight-01,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#tag-variations
+flight-02,airline-01,manager-01,L,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-03,airline-01,manager-01,Lo,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-04,airline-01,manager-01,"Lorem ipsum dolor sit amet, consectetur adipiscin",0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-05,airline-01,manager-01,"Lorem ipsum dolor sit amet, consectetur adipiscing",0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-06,airline-01,manager-01,โลเร็ม อิปซัม,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-07,airline-01,manager-01,لوريم إيبسوم,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-08,airline-01,manager-01,L,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-09,airline-01,manager-01,洛伦·伊普森,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-10, airline-01,manager-01,<marquee>Hacked</marquee>,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-11, airline-01,manager-01,<script>alert(‘Hacked!’);</script>,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-12, airline-01,manager-01,'' or 'A' = 'A ,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#tag-variations-singular-values
+flight-13, airline-01,manager-01,The fastest,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-14, airline-01,manager-01,The cheapest,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#draft-mode-variations
+flight-15, airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-16, airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#requires-self-transfer-variations
+flight-17, airline-01,manager-01,Lorem ipsum dolor sit ame,0,1,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-18, airline-01,manager-01,Lorem ipsum dolor sit ame,0,1,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#requires-self-transfer-no-singular-values
+#cost-variations
+flight-19, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 0.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-20, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 0.01, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-21, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 999999.99, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-22, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 1000000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#cost-variations-singular-values
+flight-23, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,USD 67800.56, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-24, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,USD 999452.51, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+#description-variations
+flight-25, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, null
+flight-26, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-27, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "L"
+flight-28, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lo"
+flight-29, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor"
+flight-30, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*"
+#description-variations-singular-values
+flight-31, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Take a wonderful flight from Spain to Italy"
+flight-32, airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Take a disastrous flight from Italy to France"
+#manager-variations
+flight-33, airline-01,manager-02,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-34, airline-01,manager-02,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+
+#airline-variations
+flight-35, airline-02,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-36, airline-03,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-37, airline-04,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
