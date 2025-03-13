@@ -1,0 +1,5 @@
+key,key:userAccount,license-number,phone-number,specialisation,annual-health-test,experience-years,certifications
+#Base Entity
+technician-01,user-account-technician-01,JT975374,+123456789,Fuel Systems,true,5,FAA Airframe
+technician-02,user-account-technician-02,JT123456,+123456789012345,Propulsion Systems,true,3,FAA Powerplant
+technician-03,user-account-technician-03,PT987654,+12345678901234,Avionics Systems,false,7,ICAO Avionics
