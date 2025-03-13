@@ -15,7 +15,7 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 	@Query("select 65 - (YEAR(CURRENT_DATE) - YEAR(m.dateOfBirth)) from Manager m where m.userAccount.id = :managerId")
 	public Integer findYearsToRetire(Integer managerId);
 
-	@Query("select count(m2) +1 from Manager m2 where m2.yearsOfExperience >= all(select m from Manager m where m.userAccount.id =:managerId")
+	@Query("select count(m2) +1 from Manager m2 where m2.yearsOfExperience >= all(select m from Manager m where m.userAccount.id =:managerId)")
 	public Integer findPositionInRanking(Integer managerId);
 
 	@Query("select 1.0 * count(a) / (select count(l) from Leg l where l.flight.manager.userAccount.id = :managerId) from Leg a where a.status = acme.entities.legs.LegStatus.ON_TIME and a.flight.manager.userAccount.id = :managerId")
