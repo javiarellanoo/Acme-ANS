@@ -1,4 +1,4 @@
-key, key:departure-airport,key:destination-airport,key:aircraft,key:flight,flight-number,scheduled-departure,scheduled-arrival,status
+key,key:departure-airport,key:destination-airport,key:aircraft,key:flight,flight-number,scheduled-departure,scheduled-arrival,status
 #base-entity
 leg-01,airport-01,airport-02,aircraft-01,flight-01,ASX1234,2025/01/01 00:00,2025/01/01 02:00,ON_TIME
 #departure-and-destination-airport-variations
@@ -14,7 +14,7 @@ leg-07,airport-03,airport-04,aircraft-03,flight-03,ASX1240,2025/01/01 18:00,2025
 #scheduled-departure-and-arrival-variations
 leg-08,airport-01,airport-02,aircraft-04,flight-05,ASX1241,2025/01/01 00:01,2025/01/01 00:02,ON_TIME
 leg-09,airport-02,airport-03,aircraft-05,flight-05,ASX1242,2025/01/02 20:00,2025/01/03 01:00,ON_TIME
-leg-10,airport-03,airport-04,aircraft-05,flight-06,ASX1243,2200/12/31 23:59,2201/01/01 00:00,ON_TIME
+leg-10,airport-03,airport-04,aircraft-05,flight-06,ASX1243,2200/12/31 23:58,2200/12/31 23:59,ON_TIME
 
 #status-variations
 leg-11,airport-01,airport-02,aircraft-07,flight-07,ASX1244,2025/01/01 00:00,2025/01/01 02:00,DELAYED
