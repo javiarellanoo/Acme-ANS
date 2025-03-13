@@ -1,5 +1,5 @@
 
-package acme.entities.involvedIn;
+package acme.entities.maintenanceRecordsTasks;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class InvolvedIn extends AbstractEntity {
+public class MaintenanceRecordsTasks extends AbstractEntity {
 
 	// Serialisation version
 
