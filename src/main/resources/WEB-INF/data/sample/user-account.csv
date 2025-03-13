@@ -56,3 +56,6 @@ user-account-customer-48,true,"UserIdentity{name: 'Name48', surname: 'ValidSurna
 user-account-customer-49,true,"UserIdentity{name: 'Name49', surname: 'ValidSurname49', email: 'name49@acme.com'}",customer49,customer49
 user-account-customer-50,true,"UserIdentity{name: 'Name50', surname: 'ValidSurname50', email: 'name50@acme.com'}",customer50,customer50
 user-account-customer-51,true,"UserIdentity{name: 'Name51', surname: 'ValidSurname51', email: 'name51@acme.com'}",customer51,customer51
+user-account-manager-1,true, "UserIdentity{name: 'Mary', surname: 'Sue', email: 'marysue@acme.com'}",manager1,manager1
+user-account-manager-2,true, "UserIdentity{name: 'John', surname: 'Travolta', email: 'johnt@acme.com'}",manager2,manager2
+user-account-manager-3,true, "UserIdentity{name: 'Peter', surname: 'Parker', email: 'peterparker@acme.com'}",manager3,manager3
