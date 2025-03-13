@@ -1,0 +1,55 @@
+key,model,registration-number,capacity,cargo-weight,status,details,key:airline
+aircraft-01,Boeing 737-800,N12345,190,20000,ACTIVE,"Popular short-haul aircraft with excellent performance.",airline-01
+
+# Model variants
+aircraft-02,Lorem ipsum dolor sit ame,N23456,180,18500,ACTIVE,"Modern airliner known for efficiency and comfort.",airline-01
+aircraft-03,L,N11117,150,24000,MAINTENANCE,"Classic narrow-body aircraft popular in the 80s and 90s.",airline-02
+aircraft-04,Lo,FFFFAA,112,3446,ACTIVE,"Jumbo jet famous for long-haul flights and cargo.",airline-02
+aircraft-05,"Lorem ipsum dolor sit amet, consectetur adipiscin",N34FF2,222,45000,ACTIVE,"Wide-body aircraft designed for long-haul operations.",airline-23
+aircraft-06,"Lorem ipsum dolor sit amet, consectetur adipiscing",N31167,100,44444,MAINTENANCE,"Regional jet with plush interiors.",airline-23
+
+# Registration number variations
+aircraft-07,Boeing 737-800,Lorem ipsum dolor sit ame,200,20000,ACTIVE,"Medium-sized twin-engine jet.",airline-01
+aircraft-08,Boeing 737-800,L,55,20000,ACTIVE,"Double-decker aircraft with unmatched capacity.",airline-01
+aircraft-09,Boeing 737-800,Lo,4,2344,ACTIVE,"Single-engine aircraft popular for flight training.",airline-02
+aircraft-10,Boeing 737-800,"Lorem ipsum dolor sit amet, consectetur adipiscin",14,10000,MAINTENANCE,"Business jet that offers luxury and range.",airline-05
+aircraft-11,Boeing 737-800,"Lorem ipsum dolor sit amet, consectetur adipiscing",242,20000,ACTIVE,"Innovative design enhancing fuel efficiency.",airline-01
+
+# Capacity variations
+aircraft-12,Airbus A321,N23457,220,24000,ACTIVE,"Single aisle, high-capacity airliner.",airline-02
+aircraft-13,Boeing 737 MAX,N34568,223,20000,MAINTENANCE,"Next generation fuel-efficient aircraft.",airline-01
+aircraft-14,Airbus A220,N45679,128,15000,ACTIVE,"Compact airliner with advanced technology.",airline-02
+aircraft-15,McDonnell Douglas DC-10,N56780,1,20000,MAINTENANCE,"Wide-body aircraft retired from commercial use.",airline-07
+aircraft-16,Boeing 767,N67891,2,35000,ACTIVE,"Wide-body airliner efficient for transcontinental routes.",airline-01
+aircraft-17,Airbus A310,N78902,255,35000,MAINTENANCE,"Short/medium-range wide-body airliner.",airline-03
+aircraft-18,Airbus A380-800,N89023,254,20000,ACTIVE,"World's largest passenger aircraft.",airline-01
+
+# Cargo weight variations
+aircraft-19,Boeing 727,N90124,150,26000,MAINTENANCE,"Tri-jet airliner known for its performance.",airline-08
+aircraft-20,Boeing 737-900ER,N01235,33,22000,ACTIVE,"Extended range variant of the Boeing 737-900.",airline-01
+aircraft-21,Airbus A350,N12347,200,2000,ACTIVE,"Wide-body airliner optimized for efficiency.",airline-02
+aircraft-22,Lockheed Martin F-35,N23458,1,2001,MAINTENANCE,"Stealth multirole fighter used by armed forces.",airline-04
+aircraft-23,Boeing 757-200F,N34569,220,50000,ACTIVE,"Freighter variant of the 757.",airline-01
+aircraft-24,Airbus A310-200,N45680,200,50000,MAINTENANCE,"Older generation wide-body airliner.",airline-09
+
+# Status variations
+aircraft-25,Boeing 737-600,N56781,130,13000,ACTIVE,"Shortened version of the 737 series.",airline-01
+aircraft-26,Boeing 767-300ER,N67892,200,30000,MAINTENANCE,"Extended range variant for long-haul.",airline-45
+
+# Details variations
+aircraft-27,Airbus A321neo,N78909,240,20000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",airline-24
+aircraft-28,Cirrus SR22,N89234,5,2344,ACTIVE,,airline-04
+aircraft-29,Piper PA-28,N90125,4,23424,MAINTENANCE,L,airline-01
+aircraft-30,Boeing 737 MAX 10,N01236,230,18500,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",airline-02
+aircraft-31,Airbus A220-300,N12348,160,15000,ACTIVE,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",airline-01
+aircraft-32,Embraer E190,N23459,100,13000,MAINTENANCE,"Regional aircraft known for passenger comfort.",airline-23
+
+# General texts variants
+aircraft-33,Airbus A330-300,N34570,200,46000,ACTIVE,โลเร็ม อิปซัม,airline-04
+aircraft-34,โลเร็ม อิปซัม,N45681,22,28000,ACTIVE,"Long-haul airliner with advanced technology.",airline-01
+aircraft-35,McDonnell Douglas MD-11,N56782,200,50000,MAINTENANCE,"Wide-body aircraft built for cargo and passenger operations.",airline-02
+aircraft-36,Airbus A319,N67893,140,14000,ACTIVE,洛伦·伊普森,airline-23
+aircraft-37,Boeing 707,<marquee>Hacked</marquee>,200,25000,MAINTENANCE,"Vintage aircraft notable for its jet age introduction.",airline-01
+aircraft-38,<script>alert(‘Hacked!’);</script>,N89235,8,3000,ACTIVE,"Luxury business jet with speed records.",airline-02
+aircraft-39,Boeing 737-800BCF,N90126,200,20000,ACTIVE,"' or 'A' = 'A",airline-23
+aircraft-40,لوريم إيبسوم,N01237,80,10000,MAINTENANCE,"Turboprop aircraft used primarily for regional travel.",airline-04
