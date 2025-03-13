@@ -11,4 +11,4 @@ acme.validation.trackingLog.status.message = El estado del registro de seguimien
 acme.validation.trackingLog.resolution.message = Debe haber un mensaje de resolución una vez el seguimiento haya sido finalmente aceptado o rechazado.
 acme.validation.trackingLog.percentage.message = El porcentaje de resolución debe ser mayor que el último implementado.
 acme.validation.phone.number = El número de telefono dado no es valido.
-
+acme.validation.flight.legs.message = Los segmentos de este vuelo se solapan entre si.
