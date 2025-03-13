@@ -1,6 +1,7 @@
 # validation-en.i18n
 #
 acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
+acme.validation.flightCrewMember.employeeCode.message = The employeeCode must start with the member's initials.
 acme.validation.leg.flightCode.message = The flightCode must start with the Airline's IATA code.
 acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
@@ -10,3 +11,4 @@ acme.validation.assistanceAgent.employeeCode.message = The employeeCode must sta
 acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
 acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking is finally "ACCEPTED" or "REJECTED".
 acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented.
+acme.validation.phone.message = The phone number is not valid.

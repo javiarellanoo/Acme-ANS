@@ -8,20 +8,18 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
-import javax.validation.constraints.Pattern;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {})
-@ReportAsSingleViolation
+@Constraint(validatedBy = FlightCrewMemberValidator.class)
 
-@Pattern(regexp = "^\\+?\\d{6,15}$")
+public @interface ValidFlightCrewMember {
 
-public @interface ValidPhone {
+	// Standard validation properties
 
-	String message() default "{acme.validation.phone.message}";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
+
 }
