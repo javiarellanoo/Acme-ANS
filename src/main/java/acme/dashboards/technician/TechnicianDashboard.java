@@ -23,7 +23,7 @@ public class TechnicianDashboard extends AbstractForm {
 
 	Map<MaintenanceRecordStatus, Integer>	mapStatusNumberRecords;
 	MaintenanceRecord						recordNearestInspectionDueDate;
-	List<Aircraft>							top5AircraftsNumberRecords;
+	List<Aircraft>							topAircraftsNumberRecords;
 	Double									avgCostMaintenanceLastYear;
 	Double									maxCostMaintenanceLastYear;
 	Double									minCostMaintenanceLastYear;
