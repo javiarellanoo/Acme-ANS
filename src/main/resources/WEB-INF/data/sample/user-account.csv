@@ -5,6 +5,12 @@ user-account-consumer-03,true,"UserIdentity{name: 'Manolo', surname: '之乎路�
 user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider', email: 'laurel@acme.com'}",provider1,provider1
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
+
+# Technicians
+user-account-technician-01,true,"UserIdentity{name: 'John', surname: 'Technician', email: 'fahjbaa324@lorem-ipsum.org'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Jane', surname: 'Technician', email: 'aiubaga777@lorem-ipsum.org'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Pablo', surname: 'Technician', email: 'gahahhfga3225@lorem-ipsum.org'}",technician3,technician3
+
 user-account-customer-01,true,"UserIdentity{name: 'Theodor', surname: 'ValidSurname', email: 'theodor@acme.com'}",customer1,customer1
 user-account-customer-02,true,"UserIdentity{name: 'Bing', surname: 'Chil Ling', email: 'bing@acme.com'}",customer2,customer2
 user-account-customer-03,true,"UserIdentity{name: 'Ricardo', surname: 'Milos Pol', email: 'ricardo@acme.com'}",customer3,customer3
