@@ -10,5 +10,7 @@ acme.validation.assistanceAgent.employeeCode.message = The employeeCode must sta
 acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
 acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking is finally "ACCEPTED" or "REJECTED".
 acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented.
+acme.validation.service.promotionCode.message = The last two characters of the promotion code must correspond to the current year and must be unique.  
+acme.validation.technician.licenseNumber.message = The license number must start with the client's initials.  
 acme.validation.phone.message = The phone number is not valid.
 acme.validation.flight.legs.message = The legs of this flight overlap.
