@@ -85,3 +85,8 @@ user-account-customer-77,true,"UserIdentity{name: 'Name77', surname: 'ValidSurna
 user-account-customer-78,true,"UserIdentity{name: 'Name78', surname: 'ValidSurname78', email: 'gh567890@lorem-ipsum.org'}",customer78,customer78
 user-account-customer-79,true,"UserIdentity{name: 'Name79', surname: 'ValidSurname79', email: 'hi678901@lorem-ipsum.org'}",customer79,customer79
 user-account-customer-80,true,"UserIdentity{name: 'Name80', surname: 'ValidSurname80', email: 'jk789012@lorem-ipsum.org'}",customer80,customer80
+
+# Technicians
+user-account-technician-01,true,"UserIdentity{name: 'John', surname: 'Technician', email: 'fahjbaa324@lorem-ipsum.org'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Jane', surname: 'Technician', email: 'aiubaga777@lorem-ipsum.org'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Pablo', surname: 'Technician', email: 'gahahhfga3225@lorem-ipsum.org'}",technician3,technician3
