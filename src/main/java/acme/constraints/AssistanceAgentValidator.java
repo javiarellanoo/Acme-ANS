@@ -22,14 +22,21 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 		Boolean result;
 		assert context != null;
 
-		Boolean sameLetters;
-		String employeeCode = assistanceAgent.getEmployeeCode();
-		String initials = "";
-		initials += assistanceAgent.getIdentity().getName().trim().charAt(0);
-		initials += assistanceAgent.getIdentity().getSurname().trim().charAt(0);
+		if (assistanceAgent == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
+			Boolean sameLetters = false;
+			String employeeCode = assistanceAgent.getEmployeeCode();
+			if (employeeCode != null) {
+				String initials = "";
+				initials += assistanceAgent.getIdentity().getName().trim().charAt(0);
+				initials += assistanceAgent.getIdentity().getSurname().trim().charAt(0);
 
-		sameLetters = employeeCode.startsWith(initials);
-		super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+				sameLetters = employeeCode.startsWith(initials);
+			}
+
+			super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+		}
 
 		result = !super.hasErrors(context);
 
