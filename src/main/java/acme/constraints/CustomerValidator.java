@@ -34,7 +34,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (customer.getIdentifier() != null) {
 			boolean uniqueIdentifier = !this.repository.countSameIdentifier(customer.getIdentifier()).equals(0L);
-			super.state(context, uniqueIdentifier, "Identifer", "acme.validation.customer.identifierUniqueness.message");
+			super.state(context, uniqueIdentifier, "identifer", "acme.validation.customer.identifierUniqueness.message");
 
 			boolean initialsOfTheIdentifier;
 
