@@ -14,3 +14,4 @@ acme.validation.service.promotionCode.message = The last two characters of the p
 acme.validation.technician.licenseNumber.message = The license number must start with the client's initials.  
 acme.validation.phone.message = The phone number is not valid.
 acme.validation.flight.legs.message = The legs of this flight overlap.
+acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique.
