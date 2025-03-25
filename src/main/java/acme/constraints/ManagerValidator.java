@@ -9,7 +9,7 @@ import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.Manager;
-import acme.realms.ManagerRepository;
+import acme.realms.repositories.ManagerRepository;
 
 @Validator
 public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {

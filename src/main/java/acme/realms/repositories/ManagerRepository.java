@@ -1,5 +1,5 @@
 
-package acme.realms;
+package acme.realms.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 
