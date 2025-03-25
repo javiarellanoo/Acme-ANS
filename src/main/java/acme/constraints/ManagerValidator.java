@@ -32,7 +32,7 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (manager.getIdentifier() != null) {
 
-			boolean uniqueIdentifier = !this.repository.countSameIdentifier(manager.getIdentifier()).equals(0);
+			boolean uniqueIdentifier = this.repository.countSameIdentifier(manager.getIdentifier()).equals(1);
 			super.state(context, uniqueIdentifier, "identifier", "acme.validation.manager.identifierNonUnique.message");
 
 			Boolean matches;
