@@ -6,11 +6,17 @@ import javax.validation.ConstraintValidatorContext;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.AssistanceAgent;
+import acme.realms.repositories.AssistanceAgentRepository;
 
 @Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
+	// Internal state
+
+	private AssistanceAgentRepository repository;
+
 	// ConstraintValidator interface
+
 
 	@Override
 	protected void initialise(final ValidAssistanceAgent annotation) {
@@ -22,14 +28,24 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 		Boolean result;
 		assert context != null;
 
-		Boolean sameLetters;
-		String employeeCode = assistanceAgent.getEmployeeCode();
-		String initials = "";
-		initials += assistanceAgent.getIdentity().getName().trim().charAt(0);
-		initials += assistanceAgent.getIdentity().getSurname().trim().charAt(0);
+		if (assistanceAgent == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else if (assistanceAgent.getEmployeeCode() != null) {
+			String employeeCode = assistanceAgent.getEmployeeCode();
 
-		sameLetters = employeeCode.startsWith(initials);
-		super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+			Boolean sameLetters = false;
+			boolean uniqueEmployeeCode = false;
+			String initials = "";
+			initials += assistanceAgent.getIdentity().getName().trim().charAt(0);
+			initials += assistanceAgent.getIdentity().getSurname().trim().charAt(0);
+
+			sameLetters = employeeCode.startsWith(initials);
+
+			uniqueEmployeeCode = this.repository.findSameEmployeeCode(assistanceAgent.getEmployeeCode()).size() == 1;
+
+			super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+			super.state(context, uniqueEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
+		}
 
 		result = !super.hasErrors(context);
 
