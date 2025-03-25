@@ -82,4 +82,3 @@ user-account-member-5,true,"UserIdentity{name: 'Gabriela', surname: 'Jimenez', e
 # Admin
 user-account-administrator-1,true,"UserIdentity{name: 'Admin1', surname: 'Admin', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-administrator-2,true,"UserIdentity{name: 'Admin2', surname: 'Admin', email: 'admin2@acme.com'}",administrator2,administrator2
->>>>>>> db57e051391d8d5b06e5e82e1531a3cd1211e542
