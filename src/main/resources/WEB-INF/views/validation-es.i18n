@@ -15,3 +15,4 @@ acme.validation.technician.licenseNumber.message = El número de licencia debe e
 acme.validation.phone.number = El número de telefono dado no es valido.
 acme.validation.flight.legs.message = Los segmentos de este vuelo se solapan entre si.
 acme.validation.airline.iataCode.message = El código IATA no es único.
+acme.validation.leg.flightCodeUnique.message = El numero de vuelo debe ser único
