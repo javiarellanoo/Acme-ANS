@@ -14,4 +14,5 @@ acme.validation.service.promotionCode.message = Los dos últimos carácteres del
 acme.validation.technician.licenseNumber.message = El número de licencia debe empezar con las iniciales del cliente.
 acme.validation.phone.number = El número de telefono dado no es valido.
 acme.validation.flight.legs.message = Los segmentos de este vuelo se solapan entre si.
+acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
 acme.validation.airline.iataCode.message = El código IATA no es único.
