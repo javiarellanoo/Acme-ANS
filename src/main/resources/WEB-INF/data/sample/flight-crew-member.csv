@@ -1,0 +1,7 @@
+key,key:user-account,key:airline,employee-code,phone-number,language-skills,availability-status,salary,years-of-experience
+member-01,user-account-member-1,airline-01,BO123456,123456,Lorem ipsum dolor sit amet,AVAILABLE,EUR 500000.00,null
+member-02,user-account-member-2,airline-02,SG987654,+678321,L,ON_VACATION,EUR 0.00,0
+member-03,user-account-member-3,airline-03,AB452346,1279654,Lo,ON_LEAVE,EUR 0.01,1
+member-04,user-account-member-4,airline-04,MO723910,+7317896,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",AVAILABLE,EUR 999999.99,119
+member-05,user-account-member-5,airline-05,GJ887341,12345678,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",AVAILABLE,EUR 1000000.00,120
+

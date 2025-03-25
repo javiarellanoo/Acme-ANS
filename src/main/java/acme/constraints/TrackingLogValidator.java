@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.StringHelper;
@@ -18,6 +20,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 	// Internal state
 
+	@Autowired
 	private TrackingLogRepository repository;
 
 	// ConstraintValidator interface
@@ -37,9 +40,9 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 
-			Boolean hasResolution = true;
+			boolean hasResolution = true;
 			Boolean correctStatus;
-			Boolean greaterPercentage = false;
+			boolean greaterPercentage = false;
 
 			if (trackingLog.getResolutionPercentage() == 100.00) {
 				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);

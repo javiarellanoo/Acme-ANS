@@ -35,9 +35,9 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	private String				employeeCode;  //implementar con un custom validator 2 primeras letras sean iniciales
+	private String				employeeCode;
 
 	@Mandatory
 	@ValidString(min = 1, max = 255)
@@ -66,8 +66,8 @@ public class AssistanceAgent extends AbstractRole {
 
 	// Relationships
 
-	@Mandatory
+	@Optional
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private Airline				airline;
 }
