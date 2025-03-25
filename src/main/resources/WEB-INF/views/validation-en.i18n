@@ -5,3 +5,5 @@ acme.validation.manager.identifier.message = The identifier must start with the 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
 
 acme.validation.flightCrewMember.employeeCode.message = The employeeCode must start with the member's initials.
+
+acme.validation.flightCrewMember.duplicated-employeeCode.message = The employeeCode must be unique.
