@@ -21,3 +21,5 @@ acme.validation.airline.iataCode.message = El código IATA no es único.
 acme.validation.aircraft.registrationNumber.message = El número de registro de un avión debe ser unico.
 acme.validation.customer.identifierUniqueness.message = El identificador debe ser único.
 acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
+acme.validation.maintenanceRecord.nextInspectionDate.message = La fecha de siguiente inspección debe ser posterior al momento del registro de mantenimiento.
+
