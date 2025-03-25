@@ -1,35 +1,35 @@
-key,key:assistance-agent,registration-moment,passenger-email,description,type,status
+key,key:registered-by,registration-moment,passenger-email,description,type
 # base entity
-claim-01,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
+claim-01,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
 # registrationMoment - standard variations
-claim-02,assistance-agent-01,2000/01/01  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-03,assistance-agent-01,2000/01/01  00:01,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-04,assistance-agent-01,2024/12/31  23:59,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-05,assistance-agent-01,2025/01/01  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
+claim-02,assistance-agent-01,2000/01/01  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-03,assistance-agent-01,2000/01/01  00:01,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-04,assistance-agent-01,2024/12/31  23:59,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-05,assistance-agent-01,2025/01/01  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
 # registrationMoment - singular values
-claim-06,assistance-agent-01,2012/02/29  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
+claim-06,assistance-agent-01,2012/02/29  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
 # passengerEmail - singular values
-claim-07,assistance-agent-01,2012/07/02  00:00,"acme-password@lorem-ipsum.org",Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-08,assistance-agent-01,2012/07/02  00:00,a@b.e,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-09,assistance-agent-01,2012/07/02  00:00,a@b.es,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
-claim-10,assistance-agent-01,2012/07/02  00:00,a@b.esx,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,PENDING
+claim-07,assistance-agent-01,2012/07/02  00:00,"acme-password@lorem-ipsum.org",Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-08,assistance-agent-01,2012/07/02  00:00,a@b.e,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-09,assistance-agent-01,2012/07/02  00:00,a@b.es,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
+claim-10,assistance-agent-01,2012/07/02  00:00,a@b.esx,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
 # description - standard variations
-claim-11,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,L,FLIGHT_ISSUES,PENDING
-claim-12,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lo,FLIGHT_ISSUES,PENDING
-claim-13,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",FLIGHT_ISSUES,PENDING
-claim-14,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure doloro",FLIGHT_ISSUES,PENDING
-claim-15,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,โลเร็ม อิปซัม,FLIGHT_ISSUES,PENDING
-claim-16,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,لوريم إيبسوم,FLIGHT_ISSUES,PENDING
-claim-17,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,洛伦·伊普森,FLIGHT_ISSUES,PENDING
-claim-18,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,<marquee>Hacked</marquee>,FLIGHT_ISSUES,PENDING
-claim-19,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,<script>alert(‘Hacked!’);</script>,FLIGHT_ISSUES,PENDING
-claim-20,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,'' or 'A' = 'A,FLIGHT_ISSUES,PENDING
+claim-11,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,L,FLIGHT_ISSUES
+claim-12,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lo,FLIGHT_ISSUES
+claim-13,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",FLIGHT_ISSUES
+claim-14,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure doloro",FLIGHT_ISSUES
+claim-15,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,โลเร็ม อิปซัม,FLIGHT_ISSUES
+claim-16,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,لوريم إيبسوم,FLIGHT_ISSUES
+claim-17,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,洛伦·伊普森,FLIGHT_ISSUES
+claim-18,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,<marquee>Hacked</marquee>,FLIGHT_ISSUES
+claim-19,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,<script>alert(‘Hacked!’);</script>,FLIGHT_ISSUES
+claim-20,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,'' or 'A' = 'A,FLIGHT_ISSUES
 # description - no singular values
 # type - standard variations
-claim-21,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES,PENDING
-claim-22,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,SECURITY_INCIDENT,PENDING
-claim-23,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,OTHER_ISSUES,PENDING
+claim-21,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES
+claim-22,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,SECURITY_INCIDENT
+claim-23,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,OTHER_ISSUES
 # type - no singular values
 # status - standard variations
-claim-24,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES,ACCEPTED
-claim-25,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES,REJECTED
+claim-24,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES
+claim-25,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,LUGGAGE_ISSUES

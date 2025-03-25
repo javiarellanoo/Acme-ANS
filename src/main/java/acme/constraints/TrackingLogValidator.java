@@ -2,7 +2,6 @@
 package acme.constraints;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -42,7 +41,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 			boolean hasResolution = true;
 			Boolean correctStatus;
-			boolean greaterPercentage = false;
+			boolean greaterPercentage = true;
 
 			if (trackingLog.getResolutionPercentage() == 100.00) {
 				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
@@ -52,10 +51,13 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 			if (trackingLog.getResolutionPercentage() != null) {
 				List<TrackingLog> allOrdered = this.repository.findAllOrderedByIndex(trackingLog.getClaim().getId());
+				List<TrackingLog> beforeActual = allOrdered.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).toList();
 
-				TrackingLog previous = allOrdered.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).collect(Collectors.toList()).get(0);
+				if (!beforeActual.isEmpty()) {
+					TrackingLog previous = beforeActual.get(0);
 
-				greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+					greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+				}
 			}
 
 			super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
