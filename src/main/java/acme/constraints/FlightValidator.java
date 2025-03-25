@@ -47,9 +47,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 				Date previousArrival = legs.get(i - 1).getScheduledArrival();
 				Date currentDeparture = legs.get(i).getScheduledDeparture();
 
-				validFlight = MomentHelper.isAfter(currentDeparture, previousArrival);
-				if (validFlight.equals(false))
-					break;
+				validFlight = validFlight && MomentHelper.isAfter(currentDeparture, previousArrival);
 			}
 		super.state(context, validFlight, "legs", "acme.validation.flight.legs.message");
 
