@@ -43,7 +43,7 @@ public class TrackingLog extends AbstractEntity {
 	private String				stepUndergoing;
 
 	@Mandatory
-	@ValidNumber
+	@ValidNumber(min = 0, max = 10000)
 	@Automapped
 	private Integer				trackIndex;
 

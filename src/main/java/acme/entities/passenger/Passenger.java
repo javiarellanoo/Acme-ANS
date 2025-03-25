@@ -54,10 +54,4 @@ public class Passenger extends AbstractEntity {
 	@ValidString(max = 50, min = 0)
 	@Automapped
 	private String				specialNeeds;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Booking				booking;
-
 }

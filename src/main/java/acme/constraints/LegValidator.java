@@ -26,11 +26,11 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		assert context != null;
 
 		Boolean matches;
-		String airlineCode = leg.getAirline().getIataCode();
+		String airlineCode = leg.getFlight().getAirline().getIataCode();
 		String flightNumber = leg.getFlightNumber();
 
-		matches = flightNumber.trim().startsWith(airlineCode);
-		super.state(context, !matches, "flightCode", "acme.validation.leg.flightCode.message");
+		matches = flightNumber.trim().startsWith(airlineCode.trim());
+		super.state(context, matches, "flightCode", "acme.validation.leg.flightCode.message");
 
 		Date scheduledDeparture = leg.getScheduledDeparture();
 		Date scheduledArrival = leg.getScheduledArrival();

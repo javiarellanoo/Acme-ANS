@@ -1,7 +1,6 @@
 # validation-es.i18n
 #
 acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
-acme.validation.flightCrewMember.employeeCode.message = El código de empleado del miembro debe comenzar con sus iniciales.
 acme.validation.leg.flightCode.message = El código de vuelo debe comenzar con el codigo IATA de la aerolínea.
 acme.validation.leg.scheduledArrival.message = La fecha estimada de llegada debe ser posterior a la de salida.
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
@@ -12,3 +11,8 @@ acme.validation.trackingLog.resolution.message = Debe haber un mensaje de resolu
 acme.validation.trackingLog.percentage.message = El porcentaje de resolución debe ser mayor que el último implementado.
 acme.validation.flightCrewMember.employeeCode.message = El código de empleado del miembro debe comenzar con sus iniciales.
 acme.validation.flightCrewMember.duplicated-employeeCode.message = El código de empleado debe ser único.
+acme.validation.service.promotionCode.message = Los dos últimos carácteres del código de promoción deben corresponder con el año actual y debe ser único.
+acme.validation.technician.licenseNumber.message = El número de licencia debe empezar con las iniciales del cliente.
+acme.validation.phone.number = El número de telefono dado no es valido.
+acme.validation.flight.legs.message = Los segmentos de este vuelo se solapan entre si.
+acme.validation.airline.iataCode.message = El código IATA no es único.

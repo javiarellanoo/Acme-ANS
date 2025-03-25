@@ -1,0 +1,30 @@
+key,type,description,priority,estimated-hours-duration,key:technician
+#Base Entity
+task-01,MAINTENANCE,Lorem ipsum dolor sit ame,5,500,technician-01
+# Type variations
+task-02,REPAIR,Lorem ipsum dolor sit ame,5,500,technician-01
+task-03,INSPECTION,Lorem ipsum dolor sit ame,5,500,technician-01
+task-04,SYSTEM_CHECK,Lorem ipsum dolor sit ame,5,500,technician-01
+# Description variations
+task-05,MAINTENANCE,L,5,500,technician-01
+task-06,MAINTENANCE,Lo,5,500,technician-01
+task-07,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscin",5,500,technician-01
+task-08,MAINTENANCE,"Lorem ipsum dolor sit amet, consectetur adipiscing",5,500,technician-01
+task-09,MAINTENANCE,โลเร็ม อิปซัม,5,500,technician-01
+task-10,MAINTENANCE,لوريم إيبسوم,5,500,technician-01
+task-11,MAINTENANCE,洛伦·伊普森,5,500,technician-01
+task-12,MAINTENANCE,<marquee>Hacked</marquee>,5,500,technician-01
+task-13,MAINTENANCE,<script>alert(‘Hacked!’);</script>,5,500,technician-01
+task-14,MAINTENANCE,'' or 'A' = 'A,5,500,technician-01
+# Priority variants
+task-15,MAINTENANCE,Lorem ipsum dolor sit ame,0,500,technician-01
+task-16,MAINTENANCE,Lorem ipsum dolor sit ame,1,500,technician-01
+task-17,MAINTENANCE,Lorem ipsum dolor sit ame,10,500,technician-01
+task-18,MAINTENANCE,Lorem ipsum dolor sit ame,9,500,technician-01
+# Estimated Hours Duration variants
+task-19,MAINTENANCE,Lorem ipsum dolor sit ame,5,0,technician-01
+task-20,MAINTENANCE,Lorem ipsum dolor sit ame,5,1,technician-01
+task-21,MAINTENANCE,Lorem ipsum dolor sit ame,5,1000,technician-01
+task-22,MAINTENANCE,Lorem ipsum dolor sit ame,5,999,technician-01
+# Technician variants
+task-23,MAINTENANCE,Lorem ipsum dolor sit ame,5,500,technician-02

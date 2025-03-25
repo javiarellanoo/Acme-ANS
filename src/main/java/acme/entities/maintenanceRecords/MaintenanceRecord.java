@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Moment;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
@@ -17,6 +16,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.entities.aircrafts.Aircraft;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,7 +34,7 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@ValidMoment
 	@Automapped
-	private Moment					moment;
+	private Date					moment;
 
 	@Mandatory
 	@Valid
@@ -62,4 +62,9 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Aircraft				aircraft;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Technician				technician;
 }
