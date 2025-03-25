@@ -1,6 +1,8 @@
 
 package acme.constraints;
 
+import java.util.List;
+
 import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
@@ -41,7 +43,9 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 			sameLetters = employeeCode.startsWith(initials);
 
-			uniqueEmployeeCode = this.repository.findSameEmployeeCode(assistanceAgent.getEmployeeCode()).size() == 1;
+			List<AssistanceAgent> existingEmployeeCode = this.repository.findSameEmployeeCode(assistanceAgent.getEmployeeCode());
+
+			uniqueEmployeeCode = existingEmployeeCode.size() == 1 || existingEmployeeCode.isEmpty();
 
 			super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
 			super.state(context, uniqueEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
