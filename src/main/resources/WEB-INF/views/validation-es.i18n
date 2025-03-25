@@ -18,3 +18,4 @@ acme.validation.aircraft.registrationNumber.message = El número de registro de 
 acme.validation.customer.identifierUniqueness.message = El identificador debe ser único.
 acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
 acme.validation.airline.iataCode.message = El código IATA no es único.
+acme.validation.airport.duplicated-iataCode.message = El código IATA no es único.
