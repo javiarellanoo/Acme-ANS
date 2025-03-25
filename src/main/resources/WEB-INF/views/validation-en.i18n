@@ -15,3 +15,5 @@ acme.validation.technician.licenseNumber.message = The license number must start
 acme.validation.phone.message = The phone number is not valid.
 acme.validation.flight.legs.message = The legs of this flight overlap.
 acme.validation.manager.identifierNonUnique.message = The identifier is not unique
+acme.validation.airline.iataCode.message = The iataCode is not unique.
+
