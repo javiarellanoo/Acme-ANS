@@ -22,20 +22,24 @@ public class TechnicianValidator extends AbstractValidator<ValidTechnician, Tech
 
 		assert context != null;
 
-		Boolean matches;
-		String initials;
-		DefaultUserIdentity identity;
+		if (technician == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
+			Boolean matches;
+			String initials;
+			DefaultUserIdentity identity;
 
-		identity = technician.getIdentity();
+			identity = technician.getIdentity();
 
-		initials = "";
+			initials = "";
 
-		initials += identity.getName().trim().charAt(0);
+			initials += identity.getName().trim().charAt(0);
 
-		initials += identity.getSurname().trim().charAt(0);
+			initials += identity.getSurname().trim().charAt(0);
 
-		matches = technician.getLicenseNumber().trim().startsWith(initials);
-		super.state(context, matches, "licenseNumber", "acme.validation.technician.licenseNumber.message");
+			matches = technician.getLicenseNumber().trim().startsWith(initials);
+			super.state(context, matches, "licenseNumber", "acme.validation.technician.licenseNumber.message");
+		}
 
 		result = !super.hasErrors(context);
 		return result;
