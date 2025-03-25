@@ -20,5 +20,6 @@ acme.validation.aircraft.registrationNumber.message = The registration number of
 acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
 acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique.
 acme.validation.airline.iataCode.message = The iataCode is not unique.
+acme.validation.airport.duplicated-iataCode.message = The iataCode is not unique.
 acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
 acme.validation.leg.flightCodeUnique.message = The flightCode must be unique.
