@@ -9,6 +9,7 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.bookings.Booking;
 import acme.entities.bookings.BookingRepository;
+import acme.helpers.UniquenessHelper;
 
 @Validator
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
@@ -33,7 +34,8 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 		if (booking == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (booking.getLocatorCode() != null) {
-			boolean uniqueLocatorCode = !this.repository.countSameLocatorCode(booking.getLocatorCode()).equals(0L);
+			Booking existingBooking = this.repository.getBookingByLocatorCode(booking.getLocatorCode());
+			boolean uniqueLocatorCode = UniquenessHelper.checkUniqueness(existingBooking, booking);
 			super.state(context, uniqueLocatorCode, "uniqueLocatorCode", "acme.validation.booking.uniqueLocatorCode.message");
 		}
 
