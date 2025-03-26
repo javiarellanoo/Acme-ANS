@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.helpers.UniquenessHelper;
 import acme.realms.Customer;
 import acme.realms.repositories.CustomerRepository;
 
@@ -33,7 +34,10 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		if (customer == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (customer.getIdentifier() != null) {
-			boolean uniqueIdentifier = !this.repository.countSameIdentifier(customer.getIdentifier()).equals(0L);
+
+			Customer existingCustomer = this.repository.getCustomerByIdentifier(customer.getIdentifier());
+			boolean uniqueIdentifier = UniquenessHelper.checkUniqueness(existingCustomer, customer);
+
 			super.state(context, uniqueIdentifier, "identifer", "acme.validation.customer.identifierUniqueness.message");
 
 			boolean initialsOfTheIdentifier;
