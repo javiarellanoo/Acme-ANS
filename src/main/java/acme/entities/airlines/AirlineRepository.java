@@ -8,6 +8,9 @@ import acme.client.repositories.AbstractRepository;
 public interface AirlineRepository extends AbstractRepository {
 
 	@Query("select count(a) from Airline a where a.iataCode = :iataCode")
-	public Integer countSameIataCode(String iataCode);
+	Integer countSameIataCode(String iataCode);
+
+	@Query("select a from Airline a where a.iataCode = :iataCode")
+	Airline findAirlineByIataCode(String iataCode);
 
 }
