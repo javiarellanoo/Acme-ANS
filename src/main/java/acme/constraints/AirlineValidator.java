@@ -9,6 +9,7 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.airlines.Airline;
 import acme.entities.airlines.AirlineRepository;
+import acme.helpers.UniquenessHelper;
 
 @Validator
 public class AirlineValidator extends AbstractValidator<ValidAirline, Airline> {
@@ -31,7 +32,8 @@ public class AirlineValidator extends AbstractValidator<ValidAirline, Airline> {
 		if (airline == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (airline.getIataCode() != null) {
-			boolean uniqueIataCode = !this.repository.countSameIataCode(airline.getIataCode()).equals(0);
+			Airline existingAirline = this.repository.findAirlineByIataCode(airline.getIataCode());
+			boolean uniqueIataCode = UniquenessHelper.checkUniqueness(existingAirline, airline);
 			super.state(context, uniqueIataCode, "IATACode", "acme.validation.airline.iataCode.message");
 		}
 
