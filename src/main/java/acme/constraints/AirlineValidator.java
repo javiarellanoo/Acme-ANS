@@ -34,7 +34,7 @@ public class AirlineValidator extends AbstractValidator<ValidAirline, Airline> {
 		else if (airline.getIataCode() != null) {
 			Airline existingAirline = this.repository.findAirlineByIataCode(airline.getIataCode());
 			boolean uniqueIataCode = UniquenessHelper.checkUniqueness(existingAirline, airline);
-			super.state(context, uniqueIataCode, "IATACode", "acme.validation.airline.iataCode.message");
+			super.state(context, uniqueIataCode, "iataCode", "acme.validation.airline.iataCode.message");
 		}
 
 		result = !super.hasErrors(context);
