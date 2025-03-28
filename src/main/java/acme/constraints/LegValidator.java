@@ -13,6 +13,7 @@ import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.entities.legs.Leg;
 import acme.entities.legs.LegRepository;
+import acme.helpers.UniquenessHelper;
 
 @Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
@@ -36,7 +37,8 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (leg.getFlightNumber() != null) {
 
-			Boolean uniqueFlightNumber = this.repository.countSameFlightNumber(leg.getFlightNumber()).equals(1);
+			Leg existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
+			Boolean uniqueFlightNumber = UniquenessHelper.checkUniqueness(existingLeg, leg);
 			super.state(context, uniqueFlightNumber, "flightCode", "acme.validation.leg.flightCodeUnique.message");
 
 			Boolean matches;

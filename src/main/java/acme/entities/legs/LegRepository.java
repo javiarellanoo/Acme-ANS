@@ -32,4 +32,7 @@ public interface LegRepository extends AbstractRepository {
 
 	@Query("select count(l) from Leg l where l.flightNumber = :flightNumber")
 	Integer countSameFlightNumber(String flightNumber);
+
+	@Query("select l from Leg l where l.flightNumber = :flightNumber")
+	Leg findLegByFlightNumber(String flightNumber);
 }
