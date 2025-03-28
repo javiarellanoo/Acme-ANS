@@ -1,0 +1,17 @@
+technician.task.list.title = Tareas
+technician.task.list.label.type = Tipo
+technician.task.list.label.description = Descripción
+technician.task.list.label.priority = Prioridad
+technician.task.list.label.estimatedHoursDuration = Horas Est.
+technician.task.list.button.create = Crear
+
+# Página de detalles de tareas
+technician.task.form.title = Detalles de la Tarea
+technician.task.form.label.type = Tipo
+technician.task.form.label.description = Descripción
+technician.task.form.label.priority = Prioridad
+technician.task.form.label.estimatedHoursDuration = Horas Estimadas
+technician.task.form.button.update = Actualizar
+technician.task.form.button.delete = Eliminar
+technician.task.form.button.publish = Publicar
+technician.task.form.button.create = Crear
