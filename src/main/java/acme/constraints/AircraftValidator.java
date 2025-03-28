@@ -9,6 +9,7 @@ import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.aircrafts.AircraftRepository;
+import acme.helpers.UniquenessHelper;
 
 @Validator
 public class AircraftValidator extends AbstractValidator<ValidAircraft, Aircraft> {
@@ -31,8 +32,9 @@ public class AircraftValidator extends AbstractValidator<ValidAircraft, Aircraft
 		if (aircraft == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (aircraft.getRegistrationNumber() != null) {
-			boolean uniqueIdentifier = !this.repository.countSameRegistrationNumber(aircraft.getRegistrationNumber()).equals(0L);
-			super.state(context, uniqueIdentifier, "registrationNumber", "acme.validation.aircraft.registrationNumber.message");
+			Aircraft existingAircraft = this.repository.getCustomerByIdentifier(aircraft.getRegistrationNumber());
+			boolean uniqueLocatorCode = UniquenessHelper.checkUniqueness(existingAircraft, aircraft);
+			super.state(context, uniqueLocatorCode, "registrationNumber", "acme.validation.aircraft.registrationNumber.message");
 		}
 
 		result = !super.hasErrors(context);
