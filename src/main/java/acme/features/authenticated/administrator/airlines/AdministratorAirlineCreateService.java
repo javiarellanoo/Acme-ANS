@@ -40,7 +40,7 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 		airline.setFoundationMoment(foundationMoment);
 		airline.setType(AirlineType.STANDARD);
 		airline.setEmail("");
-		airline.setPhoneNumber(null);
+		airline.setPhoneNumber("");
 
 		super.getBuffer().addData(airline);
 	}
@@ -60,10 +60,6 @@ public class AdministratorAirlineCreateService extends AbstractGuiService<Admini
 
 	@Override
 	public void perform(final Airline airline) {
-		Date moment;
-
-		moment = MomentHelper.getCurrentMoment();
-		airline.setFoundationMoment(moment);
 		this.repository.save(airline);
 	}
 

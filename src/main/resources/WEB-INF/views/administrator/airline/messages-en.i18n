@@ -11,6 +11,10 @@ administrator.airline.form.label.phoneNumber = Phone Number: (Optional)
 administrator.airline.form.label.confirmation = Confirm that the airline is correct.
 
 administrator.airline.form.button.create = Create
+administrator.airline.form.button.update = Update
+administrator.airline.form.button.delete = Delete
+administrator.airline.form.button.edit = Edit
+administrator.airline.form.label.confirmation = Confirmar
 
 administrator.airline.list.label.name = Name
 administrator.airline.list.label.iataCode = IATA Code
