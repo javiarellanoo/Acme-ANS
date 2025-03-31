@@ -9,7 +9,7 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface AircraftRepository extends AbstractRepository {
 
-	@Query("select count(a) from Aircraft a where registrationNumber = :registrationNumber")
+	@Query("select count(a) from Aircraft a where a.registrationNumber = :registrationNumber")
 	Long countSameRegistrationNumber(String registrationNumber);
 
 	@Query("select a from Aircraft a where registrationNumber = :registrationNumber")
