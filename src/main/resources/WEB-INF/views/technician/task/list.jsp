@@ -12,4 +12,8 @@
 
 <jstl:if test="${_command == 'list'}">
 	<acme:button code="technician.task.list.button.create" action="/technician/task/create"/>
-</jstl:if>	
+</jstl:if>
+	
+<jstl:when test="${_command == 'create'}">
+	<acme:submit code="customer.booking.form.button.create" action="/customer/booking/create"/>
+</jstl:when>  
