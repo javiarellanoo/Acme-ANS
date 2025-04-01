@@ -48,6 +48,9 @@
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.mine" action="/technician/task/list?published=false"/>
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.published" action="/technician/task/list?published=true"/>
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.review" access="isAnonymous()">
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		
@@ -57,6 +60,7 @@
 			<acme:menu-suboption code="master.menu.user-account.provider-profile" action="/authenticated/provider/update" access="hasRealm('Provider')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

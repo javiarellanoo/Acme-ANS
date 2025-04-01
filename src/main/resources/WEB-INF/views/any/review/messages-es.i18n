@@ -1,0 +1,19 @@
+any.review.list.title = Reseñas
+review.list.label.name = Nombre
+review.list.label.postedAt = Creada en
+review.list.label.subject = Asunto
+review.list.label.description = Descripción
+review.list.label.score = Puntuación
+review.list.label.recommended = Recomendado
+review.list.button.create = Crear
+
+# Reviews details page
+any.review.form.title = Detalles de la reseña
+review.form.label.name = Nombre
+review.form.label.postedAt = Creada en
+review.form.label.subject = Asunto
+review.form.label.description = Descripción
+review.form.label.score = Puntuación
+review.form.label.recommended = Recomendado
+review.form.button.create = Crear
+review.form.label.confirmation = Confirm that the information of the review is correct
