@@ -49,3 +49,6 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.technician = Técnico
 master.menu.technician.tasks.list.mine = Mis tareas
 master.menu.technician.tasks.list.published = Tareas publicadas
+
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = Mis reservas

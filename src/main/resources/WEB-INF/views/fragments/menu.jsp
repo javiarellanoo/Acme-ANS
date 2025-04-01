@@ -48,6 +48,9 @@
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.mine" action="/technician/task/list?published=false"/>
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.published" action="/technician/task/list?published=true"/>
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
+			<acme:menu-suboption code="master.menu.customer.list-bookings" action="/customer/booking/list"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		
