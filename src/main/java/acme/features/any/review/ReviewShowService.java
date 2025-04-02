@@ -41,6 +41,8 @@ public class ReviewShowService extends AbstractGuiService<Any, Review> {
 		Dataset dataset;
 
 		dataset = super.unbindObject(review, "name", "postedAt", "subject", "description", "score", "recommended");
+		dataset.put("confirmation", false);
+		dataset.put("readonly", true);
 
 		super.getResponse().addData(dataset);
 	}

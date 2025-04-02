@@ -4,7 +4,9 @@
 
 <acme:form>
     <acme:input-textbox code="review.form.label.name" path="name"/>
-    <acme:input-moment code="review.form.label.postedAt" path="postedAt"/>
+    <jstl:if test="${readonly}">
+    	<acme:input-moment code="review.form.label.postedAt" path="postedAt"/>
+    </jstl:if>
     <acme:input-textbox code="review.form.label.subject" path="subject"/>
     <acme:input-textbox code="review.form.label.description" path="description"/>
     <acme:input-double code="review.form.label.score" path="score"/>

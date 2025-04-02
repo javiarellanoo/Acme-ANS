@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Any;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.reviews.Review;
@@ -30,13 +31,14 @@ public class ReviewCreateService extends AbstractGuiService<Any, Review> {
 		Review review;
 
 		review = new Review();
+		review.setPostedAt(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(review);
 	}
 
 	@Override
 	public void bind(final Review review) {
-		super.bindObject(review, "name", "postedAt", "subject", "description", "score", "recommended");
+		super.bindObject(review, "name", "subject", "description", "score", "recommended");
 	}
 
 	@Override
@@ -49,6 +51,7 @@ public class ReviewCreateService extends AbstractGuiService<Any, Review> {
 
 	@Override
 	public void perform(final Review review) {
+		review.setPostedAt(MomentHelper.getCurrentMoment());
 		this.repository.save(review);
 	}
 
