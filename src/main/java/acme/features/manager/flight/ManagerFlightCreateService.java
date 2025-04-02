@@ -47,7 +47,7 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 		airlineId = super.getRequest().getData("airlines", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
-		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 		flight.setAirline(airline);
 	}
 
@@ -58,6 +58,7 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void perform(final Flight flight) {
+		flight.setDraftMode(true);
 		this.repository.save(flight);
 	}
 
@@ -70,7 +71,7 @@ public class ManagerFlightCreateService extends AbstractGuiService<Manager, Flig
 		airlines = this.repository.findAllAirlines();
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
