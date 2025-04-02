@@ -2,7 +2,6 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,28 +35,15 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	public void load() {
 		Booking booking;
 		Customer customer;
-		Random random = new Random();
 
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
-		StringBuilder stringBuilder = new StringBuilder();
-		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-		int length = random.nextInt(3) + 6;
-
-		for (int i = 0; i < length; i++)
-			stringBuilder.append(chars.charAt(random.nextInt(chars.length())));
 
 		booking = new Booking();
-		booking.setLocatorCode(stringBuilder.toString());
+		booking.setLocatorCode("");
 		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		booking.setCustomer(customer);
 
-		StringBuilder stringBuilderCard = new StringBuilder();
-
-		for (int i = 0; i < 4; i++)
-			stringBuilderCard.append(random.nextInt(10));
-
-		booking.setLastCardNibble(stringBuilderCard.toString());
+		booking.setLastCardNibble("");
 
 		super.getBuffer().addData(booking);
 	}
@@ -78,18 +64,27 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void unbind(final Booking booking) {
-		SelectChoices choices;
+		SelectChoices travelClassChoices;
 		SelectChoices flightChoices;
 
 		Dataset dataset;
 
-		Collection<Flight> flights = this.repository.findAllFlights();
-		flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
+		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
+		Flight bookingFlight = booking.getFlight();
 
-		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+
+		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
+
+		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
+			displayFlights.add(bookingFlight);
+
+		flightChoices = SelectChoices.from(displayFlights, "displayString", booking.getFlight());
+		travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCardNibble", "draftMode");
-		dataset.put("travelClass", choices);
+		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
+		dataset.put("travelClasses", travelClassChoices);
 		dataset.put("flight", flightChoices.getSelected().getKey());
 		dataset.put("flights", flightChoices);
 

@@ -108,7 +108,15 @@ public class Flight extends AbstractEntity {
 		return legs;
 	}
 
-
+	@Transient
+	public String getDisplayString() {
+		return String.format("%s: %s → %s (Departure: %s, Arrival: %s)", 
+			this.getTag(), 
+			this.getOriginCity(), 
+			this.getDestinationCity(),
+			this.getScheduledDeparture(),
+			this.getScheduledArrival());
+	}
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)

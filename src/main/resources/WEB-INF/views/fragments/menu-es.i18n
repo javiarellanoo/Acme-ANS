@@ -52,3 +52,4 @@ master.menu.technician.tasks.list.published = Tareas publicadas
 
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = Mis reservas
+master.menu.customer = Área del cliente
