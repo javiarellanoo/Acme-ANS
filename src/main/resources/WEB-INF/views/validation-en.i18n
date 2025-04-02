@@ -23,3 +23,4 @@ acme.validation.airline.iataCode.message = The iataCode is not unique.
 acme.validation.airport.duplicated-iataCode.message = The iataCode is not unique.
 acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
 acme.validation.leg.flightCodeUnique.message = The flightCode must be unique.
+acme.validation.maintenanceRecordsTasks.task.message = Published maintenance records cannot contain tasks that are not published.

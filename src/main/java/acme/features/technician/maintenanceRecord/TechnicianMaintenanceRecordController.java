@@ -1,5 +1,5 @@
 
-package acme.features.technician.task;
+package acme.features.technician.maintenanceRecord;
 
 import javax.annotation.PostConstruct;
 
@@ -7,34 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.tasks.Task;
+import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.realms.Technician;
 
 @GuiController
-public class TechnicianTaskController extends AbstractGuiController<Technician, Task> {
+public class TechnicianMaintenanceRecordController extends AbstractGuiController<Technician, MaintenanceRecord> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianTaskListService					listService;
+	private TechnicianMaintenanceRecordListService		listService;
 
 	@Autowired
-	private TechnicianTaskShowService					showService;
+	private TechnicianMaintenanceRecordShowService		showService;
 
 	@Autowired
-	private TechnicianTaskPublishService				publishService;
+	private TechnicianMaintenanceRecordDeleteService	deleteService;
 
 	@Autowired
-	private TechnicianTaskDeleteService					deleteService;
+	private TechnicianMaintenanceRecordUpdateService	updateService;
 
 	@Autowired
-	private TechnicianTaskUpdateService					updateService;
+	private TechnicianMaintenanceRecordPublishService	publishService;
 
 	@Autowired
-	private TechnicianTaskCreateService					createService;
-
-	@Autowired
-	private TechnicianTaskMaintenanceRecordListService	listMRservice;
+	private TechnicianMaintenanceRecordCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -43,11 +40,10 @@ public class TechnicianTaskController extends AbstractGuiController<Technician, 
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
-		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("create", this.createService);
 
-		super.addCustomCommand("list-maintenance-records", "list", this.listMRservice);
 		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }
