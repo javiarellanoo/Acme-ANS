@@ -14,12 +14,16 @@ import acme.realms.Manager;
 public class ManagerLegController extends AbstractGuiController<Manager, Leg> {
 
 	@Autowired
-	private ManagerLegListService listService;
+	private ManagerLegListService	listService;
+
+	@Autowired
+	private ManagerLegShowService	showService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
 
 	}
 }
