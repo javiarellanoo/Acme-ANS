@@ -24,6 +24,7 @@ master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 
 # master.menu.provider ########################################################
