@@ -17,6 +17,7 @@ import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.entities.bookings.Booking;
+import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,4 +55,14 @@ public class Passenger extends AbstractEntity {
 	@ValidString(max = 50, min = 0)
 	@Automapped
 	private String				specialNeeds;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Customer			customer;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
 }
