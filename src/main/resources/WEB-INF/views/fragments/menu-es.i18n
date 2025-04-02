@@ -35,6 +35,9 @@ master.menu.provider.favourite-link = Enlace favorito
 
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
+# master.menu.manager ##########################################################
+master.menu.manager = Manager
+master.menu.manager.flight = Ver vuelos
 
 # master.menu.user-account ####################################################
 

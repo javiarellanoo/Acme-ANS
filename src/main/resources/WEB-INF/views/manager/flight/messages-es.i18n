@@ -1,0 +1,38 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+manager.flight.form.title = Detalles del vuelo
+manager.flight.list.title = Listado de vuelos
+
+manager.flight.form.label.tag = Etiqueta:
+manager.flight.form.label.draftMode = Estado de publicación: 
+manager.flight.form.label.requiresSelfTransfer = ¿Requiere auto transporte?:
+manager.flight.form.label.cost = Coste:
+manager.flight.form.label.originCity = Ciudad de Origen:
+manager.flight.form.label.destinationCity = Ciudad de Destino:
+manager.flight.form.label.scheduledDeparture = Despegue estimado:
+manager.flight.form.label.scheduledArrival = Aterrizaje estimado:
+manager.flight.form.label.numberOfLayovers = Número de escalas:
+manager.flight.form.label.description = Descripción: (Optional)
+manager.flight.form.label.airline = Aerolínea:
+manager.flight.form.label.manager = Manager:
+
+		
+manager.flight.form.button.legs = Segmentos
+manager.flight.form.button.update = Actualizar
+manager.flight.form.button.delete = Eliminar
+manager.flight.form.button.publish = Publicar
+manager.flight.form.button.create = Crear
+
+manager.flight.list.label.tag = Etiqueta
+manager.flight.list.label.draftMode = Estado de publicación
+manager.flight.list.label.originCity = Ciudad de Origen
+manager.flight.list.label.destinationCity = Ciudad de Destino
+manager.flight.list.button.create = Crear
