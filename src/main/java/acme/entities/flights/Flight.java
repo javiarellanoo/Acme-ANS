@@ -2,11 +2,14 @@
 package acme.entities.flights;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+
+import org.springframework.data.domain.PageRequest;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -66,8 +69,9 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		String originCity = repository.findOriginCity(this.getId());
-		return originCity;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<String> originCity = repository.findOriginCity(this.getId(), pageRequest);
+		return originCity.get(0);
 
 	}
 
@@ -76,8 +80,9 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		String destinationCity = repository.findDestinationCity(this.getId());
-		return destinationCity;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<String> destinationCity = repository.findDestinationCity(this.getId(), pageRequest);
+		return destinationCity.get(0);
 
 	}
 
@@ -86,8 +91,9 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-		Date scheduledDeparture = repository.findDepartureTime(this.getId());
-		return scheduledDeparture;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<Date> scheduledDeparture = repository.findDepartureTime(this.getId(), pageRequest);
+		return scheduledDeparture.get(0);
 	}
 
 	@Transient
@@ -95,9 +101,9 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 
 		repository = SpringHelper.getBean(LegRepository.class);
-
-		Date scheduledArrival = repository.findArrivalTime(this.getId());
-		return scheduledArrival;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<Date> scheduledArrival = repository.findArrivalTime(this.getId(), pageRequest);
+		return scheduledArrival.get(0);
 	}
 
 	@Transient
