@@ -18,7 +18,6 @@
 <acme:form> 
 	<acme:input-textbox code="manager.flight.form.label.tag" path="tag"/>
 	<acme:input-checkbox code="manager.flight.form.label.requiresSelfTransfer" path="requiresSelfTransfer"/>
-	<acme:input-checkbox code="manager.flight.form.label.draftMode" path="draftMode" readonly = "${true}"/>
 	<acme:input-textbox code="manager.flight.form.label.originCity" path="originCity" readonly = "true"/>
 	<acme:input-textbox code="manager.flight.form.label.destinationCity" path="destinationCity" readonly = "true"/>
 	<acme:input-moment code="manager.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly = "true"/>

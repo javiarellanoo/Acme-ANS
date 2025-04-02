@@ -32,6 +32,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
 		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+
 		Collection<Leg> legs = this.repository.findLegsByFlightId(masterId);
 		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
 
@@ -57,7 +58,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		airlineId = super.getRequest().getData("airlines", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
-		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 		flight.setAirline(airline);
 	}
 	@Override
@@ -74,7 +75,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		airlines = this.repository.findAllAirlines();
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
