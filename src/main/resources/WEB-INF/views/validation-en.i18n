@@ -1,7 +1,7 @@
 # validation-en.i18n
 #
 acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
-acme.validation.leg.flightNumber.message = The flightCode must start with the Airline's IATA code.
+acme.validation.leg.flightNumber.message = The flightNumber must start with the Airline's IATA code.
 acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
 acme.validation.flightCrewMember.employeeCode.message = The employeeCode must start with the member's initials.
@@ -22,7 +22,8 @@ acme.validation.booking.uniqueLocatorCode.message = The locator code of a bookin
 acme.validation.airline.iataCode.message = The iataCode is not unique.
 acme.validation.airport.duplicated-iataCode.message = The iataCode is not unique.
 acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
-acme.validation.leg.flightNumberUnique.message = The flightCode must be unique.
+acme.validation.leg.flightNumberUnique.message = The flightNumber must be unique.
 acme.validation.leg.occupiedAircraft.message = The selected Aircraft is occupied for the selected time slot.
 acme.validation.leg.conflictiveLeg.message = The selected time slot of this leg is conflictive respect the published legs of the flight.
 acme.validation.flight.nonPublishedLegs.message = This flight has either no legs or legs that have not been published.
+acme.validation.maintenanceRecordsTasks.task.message = Published maintenance records cannot contain tasks that are not published.

@@ -13,7 +13,7 @@ public interface CustomerRepository extends AbstractRepository {
 	@Query("select c from Customer c where c.identifier = :identifier")
 	Customer getCustomerByIdentifier(String identifier);
 
-	@Query("select count(c) from Customer c where identifier = :identifier")
+	@Query("select count(c) from Customer c where c.identifier = :identifier")
 	Long countSameIdentifier(String identifier);
 
 }
