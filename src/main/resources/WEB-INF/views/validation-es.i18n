@@ -23,3 +23,4 @@ acme.validation.customer.identifierUniqueness.message = El identificador debe se
 acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
 acme.validation.airport.duplicated-iataCode.message = El código IATA no es único.
 acme.validation.maintenanceRecord.nextInspectionDate.message = La fecha de siguiente inspección debe ser posterior al momento del registro de mantenimiento.
+acme.validation.maintenanceRecordsTasks.task.message = Los registros de mantenimiento publicados no pueden contener tareas no publicadas.

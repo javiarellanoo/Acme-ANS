@@ -54,3 +54,5 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.technician = Technician
 master.menu.technician.tasks.list.mine = My tasks
 master.menu.technician.tasks.list.published = Published tasks
+master.menu.technician.maintenance-record.list.mine = My maintenance records
+master.menu.technician.maintenance-record.list.published = Published maintenance records
