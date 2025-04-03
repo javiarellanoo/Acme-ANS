@@ -110,13 +110,10 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	public String getDisplayString() {
-		return String.format("%s: %s → %s (Departure: %s, Arrival: %s)", 
-			this.getTag(), 
-			this.getOriginCity(), 
-			this.getDestinationCity(),
-			this.getScheduledDeparture(),
-			this.getScheduledArrival());
+		return String.format("%s → %s", this.getOriginCity(), this.getDestinationCity());
 	}
+
+
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
