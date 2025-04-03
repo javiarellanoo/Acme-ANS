@@ -34,9 +34,8 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		Collection<Leg> legs = this.repository.findLegsByFlightId(masterId);
-		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
 
-		super.getResponse().setAuthorised(status && legsStatus);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -59,6 +58,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		flight.setDraftMode(false);
 		flight.setAirline(airline);
 	}
 	@Override
@@ -76,6 +76,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset.put("draftMode", false);
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
@@ -84,7 +85,6 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void perform(final Flight flight) {
-		flight.setDraftMode(false);
 		this.repository.save(flight);
 	}
 }
