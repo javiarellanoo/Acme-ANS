@@ -41,6 +41,11 @@ master.menu.consumer.favourite-link = Favourite link
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
 master.menu.manager.flight = List flights
+
+# master.menu.customer ##########################################################
+master.menu.customer = Customer
+master.menu.customer.passenger = My Passengers
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

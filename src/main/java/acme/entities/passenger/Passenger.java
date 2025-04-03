@@ -61,6 +61,11 @@ public class Passenger extends AbstractEntity {
 	@Automapped
 	private String				specialNeeds;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
 
 	@Transient
 	public String getDisplayString() {
