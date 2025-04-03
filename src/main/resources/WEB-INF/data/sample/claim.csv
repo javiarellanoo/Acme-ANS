@@ -1,4 +1,4 @@
-key,key:registered-by,registration-moment,passenger-email,description,type
+key,key:assistance-agent,registration-moment,passenger-email,description,type
 # base entity
 claim-01,assistance-agent-01,2012/07/02  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES
 # registrationMoment - standard variations
