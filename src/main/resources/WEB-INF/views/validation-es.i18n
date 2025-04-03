@@ -1,7 +1,7 @@
 # validation-es.i18n
 #
 acme.validation.manager.identifier.message = El identificador del manager debe comenzar con sus iniciales.
-acme.validation.leg.flightCode.message = El código de vuelo debe comenzar con el codigo IATA de la aerolínea.
+acme.validation.leg.flightNumber.message = El código de vuelo debe comenzar con el codigo IATA de la aerolínea.
 acme.validation.leg.scheduledArrival.message = La fecha estimada de llegada debe ser posterior a la de salida.
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales.
 acme.validation.customer.identifier.message = El identificador debe empezar con las iniciales del cliente.
@@ -15,7 +15,7 @@ acme.validation.service.promotionCode.message = Los dos últimos carácteres del
 acme.validation.technician.licenseNumber.message = El número de licencia debe empezar con las iniciales del cliente y ser único.
 acme.validation.phone.number = El número de telefono dado no es valido.
 acme.validation.flight.legs.message = Los segmentos de este vuelo se solapan entre si.
-acme.validation.leg.flightCodeUnique.message = El numero de vuelo debe ser únic
+acme.validation.leg.flightNumberUnique.message = El numero de vuelo debe ser únic
 acme.validation.manager.identifierNonUnique.message = El identificador no es único.
 acme.validation.airline.iataCode.message = El código IATA no es único.
 acme.validation.aircraft.registrationNumber.message = El número de registro de un avión debe ser unico.
@@ -23,3 +23,5 @@ acme.validation.customer.identifierUniqueness.message = El identificador debe se
 acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
 acme.validation.airport.duplicated-iataCode.message = El código IATA no es único.
 acme.validation.maintenanceRecord.nextInspectionDate.message = La fecha de siguiente inspección debe ser posterior al momento del registro de mantenimiento.
+acme.validation.leg.occupiedAircraft.message = El avión seleccionado está ocupado para esa franja horaria.
+acme.validation.leg.conflictiveLeg.message = La franja horaria en la que este segmento se realizará es conflictiva respecto a aquellas ya publicadas.

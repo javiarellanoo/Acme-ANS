@@ -49,7 +49,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 
 				validFlight = validFlight && MomentHelper.isAfter(currentDeparture, previousArrival);
 			}
-		super.state(context, validFlight, "legs", "acme.validation.flight.legs.message");
+		super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.legs.message");
 
 		result = !super.hasErrors(context);
 

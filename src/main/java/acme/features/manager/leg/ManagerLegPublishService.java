@@ -56,7 +56,6 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void perform(final Leg leg) {
-		leg.setDraftMode(false);
 		this.repository.save(leg);
 	}
 
@@ -74,6 +73,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		Airport destinationAirport = this.repository.findAirportById(destinationAirportId);
 		super.bindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
 		leg.setAircraft(aircraft);
+		leg.setDraftMode(false);
 		leg.setDepartureAirport(departureAirport);
 		leg.setDestinationAirport(destinationAirport);
 	}
@@ -96,6 +96,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
+		dataset.put("draftMode", false);
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("destinationAirport", choicesDestinationAirport.getSelected().getKey());
