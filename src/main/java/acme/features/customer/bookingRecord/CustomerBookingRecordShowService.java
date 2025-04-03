@@ -1,0 +1,81 @@
+
+package acme.features.customer.bookingRecord;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
+import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
+import acme.entities.bookings.Booking;
+import acme.entities.bookings.BookingRecord;
+import acme.entities.passenger.Passenger;
+import acme.realms.Customer;
+
+@GuiService
+public class CustomerBookingRecordShowService extends AbstractGuiService<Customer, BookingRecord> {
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	private CustomerBookingRecordRepository repository;
+
+	// AbstractGuiService interface -------------------------------------------
+
+
+	@Override
+	public void authorise() {
+		boolean status;
+		int bookingRecordId;
+		BookingRecord bookingRecord;
+		Booking booking;
+		Customer customer;
+
+		bookingRecordId = super.getRequest().getData("id", int.class);
+		bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
+		booking = bookingRecord == null ? null : bookingRecord.getBooking();
+		customer = booking == null ? null : booking.getCustomer();
+
+		status = bookingRecord != null && customer.getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		super.getResponse().setAuthorised(status);
+	}
+
+	@Override
+	public void load() {
+		BookingRecord bookingRecord;
+		Booking booking;
+		int bookingRecordId;
+		boolean isDraftMode;
+
+		bookingRecordId = super.getRequest().getData("id", int.class);
+		bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
+		booking = bookingRecord.getBooking();
+		isDraftMode = booking.getDraftMode();
+
+		super.getBuffer().addData(bookingRecord);
+		super.getResponse().addGlobal("isDraftMode", isDraftMode);
+		super.getResponse().addGlobal("bookingId", booking.getId());
+	}
+
+	@Override
+	public void unbind(final BookingRecord bookingRecord) {
+		SelectChoices passengersChoices;
+		Dataset dataset;
+		Collection<Passenger> passengers;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		passengers = this.repository.findAllPassengers();
+		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
+
+		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
+		dataset.put("bookingId", bookingRecord.getBooking().getId());
+		dataset.put("passengerId", passengersChoices.getSelected().getKey());
+
+		super.getResponse().addGlobal("passengers", passengersChoices);
+		super.getResponse().addData(dataset);
+	}
+}

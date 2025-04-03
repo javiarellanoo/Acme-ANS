@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
+		booking.setDraftMode(true);
 		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
 	}
 
@@ -74,7 +76,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
 
-		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
+		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 
 		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
 			displayFlights.add(bookingFlight);

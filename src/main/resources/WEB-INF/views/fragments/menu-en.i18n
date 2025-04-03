@@ -52,4 +52,4 @@ master.menu.technician.tasks.list.published = Published tasks
 
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings
-master.menu.customer = Client area
+master.menu.customer = Customer area
