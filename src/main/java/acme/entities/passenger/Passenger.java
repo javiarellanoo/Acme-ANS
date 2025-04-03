@@ -60,4 +60,15 @@ public class Passenger extends AbstractEntity {
 	@ValidString(max = 50, min = 0)
 	@Automapped
 	private String				specialNeeds;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
+
+	@Transient
+	public String getDisplayString() {
+		return String.format("%s - %s", this.getFullName(), this.getPassportNumber());
+	}
 }
