@@ -39,14 +39,14 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			Leg existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
 			Boolean uniqueFlightNumber = UniquenessHelper.checkUniqueness(existingLeg, leg);
-			super.state(context, uniqueFlightNumber, "flightCode", "acme.validation.leg.flightCodeUnique.message");
+			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flightCodeUnique.message");
 
 			Boolean matches;
 			String airlineCode = leg.getFlight().getAirline().getIataCode();
 			String flightNumber = leg.getFlightNumber();
 
 			matches = flightNumber.trim().startsWith(airlineCode.trim());
-			super.state(context, matches, "flightCode", "acme.validation.leg.flightCode.message");
+			super.state(context, matches, "flightNumber", "acme.validation.leg.flightCode.message");
 
 			Date scheduledDeparture = leg.getScheduledDeparture();
 			Date scheduledArrival = leg.getScheduledArrival();
