@@ -58,3 +58,8 @@ master.menu.technician.tasks.list.published = Tareas publicadas
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente
 master.menu.customer.passenger = Mis Pasajeros
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = Mis reservas
+master.menu.customer = Área del cliente
+master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimiento
+master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados

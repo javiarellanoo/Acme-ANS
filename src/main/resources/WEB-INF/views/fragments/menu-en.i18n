@@ -26,6 +26,7 @@ master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
+master.menu.administrator.aircraft = List aircrafts
 
 # master.menu.provider ########################################################
 
@@ -58,3 +59,9 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.technician = Technician
 master.menu.technician.tasks.list.mine = My tasks
 master.menu.technician.tasks.list.published = Published tasks
+
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = My bookings
+master.menu.customer = Customer area
+master.menu.technician.maintenance-record.list.mine = My maintenance records
+master.menu.technician.maintenance-record.list.published = Published maintenance records

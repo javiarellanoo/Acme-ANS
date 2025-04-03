@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -16,7 +17,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.entities.bookings.Booking;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,18 +51,13 @@ public class Passenger extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				birthDate;
 
-	@Optional
-	@ValidString(max = 50, min = 0)
-	@Automapped
-	private String				specialNeeds;
-
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
 	private Customer			customer;
 
-	@Mandatory
-	@Valid
+	@Optional
+	@ValidString(max = 50, min = 0)
 	@Automapped
-	private Boolean				draftMode;
+	private String				specialNeeds;
 }
