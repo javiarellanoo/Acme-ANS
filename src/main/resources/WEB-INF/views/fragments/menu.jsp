@@ -33,20 +33,27 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.airport" action="/administrator/airport/list"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airline" action="/administrator/airline/list"/>
+			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-separator/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
-
+		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
+		<acme:menu-suboption code="master.menu.manager.flight" action="/manager/flight/list"/>
+		</acme:menu-option>
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.technician" access="hasRole('Technician')">
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.mine" action="/technician/task/list?published=false"/>
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.published" action="/technician/task/list?published=true"/>
+			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.mine" action="/technician/maintenance-record/list?published=false"/>	
+			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.published" action="/technician/maintenance-record/list?published=true"/>	
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.list-bookings" action="/customer/booking/list"/>

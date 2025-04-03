@@ -15,3 +15,5 @@ technician.task.form.button.update = Actualizar
 technician.task.form.button.delete = Eliminar
 technician.task.form.button.publish = Publicar
 technician.task.form.button.create = Crear
+technician.task.list.button.associate = Añadir tarea
+technician.task.list.button.remove = Eliminar tarea del registro

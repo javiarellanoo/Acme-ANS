@@ -1,0 +1,7 @@
+technician.maintenance-records-tasks.form.button.create = Add task
+technician.maintenance-records-tasks.form.label.task = Task
+technician.maintenance-records-tasks.form.button.delete = Remove task from record
+technician.maintenance-records-tasks.form.title = Association between tasks and maintenance records
+
+technician.maintenance-records-tasks.form.error.not-exists = There is no relation between the task and the maintenance record
+technician.maintenance-records-tasks.form.error.not-null = May not be null

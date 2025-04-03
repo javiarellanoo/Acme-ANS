@@ -16,22 +16,25 @@ public class TechnicianTaskController extends AbstractGuiController<Technician, 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private TechnicianTaskListService		listService;
+	private TechnicianTaskListService					listService;
 
 	@Autowired
-	private TechnicianTaskShowService		showService;
+	private TechnicianTaskShowService					showService;
 
 	@Autowired
-	private TechnicianTaskPublishService	publishService;
+	private TechnicianTaskPublishService				publishService;
 
 	@Autowired
-	private TechnicianTaskDeleteService		deleteService;
+	private TechnicianTaskDeleteService					deleteService;
 
 	@Autowired
-	private TechnicianTaskUpdateService		updateService;
+	private TechnicianTaskUpdateService					updateService;
 
 	@Autowired
-	private TechnicianTaskCreateService		createService;
+	private TechnicianTaskCreateService					createService;
+
+	@Autowired
+	private TechnicianTaskMaintenanceRecordListService	listMRservice;
 
 	// Constructors -----------------------------------------------------------
 
@@ -44,6 +47,7 @@ public class TechnicianTaskController extends AbstractGuiController<Technician, 
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("create", this.createService);
 
+		super.addCustomCommand("list-maintenance-records", "list", this.listMRservice);
 		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }

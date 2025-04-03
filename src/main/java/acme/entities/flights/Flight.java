@@ -2,11 +2,14 @@
 package acme.entities.flights;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
+
+import org.springframework.data.domain.PageRequest;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -64,9 +67,15 @@ public class Flight extends AbstractEntity {
 	@Transient
 	public String getOriginCity() {
 		LegRepository repository;
-
+		String originCity;
 		repository = SpringHelper.getBean(LegRepository.class);
-		String originCity = repository.findOriginCity(this.getId());
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<String> cities = repository.findOriginCity(this.getId(), pageRequest);
+		if (cities.isEmpty())
+			originCity = "Not defined yet";
+		else
+			originCity = cities.get(0);
+
 		return originCity;
 
 	}
@@ -74,9 +83,14 @@ public class Flight extends AbstractEntity {
 	@Transient
 	public String getDestinationCity() {
 		LegRepository repository;
-
+		String destinationCity;
 		repository = SpringHelper.getBean(LegRepository.class);
-		String destinationCity = repository.findDestinationCity(this.getId());
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<String> cities = repository.findDestinationCity(this.getId(), pageRequest);
+		if (cities.isEmpty())
+			destinationCity = "Not defined yet";
+		else
+			destinationCity = cities.get(0);
 		return destinationCity;
 
 	}
@@ -84,20 +98,25 @@ public class Flight extends AbstractEntity {
 	@Transient
 	public Date getScheduledDeparture() {
 		LegRepository repository;
-
+		Date scheduled = null;
 		repository = SpringHelper.getBean(LegRepository.class);
-		Date scheduledDeparture = repository.findDepartureTime(this.getId());
-		return scheduledDeparture;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<Date> departures = repository.findDepartureTime(this.getId(), pageRequest);
+		if (!departures.isEmpty())
+			scheduled = departures.get(0);
+		return scheduled;
 	}
 
 	@Transient
 	public Date getScheduledArrival() {
 		LegRepository repository;
-
+		Date scheduled = null;
 		repository = SpringHelper.getBean(LegRepository.class);
-
-		Date scheduledArrival = repository.findArrivalTime(this.getId());
-		return scheduledArrival;
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<Date> arrivals = repository.findArrivalTime(this.getId(), pageRequest);
+		if (!arrivals.isEmpty())
+			scheduled = arrivals.get(0);
+		return scheduled;
 	}
 
 	@Transient
@@ -105,6 +124,8 @@ public class Flight extends AbstractEntity {
 		LegRepository repository;
 		repository = SpringHelper.getBean(LegRepository.class);
 		Integer legs = repository.findLayovers(this.getId());
+		if (legs == -1)
+			legs = 0;
 		return legs;
 	}
 
