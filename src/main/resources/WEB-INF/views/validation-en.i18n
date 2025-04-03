@@ -25,3 +25,4 @@ acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection d
 acme.validation.leg.flightNumberUnique.message = The flightCode must be unique.
 acme.validation.leg.occupiedAircraft.message = The selected Aircraft is occupied for the selected time slot.
 acme.validation.leg.conflictiveLeg.message = The selected time slot of this leg is conflictive respect the published legs of the flight.
+acme.validation.flight.nonPublishedLegs.message = This flight has either no legs or legs that have not been published.

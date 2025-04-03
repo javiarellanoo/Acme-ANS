@@ -34,9 +34,8 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		Collection<Leg> legs = this.repository.findLegsByFlightId(masterId);
-		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
 
-		super.getResponse().setAuthorised(status && legsStatus);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

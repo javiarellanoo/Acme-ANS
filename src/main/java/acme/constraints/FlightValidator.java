@@ -51,6 +51,10 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			}
 		super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.legs.message");
 
+		boolean publishedLegs = true;
+		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+		super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.nonPublishedLegs.message");
+
 		result = !super.hasErrors(context);
 
 		return result;

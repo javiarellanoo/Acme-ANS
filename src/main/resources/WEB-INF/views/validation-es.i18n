@@ -25,3 +25,4 @@ acme.validation.airport.duplicated-iataCode.message = El código IATA no es úni
 acme.validation.maintenanceRecord.nextInspectionDate.message = La fecha de siguiente inspección debe ser posterior al momento del registro de mantenimiento.
 acme.validation.leg.occupiedAircraft.message = El avión seleccionado está ocupado para esa franja horaria.
 acme.validation.leg.conflictiveLeg.message = La franja horaria en la que este segmento se realizará es conflictiva respecto a aquellas ya publicadas.
+acme.validation.flight.nonPublishedLegs.message = Este vuelo no tiene segmentos publicados o bien algunos de sus segmentos no han sido publicados.
