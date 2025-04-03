@@ -1,0 +1,6 @@
+flight-crew-member.flight-assignment.list.title = Flight Assignments
+flight-crew-member.flight-assignment.list.label.flightCrewMember = Flight crew member's employee code
+flight-crew-member.flight-assignment.list.label.duty = Duty
+flight-crew-member.flight-assignment.list.label.status = Status
+flight-crew-member.flight-assignment.list.label.draftMode = Draft mode
+flight-crew-member.flight-assignment.list.button.create = Create

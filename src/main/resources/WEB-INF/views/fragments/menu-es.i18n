@@ -53,3 +53,8 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.technician = Técnico
 master.menu.technician.tasks.list.mine = Mis tareas
 master.menu.technician.tasks.list.published = Tareas publicadas
+
+# master.menu.flight-crew-member #################################################
+master.menu.flight-crew-member = Miembro de tripulación de vuelo
+master.menu.flight-crew-member.flight-assignment.list.completeLeg = Asignaciones con segmento completado
+master.menu.flight-crew-member.flight-assignment.list.incompleteLeg = Asignaciones con segmento no completado

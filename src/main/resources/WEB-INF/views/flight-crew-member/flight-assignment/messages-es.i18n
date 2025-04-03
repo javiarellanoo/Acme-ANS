@@ -1,0 +1,6 @@
+flight-crew-member.flight-assignment.list.title = Asignaciones de vuelo
+flight-crew-member.flight-assignment.list.label.flightCrewMember = Código de empleado del miembro asignado
+flight-crew-member.flight-assignment.list.label.duty = Labor
+flight-crew-member.flight-assignment.list.label.status = Estado
+flight-crew-member.flight-assignment.list.label.draftMode = Borrador
+flight-crew-member.flight-assignment.list.button.create = Crear
