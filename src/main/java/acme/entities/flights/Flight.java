@@ -129,6 +129,11 @@ public class Flight extends AbstractEntity {
 		return legs;
 	}
 
+	@Transient
+	public String getDisplayString() {
+		return String.format("%s → %s", this.getOriginCity(), this.getDestinationCity());
+	}
+
 
 	@Mandatory
 	@Valid
