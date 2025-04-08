@@ -82,7 +82,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		Dataset dataset;
 
 		legs = this.repository.findAllLegs();
-		choicesLeg = SelectChoices.from(legs, "flightNumebr", claim.getLeg());
+		choicesLeg = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
