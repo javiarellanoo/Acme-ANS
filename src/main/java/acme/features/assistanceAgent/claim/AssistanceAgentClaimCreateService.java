@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
@@ -33,13 +34,8 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void load() {
 		Claim claim;
-		AssistanceAgent agent;
-
-		agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 
 		claim = new Claim();
-		claim.setDraftMode(true);
-		claim.setAssistanceAgent(agent);
 
 		super.getBuffer().addData(claim);
 	}
@@ -47,13 +43,21 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void bind(final Claim claim) {
 		int legId;
+		int agentId;
 		Leg leg;
+		AssistanceAgent agent;
 
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
+		System.out.println(leg);
+		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		agent = this.repository.findAssistanceAgentById(agentId);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
+		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
+		claim.setAssistanceAgent(agent);
+		claim.setDraftMode(true);
+		claim.setRegistrationMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
@@ -73,15 +77,16 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		SelectChoices choicesType;
 		Dataset dataset;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findAllLegsPublished();
 		choicesLegs = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
+		dataset.put("readonly", false);
 
 		super.getResponse().addData(dataset);
 	}

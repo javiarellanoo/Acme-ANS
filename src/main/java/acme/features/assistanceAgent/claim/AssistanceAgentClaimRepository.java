@@ -10,6 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.claims.Claim;
 import acme.entities.legs.Leg;
 import acme.entities.trackingLogs.TrackingLog;
+import acme.realms.AssistanceAgent;
 
 @Repository
 public interface AssistanceAgentClaimRepository extends AbstractRepository {
@@ -23,10 +24,13 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.id = :id")
 	Leg findLegById(int id);
 
-	@Query("select l from Leg l")
-	Collection<Leg> findAllLegs();
+	@Query("select l from Leg l where l.draftMode = false")
+	Collection<Leg> findAllLegsPublished();
 
 	@Query("select t from TrackingLog t where t.claim.id = :id")
 	Collection<TrackingLog> findTrackingLogsByClaim(int id);
+
+	@Query("select a from AssistanceAgent a where a.id = :id")
+	AssistanceAgent findAssistanceAgentById(int id);
 
 }

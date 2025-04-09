@@ -5,10 +5,12 @@
 <acme:form>
     <acme:input-select code="assistance-agent.claim.form.label.type" path="type" choices="${types}"/>
     <acme:input-textbox code="assistance-agent.claim.form.label.passengerEmail" path="passengerEmail"/>
-    <acme:input-textbox code="assistance-agent.claim.form.label.status" path="status"/>
     <acme:input-textarea code="assistance-agent.claim.form.label.description" path="description"/>
-    <acme:input-moment code="assistance-agent.claim.form.label.registrationMoment" path="registrationMoment"/>
-    <acme:input-select code="assistance-agent.claim.form.label.leg" path="legs" choices="${legs}"/>	
+    <jstl:if test="${readonly}">
+    	<acme:input-textbox code="assistance-agent.claim.form.label.status" path="status"/>
+    	<acme:input-moment code="assistance-agent.claim.form.label.registrationMoment" path="registrationMoment"/>
+    </jstl:if>
+    <acme:input-select code="assistance-agent.claim.form.label.leg" path="leg" choices="${legs}"/>	
 
 	<jstl:choose>    
 	    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">

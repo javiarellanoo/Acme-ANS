@@ -59,7 +59,7 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 		SelectChoices choicesLegs;
 		SelectChoices choicesType;
 
-		legs = this.repository.findAllLegs();
+		legs = this.repository.findAllLegsPublished();
 		choicesLegs = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
@@ -69,6 +69,7 @@ public class AssistanceAgentClaimShowService extends AbstractGuiService<Assistan
 		dataset.put("id", claim.getId());
 		dataset.put("leg", choicesLegs.getSelected().getKey());
 		dataset.put("legs", choicesLegs);
+		dataset.put("readonly", true);
 
 		super.getResponse().addData(dataset);
 	}

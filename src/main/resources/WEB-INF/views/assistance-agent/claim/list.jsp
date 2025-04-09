@@ -24,6 +24,6 @@
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">
-	<acme:button code="assistance-agent.claim.list.button.create" action="/manager/flight/create"/>
+	<acme:button code="assistance-agent.claim.list.button.create" action="/assistance-agent/claim/create"/>
 </jstl:if>		
 	
