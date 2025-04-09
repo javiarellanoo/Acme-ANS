@@ -28,13 +28,18 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int agentId;
+		int claimId;
 		Claim claim;
+		AssistanceAgent agent;
 
-		id = super.getRequest().getData("id", int.class);
-		claim = this.repository.findClaimById(id);
+		claimId = super.getRequest().getData("id", int.class);
+		claim = this.repository.findClaimById(claimId);
 
-		status = claim != null && claim.getDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent()) && claim.getAssistanceAgent().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		agent = this.repository.findAssistanceAgentById(agentId);
+
+		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent().equals(agent);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -52,15 +57,13 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void bind(final Claim claim) {
-		AssistanceAgent assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 		int legId;
 		Leg leg;
 
 		legId = super.getRequest().getData("legs", int.class);
 		leg = this.repository.findLegById(legId);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
-		claim.setAssistanceAgent(assistanceAgent);
+		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
 	}
 
@@ -87,8 +90,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "draftMode");
-		dataset.put("AssistanceAgent", claim.getAssistanceAgent());
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
 		dataset.put("leg", choicesLeg.getSelected().getKey());

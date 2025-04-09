@@ -58,15 +58,13 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 	@Override
 	public void bind(final Claim claim) {
-		AssistanceAgent assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("legs", int.class);
+		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
-		super.bindObject(claim, "registrationMoment", "passengerEmail", "description", "type");
-		claim.setAssistanceAgent(assistanceAgent);
+		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
 	}
 
@@ -97,8 +95,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "type", "draftMode");
-		dataset.put("AssistanceAgent", claim.getAssistanceAgent());
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
 		dataset.put("leg", choicesLeg.getSelected().getKey());

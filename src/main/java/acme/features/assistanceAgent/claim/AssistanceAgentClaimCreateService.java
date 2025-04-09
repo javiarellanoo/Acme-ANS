@@ -86,7 +86,6 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		dataset.put("legs", choicesLegs);
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
-		dataset.put("readonly", false);
 
 		super.getResponse().addData(dataset);
 	}

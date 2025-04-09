@@ -45,7 +45,6 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "type", "draftMode");
 		super.addPayload(dataset, claim, //
 			"registrationMoment", "passengerEmail", "type", "draftMode", "description", "assistanceAgent.identity.fullName", "leg.flightNumber");
-		dataset.put("readonly", true);
 
 		super.getResponse().addData(dataset);
 	}

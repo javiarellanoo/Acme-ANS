@@ -20,7 +20,7 @@ assistance-agent.claim.form.label.leg = Segmento de vuelo:
 assistance-agent.claim.form.label.assistance-agent = Asistente:
 
 		
-assistance-agent.claim.form.button.update = Actualizar
+assistance-agent.claim.form.button.update = Editar
 assistance-agent.claim.form.button.delete = Eliminar
 assistance-agent.claim.form.button.publish = Publicar
 assistance-agent.claim.form.button.create = Crear

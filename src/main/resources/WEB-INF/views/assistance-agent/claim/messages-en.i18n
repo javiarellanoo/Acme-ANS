@@ -20,7 +20,7 @@ assistance-agent.claim.form.label.leg = Associated Leg:
 assistance-agent.claim.form.label.assistance-agent = Assistance Agent:
 
 		
-assistance-agent.claim.form.button.update = Update
+assistance-agent.claim.form.button.update = Edit
 assistance-agent.claim.form.button.delete = Delete
 assistance-agent.claim.form.button.publish = Publish
 assistance-agent.claim.form.button.create = Create
