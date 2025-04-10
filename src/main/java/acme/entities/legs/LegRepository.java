@@ -1,6 +1,7 @@
 
 package acme.entities.legs;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -36,4 +37,10 @@ public interface LegRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.flightNumber = :flightNumber")
 	Leg findLegByFlightNumber(String flightNumber);
+
+	@Query("select l from Leg l where l.aircraft.id = :aircraftId and l.id != :id and l.draftMode = false")
+	Collection<Leg> findLegsByAircraftId(Integer aircraftId, Integer id);
+
+	@Query("select l from Leg l where l.flight.id = :flightId and l.draftMode = false and l.id != :id")
+	Collection<Leg> findOtherLegsByFlightId(Integer flightId, Integer id);
 }
