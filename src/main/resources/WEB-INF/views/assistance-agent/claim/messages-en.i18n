@@ -27,7 +27,7 @@ assistance-agent.claim.form.button.create = Create
 
 assistance-agent.claim.list.label.registrationMoment = Registration Moment
 assistance-agent.claim.list.label.draftMode = Draft Mode
-assistance-agent.claim.list.label.passengerEmail = Passenger Email
+assistance-agent.claim.list.label.status = Claim status
 assistance-agent.claim.list.label.type = Type
 
 assistance-agent.claim.list.button.create = Create

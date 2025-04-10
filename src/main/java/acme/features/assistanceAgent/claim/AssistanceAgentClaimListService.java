@@ -30,10 +30,12 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 	@Override
 	public void load() {
 		Collection<Claim> claims;
+		boolean published;
 		int assistanceId;
 
+		published = super.getRequest().getData("published", boolean.class);
 		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.repository.findClaimsByAssistanceAgent(assistanceId);
+		claims = published ? this.repository.findClaimsPublished() : this.repository.findClaimsByAssistanceAgent(assistanceId);
 
 		super.getBuffer().addData(claims);
 	}
@@ -42,7 +44,7 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "type", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "status", "type", "draftMode");
 		super.addPayload(dataset, claim, //
 			"registrationMoment", "passengerEmail", "type", "draftMode", "description", "assistanceAgent.identity.fullName", "leg.flightNumber");
 
