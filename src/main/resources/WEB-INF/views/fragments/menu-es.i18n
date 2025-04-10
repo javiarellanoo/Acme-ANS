@@ -24,6 +24,7 @@ master.menu.administrator.list-user-accounts = Ver cuentas de usuario
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
+master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
 
 # master.menu.provider ########################################################
@@ -35,6 +36,10 @@ master.menu.provider.favourite-link = Enlace favorito
 
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
+
+# master.menu.manager ##########################################################
+master.menu.manager = Manager
+master.menu.manager.flight = Ver vuelos
 
 # master.menu.user-account ####################################################
 
@@ -53,3 +58,12 @@ master.menu.technician.tasks.list.published = Tareas publicadas
 # master.menu.review ########################################################
 master.menu.review = Reseñas
 master.menu.review.list = Reseñas
+
+# master.menu.customer ##########################################################
+master.menu.customer = Cliente
+master.menu.customer.passenger = Mis Pasajeros
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = Mis reservas
+master.menu.customer = Área del cliente
+master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimiento
+master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados

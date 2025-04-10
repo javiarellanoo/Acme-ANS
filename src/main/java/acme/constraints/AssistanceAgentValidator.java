@@ -1,14 +1,13 @@
 
 package acme.constraints;
 
-import java.util.List;
-
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.helpers.UniquenessHelper;
 import acme.realms.AssistanceAgent;
 import acme.realms.repositories.AssistanceAgentRepository;
 
@@ -46,9 +45,9 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 			sameLetters = employeeCode.startsWith(initials);
 
-			List<AssistanceAgent> existingEmployeeCode = this.repository.findSameEmployeeCode(assistanceAgent.getEmployeeCode());
+			String existingEmployeeCode = this.repository.findAssistanceAgentByEmployeeCode(assistanceAgent.getEmployeeCode()).getEmployeeCode();
 
-			uniqueEmployeeCode = existingEmployeeCode.size() == 1 || existingEmployeeCode.isEmpty();
+			uniqueEmployeeCode = UniquenessHelper.checkUniqueness(existingEmployeeCode, employeeCode);
 
 			super.state(context, sameLetters, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");
 			super.state(context, uniqueEmployeeCode, "employeeCode", "acme.validation.assistanceAgent.employeeCode.message");

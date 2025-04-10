@@ -4,7 +4,7 @@
 
 <acme:form>
     <acme:input-select code="technician.task.form.label.type" path="type" choices="${types}"/>
-    <acme:input-textbox code="technician.task.form.label.description" path="description"/>
+    <acme:input-textarea code="technician.task.form.label.description" path="description"/>
     <acme:input-integer code="technician.task.form.label.priority" path="priority"/>
     <acme:input-integer code="technician.task.form.label.estimatedHoursDuration" path="estimatedHoursDuration"/>
 

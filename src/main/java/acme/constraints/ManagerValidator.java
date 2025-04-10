@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.helpers.UniquenessHelper;
 import acme.realms.Manager;
 import acme.realms.repositories.ManagerRepository;
 
@@ -31,8 +32,8 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else if (manager.getIdentifier() != null) {
-
-			boolean uniqueIdentifier = this.repository.countSameIdentifier(manager.getIdentifier()).equals(1);
+			Manager existingManager = this.repository.findManagerByIdentifier(manager.getIdentifier());
+			boolean uniqueIdentifier = UniquenessHelper.checkUniqueness(existingManager, manager);
 			super.state(context, uniqueIdentifier, "identifier", "acme.validation.manager.identifierNonUnique.message");
 
 			Boolean matches;

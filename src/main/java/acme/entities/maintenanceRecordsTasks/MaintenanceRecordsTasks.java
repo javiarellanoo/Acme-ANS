@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
+import acme.constraints.ValidMaintenanceRecordsTasks;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.tasks.Task;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidMaintenanceRecordsTasks
 public class MaintenanceRecordsTasks extends AbstractEntity {
 
 	// Serialisation version
@@ -30,6 +32,6 @@ public class MaintenanceRecordsTasks extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false)
 	private Task				task;
 }
