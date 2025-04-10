@@ -60,6 +60,10 @@ master.menu.technician = Technician
 master.menu.technician.tasks.list.mine = My tasks
 master.menu.technician.tasks.list.published = Published tasks
 
+# master.menu.review ########################################################
+master.menu.review = Reviews
+master.menu.review.list = Reviews
+
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings
 master.menu.customer = Customer area

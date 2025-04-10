@@ -61,6 +61,12 @@
 			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.mine" action="/technician/maintenance-record/list?published=false"/>	
 			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.published" action="/technician/maintenance-record/list?published=true"/>	
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.review" access="isAnonymous()">
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.review" access="isAuthenticated()">
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		
