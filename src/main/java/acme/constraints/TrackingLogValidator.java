@@ -37,26 +37,29 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 		if (trackingLog == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		else if (trackingLog.getStatus() != null) {
 
 			boolean hasResolution = true;
 			Boolean correctStatus;
 			boolean greaterPercentage = true;
 
 			if (trackingLog.getResolutionPercentage() == 100.00) {
-				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
+				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED) || trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION);
 				hasResolution = !StringHelper.isBlank(trackingLog.getResolution());
 			} else
 				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
 
 			if (trackingLog.getResolutionPercentage() != null) {
-				List<TrackingLog> allOrdered = this.repository.findAllOrderedByIndex(trackingLog.getClaim().getId());
+				List<TrackingLog> allOrdered = this.repository.findAllByClaimId(trackingLog.getClaim().getId());
 				List<TrackingLog> beforeActual = allOrdered.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).toList();
 
 				if (!beforeActual.isEmpty()) {
 					TrackingLog previous = beforeActual.get(0);
 
-					greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+					if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION))
+						greaterPercentage = trackingLog.getResolutionPercentage() == previous.getResolutionPercentage();
+					else
+						greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
 				}
 			}
 
