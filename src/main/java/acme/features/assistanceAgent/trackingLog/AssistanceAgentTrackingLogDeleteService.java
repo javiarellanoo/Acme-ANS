@@ -87,7 +87,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 		statusChoices = SelectChoices.from(TrackingLogStatus.class, tLog.getStatus());
 
 		dataset = super.unbindObject(tLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", //
-			"resolution", "dratMode");
+			"resolution", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
 		dataset.put("claims", claimChoices);
