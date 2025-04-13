@@ -65,6 +65,7 @@
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRole('AssistanceAgent')">
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.mine" action="/assistance-agent/claim/list?published=false"/>
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.published" action="/assistance-agent/claim/list?published=true"/>
+		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.review" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>

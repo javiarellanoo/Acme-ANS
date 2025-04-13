@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.maintenanceRecords.MaintenanceRecordStatus;
+import acme.entities.tasks.Task;
 import acme.realms.Technician;
 
 @GuiService
@@ -59,6 +60,11 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		SelectChoices statusChoices;
 		SelectChoices aircraftChoices;
 		Collection<Aircraft> aircrafts;
+		boolean publishable;
+		Collection<Task> tasks;
+
+		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
+		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
@@ -71,6 +77,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		dataset.put("id", maintenanceRecord.getId());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("publishable", publishable);
 
 		super.getResponse().addData(dataset);
 	}
