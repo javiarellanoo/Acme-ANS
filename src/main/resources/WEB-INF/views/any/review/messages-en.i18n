@@ -1,0 +1,19 @@
+any.review.list.title = Reviews
+review.list.label.name = Name
+review.list.label.postedAt = Posted at
+review.list.label.subject = Subject
+review.list.label.description = Description
+review.list.label.score = Score
+review.list.label.recommended = Is recommended
+review.list.button.create = Create
+
+# Reviews details page
+any.review.form.title = Review Details
+review.form.label.name = Name
+review.form.label.postedAt = Posted at
+review.form.label.subject = Subject
+review.form.label.description = Description
+review.form.label.score = Score
+review.form.label.recommended = Is recommended
+review.form.button.create = Create
+review.form.label.confirmation = Confirm that the information of the Review is correct

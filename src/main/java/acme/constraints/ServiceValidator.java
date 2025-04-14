@@ -27,11 +27,13 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 	public boolean isValid(final Service service, final ConstraintValidatorContext context) {
 		Boolean result;
 		assert context != null;
+		Boolean validCode = true;
 
-		String promotionCode = service.getPromotionCode();
-		boolean validCode = true;
+		if (service == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else if (service.getPromotionCode() != null && service.getPromotionCode().length() >= 2) {
+			String promotionCode = service.getPromotionCode();
 
-		if (promotionCode != null && promotionCode.length() >= 2) {
 			Integer fullYear = MomentHelper.getCurrentMoment().getYear();
 			String year = fullYear.toString().substring(fullYear.toString().length() - 2);
 			String codeYear = promotionCode.substring(promotionCode.length() - 2);

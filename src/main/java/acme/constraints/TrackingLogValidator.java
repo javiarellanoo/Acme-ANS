@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.StringHelper;
@@ -17,6 +19,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 	// Internal state
 
+	@Autowired
 	private TrackingLogRepository repository;
 
 	// ConstraintValidator interface
@@ -32,27 +35,35 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 		Boolean result;
 		assert context != null;
 
-		Boolean hasResolution = true;
-		Boolean correctStatus;
-		Boolean greaterPercentage = true;
+		if (trackingLog == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
 
-		if (trackingLog.getResolutionPercentage() == 100.00) {
-			correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
-			hasResolution = trackingLog.getResolution() != null && !StringHelper.isBlank(trackingLog.getResolution());
-		} else
-			correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
+			boolean hasResolution = true;
+			Boolean correctStatus;
+			boolean greaterPercentage = true;
 
-		List<TrackingLog> allOrdered = this.repository.findAllOrderedByIndex();
+			if (trackingLog.getResolutionPercentage() == 100.00) {
+				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
+				hasResolution = !StringHelper.isBlank(trackingLog.getResolution());
+			} else
+				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
 
-		for (int i = 0; i < allOrdered.size() - 1; i++)
-			greaterPercentage = allOrdered.get(i).getResolutionPercentage() < allOrdered.get(i + 1).getResolutionPercentage();
+			if (trackingLog.getResolutionPercentage() != null) {
+				List<TrackingLog> allOrdered = this.repository.findAllOrderedByIndex(trackingLog.getClaim().getId());
+				List<TrackingLog> beforeActual = allOrdered.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).toList();
 
-		greaterPercentage = trackingLog.getResolutionPercentage() > allOrdered.get(-1).getResolutionPercentage();
+				if (!beforeActual.isEmpty()) {
+					TrackingLog previous = beforeActual.get(0);
 
-		super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
-		super.state(context, hasResolution, "resolution", "acme.validation.trackingLog.resolution.message");
-		super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
+					greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+				}
+			}
 
+			super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
+			super.state(context, hasResolution, "resolution", "acme.validation.trackingLog.resolution.message");
+			super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
+		}
 		result = !super.hasErrors(context);
 
 		return result;
