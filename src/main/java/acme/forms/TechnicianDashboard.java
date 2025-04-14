@@ -1,5 +1,5 @@
 
-package acme.dashboards.technician;
+package acme.forms;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class TechnicianDashboard extends AbstractForm {
 
 	Map<MaintenanceRecordStatus, Integer>	mapStatusNumberRecords;
 	MaintenanceRecord						recordNearestInspectionDueDate;
-	List<Aircraft>							top5AircraftsNumberRecords;
+	List<Aircraft>							topAircraftsNumberRecords;
 	Double									avgCostMaintenanceLastYear;
 	Double									maxCostMaintenanceLastYear;
 	Double									minCostMaintenanceLastYear;
