@@ -27,7 +27,16 @@ public class TechnicianMaintenanceRecordsTasksCreateService extends AbstractGuiS
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int maintenanceRecordId;
+		MaintenanceRecord maintenanceRecord;
+		boolean status;
+
+		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
+
+		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -66,10 +75,12 @@ public class TechnicianMaintenanceRecordsTasksCreateService extends AbstractGuiS
 		SelectChoices taskChoices;
 		Collection<Task> tasks;
 		int maintenanceRecordId;
+		int technicianId;
 
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		technicianId = relationship.getMaintenanceRecord().getTechnician().getId();
 
-		tasks = this.repository.findTasks(maintenanceRecordId);
+		tasks = this.repository.findTasks(maintenanceRecordId, technicianId);
 		taskChoices = SelectChoices.from(tasks, "description", relationship.getTask());
 
 		dataset = super.unbindObject(relationship);

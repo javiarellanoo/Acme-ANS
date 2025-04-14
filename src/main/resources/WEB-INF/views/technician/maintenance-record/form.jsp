@@ -14,8 +14,15 @@
         <jstl:when test="${_command == 'show' && draftMode == false}">
             <acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list-maintenance-records?maintenanceRecordId=${id}"/>
         </jstl:when>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+        
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true && publishable == true}">
             <acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish?id=${id}"/>
+            <acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update?id=${id}"/>
+            <acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete?id=${id}"/>
+			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list-maintenance-records?maintenanceRecordId=${id}"/>
+        </jstl:when>
+        
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true && publishable == false}">
             <acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update?id=${id}"/>
             <acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete?id=${id}"/>
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list-maintenance-records?maintenanceRecordId=${id}"/>
