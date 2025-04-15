@@ -30,12 +30,19 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 	@Override
 	public void load() {
 		Collection<Claim> claims;
-		boolean published;
+		Collection<Claim> completedClaims;
+		Collection<Claim> undergoing;
+		boolean completed;
 		int assistanceId;
 
-		published = super.getRequest().getData("published", boolean.class);
+		completed = super.getRequest().getData("completed", boolean.class);
 		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = published ? this.repository.findClaimsPublished() : this.repository.findClaimsByAssistanceAgent(assistanceId);
+
+		claims = this.repository.findClaimsByAssistanceAgent(assistanceId);
+		completedClaims = claims.stream().filter(c -> !c.getStatus().equals("PENDING")).toList();
+		undergoing = claims.stream().filter(c -> c.getStatus().equals("PENDING")).toList();
+
+		claims = completed ? completedClaims : undergoing;
 
 		super.getBuffer().addData(claims);
 	}

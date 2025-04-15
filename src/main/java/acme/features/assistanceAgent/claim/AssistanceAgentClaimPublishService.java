@@ -28,8 +28,8 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	@Override
 	public void authorise() {
 		boolean status;
-		int agentId;
 		int claimId;
+		int agentId;
 		Claim claim;
 		AssistanceAgent agent;
 
@@ -65,6 +65,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
+		claim.setDraftMode(false);
 	}
 
 	@Override
@@ -74,7 +75,6 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void perform(final Claim claim) {
-		claim.setDraftMode(false);
 		this.repository.save(claim);
 	}
 
