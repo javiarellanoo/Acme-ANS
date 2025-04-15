@@ -2,6 +2,7 @@ package acme.features.customer.dashboard;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +62,8 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 		// Passengers per booking statistics
 		Collection<Long> passengerCountsPerBooking = this.repository.findBookingRecordCountsPerBooking(customerId);
 		int bookingCountWithPassengers = passengerCountsPerBooking.size(); // This is the count for stats
-		Double avgPassengers = passengerCountsPerBooking.stream().mapToLong(Long::longValue).average()
-				.orElse(Double.NaN);
+		OptionalDouble avgPassengersOpt = passengerCountsPerBooking.stream().mapToLong(Long::longValue).average();
+		Double avgPassengers = avgPassengersOpt.isPresent() ? avgPassengersOpt.getAsDouble() : null;
 		Long minPassengers = passengerCountsPerBooking.stream().mapToLong(Long::longValue).min().orElse(-1L); // Use -1L
 																												// as
 																												// sentinel
@@ -77,11 +78,15 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 				lastFiveDestinations.stream().map(x -> x.getDestinationCity()).limit(5).toArray(String[]::new));
 		dashboard.setMoneySpentLastYear(moneySpentLastYear);
 		dashboard.setTravelClassGrouped(bookingsByTravelClass);
-		dashboard.setAverageBookingCostLastFiveYears(avgBookingCost.getAmount());
-		dashboard.setMinBookingCostLastFiveYears(minBookingCost.getAmount());
-		dashboard.setMaxBookingCostLastFiveYears(maxBookingCost.getAmount());
+		dashboard.setAverageBookingCostLastFiveYears(
+				avgBookingCost.getAmount() != null ? avgBookingCost.getAmount() : null);
+		dashboard
+				.setMinBookingCostLastFiveYears(minBookingCost.getAmount() != null ? minBookingCost.getAmount() : null);
+		dashboard
+				.setMaxBookingCostLastFiveYears(maxBookingCost.getAmount() != null ? maxBookingCost.getAmount() : null);
 		dashboard.setCountBookingCostLastFiveYears(bookingCountLastFiveYears);
-		dashboard.setStdDevBookingCostLastFiveYears(stddevBookingCost.getAmount());
+		dashboard.setStdDevBookingCostLastFiveYears(
+				stddevBookingCost.getAmount() != null ? stddevBookingCost.getAmount() : null);
 		dashboard.setCountPassengers(bookingCountWithPassengers);
 		dashboard.setAveragePassengers(avgPassengers);
 		dashboard.setMinPassengers(minPassengers != -1L ? minPassengers.intValue() : null);
@@ -105,27 +110,47 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 	private Money calculateAverageMoney(final Collection<Money> budgets) {
 		Money moneyFinal = new Money();
 		moneyFinal.setCurrency("USD");
-		moneyFinal.setAmount(
-				budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).average().orElse(Double.NaN));
-
+		if (budgets == null || budgets.isEmpty())
+			moneyFinal.setAmount(null); // Return null instead of NaN
+		else
+			moneyFinal.setAmount(budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).average()
+					.orElse(Double.NaN)); // Keep NaN if stream is somehow empty post-filter
 		return moneyFinal;
 	}
 
 	private Money calculateMaximumMoney(final Collection<Money> budgets) {
 		Money moneyFinal = new Money();
 		moneyFinal.setCurrency("USD");
-		moneyFinal.setAmount(
-				budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).max().orElse(Double.NaN));
-
+		if (budgets == null || budgets.isEmpty())
+			moneyFinal.setAmount(null); // Return null instead of NaN
+		else
+			moneyFinal.setAmount(
+					budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).max().orElse(Double.NaN)); // Keep
+																														// NaN
+																														// if
+																														// stream
+																														// is
+																														// somehow
+																														// empty
+																														// post-filter
 		return moneyFinal;
 	}
 
 	private Money calculateMinimumMoney(final Collection<Money> budgets) {
 		Money moneyFinal = new Money();
 		moneyFinal.setCurrency("USD");
-		moneyFinal.setAmount(
-				budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).min().orElse(Double.NaN));
-
+		if (budgets == null || budgets.isEmpty())
+			moneyFinal.setAmount(null); // Return null instead of NaN
+		else
+			moneyFinal.setAmount(
+					budgets.stream().map(Money::getAmount).mapToDouble(Double::doubleValue).min().orElse(Double.NaN)); // Keep
+																														// NaN
+																														// if
+																														// stream
+																														// is
+																														// somehow
+																														// empty
+																														// post-filter
 		return moneyFinal;
 	}
 
@@ -134,13 +159,13 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 		desviacion.setCurrency("USD");
 
 		if (budgets == null || budgets.isEmpty()) {
-			desviacion.setAmount(Double.NaN);
+			desviacion.setAmount(null); // Return null instead of NaN
 			return desviacion;
 		}
 
 		double media = budgets.stream().mapToDouble(Money::getAmount).average().orElse(Double.NaN);
 		if (Double.isNaN(media)) {
-			desviacion.setAmount(Double.NaN);
+			desviacion.setAmount(null); // Return null instead of NaN
 			return desviacion;
 		}
 		double sumaDiferenciasCuadradas = budgets.stream()
@@ -155,11 +180,11 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 
 	private Double calculateLongStdDev(final Collection<Long> numbers) {
 		if (numbers == null || numbers.isEmpty())
-			return Double.NaN;
+			return null; // Return null instead of NaN
 
 		double avg = numbers.stream().mapToLong(Long::longValue).average().orElse(Double.NaN);
 		if (Double.isNaN(avg))
-			return Double.NaN;
+			return null; // Return null instead of NaN
 
 		double sumSquaredDiffs = numbers.stream().mapToDouble(num -> Math.pow(num - avg, 2)).sum();
 		// Check size before division
