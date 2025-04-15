@@ -17,12 +17,12 @@ airline-12,Lorem ipsum dolor sit ame,UUU,http://lorem.com/ipsum,STANDARD,2012/07
 airline-13,Lorem ipsum dolor sit ame,XXX,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-14,Lorem ipsum dolor sit ame,XAX,http://lorem.com/ipsum,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 # website - standard variations
-airline-15,Lorem ipsum dolor sit ame,ABC,ftp://a,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
-airline-16,Lorem ipsum dolor sit ame,DEF,ftp://a.b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
+airline-15,Lorem ipsum dolor sit ame,ABC,http://a,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
+airline-16,Lorem ipsum dolor sit ame,DEF,http://a.b,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-17,Lorem ipsum dolor sit ame,GHI,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-18,Lorem ipsum dolor sit ame,JKL,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-19,Lorem ipsum dolor sit ame,MNO,https://www.lorem-ipsum.org,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
-airline-20,Lorem ipsum dolor sit ame,PQR,ftp://www.lorem-ipsum.org,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
+airline-20,Lorem ipsum dolor sit ame,PQR,http://www.lorem-ipsum.org,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-21,Lorem ipsum dolor sit ame,STU,http://www.lorem-ipsum.org/dolor/sit.html,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-22,Lorem ipsum dolor sit ame,VWX,http://www.lorem-ipsum.org/dolor/sit.html#dolor,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
 airline-23,Lorem ipsum dolor sit ame,YZA,http://example.org?a=1&b=2,STANDARD,2012/07/02 0:00,acme@lorem-ipsum.org,689762586
