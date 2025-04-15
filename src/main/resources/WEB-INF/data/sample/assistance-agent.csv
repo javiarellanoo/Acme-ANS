@@ -1,0 +1,5 @@
+key,key:user-account,key:airline,employeeCode,spokenLanguages,employmentMoment,bio,salary,linkPhoto
+# base role
+assistance-agent-01,user-account-agent-01,airline-01,JMY783456,"Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Basque, Belarusian, Bengali, Bosnian, Bulgarian, Burmese, Catalan, Cebuano, Chichewa, Chinese, Corsican, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, Galiciano.",2012/07/02 00:00,null,EUR 2000,http://lorem.com/ipsum
+assistance-agent-02,user-account-agent-02,airline-02,AG123456,"A",2012/07/02 00:00,"Passionate about technology, learning, and creativity. Always exploring new ideas and challenges. Ready to innovate!",EUR 4000.25,http://lorem.com/ipsum2
+assistance-agent-03,user-account-agent-03,null,LV024681,"Afrikaans, Albanian, Amharic, Arabic, Armenian",2024/12/31 00:00,null,null,null

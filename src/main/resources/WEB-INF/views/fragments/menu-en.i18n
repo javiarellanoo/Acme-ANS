@@ -24,6 +24,9 @@ master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+master.menu.administrator.airport = List airports
+master.menu.administrator.airline = List airlines
+master.menu.administrator.aircraft = List aircrafts
 
 # master.menu.provider ########################################################
 
@@ -35,6 +38,14 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.manager ##########################################################
+master.menu.manager = Manager
+master.menu.manager.flight = List flights
+
+# master.menu.customer ##########################################################
+master.menu.customer = Customer
+master.menu.customer.passenger = My Passengers
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
@@ -43,3 +54,23 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+# master.menu.technician ########################################################
+master.menu.technician = Technician
+master.menu.technician.tasks.list.mine = My tasks
+master.menu.technician.tasks.list.published = Published tasks
+
+# master.menu.assistance-agent ########################################################
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.claims.list.mine = My claims
+master.menu.assistance-agent.claims.list.published = Published claims
+
+# master.menu.review ########################################################
+master.menu.review = Reviews
+master.menu.review.list = Reviews
+
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = My bookings
+master.menu.customer = Customer area
+master.menu.technician.maintenance-record.list.mine = My maintenance records
+master.menu.technician.maintenance-record.list.published = Published maintenance records
