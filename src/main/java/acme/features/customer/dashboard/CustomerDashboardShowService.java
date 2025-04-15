@@ -10,6 +10,8 @@ import acme.client.components.datatypes.Money;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.bookings.TravelClass;
+import acme.entities.flights.Flight;
 import acme.forms.CustomerDashboard;
 import acme.realms.Customer;
 
@@ -33,7 +35,7 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		// Last five destinations
-		Collection<String> lastFiveDestinations = this.repository.getFlightsOrderByRecentBooking(customerId);
+		Collection<Flight> lastFiveDestinations = this.repository.getFlightsOrderByRecentBooking(customerId);
 
 		// Money spent in bookings during the last year
 		Double moneySpentLastYear = this.repository.findMoneySpentLastYear(customerId);
@@ -42,7 +44,8 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 		Collection<Object[]> bookingsByTravelClassData = this.repository.findBookingsGroupedByTravelClass(customerId);
 		// Convert Collection<Object[]> to Map<String, Integer>
 		Map<String, Integer> bookingsByTravelClass = bookingsByTravelClassData.stream()
-				.collect(Collectors.toMap(arr -> (String) arr[0], // Key: travel class (String)
+				.collect(Collectors.toMap(
+						arr -> ((TravelClass) arr[0]).name(), // Use imported TravelClass and .name()
 						arr -> ((Number) arr[1]).intValue() // Value: count (Integer)
 				));
 
@@ -70,7 +73,8 @@ public class CustomerDashboardShowService extends AbstractGuiService<Customer, C
 
 		CustomerDashboard dashboard = new CustomerDashboard();
 
-		dashboard.setLastFiveDestinations(lastFiveDestinations.stream().limit(5).toArray(String[]::new));
+		dashboard.setLastFiveDestinations(
+				lastFiveDestinations.stream().map(x -> x.getDestinationCity()).limit(5).toArray(String[]::new));
 		dashboard.setMoneySpentLastYear(moneySpentLastYear);
 		dashboard.setTravelClassGrouped(bookingsByTravelClass);
 		dashboard.setAverageBookingCostLastFiveYears(avgBookingCost.getAmount());
