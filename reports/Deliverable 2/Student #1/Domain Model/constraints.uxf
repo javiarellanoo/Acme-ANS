@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>130</y>
+      <w>600</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidFlight
+--
++ The legs of a flight must not overlapped if it is not in draftMode
++ If a flight is not in draftMode, it must have at least one leg, and all its legs must be published
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>250</y>
+      <w>640</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidLeg
+--
++ The flight number must be unique and it must start with the Airline's IATA code, followed by 4 digits
++ The arrival must be after the departure
++ The aircraft used for the flight must not be used in that time period by other published legs
++ For the leg to be published, it must not overlap with other legs of the same flight.
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>390</y>
+      <w>370</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidManager
+--
++ The identifier must be unique
++ The identifier must start with the initials of the manager
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
