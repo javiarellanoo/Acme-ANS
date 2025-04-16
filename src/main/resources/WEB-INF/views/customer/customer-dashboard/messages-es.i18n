@@ -1,7 +1,7 @@
 # --- Panel de Control del Cliente ---
-customer.dashboard.title = Panel de Control del Cliente
+customer.customer-dashboard.form.title = Panel de Control del Cliente
 customer.dashboard.label.lastFiveDestinations = Últimos 5 Destinos
-customer.dashboard.label.moneySpentLastYear = Dinero Gastado el Año Pasado
+customer.dashboard.label.moneySpentLastYear = Dinero Gastado durante el Año Pasado
 customer.dashboard.label.travelClassGrouped = Reservas por Clase de Viaje
 customer.dashboard.label.travelClassGrouped.class = Clase
 customer.dashboard.label.travelClassGrouped.count = Cantidad
@@ -11,7 +11,7 @@ customer.dashboard.label.minBookingCostLastFiveYears = Costo Mínimo
 customer.dashboard.label.maxBookingCostLastFiveYears = Costo Máximo
 customer.dashboard.label.countBookingCostLastFiveYears = Número de Reservas
 customer.dashboard.label.stdDevBookingCostLastFiveYears = Desviación Estándar (Costo)
-customer.dashboard.label.passengerStats = Estadísticas de Pasajeros (Últimos 5 Años)
+customer.dashboard.label.passengerStats = Estadísticas de Pasajeros
 customer.dashboard.label.countPassengers = Pasajeros Totales
 customer.dashboard.label.averagePassengers = Promedio de Pasajeros por Reserva
 customer.dashboard.label.minPassengers = Mínimo de Pasajeros por Reserva
