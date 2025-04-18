@@ -60,12 +60,11 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("legs", int.class);
+		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
 		super.bindObject(claim, "passengerEmail", "description", "type");
 		claim.setLeg(leg);
-		claim.setDraftMode(false);
 	}
 
 	@Override
@@ -75,6 +74,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void perform(final Claim claim) {
+		claim.setDraftMode(false);
 		this.repository.save(claim);
 	}
 
