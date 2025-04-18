@@ -38,10 +38,6 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		Boolean validFlight = true;
 		if (flight.getDraftMode().equals(true))
 			validFlight = true;
-		else if (legs.size() == 0)
-			validFlight = false;
-		else if (legs.size() == 1)
-			validFlight = true;
 		else
 			for (int i = 1; i < legs.size(); i++) {
 				Date previousArrival = legs.get(i - 1).getScheduledArrival();
@@ -52,8 +48,8 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.legs.message");
 
 		boolean publishedLegs = true;
-		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
-		super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.nonPublishedLegs.message");
+		boolean legsStatus = flight.getDraftMode().equals(true) || !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+		super.state(context, legsStatus, "scheduledArrival", "acme.validation.flight.nonPublishedLegs.message");
 
 		result = !super.hasErrors(context);
 

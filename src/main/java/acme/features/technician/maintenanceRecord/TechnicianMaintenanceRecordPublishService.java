@@ -40,7 +40,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecordId);
 
-		status = maintenanceRecord != null && (!maintenanceRecord.getDraftMode() || technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId());
+		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 		tasksPublished = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 
 		status &= tasksPublished;
