@@ -14,11 +14,11 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.entities.legs.Leg;
 import acme.entities.trackingLogs.TrackingLog;
 import acme.entities.trackingLogs.TrackingLogRepository;
 import acme.realms.AssistanceAgent;
@@ -39,12 +39,12 @@ public class Claim extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
-	@Optional
+	@Mandatory
 	@ValidEmail
 	@Automapped
 	private String				passengerEmail;
 
-	@Optional
+	@Mandatory
 	@ValidString(min = 1, max = 255)
 	@Automapped
 	private String				description;
@@ -53,6 +53,11 @@ public class Claim extends AbstractEntity {
 	@Valid
 	@Automapped
 	private ClaimType			type;
+
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
 
 	// Derived properties
 
@@ -74,6 +79,11 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private AssistanceAgent registeredBy;
+	private AssistanceAgent	assistanceAgent;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg				leg;
 
 }

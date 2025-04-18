@@ -36,6 +36,7 @@
 			<acme:menu-suboption code="master.menu.administrator.airport" action="/administrator/airport/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airline" action="/administrator/airline/list"/>
+			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-separator/>
 		</acme:menu-option>
 
@@ -48,9 +49,30 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
+			<acme:menu-suboption code="master.menu.customer.passenger" action="/customer/passenger/list"/>
+			<acme:menu-suboption code="master.menu.customer.list-bookings" action="/customer/booking/list"/>
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.technician" access="hasRole('Technician')">
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.mine" action="/technician/task/list?published=false"/>
 		    <acme:menu-suboption code="master.menu.technician.tasks.list.published" action="/technician/task/list?published=true"/>
+			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.mine" action="/technician/maintenance-record/list?published=false"/>	
+			<acme:menu-suboption code="master.menu.technician.maintenance-record.list.published" action="/technician/maintenance-record/list?published=true"/>	
+		</acme:menu-option>
+    
+		<acme:menu-option code="master.menu.assistance-agent" access="hasRole('AssistanceAgent')">
+		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.mine" action="/assistance-agent/claim/list?published=false"/>
+		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.published" action="/assistance-agent/claim/list?published=true"/>
+		</acme:menu-option>
+
+		<acme:menu-option code="master.menu.review" access="isAnonymous()">
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
+		</acme:menu-option>
+      
+		<acme:menu-option code="master.menu.review" access="isAuthenticated()">
+			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.flight-crew-member" access="hasRole('FlightCrewMember')">
 		    <acme:menu-suboption code="master.menu.flight-crew-member.flight-assignment.list.completeLeg" action="/flight-crew-member/flight-assignment/list?completed=true"/>

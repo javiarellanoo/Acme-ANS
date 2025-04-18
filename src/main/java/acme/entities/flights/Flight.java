@@ -37,7 +37,7 @@ public class Flight extends AbstractEntity {
 	// Attributes
 
 	@Mandatory
-	@ValidString(min = 0, max = 50)
+	@ValidString(min = 1, max = 50)
 	@Automapped
 	private String				tag;
 
@@ -127,6 +127,11 @@ public class Flight extends AbstractEntity {
 		if (legs == -1)
 			legs = 0;
 		return legs;
+	}
+
+	@Transient
+	public String getDisplayString() {
+		return String.format("%s → %s", this.getOriginCity(), this.getDestinationCity());
 	}
 
 
