@@ -2,17 +2,20 @@
 package acme.features.flightCrewMember.flightAssignment;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignments.AssignmentStatus;
 import acme.entities.flightAssignments.Duty;
 import acme.entities.flightAssignments.FlightAssignment;
 import acme.entities.legs.Leg;
+import acme.realms.AvailabilityStatus;
 import acme.realms.FlightCrewMember;
 
 @GuiService
@@ -60,18 +63,45 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrewMember member = this.repository.findCrewMemberById(memberId);
 		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
-		assignment.setDraftMode(false);
 		assignment.setLeg(leg);
 		assignment.setFlightCrewMember(member);
 	}
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		;
+		boolean notCompletedLeg;
+		Date currentMoment = MomentHelper.getCurrentMoment();
+
+		notCompletedLeg = MomentHelper.isAfter(assignment.getLeg().getScheduledArrival(), currentMoment);
+
+		super.state(notCompletedLeg, "leg", "acme.validation.flight-assignment.completed-leg.message");
+
+		boolean availableMember;
+
+		availableMember = assignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
+
+		super.state(availableMember, "flightCrewMember", "acme.validation.flight-assignment.not-available-crew-member.message");
+
+		boolean onlyOnePilot;
+		FlightAssignment pilotAssignment;
+
+		pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
+		onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+
+		super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
+
+		boolean onlyOneCopilot;
+		FlightAssignment copilotAssignment;
+
+		copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
+		onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
+
+		super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
 	}
 
 	@Override
 	public void perform(final FlightAssignment assignment) {
+		assignment.setDraftMode(false);
 		this.repository.save(assignment);
 	}
 
@@ -103,7 +133,6 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dataset.put("legs", legChoices);
 		dataset.put("flightCrewMember", memberChoices.getSelected().getKey());
 		dataset.put("flightCrewMembers", memberChoices);
-		dataset.put("draftMode", false);
 
 		super.getResponse().addData(dataset);
 	}

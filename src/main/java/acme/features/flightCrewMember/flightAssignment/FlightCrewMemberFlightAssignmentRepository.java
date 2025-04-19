@@ -35,4 +35,10 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("select fcm from FlightCrewMember fcm where fcm.id =:id")
 	FlightCrewMember findCrewMemberById(int id);
 
+	@Query("select a from FlightAssignment a where a.leg.id =:legId and a.duty = acme.entities.flightAssignments.Duty.PILOT and a.draftMode = false")
+	FlightAssignment findPilotAssignmentsByLegId(int legId);
+
+	@Query("select a from FlightAssignment a where a.leg.id =:legId and a.duty = acme.entities.flightAssignments.Duty.COPILOT and a.draftMode = false")
+	FlightAssignment findCopilotAssignmentsByLegId(int legId);
+
 }

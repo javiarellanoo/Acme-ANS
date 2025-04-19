@@ -60,7 +60,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrewMember member = this.repository.findCrewMemberById(memberId);
 		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
-		assignment.setDraftMode(true);
 		assignment.setLeg(leg);
 		assignment.setFlightCrewMember(member);
 	}
@@ -103,7 +102,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		dataset.put("legs", legChoices);
 		dataset.put("flightCrewMember", memberChoices.getSelected().getKey());
 		dataset.put("flightCrewMembers", memberChoices);
-		dataset.put("draftMode", true);
 
 		super.getResponse().addData(dataset);
 	}
