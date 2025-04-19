@@ -27,3 +27,7 @@ acme.validation.leg.occupiedAircraft.message = The selected Aircraft is occupied
 acme.validation.leg.conflictiveLeg.message = The selected time slot of this leg is conflictive respect the published legs of the flight.
 acme.validation.flight.nonPublishedLegs.message = This flight has either no legs or legs that have not been published.
 acme.validation.maintenanceRecordsTasks.task.message = Published maintenance records cannot contain tasks that are not published.
+acme.validation.flight-assignment.completed-leg.message = A flight assignment cannot be linked to a leg that has already occurred.
+acme.validation.flight-assignment.not-available-crew-member.message = The crew member assigned is not available.
+acme.validation.flight-assignment.pilot-already-assigned.message = A pilot is already assigned to this leg.
+acme.validation.flight-assignment.copilot-already-assigned.message = A copilot is already assigned to this leg.

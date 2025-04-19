@@ -32,16 +32,22 @@ public class FlightCrewMemberFlightAssignmentListService extends AbstractGuiServ
 	@Override
 	public void load() {
 		Collection<FlightAssignment> assignments;
+		int memberId;
+		int airlineId;
 		boolean completedLeg;
+
+		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
 
 		completedLeg = super.getRequest().getData("completed", boolean.class);
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
 
 		if (completedLeg)
-			assignments = this.repository.findAllAssignments().stream().filter(x -> MomentHelper.isAfterOrEqual(currentMoment, x.getLeg().getScheduledArrival())).toList();
+			assignments = this.repository.findAssignmentsByAirlineId(airlineId).stream().filter(x -> MomentHelper.isAfterOrEqual(currentMoment, x.getLeg().getScheduledArrival())).toList();
 		else
-			assignments = this.repository.findAllAssignments().stream().filter(x -> MomentHelper.isBefore(currentMoment, x.getLeg().getScheduledArrival())).toList();
+			assignments = this.repository.findAssignmentsByAirlineId(airlineId).stream().filter(x -> MomentHelper.isBefore(currentMoment, x.getLeg().getScheduledArrival())).toList();
 
 		super.getBuffer().addData(assignments);
 	}
