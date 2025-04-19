@@ -1,6 +1,7 @@
 
 package acme.entities.claims;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -67,9 +68,11 @@ public class Claim extends AbstractEntity {
 		TrackingLogRepository repository;
 
 		repository = SpringHelper.getBean(TrackingLogRepository.class);
-		List<TrackingLog> allOrdered = repository.findAllOrderedByIndex(this.getId());
-		if (!allOrdered.isEmpty())
-			return allOrdered.get(0).getStatus().toString();
+		List<TrackingLog> allTrackingLogs = repository.findAllByClaimId(this.getId());
+		if (!allTrackingLogs.isEmpty()) {
+			allTrackingLogs.sort(Comparator.comparing(TrackingLog::getResolutionPercentage).reversed());
+			return allTrackingLogs.get(0).getStatus().toString();
+		}
 		return "PENDING";
 	}
 

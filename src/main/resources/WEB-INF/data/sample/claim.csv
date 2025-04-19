@@ -9,8 +9,8 @@ claim-05,assistance-agent-01,2025/01/01  00:00,acme@lorem-ipsum.org,Lorem ipsum 
 # registrationMoment - singular values
 claim-06,assistance-agent-01,2012/02/29  00:00,acme@lorem-ipsum.org,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,TRUE,leg-04
 # passengerEmail - singular values
-claim-07,assistance-agent-01,2012/07/02  00:00,"acme-password@lorem-ipsum.org",Lorem ipsum dolor sit ame,FLIGHT_ISSUES,TRUE,leg-04
-claim-08,assistance-agent-01,2012/07/02  00:00,a@b.e,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,TRUE,leg-04
+claim-07,assistance-agent-01,2012/07/02  00:00,"acme-password@lorem-ipsum.org",Lorem ipsum dolor sit ame,FLIGHT_ISSUES,FALSE,leg-04
+claim-08,assistance-agent-01,2012/07/02  00:00,a@b.e,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,FALSE,leg-04
 claim-09,assistance-agent-01,2012/07/02  00:00,a@b.es,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,TRUE,leg-04
 claim-10,assistance-agent-01,2012/07/02  00:00,a@b.esx,Lorem ipsum dolor sit ame,FLIGHT_ISSUES,TRUE,leg-04
 # description - standard variations
