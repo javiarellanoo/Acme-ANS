@@ -71,6 +71,10 @@ master.menu.assistance-agent.claims.list.published = Published claims
 master.menu.review = Reviews
 master.menu.review.list = Reviews
 
+# master.menu.flight ########################################################
+master.menu.flight = Flights
+master.menu.flight.list = Flights
+
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings
 master.menu.customer = Customer area
