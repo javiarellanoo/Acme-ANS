@@ -75,7 +75,10 @@
 			<acme:menu-suboption code="master.menu.review.list" action="/any/review/list"/>
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.flight" access="!hasRole('Manager')">
+		<acme:menu-option code="master.menu.flight" access="isAnonymous()">
+		<acme:menu-suboption code="master.menu.flight.list" action="/any/flight/list"/>
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.flight" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.flight.list" action="/any/flight/list"/>
 		</acme:menu-option>
 	</acme:menu-left>
