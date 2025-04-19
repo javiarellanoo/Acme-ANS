@@ -25,7 +25,7 @@
 	<acme:input-integer code="manager.flight.form.label.numberOfLayovers" path="numberOfLayovers" readonly = "true"/>
 	<acme:input-money code="manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textarea code="manager.flight.form.label.description" path="description"/>
-	<acme:input-select code="manager.flight.form.label.airline" path="airlines" choices="${airlines}"/>	
+	<acme:input-select code="manager.flight.form.label.airline" path="airline" choices="${airlines}"/>	
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show' && draftMode == false}">

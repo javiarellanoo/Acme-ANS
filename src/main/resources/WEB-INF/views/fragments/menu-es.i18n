@@ -39,7 +39,7 @@ master.menu.consumer.favourite-link = Enlace favorito
 
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
-master.menu.manager.flight = Ver vuelos
+master.menu.manager.flight = Ver mis vuelos
 
 # master.menu.user-account ####################################################
 
@@ -67,6 +67,10 @@ master.menu.assistance-agent.tracking-logs.list.published = Registros de seguimi
 # master.menu.review ########################################################
 master.menu.review = Reseñas
 master.menu.review.list = Reseñas
+
+# master.menu.flights ########################################################
+master.menu.flight = Vuelos
+master.menu.flight.list = Vuelos
 
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente
