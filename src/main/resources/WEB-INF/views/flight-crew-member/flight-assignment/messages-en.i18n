@@ -17,4 +17,5 @@ flight-crew-member.flight-assignment.form.button.flight-crew-member = Flight cre
 flight-crew-member.flight-assignment.form.button.update = Update
 flight-crew-member.flight-assignment.form.button.publish = Publish
 flight-crew-member.flight-assignment.form.button.create = Create
+flight-crew-member.flight-assignment.form.button.delete = Delete
 
