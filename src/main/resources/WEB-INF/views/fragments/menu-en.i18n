@@ -82,3 +82,9 @@ master.menu.customer.list-bookings = My bookings
 master.menu.customer = Customer area
 master.menu.technician.maintenance-record.list.mine = My maintenance records
 master.menu.technician.maintenance-record.list.published = Published maintenance records
+
+
+# master.menu.flight-crew-member #################################################
+master.menu.flight-crew-member = Flight Crew Member
+master.menu.flight-crew-member.flight-assignment.list.completeLeg = Assignments with completed flight legs
+master.menu.flight-crew-member.flight-assignment.list.incompleteLeg = Assignments with incompleted flight legs
