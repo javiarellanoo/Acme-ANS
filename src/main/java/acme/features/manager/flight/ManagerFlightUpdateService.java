@@ -51,7 +51,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		int airlineId;
 		Airline airline;
 
-		airlineId = super.getRequest().getData("airlines", int.class);
+		airlineId = super.getRequest().getData("airline", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
