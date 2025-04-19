@@ -1,7 +1,9 @@
 
 package acme.constraints;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -37,33 +39,69 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 		if (trackingLog == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
 
-			boolean hasResolution = true;
-			Boolean correctStatus;
-			boolean greaterPercentage = true;
+		else if (trackingLog.getStatus() != null && trackingLog.getClaim() != null) {
 
-			if (trackingLog.getResolutionPercentage() == 100.00) {
-				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.ACCEPTED) || trackingLog.getStatus().equals(TrackingLogStatus.REJECTED);
-				hasResolution = !StringHelper.isBlank(trackingLog.getResolution());
-			} else
+			// Status check
+
+			boolean correctStatus;
+
+			if (trackingLog.getResolutionPercentage() == 100.00)
+				correctStatus = !trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
+			else
 				correctStatus = trackingLog.getStatus().equals(TrackingLogStatus.PENDING);
 
-			if (trackingLog.getResolutionPercentage() != null) {
-				List<TrackingLog> allOrdered = this.repository.findAllOrderedByIndex(trackingLog.getClaim().getId());
-				List<TrackingLog> beforeActual = allOrdered.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).toList();
+			super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
+
+			// Resolution check
+
+			if (trackingLog.getResolutionPercentage() == 100.00) {
+				boolean hasResolution = !StringHelper.isBlank(trackingLog.getResolution());
+				super.state(context, hasResolution, "resolution", "acme.validation.trackingLog.resolution.message");
+			}
+
+			// Published check
+			if (!trackingLog.getDraftMode()) {
+				boolean claimPublished = !trackingLog.getClaim().getDraftMode();
+				super.state(context, claimPublished, "publish", "acme.validation.trackingLog.draftMode.message");
+			}
+
+			// Unique dissatisfaction check
+
+			if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION)) {
+				boolean isPublished = this.repository.findAllByClaimId(trackingLog.getClaim().getId()) //
+					.stream().anyMatch(t -> !t.getDraftMode());
+				super.state(context, isPublished, "status", "acme.validation.trackingLog.draftModeDissatisfaction.message");
+
+				boolean isUnique = this.repository.findAllByClaimId(trackingLog.getClaim().getId()) //
+					.stream().filter(t -> t.getId() != trackingLog.getId()) //
+					.noneMatch(t -> t.getStatus().equals(TrackingLogStatus.DISSATISFACTION));
+				super.state(context, isUnique, "status", "acme.validation.trackingLog.statusDissatisfaction");
+
+			}
+
+			// Incrementing resolution percentage check
+
+			boolean greaterPercentage = true;
+
+			if (trackingLog.getResolutionPercentage() != null && trackingLog.getLastUpdateMoment() != null) {
+				List<TrackingLog> allByClaim = this.repository.findAllByClaimId(trackingLog.getClaim().getId());
+				List<TrackingLog> beforeActual = allByClaim.stream().filter(t -> t.getLastUpdateMoment().before(trackingLog.getLastUpdateMoment())).collect(Collectors.toList());
 
 				if (!beforeActual.isEmpty()) {
+					beforeActual.sort(Comparator.comparing(TrackingLog::getResolutionPercentage).reversed());
 					TrackingLog previous = beforeActual.get(0);
 
-					greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+					if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION))
+						greaterPercentage = allByClaim.stream().anyMatch(t -> t.getResolutionPercentage().equals(Double.valueOf(100)));
+					else
+						greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
 				}
 			}
 
-			super.state(context, correctStatus, "status", "acme.validation.trackingLog.status.message");
-			super.state(context, hasResolution, "resolution", "acme.validation.trackingLog.resolution.message");
 			super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
 		}
+
 		result = !super.hasErrors(context);
 
 		return result;
