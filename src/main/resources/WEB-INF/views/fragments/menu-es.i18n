@@ -80,3 +80,8 @@ master.menu.customer.list-bookings = Mis reservas
 master.menu.customer = Área del cliente
 master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimiento
 master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados
+
+# master.menu.flight-crew-member #################################################
+master.menu.flight-crew-member = Miembro de tripulación de vuelo
+master.menu.flight-crew-member.flight-assignment.list.completeLeg = Asignaciones con segmento completado
+master.menu.flight-crew-member.flight-assignment.list.incompleteLeg = Asignaciones con segmento no completado
