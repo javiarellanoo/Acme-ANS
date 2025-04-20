@@ -4,6 +4,7 @@ flight-crew-member.flight-assignment.list.label.duty = Labor
 flight-crew-member.flight-assignment.list.label.status = Estado
 flight-crew-member.flight-assignment.list.label.draftMode = Borrador
 flight-crew-member.flight-assignment.list.button.create = Crear
+flight-crew-member.flight-assignment.form.button.activity-log = Registros de actividad
 
 flight-crew-member.flight-assignment.form.title = Detalles de la asignación de vuelo
 flight-crew-member.flight-assignment.form.label.duty = Labor
