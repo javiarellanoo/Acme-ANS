@@ -34,3 +34,4 @@ acme.validation.flight-assignment.completed-leg.message = Una asignación de vue
 acme.validation.flight-assignment.not-available-crew-member.message = El miembro de tripulacíon asignado no está disponible.
 acme.validation.flight-assignment.pilot-already-assigned.message = Un piloto ya ha sido asignado a este segmento.
 acme.validation.flight-assignment.copilot-already-assigned.message = Un copiloto ya ha sido asignado a este segmento.
+acme.validation.activity-log.not-published-assignment.message = Un registro de actividad no puede ser publicado hasta que la asignación asociada no sea publicada.
