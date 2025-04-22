@@ -73,7 +73,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 		boolean validLeg = true;
 		for (Leg l : legsOfFlight)
-			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
+			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
 				validLeg = false;
 		super.state(validLeg, "scheduledDeparture", "acme.validation.leg.conflictiveLeg.message");
 	}
