@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
@@ -51,11 +52,17 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
+		boolean validLeg = true;
+		for (Leg l : legsOfFlight)
+			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
+				validLeg = false;
+		super.state(validLeg, "scheduledDeparture", "acme.validation.leg.conflictiveLeg.message");
 	}
 
 	@Override
 	public void perform(final Leg leg) {
+		leg.setDraftMode(false);
 		this.repository.save(leg);
 	}
 
@@ -73,7 +80,6 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		Airport destinationAirport = this.repository.findAirportById(destinationAirportId);
 		super.bindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
 		leg.setAircraft(aircraft);
-		leg.setDraftMode(false);
 		leg.setDepartureAirport(departureAirport);
 		leg.setDestinationAirport(destinationAirport);
 	}
@@ -93,10 +99,10 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		choicesDepartureAirport = SelectChoices.from(airports, "name", leg.getDepartureAirport());
 		choicesDestinationAirport = SelectChoices.from(airports, "name", leg.getDestinationAirport());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
-		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
+		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival", "draftMode");
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
-		dataset.put("draftMode", false);
+		dataset.put("validLeg", false);
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("destinationAirport", choicesDestinationAirport.getSelected().getKey());

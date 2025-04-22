@@ -11,6 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airlines.Airline;
 import acme.entities.flights.Flight;
+import acme.entities.legs.Leg;
 import acme.realms.Manager;
 
 @GuiService
@@ -59,7 +60,9 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 	}
 	@Override
 	public void validate(final Flight flight) {
-		;
+		Collection<Leg> legs = this.repository.findLegsByFlightId(flight.getId());
+		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+		super.state(legsStatus, "*", "acme.validation.flight.nonPublishedLegs.message");
 	}
 
 	@Override
@@ -72,6 +75,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
 		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		dataset.put("legsStatus", false);
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
