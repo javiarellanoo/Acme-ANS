@@ -30,11 +30,29 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		int masterId;
 		Flight flight;
 		Leg leg;
+		int aircraftId;
+		Aircraft aircraft;
+		int destinationAirportId;
+		Airport destinationAirport;
+		int departureAirportId;
+		Airport departureAirport;
+		boolean aircraftStatus;
+		boolean departureAirportStatus;
+		boolean destinationAirportStatus;
 
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
 		flight = this.repository.findFlightById(leg.getFlight().getId());
-		status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
+		aircraftStatus = aircraftId == 0 || aircraft != null;
+		destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
+		destinationAirport = this.repository.findAirportById(destinationAirportId);
+		departureAirportId = super.getRequest().getData("departureAirport", int.class);
+		departureAirport = this.repository.findAirportById(departureAirportId);
+		destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
+		departureAirportStatus = departureAirportId == 0 || departureAirport != null;
+		status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
 
 		super.getResponse().setAuthorised(status);
 	}

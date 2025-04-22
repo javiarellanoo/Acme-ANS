@@ -31,11 +31,33 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		boolean status;
 		int masterId;
 		Flight flight;
-
-		masterId = super.getRequest().getData("masterId", int.class);
-		flight = this.repository.findFlightById(masterId);
-		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
-
+		int aircraftId;
+		Aircraft aircraft;
+		int destinationAirportId;
+		Airport destinationAirport;
+		int departureAirportId;
+		Airport departureAirport;
+		boolean aircraftStatus;
+		boolean departureAirportStatus;
+		boolean destinationAirportStatus;
+		if (super.getRequest().getMethod().equals("GET")) {
+			masterId = super.getRequest().getData("masterId", int.class);
+			flight = this.repository.findFlightById(masterId);
+			status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		} else {
+			masterId = super.getRequest().getData("masterId", int.class);
+			flight = this.repository.findFlightById(masterId);
+			aircraftId = super.getRequest().getData("aircraft", int.class);
+			aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
+			aircraftStatus = aircraftId == 0 || aircraft != null;
+			destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
+			destinationAirport = this.repository.findAirportById(destinationAirportId);
+			departureAirportId = super.getRequest().getData("departureAirport", int.class);
+			departureAirport = this.repository.findAirportById(departureAirportId);
+			destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
+			departureAirportStatus = departureAirportId == 0 || departureAirport != null;
+			status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
