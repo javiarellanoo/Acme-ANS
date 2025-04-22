@@ -66,6 +66,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 						validAircraft = false;
 				super.state(context, validAircraft, "aircraft", "acme.validation.leg.occupiedAircraft.message");
 			}
+
 			if (leg.getFlight() != null && leg.getDraftMode() == false) {
 				Flight flight = leg.getFlight();
 				Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
