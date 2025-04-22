@@ -71,12 +71,11 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		Dataset dataset;
 
-		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
+		Collection<Flight> flights = this.repository.findAllNotDraftFlights().stream().filter(x -> x.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
-
-		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
+		Collection<Flight> displayFlights = new ArrayList<>(flights);
 
 		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
 			displayFlights.add(bookingFlight);
@@ -84,7 +83,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flightChoices = SelectChoices.from(displayFlights, "displayString", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCardNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "price", "lastCardNibble", "draftMode");
 		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
 		dataset.put("travelClasses", travelClassChoices);
 		dataset.put("flight", flightChoices.getSelected().getKey());
