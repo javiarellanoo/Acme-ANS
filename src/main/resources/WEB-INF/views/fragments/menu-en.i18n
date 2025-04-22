@@ -43,3 +43,30 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+
+# master.menu.technician ########################################################
+master.menu.technician = Technician
+master.menu.technician.tasks.list.mine = My tasks
+master.menu.technician.tasks.list.published = Published tasks
+
+# master.menu.assistance-agent ########################################################
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.claims.list.mine = My claims
+master.menu.assistance-agent.claims.list.published = Published claims
+
+# master.menu.review ########################################################
+master.menu.review = Reviews
+master.menu.review.list = Reviews
+
+# master.menu.customer ########################################################
+master.menu.customer.list-bookings = My bookings
+master.menu.customer = Customer area
+master.menu.technician.maintenance-record.list.mine = My maintenance records
+master.menu.technician.maintenance-record.list.published = Published maintenance records
+
+# Customer > Recommendations
+customer.recommendation.list.title=Recommendations for %s
+customer.recommendation.list.noRecommendations=No recommendations found for city \'%s\'. This might be because it\'s your home city or no recent travel data is available.
+customer.recommendation.label.name=Name
+customer.recommendation.label.address=Address
+customer.recommendation.label.categories=Categories
