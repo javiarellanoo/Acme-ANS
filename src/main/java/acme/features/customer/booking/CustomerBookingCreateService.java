@@ -1,4 +1,3 @@
-
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
-
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
@@ -52,7 +50,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void bind(final Booking booking) {
 		booking.setDraftMode(true);
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "price", "lastCardNibble", "flight");
 	}
 
 	@Override
@@ -71,11 +69,13 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		Dataset dataset;
 
-		Collection<Flight> flights = this.repository.findAllNotDraftFlights().stream().filter(x -> x.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
-
+		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> displayFlights = new ArrayList<>(flights);
+		Collection<Flight> futureFlights = flights.stream()
+				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+
+		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 
 		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
 			displayFlights.add(bookingFlight);
