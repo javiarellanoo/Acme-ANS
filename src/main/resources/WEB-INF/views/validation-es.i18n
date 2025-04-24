@@ -36,3 +36,4 @@ acme.validation.flight-assignment.pilot-already-assigned.message = Un piloto ya 
 acme.validation.flight-assignment.copilot-already-assigned.message = Un copiloto ya ha sido asignado a este segmento.
 acme.validation.activity-log.not-published-assignment.message = Un registro de actividad no puede ser publicado hasta que la asignación asociada no sea publicada.
 acme.validation.flightNumber.format = Este número de vuelo no corresponde con el formato esperado. Por favor, introduzca el código IATA de la aerolínea junto a 4 dígitos.
+acme.validation.leg.scheduledDeparture = La salida esperada de este vuelo debe ser en el futuro

@@ -2,6 +2,7 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -70,12 +71,16 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
+		boolean validDate;
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
+		super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 		boolean validLeg = true;
 		for (Leg l : legsOfFlight)
 			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
 				validLeg = false;
-		super.state(validLeg, "scheduledDeparture", "acme.validation.leg.conflictiveLeg.message");
+		super.state(validLeg, "*", "acme.validation.leg.conflictiveLeg.message");
 	}
 
 	@Override
@@ -121,6 +126,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
 		dataset.put("validLeg", false);
+		dataset.put("validDate", false);
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("destinationAirport", choicesDestinationAirport.getSelected().getKey());

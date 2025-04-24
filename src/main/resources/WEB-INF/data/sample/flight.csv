@@ -18,6 +18,12 @@ flight-14,airline-01,manager-01,The cheapest,1,0,EUR 500000.00,"Lorem ipsum dolo
 #draft-mode-variations
 flight-15,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
 flight-16,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-42,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-43,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-44,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-45,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+flight-46,airline-01,manager-01,Lorem ipsum dolor sit ame,0,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+
 #requires-self-transfer-variations
 flight-17,airline-01,manager-01,Lorem ipsum dolor sit ame,1,1,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
 flight-18,airline-01,manager-01,Lorem ipsum dolor sit ame,1,1,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
@@ -39,7 +45,7 @@ flight-08,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,لو
 flight-38,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,洛伦·伊普森
 flight-39,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,<marquee>Hacked</marquee>
 flight-40,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,<script>alert(‘Hacked!’);</script>
-flight-41,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,'' or 'A' = 'A 
+flight-41,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,'' or 'A' = 'A
 flight-29,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor"
 flight-30,airline-01,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*"
 #description-variations-singular-values
