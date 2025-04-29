@@ -1,4 +1,4 @@
 key,key:user-account,identifier,years-of-experience,date-of-birth,profile-picture
 manager-01,user-account-manager-1,MS123456,5,2000/01/01 0:00,http://lorem.com/ipsum
-manager-02,user-account-manager-2,JT456897,7,2003/06/04 5:35,http://a
+manager-02,user-account-manager-2,JT456897,7,2003/06/04 5:35,http://lorem.com/ipsum
 manager-03,user-account-manager-3,PP235689,3,2004/02/27 4:35,null

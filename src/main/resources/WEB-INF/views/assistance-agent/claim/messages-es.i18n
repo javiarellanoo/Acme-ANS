@@ -19,7 +19,7 @@ assistance-agent.claim.form.label.registrationMoment = Momento de registro:
 assistance-agent.claim.form.label.leg = Segmento de vuelo:
 assistance-agent.claim.form.label.assistance-agent = Asistente:
 
-		
+assistance-agent.claim.form.button.tracking-logs = Registro de seguimiento
 assistance-agent.claim.form.button.update = Editar
 assistance-agent.claim.form.button.delete = Eliminar
 assistance-agent.claim.form.button.publish = Publicar
