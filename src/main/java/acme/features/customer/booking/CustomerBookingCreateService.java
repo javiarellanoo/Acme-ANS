@@ -1,3 +1,4 @@
+
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -25,10 +26,12 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
-	@Override
-	public void authorise() {
-		super.getResponse().setAuthorised(true);
-	}
+
+
+    @Override
+    public void authorise() {
+        super.getResponse().setAuthorised(true);
+    }
 
 	@Override
 	public void load() {
@@ -72,8 +75,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream()
-				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 
