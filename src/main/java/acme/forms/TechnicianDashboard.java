@@ -24,13 +24,7 @@ public class TechnicianDashboard extends AbstractForm {
 	Map<MaintenanceRecordStatus, Integer>	mapStatusNumberRecords;
 	MaintenanceRecord						recordNearestInspectionDueDate;
 	List<Aircraft>							topAircraftsNumberRecords;
-	Double									avgCostMaintenanceLastYear;
-	Double									maxCostMaintenanceLastYear;
-	Double									minCostMaintenanceLastYear;
-	Double									sdCostMaintenanceLastYear;
-	Double									avgDuration;
-	Double									maxDuration;
-	Double									minDuration;
-	Double									sdDuration;
+	Map<String, Statistics>					costStatisticsLastYear;
+	Statistics								durationStatistics;
 
 }

@@ -1,0 +1,27 @@
+technician.technician-dashboard.form.title = Dashboard
+technician.dashboard.form.title.maintenance-record-status-counts = Number of maintenance records per status
+
+technician.dashboard.form.title.nearest-inspection = Maintenance record with the nearest inspection date
+technician.dashboard.form.label.record-moment = Moment
+technician.dashboard.form.label.due-date = Next inspection date
+technician.dashboard.form.label.status = Status
+
+technician.dashboard.form.title.top-aircrafts = Top five aircrafts with higher number of tasks in their maintenance records
+technician.dashboard.form.label.aircraft-registration-number = Registration number
+technician.dashboard.form.label.aircraft-model = Model
+
+technician.dashboard.form.title.cost-statistics = Statistics of the estimated costs of the maintenance records in the last year
+technician.dashboard.form.label.currency = Currency
+technician.dashboard.form.label.average-cost = Average cost
+technician.dashboard.form.label.minimum-cost = Min. cost
+technician.dashboard.form.label.maximum-cost = Max. cost
+technician.dashboard.form.label.stddev-cost = Standard deviation
+
+technician.dashboard.form.title.duration-statistics = Statistics of the estimated duration of the tasks involved
+technician.dashboard.form.label.average-duration = Average duration
+technician.dashboard.form.label.minimum-duration = Min. duration
+technician.dashboard.form.label.maximum-duration = Max. duration
+technician.dashboard.form.label.stddev-duration = Standard deviation
+
+technician.dashboard.form.label.not-available = NA
+technician.dashboard.form.label.no-data = No data
