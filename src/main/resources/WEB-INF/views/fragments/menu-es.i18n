@@ -61,8 +61,6 @@ master.menu.technician.tasks.list.published = Tareas publicadas
 master.menu.assistance-agent = Asistente
 master.menu.assistance-agent.claims.list.completed = Reclamaciones completadas
 master.menu.assistance-agent.claims.list.undergoing = Reclamaciones en progreso
-master.menu.assistance-agent.tracking-logs.list.mine = Mis registros de seguimiento
-master.menu.assistance-agent.tracking-logs.list.published = Registros de seguimiento publicados
 
 # master.menu.review ########################################################
 master.menu.review = Reseñas
