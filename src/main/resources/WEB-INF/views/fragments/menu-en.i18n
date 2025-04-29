@@ -66,8 +66,6 @@ master.menu.technician.tasks.list.published = Published tasks
 master.menu.assistance-agent = Assistance Agent
 master.menu.assistance-agent.claims.list.completed = Completed claims
 master.menu.assistance-agent.claims.list.undergoing = Undergoing claims
-master.menu.assistance-agent.tracking-logs.list.mine = My tracking logs
-master.menu.assistance-agent.tracking-logs.list.published = Published tracking logs
 
 # master.menu.review ########################################################
 master.menu.review = Reviews

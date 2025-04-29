@@ -2,6 +2,7 @@
 package acme.features.manager.leg;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,11 +31,29 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		int masterId;
 		Flight flight;
 		Leg leg;
+		int aircraftId;
+		Aircraft aircraft;
+		int destinationAirportId;
+		Airport destinationAirport;
+		int departureAirportId;
+		Airport departureAirport;
+		boolean aircraftStatus;
+		boolean departureAirportStatus;
+		boolean destinationAirportStatus;
 
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
 		flight = this.repository.findFlightById(leg.getFlight().getId());
-		status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
+		aircraftStatus = aircraftId == 0 || aircraft != null;
+		destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
+		destinationAirport = this.repository.findAirportById(destinationAirportId);
+		departureAirportId = super.getRequest().getData("departureAirport", int.class);
+		departureAirport = this.repository.findAirportById(departureAirportId);
+		destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
+		departureAirportStatus = departureAirportId == 0 || departureAirport != null;
+		status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -52,12 +71,16 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void validate(final Leg leg) {
+		boolean validDate;
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
+		super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 		boolean validLeg = true;
 		for (Leg l : legsOfFlight)
-			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
+			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
 				validLeg = false;
-		super.state(validLeg, "scheduledDeparture", "acme.validation.leg.conflictiveLeg.message");
+		super.state(validLeg, "*", "acme.validation.leg.conflictiveLeg.message");
 	}
 
 	@Override
@@ -103,6 +126,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
 		dataset.put("validLeg", false);
+		dataset.put("validDate", false);
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("destinationAirport", choicesDestinationAirport.getSelected().getKey());
