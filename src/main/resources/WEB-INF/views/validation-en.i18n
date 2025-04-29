@@ -34,3 +34,5 @@ acme.validation.flight-assignment.completed-leg.message = A flight assignment ca
 acme.validation.flight-assignment.not-available-crew-member.message = The crew member assigned is not available.
 acme.validation.flight-assignment.pilot-already-assigned.message = A pilot is already assigned to this leg.
 acme.validation.flight-assignment.copilot-already-assigned.message = A copilot is already assigned to this leg.
+acme.validation.flight-assignment.simultaneous-leg.message = This member is assigned to a simultaneous leg.
+acme.validation.flight-assignment.null-leg-or-flight.message = Neither leg or flight crew member can be null

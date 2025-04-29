@@ -28,16 +28,29 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	@Override
 	public void authorise() {
 		boolean status;
+		boolean legStatus;
+		boolean memberStatus;
 		int assignmentId;
 		FlightAssignment assignment;
+		int legId;
+		Leg leg;
+		int fcmId;
+		FlightCrewMember fcm;
 		int memberId;
 		int airlineId;
+
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
+		legStatus = legId == 0 || leg != null;
+		fcmId = super.getRequest().getData("flightCrewMember", int.class);
+		fcm = this.repository.findCrewMemberById(fcmId);
+		memberStatus = fcmId == 0 || fcm != null;
 
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentById(assignmentId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId;
+		status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && legStatus && memberStatus;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -69,34 +82,50 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 	@Override
 	public void validate(final FlightAssignment assignment) {
-		boolean notCompletedLeg;
-		Date currentMoment = MomentHelper.getCurrentMoment();
 
-		notCompletedLeg = MomentHelper.isAfter(assignment.getLeg().getScheduledArrival(), currentMoment);
+		if (assignment.getLeg() != null && assignment.getFlightCrewMember() != null) {
+			boolean notCompletedLeg;
+			Date currentMoment = MomentHelper.getCurrentMoment();
 
-		super.state(notCompletedLeg, "leg", "acme.validation.flight-assignment.completed-leg.message");
+			notCompletedLeg = MomentHelper.isAfter(assignment.getLeg().getScheduledArrival(), currentMoment);
 
-		boolean availableMember;
+			super.state(notCompletedLeg, "leg", "acme.validation.flight-assignment.completed-leg.message");
 
-		availableMember = assignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
+			boolean availableMember;
 
-		super.state(availableMember, "flightCrewMember", "acme.validation.flight-assignment.not-available-crew-member.message");
+			availableMember = assignment.getFlightCrewMember().getAvailabilityStatus().equals(AvailabilityStatus.AVAILABLE);
 
-		boolean onlyOnePilot;
-		FlightAssignment pilotAssignment;
+			super.state(availableMember, "flightCrewMember", "acme.validation.flight-assignment.not-available-crew-member.message");
 
-		pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
-		onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+			boolean notSimultaneousAssignment;
+			Collection<FlightAssignment> assignments = this.repository.findAssignmenstByCrewMemberId(assignment.getFlightCrewMember().getId());
 
-		super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
+			notSimultaneousAssignment = true;
 
-		boolean onlyOneCopilot;
-		FlightAssignment copilotAssignment;
+			for (FlightAssignment a : assignments)
+				if (!(MomentHelper.isBefore(assignment.getLeg().getScheduledArrival(), a.getLeg().getScheduledDeparture()) || MomentHelper.isBefore(a.getLeg().getScheduledArrival(), assignment.getLeg().getScheduledDeparture())))
+					notSimultaneousAssignment = false;
 
-		copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
-		onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
+			super.state(notSimultaneousAssignment, "leg", "acme.validation.flight-assignment.simultaneous-leg.message");
 
-		super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
+			boolean onlyOnePilot;
+			FlightAssignment pilotAssignment;
+
+			pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
+			onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+
+			super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
+
+			boolean onlyOneCopilot;
+			FlightAssignment copilotAssignment;
+
+			copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
+			onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
+
+			super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
+		} else
+			super.state(false, "*", "acme.validation.flight-assignment.null-leg-or-flight.message");
+
 	}
 
 	@Override
@@ -126,7 +155,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 
-		dataset = super.unbindObject(assignment, "lastUpdate", "remarks", "status", "duty");
+		dataset = super.unbindObject(assignment, "lastUpdate", "remarks", "status", "duty", "draftMode");
+		dataset.put("legId", legChoices.getSelected().getKey());
+		dataset.put("flightCrewMemberId", memberChoices.getSelected().getKey());
+		dataset.put("onlyOneCopilot", false);
+		dataset.put("onlyOnePilot", false);
+		dataset.put("notSimultaneousAssignment", false);
+		dataset.put("availableMember", false);
+		dataset.put("notCompletedLeg", false);
 		dataset.put("duties", dutyChoices);
 		dataset.put("statuses", statusChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
