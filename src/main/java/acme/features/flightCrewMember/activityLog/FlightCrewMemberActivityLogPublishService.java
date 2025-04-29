@@ -58,7 +58,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 		assignmentIsPublished = !activityLog.getAssignment().getDraftMode();
 
-		super.state(assignmentIsPublished, "severityLevel", "acme.validation.activity-log.not-published-assignment.message");
+		super.state(assignmentIsPublished, "*", "acme.validation.activity-log.not-published-assignment.message");
 
 	}
 
@@ -72,7 +72,8 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel");
+		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+		dataset.put("assignmentIsPublished", false);
 
 		super.getResponse().addData(dataset);
 
