@@ -35,3 +35,5 @@ acme.validation.flight-assignment.not-available-crew-member.message = The crew m
 acme.validation.flight-assignment.pilot-already-assigned.message = A pilot is already assigned to this leg.
 acme.validation.flight-assignment.copilot-already-assigned.message = A copilot is already assigned to this leg.
 acme.validation.activity-log.not-published-assignment.message = An activity log cannot be published until its corresponding assignment is published.
+acme.validation.flightNumber.format = This Flight Number does not match the expected pattern. Please introduce the Airline's IATA code and follow it by 4 digits.
+acme.validation.leg.scheduledDeparture = The scheduled departure for this flight must be in the future
