@@ -31,11 +31,18 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		boolean status;
 		int id;
 		MaintenanceRecord maintenanceRecord;
+		int aircraftId;
+		Aircraft aircraft;
+		boolean aircraftStatus;
 
 		id = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findValidAircraftById(aircraftId);
+		aircraftStatus = aircraftId == 0 || aircraft != null;
+
+		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && aircraftStatus;
 
 		super.getResponse().setAuthorised(status);
 	}

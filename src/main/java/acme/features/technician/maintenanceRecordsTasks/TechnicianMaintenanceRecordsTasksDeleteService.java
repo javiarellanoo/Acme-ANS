@@ -29,11 +29,25 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 		int maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
 		boolean status;
+		int technicianId;
+		int taskId;
+		Task task;
+		boolean taskStatus;
 
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
-		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId();
+		if (super.getRequest().getMethod().equals("GET"))
+			taskStatus = true;
+		else {
+			technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+			taskId = super.getRequest().getData("task", int.class);
+			task = this.repository.findValidTaskByIdAndMaintenanceRecord(taskId, maintenanceRecordId);
+			taskStatus = taskId == 0 || task != null;
+		}
+
+		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId() && taskStatus;
 
 		super.getResponse().setAuthorised(status);
 	}
