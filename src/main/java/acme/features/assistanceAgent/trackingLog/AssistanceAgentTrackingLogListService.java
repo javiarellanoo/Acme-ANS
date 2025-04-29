@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.claims.Claim;
 import acme.entities.trackingLogs.TrackingLog;
 import acme.realms.AssistanceAgent;
 
@@ -23,18 +24,28 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int agentId;
+		int claimId;
+		Claim claim;
+		AssistanceAgent agent;
+
+		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		agent = this.repository.findAssistanceAgentById(agentId);
+		claimId = super.getRequest().getData("claim", int.class);
+		claim = this.repository.findClaimById(claimId);
+		status = claim != null && (!claim.getDraftMode() || claim.getAssistanceAgent().equals(agent));
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<TrackingLog> tLogs;
-		boolean published;
-		int assistanceId;
+		int claimId;
 
-		published = super.getRequest().getData("published", boolean.class);
-		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		tLogs = published ? this.repository.findTrackingLogsPublished() : this.repository.findTrackingLogsByAssistanceAgent(assistanceId);
+		claimId = super.getRequest().getData("claim", int.class);
+		tLogs = this.repository.findTrackingLogsByClaim(claimId);
 
 		super.getBuffer().addData(tLogs);
 	}
