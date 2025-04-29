@@ -30,24 +30,30 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void authorise() {
 		boolean status = true;
-		int flightId;
-		Flight flight;
+		Integer flightId;
+		Flight flight = null;
+		int bookingId;
+		int customerId;
+		boolean flightStatus;
 
+		Booking booking;
+		Customer customer;
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-			try {
-				flightId = super.getRequest().getData("flight", int.class);
-				flight = this.repository.findFlightById(flightId);
-			} catch (NumberFormatException e) {
-				flightId = -1;
-				status = false;
-			}
 
-			if (flightId != 0) {
+			bookingId = super.getRequest().getData("id", int.class);
+			booking = this.repository.findBookingkById(bookingId);
+
+			customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+			flightId = super.getRequest().getData("flight", int.class);
+			if (flightId != null)
 				flight = this.repository.findFlightById(flightId);
-				status = flight != null && !flight.getDraftMode() || flight.getId() == 0;
-			}
+
+			flightStatus = flight.getId() == 0 || flight != null && !flight.getDraftMode();
+
+			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && flightStatus;
 		}
 
 		super.getResponse().setAuthorised(status);
