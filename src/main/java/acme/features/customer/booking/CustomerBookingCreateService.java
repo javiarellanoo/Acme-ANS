@@ -27,11 +27,22 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	// AbstractGuiService interface -------------------------------------------
 
 
+	@Override
+	public void authorise() {
+		boolean status;
+		int flightId;
+		Flight flight;
 
-    @Override
-    public void authorise() {
-        super.getResponse().setAuthorised(true);
-    }
+		if (super.getRequest().getMethod().equals("GET"))
+			status = true;
+		else {
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+
+			status = flight != null && !flight.getDraftMode() || flight.getId() == 0;
+		}
+		super.getResponse().setAuthorised(status);
+	}
 
 	@Override
 	public void load() {
@@ -58,6 +69,14 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
+		boolean hasCreditCardNibble;
+		boolean hasSomePassengers;
+
+		hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
+		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
+
+		hasSomePassengers = this.repository.countNumberOfPassengers(booking.getId()).compareTo(0L) > 0;
+		super.state(hasSomePassengers, "*", "acme.validation.booking.passengers.message");
 	}
 
 	@Override

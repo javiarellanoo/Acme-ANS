@@ -38,7 +38,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		booking = this.repository.findBookingkById(bookingId);
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) || booking.getFlight().getId() == 0;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -64,6 +64,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+		boolean hasCreditCardNibble;
+		boolean hasSomePassengers;
+
+		hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
+		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
+
+		hasSomePassengers = this.repository.countNumberOfPassengers(booking.getId()).compareTo(0L) > 0;
+		super.state(hasSomePassengers, "*", "acme.validation.booking.passengers.message");
 	}
 
 	@Override
