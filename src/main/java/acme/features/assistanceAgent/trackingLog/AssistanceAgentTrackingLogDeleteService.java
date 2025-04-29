@@ -28,8 +28,10 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 		boolean status;
 		int tLogId;
 		int agentId;
+		int claimId;
 		TrackingLog tLog;
 		AssistanceAgent agent;
+		Claim claim;
 
 		tLogId = super.getRequest().getData("id", int.class);
 		tLog = this.repository.findTrackingLogById(tLogId);
@@ -37,7 +39,11 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		agent = this.repository.findAssistanceAgentById(agentId);
 
-		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null && tLog.getClaim().getAssistanceAgent().equals(agent);
+		claimId = super.getRequest().getData("claim", int.class);
+		claim = this.repository.findClaimById(claimId);
+
+		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null //
+			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claim != null;
 
 		super.getResponse().setAuthorised(status);
 	}
