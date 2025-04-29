@@ -45,12 +45,12 @@ airport-37,Lorem ipsum dolor sit ame,ACL,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-38,Lorem ipsum dolor sit ame,ACM,INTERNATIONAL,Lorem ipsum dolor sit ame,'' or 'A' = 'A,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-39,Lorem ipsum dolor sit ame,ACN,INTERNATIONAL,Lorem ipsum dolor sit ame,Spain,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 #website-variants
-airport-40,Lorem ipsum dolor sit ame,ACO,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://a,acme@lorem-ipsum.org,689762586
-airport-41,Lorem ipsum dolor sit ame,ACP,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://a.b,acme@lorem-ipsum.org,689762586
+airport-40,Lorem ipsum dolor sit ame,ACO,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://a.b,acme@lorem-ipsum.org,689762586
+airport-41,Lorem ipsum dolor sit ame,ACP,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://a.b,acme@lorem-ipsum.org,689762586
 airport-42,Lorem ipsum dolor sit ame,ACQ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",acme@lorem-ipsum.org,689762586
 airport-43,Lorem ipsum dolor sit ame,ACR,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",acme@lorem-ipsum.org,689762586
 airport-44,Lorem ipsum dolor sit ame,ACS,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,https://www.lorem-ipsum.org,acme@lorem-ipsum.org,689762586
-airport-45,Lorem ipsum dolor sit ame,ACT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,ftp://www.lorem-ipsum.org,acme@lorem-ipsum.org,689762586
+airport-45,Lorem ipsum dolor sit ame,ACT,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org,acme@lorem-ipsum.org,689762586
 airport-46,Lorem ipsum dolor sit ame,ACU,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html,acme@lorem-ipsum.org,689762586
 airport-47,Lorem ipsum dolor sit ame,ACV,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html#dolor,acme@lorem-ipsum.org,689762586
 airport-48,Lorem ipsum dolor sit ame,ACW,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://example.org?a=1&b=2,acme@lorem-ipsum.org,689762586

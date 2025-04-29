@@ -23,14 +23,21 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		boolean status;
+		boolean airlineStatus;
 		int masterId;
 		Flight flight;
 		Manager manager;
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+		airlineStatus = airlineId == 0 || airline != null;
 
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && airlineStatus;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -51,7 +58,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		int airlineId;
 		Airline airline;
 
-		airlineId = super.getRequest().getData("airlines", int.class);
+		airlineId = super.getRequest().getData("airline", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
@@ -72,7 +79,7 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		airlines = this.repository.findAllAirlines();
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 

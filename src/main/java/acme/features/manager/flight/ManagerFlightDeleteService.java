@@ -24,14 +24,21 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		boolean status;
+		boolean airlineStatus;
 		int masterId;
 		Flight flight;
 		Manager manager;
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+		airlineStatus = airlineId == 0 || airline != null;
 
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && airlineStatus;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -52,7 +59,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		int airlineId;
 		Airline airline;
 
-		airlineId = super.getRequest().getData("airlines", int.class);
+		airlineId = super.getRequest().getData("airline", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");

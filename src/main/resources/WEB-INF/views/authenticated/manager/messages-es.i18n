@@ -1,0 +1,9 @@
+authenticated.manager.form.title = Datos del manager
+
+authenticated.manager.form.label.identifier = Identificador: 
+authenticated.manager.form.label.yearsOfExperience = Años de Experiencia:
+authenticated.manager.form.label.dateOfBirth = Fecha de Nacimiento:
+authenticated.manager.form.label.profilePicture = Foto de perfil:
+
+authenticated.manager.form.button.create = Registrarse
+authenticated.manager.form.button.update = Actualizar

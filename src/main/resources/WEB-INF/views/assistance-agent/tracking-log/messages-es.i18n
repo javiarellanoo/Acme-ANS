@@ -1,0 +1,34 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+assistance-agent.tracking-log.form.title = Detalles del registro de seguimiento 
+assistance-agent.tracking-log.list.title = Listado de los registros de seguimiento
+
+assistance-agent.tracking-log.form.label.lastUpdateMoment = Ultima actualización:
+assistance-agent.tracking-log.form.label.resolutionPercentage = Porcentaje de resolución: 
+assistance-agent.tracking-log.form.label.resolution = Resolución:
+assistance-agent.tracking-log.form.label.stepUndergoing = Paso del proceso:
+assistance-agent.tracking-log.form.label.status = Estado:
+assistance-agent.tracking-log.form.label.claim = Reclamación asociada:
+assistance-agent.tracking-log.form.label.assistance-agent = Asistente:
+
+		
+assistance-agent.tracking-log.form.button.update = Editar
+assistance-agent.tracking-log.form.button.delete = Eliminar
+assistance-agent.tracking-log.form.button.publish = Publicar
+assistance-agent.tracking-log.form.button.create = Crear
+
+assistance-agent.tracking-log.list.label.claim = Reclamación
+assistance-agent.tracking-log.list.label.resolutionPercentage = Porcentaje de resolución
+assistance-agent.tracking-log.list.label.status = Estado
+assistance-agent.tracking-log.list.label.lastUpdateMoment = Última actualización
+assistance-agent.tracking-log.list.label.draftMode = Estado de publicación
+
+assistance-agent.tracking-log.list.button.create = Crear

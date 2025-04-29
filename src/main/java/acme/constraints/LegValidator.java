@@ -42,14 +42,14 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			Leg existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
 			Boolean uniqueFlightNumber = UniquenessHelper.checkUniqueness(existingLeg, leg);
-			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flightCodeUnique.message");
+			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flightNumberUnique.message");
 
 			Boolean matches;
 			String airlineCode = leg.getFlight().getAirline().getIataCode();
 			String flightNumber = leg.getFlightNumber();
 
 			matches = flightNumber.trim().startsWith(airlineCode.trim());
-			super.state(context, matches, "flightNumber", "acme.validation.leg.flightCode.message");
+			super.state(context, matches, "flightNumber", "acme.validation.leg.flightNumber.message");
 
 			Date scheduledDeparture = leg.getScheduledDeparture();
 			Date scheduledArrival = leg.getScheduledArrival();
@@ -66,12 +66,13 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 						validAircraft = false;
 				super.state(context, validAircraft, "aircraft", "acme.validation.leg.occupiedAircraft.message");
 			}
+
 			if (leg.getFlight() != null && leg.getDraftMode() == false) {
 				Flight flight = leg.getFlight();
 				Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 				boolean validLeg = true;
 				for (Leg l : legsOfFlight)
-					if (MomentHelper.isBefore(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
+					if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
 						validLeg = false;
 				super.state(context, validLeg, "scheduledDeparture", "acme.validation.leg.conflictiveLeg.message");
 
