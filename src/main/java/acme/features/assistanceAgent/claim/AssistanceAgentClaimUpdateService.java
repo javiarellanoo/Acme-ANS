@@ -45,7 +45,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		leg = this.repository.findLegById(legId);
 
 		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent() != null && //
-			claim.getAssistanceAgent().equals(agent) && leg != null && !leg.getDraftMode();
+			claim.getAssistanceAgent().equals(agent) && (legId == 0 || leg != null && !leg.getDraftMode());
 
 		super.getResponse().setAuthorised(status);
 	}

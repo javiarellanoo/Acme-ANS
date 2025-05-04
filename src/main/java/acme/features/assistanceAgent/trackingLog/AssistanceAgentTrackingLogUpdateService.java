@@ -1,8 +1,6 @@
 
 package acme.features.assistanceAgent.trackingLog;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -44,7 +42,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		claim = this.repository.findClaimById(claimId);
 
 		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null //
-			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claim != null;
+			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claim != null && claim.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -86,21 +84,20 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog tLog) {
 		Dataset dataset;
-		Collection<Claim> claims;
-		SelectChoices claimChoices;
 		SelectChoices statusChoices;
 
-		claims = this.repository.findClaimsByAssistanceAgentId(super.getRequest().getPrincipal().getActiveRealm().getId());
-		claimChoices = SelectChoices.from(claims, "id", tLog.getClaim());
 		statusChoices = SelectChoices.from(TrackingLogStatus.class, tLog.getStatus());
 
 		dataset = super.unbindObject(tLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", //
 			"resolution", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
-		dataset.put("claims", claimChoices);
-		dataset.put("claim", claimChoices.getSelected().getKey());
+		dataset.put("claim", tLog.getClaim());
 
+		if (tLog.getClaim() != null)
+			super.getResponse().addGlobal("isClaimDraftMode", tLog.getClaim().getDraftMode());
+		else
+			super.getResponse().addGlobal("isClaimDraftMode", false);
 		super.getResponse().addData(dataset);
 	}
 }

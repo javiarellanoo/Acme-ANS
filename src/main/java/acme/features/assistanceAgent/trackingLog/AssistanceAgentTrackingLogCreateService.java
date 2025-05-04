@@ -1,8 +1,6 @@
 
 package acme.features.assistanceAgent.trackingLog;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -28,16 +26,16 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void authorise() {
 		boolean status;
-		int claimId;
+		int masterId;
 		Claim claim;
 
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-			claimId = super.getRequest().getData("claim", int.class);
-			claim = this.repository.findClaimById(claimId);
+			masterId = super.getRequest().getData("masterId", int.class);
+			claim = this.repository.findClaimById(masterId);
 
-			status = claim != null;
+			status = masterId == 0 || claim != null && claim.getDraftMode();
 		}
 		super.getResponse().setAuthorised(status);
 	}
@@ -45,19 +43,23 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void load() {
 		TrackingLog tLog;
+		int masterId;
 
 		tLog = new TrackingLog();
+		masterId = super.getRequest().getData("masterId", int.class);
 
 		super.getBuffer().addData(tLog);
+		tLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		tLog.setClaim(this.repository.findClaimById(masterId));
 	}
 
 	@Override
 	public void bind(final TrackingLog tLog) {
-		int claimId;
+		int masterId;
 		Claim claim;
 
-		claimId = super.getRequest().getData("claim", int.class);
-		claim = this.repository.findClaimById(claimId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		claim = this.repository.findClaimById(masterId);
 
 		super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "status", "resolution");
 		tLog.setClaim(claim);
@@ -78,22 +80,22 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void unbind(final TrackingLog tLog) {
 		Dataset dataset;
-		Collection<Claim> claims;
-		SelectChoices claimChoices;
+		int masterId;
+		Claim claim;
 		SelectChoices statusChoices;
 
-		claims = this.repository.findClaimsByAssistanceAgentId(super.getRequest().getPrincipal().getActiveRealm().getId());
-		claimChoices = SelectChoices.from(claims, "id", tLog.getClaim());
+		masterId = super.getRequest().getData("masterId", int.class);
+		claim = this.repository.findClaimById(masterId);
 		statusChoices = SelectChoices.from(TrackingLogStatus.class, tLog.getStatus());
 
 		dataset = super.unbindObject(tLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", //
 			"resolution", "draftMode");
+		dataset.put("claim", claim);
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
-		dataset.put("claims", claimChoices);
-		dataset.put("claim", claimChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
+		super.getResponse().addGlobal("masterId", masterId);
 	}
 
 }
