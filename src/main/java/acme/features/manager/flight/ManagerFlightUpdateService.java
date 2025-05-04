@@ -33,7 +33,9 @@ public class ManagerFlightUpdateService extends AbstractGuiService<Manager, Flig
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		if (!flight.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(manager))
+		if (flight == null)
+			status = false;
+		else if (!flight.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(manager))
 			status = false;
 		else {
 			airlineId = super.getRequest().getData("airline", int.class);
