@@ -80,14 +80,18 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 	public void validate(final Leg leg) {
 		boolean validDate;
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
-		super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
+		if (leg.getScheduledDeparture() != null) {
+			validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
+			super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
+		}
 		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 		boolean validLeg = true;
-		for (Leg l : legsOfFlight)
-			if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
-				validLeg = false;
-		super.state(validLeg, "*", "acme.validation.leg.conflictiveLeg.message");
+		if (leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null) {
+			for (Leg l : legsOfFlight)
+				if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
+					validLeg = false;
+			super.state(validLeg, "*", "acme.validation.leg.conflictiveLeg.message");
+		}
 	}
 
 	@Override
