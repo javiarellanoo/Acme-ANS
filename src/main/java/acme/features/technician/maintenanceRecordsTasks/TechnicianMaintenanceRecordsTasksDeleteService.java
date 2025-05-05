@@ -69,7 +69,13 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 
 	@Override
 	public void bind(final MaintenanceRecordsTasks relationship) {
-		super.bindObject(relationship, "task");
+		int taskId;
+		Task task;
+
+		taskId = super.getRequest().getData("task", int.class);
+		task = this.repository.findTaskById(taskId);
+
+		relationship.setTask(task);
 	}
 
 	@Override

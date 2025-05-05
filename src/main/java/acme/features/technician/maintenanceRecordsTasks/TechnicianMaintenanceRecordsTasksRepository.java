@@ -29,9 +29,12 @@ public interface TechnicianMaintenanceRecordsTasksRepository extends AbstractRep
 	@Query("select mrt from MaintenanceRecordsTasks mrt where mrt.maintenanceRecord.id = :maintenanceRecordId and mrt.task.id = :taskId")
 	MaintenanceRecordsTasks findByMaintenanceRecordAndTask(int maintenanceRecordId, int taskId);
 
+	@Query("select t from Task t where t.id = :id")
+	Task findTaskById(int id);
+
 	@Query("select t from Task t where t.id = :id and t.technician.id = :technicianId")
 	Task findValidTaskById(int id, int technicianId);
 
-	@Query("select mrt from MaintenanceRecordsTasks mrt where mrt.task.id = :id and mrt.maintenanceRecord.id = :maintenanceRecordId")
+	@Query("select mrt.task from MaintenanceRecordsTasks mrt where mrt.task.id = :id and mrt.maintenanceRecord.id = :maintenanceRecordId")
 	Task findValidTaskByIdAndMaintenanceRecord(int id, int maintenanceRecordId);
 }
