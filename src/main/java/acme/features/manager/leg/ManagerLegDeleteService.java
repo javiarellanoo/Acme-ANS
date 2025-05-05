@@ -41,18 +41,25 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
-		flight = this.repository.findFlightById(leg.getFlight().getId());
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
-		aircraftStatus = aircraftId == 0 || aircraft != null;
-		destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
-		destinationAirport = this.repository.findAirportById(destinationAirportId);
-		departureAirportId = super.getRequest().getData("departureAirport", int.class);
-		departureAirport = this.repository.findAirportById(departureAirportId);
-		destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
-		departureAirportStatus = departureAirportId == 0 || departureAirport != null;
-		status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
-
+		if (leg == null)
+			status = false;
+		else {
+			flight = this.repository.findFlightById(leg.getFlight().getId());
+			if (!leg.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(flight.getManager()))
+				status = false;
+			else {
+				aircraftId = super.getRequest().getData("aircraft", int.class);
+				aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
+				aircraftStatus = aircraftId == 0 || aircraft != null;
+				destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
+				destinationAirport = this.repository.findAirportById(destinationAirportId);
+				departureAirportId = super.getRequest().getData("departureAirport", int.class);
+				departureAirport = this.repository.findAirportById(departureAirportId);
+				destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
+				departureAirportStatus = departureAirportId == 0 || departureAirport != null;
+				status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
+			}
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
