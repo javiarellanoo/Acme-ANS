@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.MomentHelper;
 import acme.helpers.UniquenessHelper;
 import acme.realms.Manager;
 import acme.realms.repositories.ManagerRepository;
@@ -49,6 +50,13 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 
 			matches = manager.getIdentifier().trim().startsWith(initials);
 			super.state(context, matches, "identifier", "acme.validation.manager.identifier.message");
+
+			Integer yearsOfExperience = manager.getYearsOfExperience();
+			if (yearsOfExperience != null) {
+				int age = MomentHelper.getCurrentMoment().getYear() - manager.getDateOfBirth().getYear();
+				boolean validExperience = age > yearsOfExperience;
+				super.state(context, validExperience, "yearsOfExperience", "acme.validation.manager.yearsOfExperience.message");
+			}
 		}
 		result = !super.hasErrors(context);
 		return result;

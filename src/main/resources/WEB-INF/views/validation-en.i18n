@@ -37,3 +37,6 @@ acme.validation.flight-assignment.copilot-already-assigned.message = A copilot i
 acme.validation.activity-log.not-published-assignment.message = An activity log cannot be published until its corresponding assignment is published.
 acme.validation.flightNumber.format = This Flight Number does not match the expected pattern. Please introduce the Airline's IATA code and follow it by 4 digits.
 acme.validation.leg.scheduledDeparture = The scheduled departure for this flight must be in the future
+acme.validation.airline.iataCode = The iataCode must consist of 3 capital letters
+acme.validation.manager.identifier = The identifier must start with your initials and be followed by 6 digits.
+acme.validation.manager.yearsOfExperience.message = The years of experience must be smaller than the manager's age
