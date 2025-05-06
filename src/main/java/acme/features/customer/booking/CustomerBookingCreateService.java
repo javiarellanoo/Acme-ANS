@@ -29,35 +29,17 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		boolean status = true;
-		Integer flightId;
-		Flight flight = null;
-		int bookingId;
-		int customerId;
-		boolean flightStatus;
-
-		Booking booking;
-		Customer customer;
+		boolean status;
+		int flightId;
+		Flight flight;
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-
-			bookingId = super.getRequest().getData("id", int.class);
-			booking = this.repository.findBookingkById(bookingId);
-
-			customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
 			flightId = super.getRequest().getData("flight", int.class);
-			if (flightId != null)
-				flight = this.repository.findFlightById(flightId);
-
-			flightStatus = flight.getId() == 0 || flight != null && !flight.getDraftMode();
-
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && flightStatus;
+			flight = this.repository.findFlightById(flightId);
+			status = flightId == 0 || flight != null && !flight.getDraftMode();
 		}
-
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
@@ -90,9 +72,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 		hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
 		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
-
-		hasSomePassengers = this.repository.countNumberOfPassengers(booking.getId()).compareTo(0L) > 0;
-		super.state(hasSomePassengers, "*", "acme.validation.booking.passengers.message");
 	}
 
 	@Override

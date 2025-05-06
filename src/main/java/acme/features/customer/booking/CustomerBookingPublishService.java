@@ -30,26 +30,17 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void authorise() {
 		boolean status;
 		int bookingId;
-		int customerId;
-		Integer flightId;
-		boolean flightStatus;
-
-		Booking booking;
-		Customer customer;
-		Flight flight = null;
-
+		Flight flight;
 		bookingId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingkById(bookingId);
-
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		Booking booking = this.repository.findBookingkById(bookingId);
+		boolean flightStatus;
+		int flightId;
 
 		flightId = super.getRequest().getData("flight", int.class);
-		if (flightId != null)
-			flight = this.repository.findFlightById(flightId);
+		flight = this.repository.findFlightById(flightId);
+		flightStatus = flightId == 0 || flight != null;
 
-		flightStatus = flight.getId() == 0 || flight != null && !flight.getDraftMode();
-
-		status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && flightStatus;
+		status = booking != null && booking.getDraftMode() && flight != null && !flight.getDraftMode() && flightStatus && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -46,8 +46,6 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				Boolean hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
 				super.state(context, hasCreditCardNibble, "lastCardNibble", "acme.validation.booking.lastCardNibble.message");
 
-				Boolean hasPassengers = this.repository.countNumberOfPassengers(booking.getId()).compareTo(0L) > 0;
-				super.state(context, hasPassengers, "*", "acme.validation.booking.passengers.message");
 			}
 		}
 
