@@ -29,15 +29,6 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		int masterId;
 		Flight flight;
 		Leg leg;
-		int aircraftId;
-		Aircraft aircraft;
-		int destinationAirportId;
-		Airport destinationAirport;
-		int departureAirportId;
-		Airport departureAirport;
-		boolean aircraftStatus;
-		boolean departureAirportStatus;
-		boolean destinationAirportStatus;
 
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
@@ -45,20 +36,7 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 			status = false;
 		else {
 			flight = this.repository.findFlightById(leg.getFlight().getId());
-			if (!leg.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(flight.getManager()))
-				status = false;
-			else {
-				aircraftId = super.getRequest().getData("aircraft", int.class);
-				aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
-				aircraftStatus = aircraftId == 0 || aircraft != null;
-				destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
-				destinationAirport = this.repository.findAirportById(destinationAirportId);
-				departureAirportId = super.getRequest().getData("departureAirport", int.class);
-				departureAirport = this.repository.findAirportById(departureAirportId);
-				destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
-				departureAirportStatus = departureAirportId == 0 || departureAirport != null;
-				status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
-			}
+			status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
 		}
 		super.getResponse().setAuthorised(status);
 	}
@@ -97,7 +75,6 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		Airport departureAirport = this.repository.findAirportById(departureAirportId);
 		Airport destinationAirport = this.repository.findAirportById(destinationAirportId);
 		super.bindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
-		leg.setDraftMode(true);
 		leg.setAircraft(aircraft);
 		leg.setDepartureAirport(departureAirport);
 		leg.setDestinationAirport(destinationAirport);
@@ -118,10 +95,9 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		choicesDepartureAirport = SelectChoices.from(airports, "name", leg.getDepartureAirport());
 		choicesDestinationAirport = SelectChoices.from(airports, "name", leg.getDestinationAirport());
 		choicesStatus = SelectChoices.from(LegStatus.class, leg.getStatus());
-		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival");
+		dataset = super.unbindObject(leg, "flightNumber", "status", "scheduledDeparture", "scheduledArrival", "draftMode");
 		dataset.put("aircraft", choicesAircraft.getSelected().getKey());
 		dataset.put("aircrafts", choicesAircraft);
-		dataset.put("draftMode", true);
 		dataset.put("departureAirport", choicesDepartureAirport.getSelected().getKey());
 		dataset.put("departureAirports", choicesDepartureAirport);
 		dataset.put("destinationAirport", choicesDestinationAirport.getSelected().getKey());

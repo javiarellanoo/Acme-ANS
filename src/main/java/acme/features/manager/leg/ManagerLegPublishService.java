@@ -49,6 +49,8 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 			flight = this.repository.findFlightById(leg.getFlight().getId());
 			if (!leg.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(flight.getManager()))
 				status = false;
+			else if (super.getRequest().getMethod().equals("GET"))
+				status = true;
 			else {
 				aircraftId = super.getRequest().getData("aircraft", int.class);
 				aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());

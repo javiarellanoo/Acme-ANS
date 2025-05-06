@@ -24,27 +24,14 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void authorise() {
 		boolean status;
-		boolean airlineStatus;
 		int masterId;
 		Flight flight;
 		Manager manager;
-		int airlineId;
-		Airline airline;
 
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		if (flight == null)
-			status = false;
-		else if (!flight.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(manager))
-			status = false;
-		else {
-			airlineId = super.getRequest().getData("airline", int.class);
-			airline = this.repository.findAirlineById(airlineId);
-			airlineStatus = airlineId == 0 || airline != null;
-
-			status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && airlineStatus;
-		}
+		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -85,7 +72,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		airlines = this.repository.findAllAirlines();
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
