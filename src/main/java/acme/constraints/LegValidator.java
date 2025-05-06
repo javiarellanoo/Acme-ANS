@@ -53,10 +53,11 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			Date scheduledDeparture = leg.getScheduledDeparture();
 			Date scheduledArrival = leg.getScheduledArrival();
-			Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
-			Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
-			super.state(context, validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
-
+			if (scheduledArrival != null && scheduledDeparture != null) {
+				Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
+				Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
+				super.state(context, validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
+			}
 			if (leg.getAircraft() != null) {
 				Aircraft aircraft = leg.getAircraft();
 				Collection<Leg> legsWithSameAircraft = this.repository.findLegsByAircraftId(aircraft.getId(), leg.getId());
