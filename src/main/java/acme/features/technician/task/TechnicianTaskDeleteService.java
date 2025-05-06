@@ -52,10 +52,7 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void bind(final Task task) {
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
 		super.bindObject(task, "type", "description", "priority", "estimatedHoursDuration");
-		task.setTechnician(technician);
 	}
 
 	@Override
