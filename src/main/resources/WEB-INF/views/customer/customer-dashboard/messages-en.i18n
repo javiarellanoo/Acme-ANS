@@ -17,3 +17,5 @@ customer.dashboard.label.averagePassengers = Average Passengers per Booking
 customer.dashboard.label.minPassengers = Minimum Passengers per Booking
 customer.dashboard.label.maxPassengers = Maximum Passengers per Booking
 customer.dashboard.label.stdDevPassengers = Standard Deviation (Passengers)
+customer.dashboard.label.allCurrencies = All Currencies
+customer.dashboard.label.selectedCurrency = Select a currency

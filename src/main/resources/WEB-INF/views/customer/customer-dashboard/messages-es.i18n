@@ -17,3 +17,5 @@ customer.dashboard.label.averagePassengers = Promedio de Pasajeros por Reserva
 customer.dashboard.label.minPassengers = Mínimo de Pasajeros por Reserva
 customer.dashboard.label.maxPassengers = Máximo de Pasajeros por Reserva
 customer.dashboard.label.stdDevPassengers = Desviación Estándar (Pasajeros)
+customer.dashboard.label.allCurrencies = Todas las Monedas
+customer.dashboard.label.selectedCurrency = Seleccione una moneda
