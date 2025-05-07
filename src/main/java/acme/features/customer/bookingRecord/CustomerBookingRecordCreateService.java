@@ -92,7 +92,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		passengers = this.repository.findPassengersNotInBooking(customerId, bookingRecord.getBooking().getId());
+		passengers = this.repository.findPassengersNotInBooking(customerId, bookingRecord.getBooking().getId()).stream().filter(x -> !x.getDraftMode()).toList();
 		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord, "passenger");
