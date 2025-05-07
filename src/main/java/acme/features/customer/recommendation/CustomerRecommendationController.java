@@ -1,3 +1,4 @@
+
 package acme.features.customer.recommendation;
 
 import javax.annotation.PostConstruct;
@@ -13,14 +14,16 @@ import acme.realms.Customer;
 public class CustomerRecommendationController extends AbstractGuiController<Customer, Recommendation> {
 
 	@Autowired
-	private CustomerRecommendationListService listService;
+	private CustomerRecommendationShowService		showService;
 
 	@Autowired
-	private CustomerRecommendationCreateService createService;
+	private CustomerRecommendationListService	listService;
+
+
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
-		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("show", this.showService);
 	}
 }

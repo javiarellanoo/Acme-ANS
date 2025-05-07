@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.bookings.Booking;
 import acme.entities.recommendations.Recommendation;
 
 @Repository
@@ -14,4 +15,10 @@ public interface CustomerRecommendationRepository extends AbstractRepository {
 
 	@Query("select r from Recommendation r where r.city = :city")
 	Collection<Recommendation> findRecommendationsByCity(String city);
+
+	@Query("select distinct r.city from Recommendation r")
+	Collection<String> findDistinctCities();
+
+	@Query("select b from Booking b where b.customer.id = :customerId and b.draftMode = false")
+	Collection<Booking> findDistinctCitiesByCustomerId(int customerId);
 }
