@@ -1,4 +1,3 @@
-
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -26,22 +25,34 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
-
 	@Override
 	public void authorise() {
 		boolean status;
-		int bookingId;
-		Flight flight;
-		bookingId = super.getRequest().getData("id", int.class);
-		Booking booking = this.repository.findBookingkById(bookingId);
 		boolean flightStatus;
+		int bookingId;
+		Booking booking;
+		Customer customer;
 		int flightId;
+		Flight flight;
 
-		flightId = super.getRequest().getData("flight", int.class);
-		flight = this.repository.findFlightById(flightId);
-		flightStatus = flightId == 0 || flight != null;
+		bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingkById(bookingId);
+		customer = booking == null ? null : booking.getCustomer();
 
-		status = booking != null && booking.getDraftMode() && flight != null && !flight.getDraftMode() && flightStatus && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		if (booking == null) {
+			status = false;
+		} else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer)) {
+			status = false;
+		} else if (super.getRequest().getMethod().equals("GET")) {
+			status = true;
+		} else {
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			flightStatus = flightId == 0 || flight != null;
+
+			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer)
+					&& flightStatus;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -89,7 +100,8 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream()
+				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

@@ -1,4 +1,3 @@
-
 package acme.features.customer.booking;
 
 import java.util.Collection;
@@ -25,21 +24,18 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 	// AbstractGuiService interface -------------------------------------------
 
-
 	@Override
 	public void authorise() {
 		boolean status;
 		int bookingId;
-		int customerId;
 		Booking booking;
 		Customer customer;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingkById(bookingId);
+		customer = booking == null ? null : booking.getCustomer();
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
-		status = booking != null && (!booking.getDraftMode() || customerId == super.getRequest().getPrincipal().getActiveRealm().getId());
+		status = booking != null && (!booking.getDraftMode() || super.getRequest().getPrincipal().hasRealm(customer));
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -66,7 +62,8 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream()
+				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
 
 		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
 
