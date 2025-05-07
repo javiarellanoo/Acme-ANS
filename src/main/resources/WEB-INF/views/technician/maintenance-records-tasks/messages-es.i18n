@@ -1,0 +1,7 @@
+technician.maintenance-records-tasks.form.button.create = Añadir tarea
+technician.maintenance-records-tasks.form.label.task = Tarea
+technician.maintenance-records-tasks.form.button.delete = Eliminar tarea del registro
+technician.maintenance-records-tasks.form.title = Relación entre tareas y registros de mantenimiento
+
+technician.maintenance-records-tasks.form.error.not-exists = No existe relación entre la tarea y el registro de mantenimiento
+technician.maintenance-records-tasks.form.error.not-null = No puede ser nulo

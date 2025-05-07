@@ -32,27 +32,27 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 		assert context != null;
 
 		boolean result;
+		if (flight == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else {
+			List<Leg> legs = this.repository.findAllLegsByFlightId(flight.getId());
 
-		List<Leg> legs = this.repository.findAllLegsByFlightId(flight.getId());
+			Boolean validFlight = true;
+			if (flight.getDraftMode().equals(true))
+				validFlight = true;
+			else {
+				for (int i = 1; i < legs.size(); i++) {
+					Date previousArrival = legs.get(i - 1).getScheduledArrival();
+					Date currentDeparture = legs.get(i).getScheduledDeparture();
 
-		Boolean validFlight = true;
-		if (flight.getDraftMode().equals(true))
-			validFlight = true;
-		else if (legs.size() == 0)
-			validFlight = false;
-		else if (legs.size() == 1)
-			validFlight = true;
-		else
-			for (int i = 1; i < legs.size(); i++) {
-				Date previousArrival = legs.get(i - 1).getScheduledArrival();
-				Date currentDeparture = legs.get(i).getScheduledDeparture();
+					validFlight = validFlight && MomentHelper.isAfter(currentDeparture, previousArrival);
+				}
+				super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.legs.message");
 
-				validFlight = MomentHelper.isAfter(currentDeparture, previousArrival);
-				if (validFlight.equals(false))
-					break;
+				boolean legsStatus = flight.getDraftMode().equals(true) || !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+				super.state(context, legsStatus, "*", "acme.validation.flight.nonPublishedLegs.message");
 			}
-		super.state(context, validFlight, "legs", "acme.validation.flight.legs.message");
-
+		}
 		result = !super.hasErrors(context);
 
 		return result;

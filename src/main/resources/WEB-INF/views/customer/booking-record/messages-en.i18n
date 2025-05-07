@@ -1,0 +1,21 @@
+customer.booking-record.list.title = Passengers
+customer.booking-record.form.title = Passenger details
+
+customer.booking-record.form.label.passenger = Passenger details
+customer.booking-record.list.label.booking.locatorCode = Locator Code
+customer.booking-record.list.label.passenger.fullName = Passenger
+customer.booking-record.list.label.passenger.passportNumber = Passport Number
+
+customer.booking-record.form.label.booking.locatorCode = Locator Code
+customer.booking-record.form.label.passenger.fullName = Passenger Name
+customer.booking-record.form.label.passenger.email = Email
+customer.booking-record.form.label.passenger.passportNumber = Passport Number
+customer.booking-record.form.label.passenger.birthDate = Birth Date
+customer.booking-record.form.label.passenger.specialNeeds = Special Needs
+
+customer.booking-record.form.label.passengers = Passenger
+customer.booking-record.form.button.create = Create
+customer.booking-record.form.button.delete = Delete
+customer.booking-record.form.button.return = Return
+customer.booking-record.form.button.update = Update
+customer.booking-record.form.button.publish = Publish

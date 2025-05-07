@@ -1,0 +1,10 @@
+flight-crew-member.leg.form.title = Leg form 
+
+flight-crew-member.leg.form.label.flightNumber = Flight Number:
+flight-crew-member.leg.form.label.departureAirport = Departure Airport: 
+flight-crew-member.leg.form.label.destinationAirport = Destination Airport: 
+flight-crew-member.leg.form.label.duration = Duration:
+flight-crew-member.leg.form.label.status = Status:
+flight-crew-member.leg.form.label.aircraft = Aircraft:
+flight-crew-member.leg.form.label.scheduledDeparture = Scheduled Departure:
+flight-crew-member.leg.form.label.scheduledArrival = Scheduled Arrival:

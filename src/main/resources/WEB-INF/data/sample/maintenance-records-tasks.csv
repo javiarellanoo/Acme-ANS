@@ -1,0 +1,17 @@
+key,key:maintenance-record,key:task
+#Base Entity
+maintenance-records-tasks-01,maintenance-record-01,task-01
+# Maintenance Record variants
+maintenance-records-tasks-02,maintenance-record-02,task-01
+maintenance-records-tasks-03,maintenance-record-03,task-01
+maintenance-records-tasks-04,maintenance-record-04,task-01
+maintenance-records-tasks-05,maintenance-record-05,task-01
+maintenance-records-tasks-06,maintenance-record-06,task-01
+maintenance-records-tasks-07,maintenance-record-36,task-23
+# Task variants
+maintenance-records-tasks-08,maintenance-record-01,task-02
+maintenance-records-tasks-09,maintenance-record-01,task-03
+maintenance-records-tasks-10,maintenance-record-01,task-04
+maintenance-records-tasks-11,maintenance-record-01,task-05
+maintenance-records-tasks-12,maintenance-record-01,task-06
+maintenance-records-tasks-13,maintenance-record-01,task-07

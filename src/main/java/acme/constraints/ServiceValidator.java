@@ -3,6 +3,8 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
@@ -12,6 +14,7 @@ import acme.entities.services.ServiceRepository;
 @Validator
 public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 
+	@Autowired
 	private ServiceRepository serviceRepository;
 
 
@@ -24,15 +27,16 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 	public boolean isValid(final Service service, final ConstraintValidatorContext context) {
 		Boolean result;
 		assert context != null;
+		Boolean validCode = true;
 
-		String promotionCode = service.getPromotionCode();
+		if (service == null)
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
+		else if (service.getPromotionCode() != null && service.getPromotionCode().length() >= 2) {
+			String promotionCode = service.getPromotionCode();
 
-		boolean validCode = true;
-
-		if (promotionCode != null) {
 			Integer fullYear = MomentHelper.getCurrentMoment().getYear();
-			String year = fullYear.toString().substring(-2);
-			String codeYear = promotionCode.substring(-2);
+			String year = fullYear.toString().substring(fullYear.toString().length() - 2);
+			String codeYear = promotionCode.substring(promotionCode.length() - 2);
 
 			validCode = year.equals(codeYear);
 
@@ -44,7 +48,6 @@ public class ServiceValidator extends AbstractValidator<ValidService, Service> {
 		super.state(context, validCode, "promotionCode", "acme.validation.service.promotionCode.message");
 
 		result = !super.hasErrors(context);
-
 		return result;
 	}
 }

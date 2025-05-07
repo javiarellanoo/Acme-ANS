@@ -12,12 +12,15 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidAirport;
+import acme.constraints.ValidPhone;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidAirport
 public class Airport extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
@@ -62,7 +65,7 @@ public class Airport extends AbstractEntity {
 	private String				email;
 
 	@Optional
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@ValidPhone
 	@Automapped
 	private String				phoneNumber;
 

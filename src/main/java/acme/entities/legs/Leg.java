@@ -1,6 +1,7 @@
 
 package acme.entities.legs;
 
+import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,12 +34,12 @@ public class Leg extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{3}[0-9]{4}$")
+	@ValidString(pattern = "^[A-Z]{3}[0-9]{4}$", message = "{acme.validation.flightNumber.format}")
 	@Column(unique = true)
 	private String				flightNumber;
 
 	@Mandatory
-	@ValidMoment(past = false)
+	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledDeparture;
 
@@ -52,14 +53,21 @@ public class Leg extends AbstractEntity {
 	@Automapped
 	private LegStatus			status;
 
+	@Mandatory
+	@Valid
+	@Automapped
+	private Boolean				draftMode;
+
 	//Derived attributes:
 
 
 	@Transient
 	public Double getDuration() {
-		Double duration;
-		duration = (double) MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival).toHours();
-		return duration;
+		Duration duration;
+		Double result;
+		duration = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
+		result = duration.toMinutes() / 60.0;
+		return result;
 
 	}
 

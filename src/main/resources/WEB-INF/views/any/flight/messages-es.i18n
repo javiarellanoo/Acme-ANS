@@ -1,0 +1,23 @@
+any.flight.form.title = Detalles del vuelo
+any.flight.list.title = Listado de vuelos
+
+any.flight.form.label.tag = Etiqueta:
+any.flight.form.label.draftMode = Estado de publicación: 
+any.flight.form.label.requiresSelfTransfer = ¿Requiere auto transporte?:
+any.flight.form.label.cost = Coste:
+any.flight.form.label.originCity = Ciudad de Origen:
+any.flight.form.label.destinationCity = Ciudad de Destino:
+any.flight.form.label.scheduledDeparture = Despegue estimado:
+any.flight.form.label.scheduledArrival = Aterrizaje estimado:
+any.flight.form.label.numberOfLayovers = Número de escalas:
+any.flight.form.label.description = Descripción: (Optional)
+any.flight.form.label.airline = Aerolínea:
+any.flight.form.label.manager = Manager:
+
+		
+any.flight.form.button.legs = Segmentos
+
+any.flight.list.label.tag = Etiqueta
+any.flight.list.label.draftMode = Estado de publicación
+any.flight.list.label.originCity = Ciudad de Origen
+any.flight.list.label.destinationCity = Ciudad de Destino

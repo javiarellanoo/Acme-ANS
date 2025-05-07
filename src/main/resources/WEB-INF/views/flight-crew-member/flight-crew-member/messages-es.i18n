@@ -1,0 +1,9 @@
+flight-crew-member.flight-crew-member.form.title = Detalles del miembro de tripulación de vuelo
+flight-crew-member.flight-crew-member.form.label.name = Nombre completo
+flight-crew-member.flight-crew-member.form.label.employeeCode = Código de empleado
+flight-crew-member.flight-crew-member.form.label.phoneNumber = Número de teléfono
+flight-crew-member.flight-crew-member.form.label.languageSkills = Habilidades linguísticas
+flight-crew-member.flight-crew-member.form.label.availabilityStatus = Estado de disponibilidad
+flight-crew-member.flight-crew-member.form.label.salary = Salario
+flight-crew-member.flight-crew-member.form.label.yearsOfExperience = Años de experiencia
+flight-crew-member.flight-crew-member.form.label.airline = Aerolínea
