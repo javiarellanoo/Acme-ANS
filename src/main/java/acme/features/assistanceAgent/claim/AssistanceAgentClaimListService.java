@@ -30,12 +30,19 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 	@Override
 	public void load() {
 		Collection<Claim> claims;
-		boolean published;
+		Collection<Claim> completedClaims;
+		Collection<Claim> undergoing;
+		boolean completed;
 		int assistanceId;
 
-		published = super.getRequest().getData("published", boolean.class);
+		completed = super.getRequest().getData("completed", boolean.class);
 		assistanceId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = published ? this.repository.findClaimsPublished() : this.repository.findClaimsByAssistanceAgent(assistanceId);
+
+		claims = this.repository.findClaimsByAssistanceAgent(assistanceId);
+		completedClaims = claims.stream().filter(c -> !c.getStatus().equals("PENDING")).toList();
+		undergoing = claims.stream().filter(c -> c.getStatus().equals("PENDING")).toList();
+
+		claims = completed ? completedClaims : undergoing;
 
 		super.getBuffer().addData(claims);
 	}
@@ -44,9 +51,9 @@ public class AssistanceAgentClaimListService extends AbstractGuiService<Assistan
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "status", "type", "draftMode");
+		dataset = super.unbindObject(claim, "id", "registrationMoment", "status", "type", "draftMode");
 		super.addPayload(dataset, claim, //
-			"registrationMoment", "passengerEmail", "type", "draftMode", "description", "assistanceAgent.identity.fullName", "leg.flightNumber");
+			"registrationMoment", "passengerEmail", "type", "draftMode", "description", "assistanceAgent.identity.fullName", "leg.flightNumber", "id");
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,33 +1,35 @@
-key,key:flight-crew-member,key:leg,duty,last-update,status,remarks
+key,key:flight-crew-member,key:leg,duty,last-update,status,remarks,draft-mode
 # Base Entity
-flight-assignment-01,member-01,leg-01,PILOT,2012/07/02 0:00,CONFIRMED,Lorem ipsum dolor sit amet
+flight-assignment-01,member-01,leg-01,PILOT,2012/07/02 0:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 #Duty and Member
-flight-assignment-02,member-02,leg-01,COPILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-03,member-03,leg-01,LEAD_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-04,member-04,leg-01,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
+flight-assignment-02,member-02,leg-01,COPILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-03,member-03,leg-01,LEAD_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-04,member-04,leg-01,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 #Leg
-flight-assignment-05,member-01,leg-02,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-06,member-01,leg-03,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-07,member-01,leg-04,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-08,member-01,leg-05,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-09,member-01,leg-06,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet
+flight-assignment-05,member-01,leg-02,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-06,member-01,leg-03,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-07,member-01,leg-04,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-08,member-01,leg-05,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-09,member-01,leg-06,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 #Last update
-flight-assignment-10,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-11,member-01,leg-01,PILOT,2000/01/01 00:01,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-12,member-01,leg-01,PILOT,2024/12/31 23:59,CONFIRMED,Lorem ipsum dolor sit amet
-flight-assignment-13,member-01,leg-01,PILOT,2025/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet
+flight-assignment-10,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-11,member-01,leg-01,PILOT,2000/01/01 00:01,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-12,member-01,leg-01,PILOT,2024/12/31 23:59,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-13,member-01,leg-01,PILOT,2025/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 #Status
-flight-assignment-14,member-01,leg-01,PILOT,2000/01/01 00:00,PENDING,Lorem ipsum dolor sit amet
-flight-assignment-15,member-01,leg-01,PILOT,2000/01/01 00:00,CANCELLED,Lorem ipsum dolor sit amet
+flight-assignment-14,member-01,leg-01,PILOT,2000/01/01 00:00,PENDING,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-15,member-01,leg-01,PILOT,2000/01/01 00:00,CANCELLED,Lorem ipsum dolor sit amet,TRUE
 #Remarks
-flight-assignment-16,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,null
-flight-assignment-17,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,L
-flight-assignment-18,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,Lo
-flight-assignment-19,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor"
-flight-assignment-20,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*"
-flight-assignment-21,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,โลเร็ม อิปซัม
-flight-assignment-22,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,لوريم إيبسوم
-flight-assignment-23,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,洛伦·伊普森
-flight-assignment-24,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,<marquee>Hacked</marquee>
-flight-assignment-25,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,<script>alert(‘Hacked!’);</script>
-flight-assignment-26,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,' or 'A' = 'A
+flight-assignment-16,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,null,TRUE
+flight-assignment-17,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,L,TRUE
+flight-assignment-18,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,Lo,TRUE
+flight-assignment-19,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",TRUE
+flight-assignment-20,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",TRUE
+flight-assignment-21,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,โลเร็ม อิปซัม,TRUE
+flight-assignment-22,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,لوريم إيبسوم,TRUE
+flight-assignment-23,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,洛伦·伊普森,TRUE
+flight-assignment-24,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,<marquee>Hacked</marquee>,TRUE
+flight-assignment-25,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,<script>alert(‘Hacked!’);</script>,TRUE
+flight-assignment-26,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,' or 'A' = 'A,TRUE
+#Draft mode
+flight-assignment-27,member-01,leg-01,PILOT,2012/07/02 0:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE

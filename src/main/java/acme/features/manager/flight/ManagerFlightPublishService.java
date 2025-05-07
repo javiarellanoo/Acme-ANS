@@ -27,14 +27,26 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		int masterId;
 		Flight flight;
 		Manager manager;
-
 		masterId = super.getRequest().getData("id", int.class);
+		boolean airlineStatus;
+		int airlineId;
+		Airline airline;
+
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		if (flight == null)
+			status = false;
+		else if (!flight.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(manager))
+			status = false;
+		else if (super.getRequest().getMethod().equals("GET"))
+			status = true;
+		else {
+			airlineId = super.getRequest().getData("airline", int.class);
+			airline = this.repository.findAirlineById(airlineId);
+			airlineStatus = airlineId == 0 || airline != null;
 
-		Collection<Leg> legs = this.repository.findLegsByFlightId(masterId);
-
+			status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && airlineStatus;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -54,16 +66,17 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		int airlineId;
 		Airline airline;
 
-		airlineId = super.getRequest().getData("airlines", int.class);
+		airlineId = super.getRequest().getData("airline", int.class);
 		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
-		flight.setDraftMode(false);
 		flight.setAirline(airline);
 	}
 	@Override
 	public void validate(final Flight flight) {
-		;
+		Collection<Leg> legs = this.repository.findLegsByFlightId(flight.getId());
+		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+		super.state(legsStatus, "*", "acme.validation.flight.nonPublishedLegs.message");
 	}
 
 	@Override
@@ -75,8 +88,8 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 		airlines = this.repository.findAllAirlines();
 		choices = SelectChoices.from(airlines, "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description");
-		dataset.put("draftMode", false);
+		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
+		dataset.put("legsStatus", false);
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 
@@ -85,6 +98,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 
 	@Override
 	public void perform(final Flight flight) {
+		flight.setDraftMode(false);
 		this.repository.save(flight);
 	}
 }

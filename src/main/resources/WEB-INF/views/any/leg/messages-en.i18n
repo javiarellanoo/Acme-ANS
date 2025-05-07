@@ -1,0 +1,25 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+any.leg.form.title = Leg form 
+any.leg.list.title = Listing of legs
+
+any.leg.form.label.flightNumber = Flight Number:
+any.leg.form.label.departureAirport = Departure Airport: 
+any.leg.form.label.destinationAirport = Destination Airport: 
+any.leg.form.label.duration = Duration:
+any.leg.form.label.status = Status:
+any.leg.form.label.aircraft = Aircraft:
+any.leg.form.label.scheduledDeparture = Scheduled Departure:
+any.leg.form.label.scheduledArrival = Scheduled Arrival:
+
+any.leg.list.label.scheduledArrival = Scheduled Arrival
+any.leg.list.label.scheduledDeparture = Scheduled Departure
+
