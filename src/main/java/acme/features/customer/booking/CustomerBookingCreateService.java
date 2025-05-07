@@ -1,4 +1,3 @@
-
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -26,10 +25,21 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
-
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int flightId;
+		Flight flight;
+
+		if (super.getRequest().getMethod().equals("GET")) {
+			status = true;
+		} else {
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			status = flight != null && !flight.getDraftMode();
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -52,11 +62,16 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void bind(final Booking booking) {
 		booking.setDraftMode(true);
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCardNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "price", "lastCardNibble", "flight");
 	}
 
 	@Override
 	public void validate(final Booking booking) {
+		boolean hasCreditCardNibble;
+		boolean hasSomePassengers;
+
+		hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
+		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
 	}
 
 	@Override
@@ -74,7 +89,8 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream()
+				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 
@@ -84,7 +100,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flightChoices = SelectChoices.from(displayFlights, "displayString", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCardNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "price", "lastCardNibble", "draftMode");
 		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
 		dataset.put("travelClasses", travelClassChoices);
 		dataset.put("flight", flightChoices.getSelected().getKey());
