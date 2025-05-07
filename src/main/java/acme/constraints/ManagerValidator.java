@@ -9,6 +9,7 @@ import acme.client.components.principals.DefaultUserIdentity;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
+import acme.client.helpers.StringHelper;
 import acme.helpers.UniquenessHelper;
 import acme.realms.Manager;
 import acme.realms.repositories.ManagerRepository;
@@ -32,27 +33,28 @@ public class ManagerValidator extends AbstractValidator<ValidManager, Manager> {
 		assert context != null;
 		if (manager == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else if (manager.getIdentifier() != null) {
-			Manager existingManager = this.repository.findManagerByIdentifier(manager.getIdentifier());
-			boolean uniqueIdentifier = UniquenessHelper.checkUniqueness(existingManager, manager);
-			super.state(context, uniqueIdentifier, "identifier", "acme.validation.manager.identifierNonUnique.message");
+		else {
+			if (!StringHelper.isBlank(manager.getIdentifier())) {
+				Manager existingManager = this.repository.findManagerByIdentifier(manager.getIdentifier());
+				boolean uniqueIdentifier = UniquenessHelper.checkUniqueness(existingManager, manager);
+				super.state(context, uniqueIdentifier, "identifier", "acme.validation.manager.identifierNonUnique.message");
 
-			Boolean matches;
-			String initials;
-			DefaultUserIdentity identity;
-			identity = manager.getIdentity();
+				Boolean matches;
+				String initials;
+				DefaultUserIdentity identity;
+				identity = manager.getIdentity();
 
-			initials = "";
+				initials = "";
 
-			initials += identity.getName().trim().charAt(0);
+				initials += identity.getName().trim().charAt(0);
 
-			initials += identity.getSurname().trim().charAt(0);
+				initials += identity.getSurname().trim().charAt(0);
 
-			matches = manager.getIdentifier().trim().startsWith(initials);
-			super.state(context, matches, "identifier", "acme.validation.manager.identifier.message");
-
+				matches = manager.getIdentifier().trim().startsWith(initials);
+				super.state(context, matches, "identifier", "acme.validation.manager.identifier.message");
+			}
 			Integer yearsOfExperience = manager.getYearsOfExperience();
-			if (yearsOfExperience != null) {
+			if (yearsOfExperience != null && manager.getDateOfBirth() != null) {
 				int age = MomentHelper.getCurrentMoment().getYear() - manager.getDateOfBirth().getYear();
 				boolean validExperience = age > yearsOfExperience;
 				super.state(context, validExperience, "yearsOfExperience", "acme.validation.manager.yearsOfExperience.message");
