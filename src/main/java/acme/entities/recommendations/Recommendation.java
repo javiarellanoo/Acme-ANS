@@ -1,11 +1,14 @@
 package acme.entities.recommendations;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
 
 import acme.client.components.basis.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
 public class Recommendation extends AbstractEntity {
@@ -13,15 +16,18 @@ public class Recommendation extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@NotBlank
-	private String name;
+	private String title;
 
 	@NotBlank
-	private String address;
+	private String description;
 
-	// Comma-separated list of categories from the API
-	private String categories;
+	@NotBlank
+	private String category;
 
-	// Could add more fields later based on API details (e.g., coordinates,
-	// description, website)
+	@NotBlank
+	private String location;
+
+	@NotNull
+	private String city;
 
 }

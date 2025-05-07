@@ -1,4 +1,3 @@
-
 package acme.features.customer.recommendation;
 
 import javax.annotation.PostConstruct;
@@ -11,14 +10,17 @@ import acme.entities.recommendations.Recommendation;
 import acme.realms.Customer;
 
 @GuiController
-public class RecommendationController extends AbstractGuiController<Customer, Recommendation> {
+public class CustomerRecommendationController extends AbstractGuiController<Customer, Recommendation> {
 
 	@Autowired
-	protected RecommendationListService listService;
+	private CustomerRecommendationListService listService;
 
+	@Autowired
+	private CustomerRecommendationCreateService createService;
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("create", this.createService);
 	}
 }
