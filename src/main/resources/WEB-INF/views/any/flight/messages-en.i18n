@@ -1,0 +1,22 @@
+any.flight.form.title = Flight form 
+any.flight.list.title = Listing of flights
+
+any.flight.form.label.tag = Tag:
+any.flight.form.label.draftMode = Draft Mode: 
+any.flight.form.label.requiresSelfTransfer = Does it require self transfer?:
+any.flight.form.label.cost = Cost:
+any.flight.form.label.originCity = Origin City:
+any.flight.form.label.destinationCity = Destination City:
+any.flight.form.label.scheduledDeparture = Scheduled Departure:
+any.flight.form.label.scheduledArrival = Scheduled Arrival:
+any.flight.form.label.numberOfLayovers = Number of Layovers:
+any.flight.form.label.description = Description: (Optional)
+any.flight.form.label.airline = Airline:
+any.flight.form.label.any = any:
+		
+any.flight.form.button.legs = Legs
+
+any.flight.list.label.tag = Tag
+any.flight.list.label.draftMode = Draft Mode
+any.flight.list.label.originCity = Origin City
+any.flight.list.label.destinationCity = Destination City

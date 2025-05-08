@@ -1,0 +1,10 @@
+flight-crew-member.leg.form.title = Detalles del segmento 
+
+flight-crew-member.leg.form.label.flightNumber = Número de vuelo:
+flight-crew-member.leg.form.label.departureAirport = Aeropuerto de salida: 
+flight-crew-member.leg.form.label.destinationAirport = Aeropuerto de llegada: 
+flight-crew-member.leg.form.label.duration = Duración:
+flight-crew-member.leg.form.label.status = Estado:
+flight-crew-member.leg.form.label.aircraft = Avión:
+flight-crew-member.leg.form.label.scheduledDeparture = Salida estimada:
+flight-crew-member.leg.form.label.scheduledArrival = Llegada estimada:

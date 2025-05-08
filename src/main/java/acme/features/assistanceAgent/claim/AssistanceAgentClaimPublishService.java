@@ -28,9 +28,11 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 	@Override
 	public void authorise() {
 		boolean status;
-		int agentId;
 		int claimId;
+		int agentId;
+		int legId;
 		Claim claim;
+		Leg leg;
 		AssistanceAgent agent;
 
 		claimId = super.getRequest().getData("id", int.class);
@@ -39,7 +41,11 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		agent = this.repository.findAssistanceAgentById(agentId);
 
-		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent().equals(agent);
+		legId = super.getRequest().getData("leg", int.class);
+		leg = this.repository.findLegById(legId);
+
+		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent() != null && //
+			claim.getAssistanceAgent().equals(agent) && leg != null && !leg.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -60,7 +66,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		int legId;
 		Leg leg;
 
-		legId = super.getRequest().getData("legs", int.class);
+		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
 		super.bindObject(claim, "passengerEmail", "description", "type");
