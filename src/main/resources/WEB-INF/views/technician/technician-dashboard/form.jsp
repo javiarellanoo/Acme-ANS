@@ -12,11 +12,18 @@
 <table class="table table-sm">
     <jstl:forEach items="${mapStatusNumberRecords}" var="entry">
         <tr>
-            <th>
-                <acme:print value="${entry.key}"/>
+            <th scope="row">
+                <acme:print code="technician.dashboard.form.label.status.${entry.key}"/>
             </th>
             <td>
-                <acme:print value="${entry.value}"/>
+                <jstl:choose>
+                    <jstl:when test="${entry.value != null}">
+                        <acme:print value="${entry.value}"/>
+                    </jstl:when>
+                    <jstl:otherwise>
+                        0
+                    </jstl:otherwise>
+                </jstl:choose>
             </td>
         </tr>
     </jstl:forEach>
@@ -28,32 +35,32 @@
 
 <jstl:choose>
 	<jstl:when test="${recordNearestInspectionDueDate != null}">
-	<table class="table table-sm">
-	    <tr>
-	        <th>
-	            <acme:print code="technician.dashboard.form.label.record-moment"/>
-	        </th>
-	        <td>
-	            <acme:print value="${recordNearestInspectionDueDate.moment}"/>
-	        </td>
-	    </tr>
-	    <tr>
-	        <th>
-	            <acme:print code="technician.dashboard.form.label.due-date"/>
-	        </th>
-	        <td>
-	            <acme:print value="${recordNearestInspectionDueDate.nextInspectionDate}"/>
-	        </td>
-	    </tr>
-	    <tr>
-	        <th>
-	            <acme:print code="technician.dashboard.form.label.status"/>
-	        </th>
-	        <td>
-	            <acme:print value="${recordNearestInspectionDueDate.status}"/>
-	        </td>
-	    </tr>
-	</table>
+		<table class="table table-sm">
+		    <tr>
+		        <th scope="row">
+		            <acme:print code="technician.dashboard.form.label.record-moment"/>
+		        </th>
+		        <td>
+		            <acme:print value="${recordNearestInspectionDueDate.moment}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <th scope="row">
+		            <acme:print code="technician.dashboard.form.label.due-date"/>
+		        </th>
+		        <td>
+		            <acme:print value="${recordNearestInspectionDueDate.nextInspectionDate}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <th scope="row">
+		            <acme:print code="technician.dashboard.form.label.status"/>
+		        </th>
+		        <td>
+		            <acme:print value="${recordNearestInspectionDueDate.status}"/>
+		        </td>
+		    </tr>
+		</table>
 	</jstl:when>
 	<jstl:otherwise>
 		<p><acme:print code="technician.dashboard.form.label.no-data"/></p>
@@ -70,8 +77,8 @@
 		<table class="table table-sm">
 		    <thead>
 		        <tr>
-		            <th><acme:print code="technician.dashboard.form.label.aircraft-registration-number"/></th>
-		            <th><acme:print code="technician.dashboard.form.label.aircraft-model"/></th>
+		            <th scope="row"><acme:print code="technician.dashboard.form.label.aircraft-registration-number"/></th>
+		            <th scope="row"><acme:print code="technician.dashboard.form.label.aircraft-model"/></th>
 		        </tr>
 		    </thead>
 		    <tbody>
@@ -98,11 +105,11 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th><acme:print code="technician.dashboard.form.label.currency"/></th>
-                    <th><acme:print code="technician.dashboard.form.label.average-cost"/></th>
-                    <th><acme:print code="technician.dashboard.form.label.minimum-cost"/></th>
-                    <th><acme:print code="technician.dashboard.form.label.maximum-cost"/></th>
-                    <th><acme:print code="technician.dashboard.form.label.stddev-cost"/></th>
+                    <th scope="row"><acme:print code="technician.dashboard.form.label.currency"/></th>
+                    <th scope="row"><acme:print code="technician.dashboard.form.label.average-cost"/></th>
+                    <th scope="row"><acme:print code="technician.dashboard.form.label.minimum-cost"/></th>
+                    <th scope="row"><acme:print code="technician.dashboard.form.label.maximum-cost"/></th>
+                    <th scope="row"><acme:print code="technician.dashboard.form.label.stddev-cost"/></th>
                 </tr>
             </thead>
             <tbody>
@@ -140,7 +147,7 @@
     <jstl:when test="${durationStatistics.count()!=0}">
         <table class="table table-sm">
             <tr>
-                <th>
+                <th scope="row">
                     <acme:print code="technician.dashboard.form.label.average-duration"/>
                 </th>
                 <td>
@@ -148,7 +155,7 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <th scope="row">
                     <acme:print code="technician.dashboard.form.label.minimum-duration"/>
                 </th>
                 <td>
@@ -156,7 +163,7 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <th scope="row">
                     <acme:print code="technician.dashboard.form.label.maximum-duration"/>
                 </th>
                 <td>
@@ -164,7 +171,7 @@
                 </td>
             </tr>
             <tr>
-                <th>
+                <th scope="row">
                     <acme:print code="technician.dashboard.form.label.stddev-duration"/>
                 </th>
                 <td>

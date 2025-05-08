@@ -1,5 +1,9 @@
 technician.technician-dashboard.form.title = Dashboard
+
 technician.dashboard.form.title.maintenance-record-status-counts = Number of maintenance records per status
+technician.dashboard.form.label.status.PENDING = Pending
+technician.dashboard.form.label.status.IN_PROGRESS = In progress
+technician.dashboard.form.label.status.COMPLETED = Completed
 
 technician.dashboard.form.title.nearest-inspection = Maintenance record with the nearest inspection date
 technician.dashboard.form.label.record-moment = Moment
@@ -23,5 +27,5 @@ technician.dashboard.form.label.minimum-duration = Min. duration
 technician.dashboard.form.label.maximum-duration = Max. duration
 technician.dashboard.form.label.stddev-duration = Standard deviation
 
-technician.dashboard.form.label.not-available = NA
+technician.dashboard.form.label.not-available = Not Available
 technician.dashboard.form.label.no-data = No data
