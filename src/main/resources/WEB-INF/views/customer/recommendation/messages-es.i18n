@@ -1,0 +1,13 @@
+customer.recommendation.form.title = Detalles de la recomendación
+customer.recommendation.list.label.name = Nombre
+customer.recommendation.list.label.city = Ciudad
+customer.recommendation.list.label.country = País
+customer.recommendation.list.label.openingHours = Horario de apertura
+
+customer.recommendation.form.label.name = Nombre
+customer.recommendation.form.label.city = Ciudad
+customer.recommendation.form.label.state = Estado
+customer.recommendation.form.label.country = País
+customer.recommendation.form.label.formatted = Formato
+customer.recommendation.form.label.openingHours = Horario de apertura
+customer.recommendation.form.label.url = URL

@@ -1,4 +1,3 @@
-
 package acme.features.customer.bookingRecord;
 
 import java.util.Collection;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.bookings.Booking;
 import acme.entities.bookings.BookingRecord;
 import acme.realms.Customer;
 
@@ -21,19 +21,39 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 
 	// AbstractGuiService interface -------------------------------------------
 
-
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		Booking booking;
+		Customer customer;
+
+		Integer bookingId = null;
+		if (super.getRequest().hasData("bookingId", int.class)) {
+			bookingId = super.getRequest().getData("bookingId", int.class);
+		} else if (super.getRequest().hasData("id", int.class)) {
+			bookingId = super.getRequest().getData("id", int.class);
+		}
+
+		booking = (bookingId != null) ? this.repository.findBookingById(bookingId) : null;
+		customer = booking == null ? null : booking.getCustomer();
+
+		status = booking != null && customer != null && super.getRequest().getPrincipal().hasRealm(customer);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<BookingRecord> bookingRecords;
-		int bookingId;
+		Integer bookingId = null;
 		boolean isDraftMode;
 
-		bookingId = super.getRequest().getData("bookingId", int.class);
+		if (super.getRequest().hasData("bookingId", int.class)) {
+			bookingId = super.getRequest().getData("bookingId", int.class);
+		} else if (super.getRequest().hasData("id", int.class)) {
+			bookingId = super.getRequest().getData("id", int.class);
+		}
+
 		isDraftMode = this.repository.findBookingById(bookingId).getDraftMode();
 		bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
 

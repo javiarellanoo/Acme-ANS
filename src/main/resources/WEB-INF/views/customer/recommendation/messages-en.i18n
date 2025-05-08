@@ -1,0 +1,15 @@
+customer.recommendation.form.title = Recommendation details
+
+# Recommendation form
+customer.recommendation.form.label.name = Name
+customer.recommendation.form.label.city = City
+customer.recommendation.form.label.state = State
+customer.recommendation.form.label.country = Country
+customer.recommendation.form.label.formatted = Formatted
+customer.recommendation.form.label.openingHours = Opening Hours
+customer.recommendation.form.label.url = URL
+
+customer.recommendation.list.label.name = Name
+customer.recommendation.list.label.city = City
+customer.recommendation.list.label.country = Country
+customer.recommendation.list.label.openingHours = Opening Hours

@@ -37,6 +37,7 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
+			<acme:menu-suboption code="master.menu.administrator.recommendation" action="/administrator/recommendation/perform"/>
 			<acme:menu-separator/>
 		</acme:menu-option>
 
@@ -53,6 +54,8 @@
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
 			<acme:menu-suboption code="master.menu.customer.passenger" action="/customer/passenger/list"/>
 			<acme:menu-suboption code="master.menu.customer.list-bookings" action="/customer/booking/list"/>
+			<acme:menu-suboption code="master.menu.customer.dashboard" action="/customer/customer-dashboard/show"/>
+			<acme:menu-suboption code="master.menu.customer.recommendation" action="/customer/recommendation/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.technician" access="hasRole('Technician')">
@@ -63,6 +66,8 @@
 		</acme:menu-option>
     
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRole('AssistanceAgent')">
+		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.mine" action="/assistance-agent/claim/list?published=false"/>
+		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.published" action="/assistance-agent/claim/list?published=true"/>
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.completed" action="/assistance-agent/claim/list?completed=true"/>
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.undergoing" action="/assistance-agent/claim/list?completed=false"/>
 		</acme:menu-option>
