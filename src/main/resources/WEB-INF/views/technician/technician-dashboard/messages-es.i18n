@@ -1,0 +1,31 @@
+technician.technician-dashboard.form.title = Panel de control
+
+technician.dashboard.form.title.maintenance-record-status-counts = Número de registros de mantenimiento por estado
+technician.dashboard.form.label.status.PENDING = Pendientes
+technician.dashboard.form.label.status.IN_PROGRESS = En progreso
+technician.dashboard.form.label.status.COMPLETED = Completadas
+
+technician.dashboard.form.title.nearest-inspection = Registro de mantenimiento con la fecha de inspección más próxima
+technician.dashboard.form.label.record-moment = Momento
+technician.dashboard.form.label.due-date = Próxima fecha de inspección
+technician.dashboard.form.label.status = Estado
+
+technician.dashboard.form.title.top-aircrafts = Cinco aeronaves con mayor número de tareas en sus registros de mantenimiento
+technician.dashboard.form.label.aircraft-registration-number = Matrícula
+technician.dashboard.form.label.aircraft-model = Modelo
+
+technician.dashboard.form.title.cost-statistics = Estadísticas de los costes estimados de los registros de mantenimiento en el último año
+technician.dashboard.form.label.currency = Moneda
+technician.dashboard.form.label.average-cost = Costo promedio
+technician.dashboard.form.label.minimum-cost = Costo mín.
+technician.dashboard.form.label.maximum-cost = Costo máx.
+technician.dashboard.form.label.stddev-cost = Desviación estándar
+
+technician.dashboard.form.title.duration-statistics = Estadísticas de la duración estimada de las tareas involucradas
+technician.dashboard.form.label.average-duration = Duración promedio
+technician.dashboard.form.label.minimum-duration = Duración mín.
+technician.dashboard.form.label.maximum-duration = Duración máx.
+technician.dashboard.form.label.stddev-duration = Desviación estándar
+
+technician.dashboard.form.label.not-available = No disponible
+technician.dashboard.form.label.no-data = Sin datos

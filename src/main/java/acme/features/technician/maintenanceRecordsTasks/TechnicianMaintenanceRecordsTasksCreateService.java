@@ -34,6 +34,11 @@ public class TechnicianMaintenanceRecordsTasksCreateService extends AbstractGuiS
 		int taskId;
 		Task task;
 		boolean taskStatus;
+		boolean alreadyAddedToTheRecord;
+		Task alreadyAddedTask;
+
+		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		if (super.getRequest().getMethod().equals("GET"))
 			taskStatus = true;
@@ -42,11 +47,10 @@ public class TechnicianMaintenanceRecordsTasksCreateService extends AbstractGuiS
 
 			taskId = super.getRequest().getData("task", int.class);
 			task = this.repository.findValidTaskById(taskId, technicianId);
-			taskStatus = taskId == 0 || task != null;
+			alreadyAddedTask = this.repository.findValidTaskByIdAndMaintenanceRecord(taskId, maintenanceRecordId);
+			alreadyAddedToTheRecord = alreadyAddedTask != null;
+			taskStatus = taskId == 0 || task != null && !alreadyAddedToTheRecord;
 		}
-
-		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
-		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
 		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId() && taskStatus;
 
