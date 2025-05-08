@@ -43,3 +43,4 @@ acme.validation.booking.passengers.message = Deben haber pasajeros
 acme.validation.airline.iataCode = El código IATA debe estar formado por tres letras mayúsculas
 acme.validation.manager.identifier = El identificador debe comenzar con sus iniciales acompañadas de 6 dígitos.
 acme.validation.manager.yearsOfExperience.message = Los años de experience deben ser menores a la edad del manager.
+administration.recommendation.form.label.api-error = Ha ocurrido un error al obtener la recomendación. Por favor, inténtelo de nuevo más tarde.

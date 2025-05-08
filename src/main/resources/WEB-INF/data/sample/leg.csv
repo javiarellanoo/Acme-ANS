@@ -26,14 +26,3 @@ leg-13,airport-03,airport-04,aircraft-09,flight-33,ASX1246,2025/01/01 06:00,2025
 #draft-mode-variations
 leg-14,airport-01,airport-02,aircraft-11,flight-13,ASX1247,2025/01/01 00:00,2025/01/01 02:00,DELAYED,1
 leg-15,airport-01,airport-02,aircraft-10,flight-13,ASX1254,2025/01/01 02:01,2025/01/01 02:02,DELAYED,1
-#real-variants
-leg-100,airport-100,airport-101,aircraft-01,flight-100,ASX1258,2024/06/01 08:00,2024/06/01 10:15,ON_TIME,0
-leg-101,airport-101,airport-102,aircraft-01,flight-101,ASX1259,2024/06/01 12:00,2024/06/01 16:00,ON_TIME,0
-leg-102,airport-102,airport-103,aircraft-01,flight-102,ASX1260,2024/06/02 09:00,2024/06/03 11:00,ON_TIME,0
-leg-103,airport-103,airport-104,aircraft-01,flight-103,ASX1261,2024/06/04 14:00,2024/06/04 18:00,ON_TIME,0
-leg-104,airport-104,airport-105,aircraft-01,flight-104,ASX1262,2024/06/05 07:00,2024/06/05 09:30,ON_TIME,0
-leg-105,airport-105,airport-106,aircraft-01,flight-105,ASX1263,2024/06/06 10:00,2024/06/06 12:00,ON_TIME,0
-leg-106,airport-106,airport-107,aircraft-01,flight-106,ASX1264,2024/06/07 20:00,2024/06/08 08:00,ON_TIME,0
-leg-107,airport-107,airport-108,aircraft-01,flight-107,ASX1265,2024/06/09 22:00,2024/06/10 10:00,ON_TIME,0
-leg-108,airport-108,airport-109,aircraft-01,flight-108,ASX1266,2024/06/11 15:00,2024/06/12 06:00,ON_TIME,0
-leg-109,airport-109,airport-100,aircraft-01,flight-109,ASX1257,2024/06/13 13:00,2024/06/13 19:00,ON_TIME,0

@@ -58,15 +58,3 @@ flight-34,airline-01,manager-02,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lor
 flight-35,airline-02,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
 flight-36,airline-03,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
 flight-37,airline-04,manager-01,Lorem ipsum dolor sit ame,1,0,EUR 500000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
-
-#real-variants
-flight-100,airline-01,manager-01,Madrid to Paris,0,0,EUR 120.00,Direct flight from Madrid to Paris
-flight-101,airline-01,manager-01,Paris to New York,0,0,EUR 350.00,Direct flight from Paris to New York
-flight-102,airline-01,manager-01,New York to Tokyo,0,0,USD 900.00,Direct flight from New York to Tokyo
-flight-103,airline-01,manager-01,Tokyo to London,0,0,JPY 110000.00,Direct flight from Tokyo to London
-flight-104,airline-01,manager-01,London to Rome,0,0,GBP 80.00,Direct flight from London to Rome
-flight-105,airline-01,manager-01,Rome to Berlin,0,0,EUR 95.00,Direct flight from Rome to Berlin
-flight-106,airline-01,manager-01,Berlin to Buenos Aires,0,0,EUR 700.00,Direct flight from Berlin to Buenos Aires
-flight-107,airline-01,manager-01,Buenos Aires to Sydney,0,0,USD 1200.00,Direct flight from Buenos Aires to Sydney
-flight-108,airline-01,manager-01,Sydney to Toronto,0,0,AUD 1500.00,Direct flight from Sydney to Toronto
-flight-109,airline-01,manager-01,Toronto to Madrid,0,0,CAD 600.00,Direct flight from Toronto to Madrid

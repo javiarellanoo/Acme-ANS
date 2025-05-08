@@ -4,8 +4,6 @@ package acme.features.authenticated.administrator.recommendation;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +14,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.helpers.MomentHelper;
+import acme.client.helpers.SpringHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.bookings.Booking;
 import acme.entities.recommendation.Recommendation;
 
 @GuiService
@@ -35,25 +34,69 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 
 	@Override
 	public void load() {
-		Collection<Booking> bookings = this.repository.findDistinctCities();
-		Collection<Recommendation> existingRecs = this.repository.findAllRecommendations();
-		Set<String> recommendedCityCountry = existingRecs.stream().map(r -> r.getCity() + "," + r.getCountry()).collect(Collectors.toSet());
+		Recommendation recommendation;
 
-		for (Booking booking : bookings) {
-			String city = booking.getFlight().getDestinationCity();
-			if (city.equals("Not defined yet"))
-				continue;
+		recommendation = new Recommendation();
 
-			String country = booking.getFlight().getDestinationCountry() != null ? booking.getFlight().getDestinationCountry() : "";
-			String key = city + "," + country;
-			if (!recommendedCityCountry.contains(key)) {
-				Collection<Recommendation> recommendations = this.fetchAndSaveRecommendations(city, country);
-				super.getBuffer().addData(recommendations);
-			}
+		super.getBuffer().addData(recommendation);
+	}
+
+	@Override
+	public void validate(final Recommendation recommendation) {
+
+	}
+
+	@Override
+	public void perform(final Recommendation recommendation) {
+		String city = super.getRequest().getData("city", String.class);
+		String country = super.getRequest().getData("country", String.class);
+		Collection<Recommendation> recs = this.computeRecommendation(city, country);
+		Recommendation rec = recs.stream().findFirst().orElse(null);
+		if (rec == null) {
+			recommendation.setName(null);
+			recommendation.setState(null);
+			recommendation.setCity(null);
+			recommendation.setCountry(null);
+			recommendation.setOpeningHours(null);
+			recommendation.setFormatted(null);
+			recommendation.setUrl(null);
+		} else {
+			recommendation.setName(rec.getName());
+			recommendation.setState(rec.getState());
+			recommendation.setCity(rec.getCity());
+			recommendation.setCountry(rec.getCountry());
+			recommendation.setOpeningHours(rec.getOpeningHours());
+			recommendation.setFormatted(rec.getFormatted());
+			recommendation.setUrl(rec.getUrl());
 		}
 	}
 
-	private Collection<Recommendation> fetchAndSaveRecommendations(final String city, final String country) {
+	private Collection<Recommendation> computeRecommendation(final String city, final String country) {
+		assert city != null;
+		assert country != null;
+		Collection<Recommendation> recommendation;
+		if (SpringHelper.isRunningOn("production"))
+			recommendation = this.computeLiveRecommendations(city, country);
+		else
+			recommendation = this.computeMockedRecommendation(city, country);
+		return recommendation;
+	}
+
+	private Collection<Recommendation> computeMockedRecommendation(final String city, final String country) {
+		Recommendation rec = new Recommendation();
+		rec.setName("Mocked Place");
+		rec.setState("Mocked State");
+		rec.setCity(city != null && !city.isEmpty() ? city : "Not available");
+		rec.setCountry(country != null && !country.isEmpty() ? country : "Not available");
+		rec.setOpeningHours("09:00-18:00");
+		rec.setFormatted("123 Mocked St, Mock City");
+		rec.setUrl("http://mocked-url.com");
+		this.repository.save(rec);
+		return Collections.singletonList(rec);
+	}
+
+	private Collection<Recommendation> computeLiveRecommendations(final String city, final String country) {
+		Collection<Recommendation> result;
 		String apiKey = "1ebf282bc72a47c2a584be663584b6c3";
 		String location = city + (country != null && !country.isEmpty() ? ", " + country : "");
 		String geocodeUrl = String.format("https://api.geoapify.com/v1/geocode/search?text=%s&apiKey=%s", location, apiKey);
@@ -95,29 +138,32 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 				rec.setOpeningHours(feature.path("properties").path("opening_hours").asText("Not available"));
 				rec.setFormatted(feature.path("properties").path("formatted").asText("Not available"));
 				String url = feature.path("properties").path("website").asText("");
-				if (url.isEmpty()) {
+				if (url.isEmpty())
 					url = feature.path("properties").path("datasource").path("raw").path("website").asText("");
-				}
-				if (url.isEmpty()) {
+				if (url.isEmpty())
 					url = feature.path("properties").path("datasource").path("raw").path("url").asText("");
-				}
-				if (url.isEmpty()) {
+				if (url.isEmpty())
 					url = feature.path("properties").path("datasource").path("url").asText("");
-				}
-				if (url.isEmpty()) {
+				if (url.isEmpty())
 					url = feature.path("properties").path("url").asText("");
-				}
-				if (url.isEmpty()) {
+				if (url.isEmpty())
 					url = "not available";
-				}
 				rec.setUrl(url);
 				recs[i] = rec;
 				this.repository.save(rec);
 			}
-			return Arrays.asList(recs);
+			result = Arrays.asList(recs);
+			MomentHelper.sleep(1000);
 		} catch (Exception e) {
-			throw new RuntimeException("Failed to fetch or parse recommendations", e);
+			super.state(false, "*", "administration.recommendation.form.label.api-error");
+			return Collections.emptyList();
 		}
+		return result;
+	}
+
+	@Override
+	public void bind(final Recommendation recommendation) {
+		super.bindObject(recommendation, "city", "country");
 	}
 
 	@Override
@@ -125,4 +171,5 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 		Dataset dataset = super.unbindObject(recommendation, "name", "state", "city", "country", "openingHours", "formatted", "url");
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -80,16 +80,3 @@ airport-69,Lorem ipsum dolor sit ame,AEK,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-70,Lorem ipsum dolor sit ame,AEL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+12314567899742
 airport-71,Lorem ipsum dolor sit ame,AEM,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,045678912378945
 airport-72,Lorem ipsum dolor sit ame,AEN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+123045896410547
-
-#city-real-variants
-airport-100,Madrid Barajas,MAD,INTERNATIONAL,Madrid,Spain,http://www.aena.es,info@aena.es,689762586
-airport-101,Paris Charles de Gaulle,CDG,INTERNATIONAL,Paris,France,http://www.parisaeroport.fr,info@adp.fr,689762586
-airport-102,John F. Kennedy International,JFK,INTERNATIONAL,New York,USA,http://www.jfkairport.com,info@jfkairport.com,689762586
-airport-103,Tokyo Haneda,HND,INTERNATIONAL,Tokyo,Japan,http://www.haneda-airport.jp,info@haneda-airport.jp,689762586
-airport-104,London Heathrow,LHR,INTERNATIONAL,London,UK,http://www.heathrow.com,info@heathrow.com,689762586
-airport-105,Rome Fiumicino,FCO,INTERNATIONAL,Rome,Italy,http://www.adr.it,info@adr.it,689762586
-airport-106,Berlin Brandenburg,BER,INTERNATIONAL,Berlin,Germany,http://ber.berlin-airport.de,info@berlin-airport.de,689762586
-airport-107,Buenos Aires Ezeiza,EZE,INTERNATIONAL,Buenos Aires,Argentina,http://www.aa2000.com.ar,info@aa2000.com.ar,689762586
-airport-108,Sydney Kingsford Smith,SYD,INTERNATIONAL,Sydney,Australia,http://www.sydneyairport.com.au,info@sydneyairport.com.au,689762586
-airport-109,Toronto Pearson,YYZ,INTERNATIONAL,Toronto,Canada,http://www.torontopearson.com,info@torontopearson.com,689762586
-

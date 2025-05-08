@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class Recommendation extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@Mandatory
+	@Optional
 	@ValidString(max = 255, min = 1)
 	@Automapped
 	private String				name;
@@ -31,22 +32,22 @@ public class Recommendation extends AbstractEntity {
 	@Automapped
 	private String				city;
 
-	@Mandatory
+	@Optional
 	@ValidString(max = 255, min = 1)
 	@Automapped
 	private String				state;
 
-	@Mandatory
+	@Optional
 	@ValidString(max = 255, min = 1)
 	@Automapped
 	private String				formatted;
 
-	@Mandatory
+	@Optional
 	@ValidString(max = 255, min = 1)
 	@Automapped
 	private String				openingHours;
 
-	@Mandatory
+	@Optional
 	@ValidUrl
 	@Automapped
 	private String				url;

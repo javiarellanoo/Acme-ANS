@@ -16,13 +16,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="administrator.recommendation.form.label.name" path="name"/>
     <acme:input-textbox code="administrator.recommendation.form.label.country" path="country"/>
 	<acme:input-textbox code="administrator.recommendation.form.label.city" path="city"/>
-	<acme:input-textbox code="administrator.recommendation.form.label.state" path="state"/>
-	<acme:input-textbox code="administrator.recommendation.form.label.formatted" path="formatted"/>
-	<acme:input-textbox code="administrator.recommendation.form.label.openingHours" path="openingHours"/>
-	<acme:input-textbox code="administrator.recommendation.form.label.url" path="url"/>
-
 	<acme:submit code="administrator.recommendation.form.button.perform" action="/administrator/recommendation/perform"/>
 </acme:form>
