@@ -4,8 +4,8 @@ airport-01,Lorem ipsum dolor sit ame,ABC,INTERNATIONAL,Lorem ipsum dolor sit ame
 #name-variants
 airport-02,L,ABD,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-03,Lo,ABE,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",ABF,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-05,"Lorem ipsum dolor sit amet, consectetur adipiscin",ABG,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-04,"Lorem ipsum dolor sit amet,consectetur adipiscing",ABF,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-05,"Lorem ipsum dolor sit amet,consectetur adipiscin",ABG,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-06,โลเร็ม อิปซัม,ABH,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-07,لوريم إيبسوم,ABI,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-08,洛伦·伊普森,ABJ,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
@@ -22,8 +22,8 @@ airport-16,Lorem ipsum dolor sit ame,ABO,REGIONAL,Lorem ipsum dolor sit ame,Lore
 #city-variants
 airport-17,Lorem ipsum dolor sit ame,ABP,INTERNATIONAL,L,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-18,Lorem ipsum dolor sit ame,ABQ,INTERNATIONAL,Lo,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-19,Lorem ipsum dolor sit ame,ABR,INTERNATIONAL,"Lorem ipsum dolor sit amet, consectetur adipiscing",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-20,Lorem ipsum dolor sit ame,ABS,INTERNATIONAL,"Lorem ipsum dolor sit amet, consectetur adipiscin",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-19,Lorem ipsum dolor sit ame,ABR,INTERNATIONAL,"Lorem ipsum dolor sit amet,consectetur adipiscing",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-20,Lorem ipsum dolor sit ame,ABS,INTERNATIONAL,"Lorem ipsum dolor sit amet,consectetur adipiscin",Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-21,Lorem ipsum dolor sit ame,ABT,INTERNATIONAL,โลเร็ม อิปซัม,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-22,Lorem ipsum dolor sit ame,ABU,INTERNATIONAL,لوريم إيبسوم,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-23,Lorem ipsum dolor sit ame,ABV,INTERNATIONAL,洛伦·伊普森,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
@@ -34,9 +34,9 @@ airport-27,Lorem ipsum dolor sit ame,AEO,INTERNATIONAL,Seville,Lorem ipsum dolor
 #country-variants
 airport-28,Lorem ipsum dolor sit ame,ABZ,INTERNATIONAL,Lorem ipsum dolor sit ame,L,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-29,Lorem ipsum dolor sit ame,ACD,INTERNATIONAL,Lorem ipsum dolor sit ame,Lo,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-30,Lorem ipsum dolor sit ame,ACE,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-31,Lorem ipsum dolor sit ame,ACF,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
-airport-32,Lorem ipsum dolor sit ame,ACG,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-30,Lorem ipsum dolor sit ame,ACE,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet,consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-31,Lorem ipsum dolor sit ame,ACF,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet,consectetur adipiscin",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
+airport-32,Lorem ipsum dolor sit ame,ACG,INTERNATIONAL,Lorem ipsum dolor sit ame,"Lorem ipsum dolor sit amet,consectetur adipiscing",http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-33,Lorem ipsum dolor sit ame,ACH,INTERNATIONAL,Lorem ipsum dolor sit ame,โลเร็ม อิปซัม,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-34,Lorem ipsum dolor sit ame,ACI,INTERNATIONAL,Lorem ipsum dolor sit ame,لوريم إيبسوم,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
 airport-35,Lorem ipsum dolor sit ame,ACJ,INTERNATIONAL,Lorem ipsum dolor sit ame,洛伦·伊普森,http://lorem.com/ipsum,acme@lorem-ipsum.org,689762586
@@ -80,4 +80,16 @@ airport-69,Lorem ipsum dolor sit ame,AEK,INTERNATIONAL,Lorem ipsum dolor sit ame
 airport-70,Lorem ipsum dolor sit ame,AEL,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+12314567899742
 airport-71,Lorem ipsum dolor sit ame,AEM,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,045678912378945
 airport-72,Lorem ipsum dolor sit ame,AEN,INTERNATIONAL,Lorem ipsum dolor sit ame,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,acme@lorem-ipsum.org,+123045896410547
+
+#city-real-variants
+airport-100,Madrid Barajas,MAD,INTERNATIONAL,Madrid,Spain,http://www.aena.es,info@aena.es,689762586
+airport-101,Paris Charles de Gaulle,CDG,INTERNATIONAL,Paris,France,http://www.parisaeroport.fr,info@adp.fr,689762586
+airport-102,John F. Kennedy International,JFK,INTERNATIONAL,New York,USA,http://www.jfkairport.com,info@jfkairport.com,689762586
+airport-103,Tokyo Haneda,HND,INTERNATIONAL,Tokyo,Japan,http://www.haneda-airport.jp,info@haneda-airport.jp,689762586
+airport-104,London Heathrow,LHR,INTERNATIONAL,London,UK,http://www.heathrow.com,info@heathrow.com,689762586
+airport-105,Rome Fiumicino,FCO,INTERNATIONAL,Rome,Italy,http://www.adr.it,info@adr.it,689762586
+airport-106,Berlin Brandenburg,BER,INTERNATIONAL,Berlin,Germany,http://ber.berlin-airport.de,info@berlin-airport.de,689762586
+airport-107,Buenos Aires Ezeiza,EZE,INTERNATIONAL,Buenos Aires,Argentina,http://www.aa2000.com.ar,info@aa2000.com.ar,689762586
+airport-108,Sydney Kingsford Smith,SYD,INTERNATIONAL,Sydney,Australia,http://www.sydneyairport.com.au,info@sydneyairport.com.au,689762586
+airport-109,Toronto Pearson,YYZ,INTERNATIONAL,Toronto,Canada,http://www.torontopearson.com,info@torontopearson.com,689762586
 

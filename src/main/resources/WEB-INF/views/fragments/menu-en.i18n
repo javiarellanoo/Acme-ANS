@@ -83,9 +83,9 @@ master.menu.customer = Customer area
 master.menu.technician.maintenance-record.list.mine = My maintenance records
 master.menu.technician.maintenance-record.list.published = Published maintenance records
 
-# Customer > Recommendations
-customer.recommendation.list.title=Recommendations for %s
-customer.recommendation.list.noRecommendations=No recommendations found for city \'%s\'. This might be because it\'s your home city or no recent travel data is available.
+# Customer > Recommendation
+customer.recommendation.list.title=Recommendation for %s
+customer.recommendation.list.noRecommendation=No recommendation found for city '%s'. This might be because it's your home city or no recent travel data is available.
 customer.recommendation.label.name=Name
 customer.recommendation.label.address=Address
 customer.recommendation.label.categories=Categories

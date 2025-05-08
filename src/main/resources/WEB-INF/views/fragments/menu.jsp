@@ -37,6 +37,7 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
+			<acme:menu-suboption code="master.menu.administrator.recommendation" action="/administrator/recommendation/perform"/>
 			<acme:menu-separator/>
 		</acme:menu-option>
 

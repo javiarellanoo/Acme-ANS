@@ -20,6 +20,9 @@ public interface LegRepository extends AbstractRepository {
 	@Query("select l.destinationAirport.city from Leg l where l.flight.id = :flightId and l.scheduledArrival >= all (select k.scheduledArrival from Leg k where k.flight.id = :flightId)")
 	List<String> findDestinationCity(Integer flightId, PageRequest pageRequest);
 
+	@Query("select l.destinationAirport.country from Leg l where l.flight.id = :flightId and l.scheduledArrival >= all (select k.scheduledArrival from Leg k where k.flight.id = :flightId)")
+	List<String> findDestinationCountry(Integer flightId, PageRequest pageRequest);
+
 	@Query("select l.scheduledDeparture from Leg l where l.flight.id = :flightId and l.scheduledDeparture <= all (select k.scheduledDeparture from Leg k where k.flight.id = :flightId)")
 	List<Date> findDepartureTime(Integer flightId, PageRequest pageRequest);
 

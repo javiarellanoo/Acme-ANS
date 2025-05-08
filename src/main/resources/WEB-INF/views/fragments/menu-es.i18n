@@ -86,9 +86,9 @@ master.menu.customer = Área del cliente
 master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimiento
 master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados
 
-# Customer > Recommendations
-customer.recommendation.list.title=Recomendaciones para %s
-customer.recommendation.list.noRecommendations=No se encontraron recomendaciones para la ciudad \'%s\'. Esto puede ser porque es tu ciudad de origen o no hay datos de viajes recientes.
+# Customer > Recomendación
+customer.recommendation.list.title=Recomendación para %s
+customer.recommendation.list.noRecommendation=No se encontró recomendación para la ciudad '%s'. Esto puede ser porque es tu ciudad de origen o no hay datos de viajes recientes.
 customer.recommendation.label.name=Nombre
 customer.recommendation.label.address=Dirección
 customer.recommendation.label.categories=Categorías
