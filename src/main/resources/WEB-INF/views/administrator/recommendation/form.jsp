@@ -17,10 +17,12 @@
 
 <acme:form>
 	<acme:input-textbox code="administrator.recommendation.form.label.name" path="name"/>
+    <acme:input-textbox code="administrator.recommendation.form.label.country" path="country"/>
 	<acme:input-textbox code="administrator.recommendation.form.label.city" path="city"/>
-	<acme:input-textbox code="administrator.recommendation.form.label.wikidata" path="wikidata"/>
-	<acme:input-url code="administrator.recommendation.form.label.wikipedia" path="wikipedia"/>
-	<acme:input-url code="administrator.recommendation.form.label.website" path="website"/>
+	<acme:input-textbox code="administrator.recommendation.form.label.state" path="state"/>
+	<acme:input-textbox code="administrator.recommendation.form.label.formatted" path="formatted"/>
+	<acme:input-textbox code="administrator.recommendation.form.label.openingHours" path="openingHours"/>
+	<acme:input-textbox code="administrator.recommendation.form.label.url" path="url"/>
 
 	<acme:submit code="administrator.recommendation.form.button.perform" action="/administrator/recommendation/perform"/>
 </acme:form>

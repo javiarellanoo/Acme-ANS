@@ -1,3 +1,4 @@
+
 package acme.entities.recommendation;
 
 import javax.persistence.Entity;
@@ -16,43 +17,43 @@ import lombok.Setter;
 public class Recommendation extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String name;
+	private String				name;
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String city;
+	private String				city;
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String state;
+	private String				state;
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String formatted;
+	private String				formatted;
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String openingHours;
+	private String				openingHours;
 
 	@Mandatory
 	@ValidUrl
 	@Automapped
-	private String url;
+	private String				url;
 
 	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
-	private String country;
+	private String				country;
 
 }

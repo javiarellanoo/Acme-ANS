@@ -27,6 +27,7 @@ master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
+master.menu.administrator.recommendation = List recommendations
 
 # master.menu.provider ########################################################
 
@@ -84,11 +85,8 @@ master.menu.technician.maintenance-record.list.mine = My maintenance records
 master.menu.technician.maintenance-record.list.published = Published maintenance records
 
 # Customer > Recommendation
-customer.recommendation.list.title=Recommendation for %s
-customer.recommendation.list.noRecommendation=No recommendation found for city '%s'. This might be because it's your home city or no recent travel data is available.
-customer.recommendation.label.name=Name
-customer.recommendation.label.address=Address
-customer.recommendation.label.categories=Categories
+customer.recommendation.list.title=Recommendations
+master.menu.customer.recommendation=List Recommendations
 
 # master.menu.flight-crew-member #################################################
 master.menu.flight-crew-member = Flight Crew Member

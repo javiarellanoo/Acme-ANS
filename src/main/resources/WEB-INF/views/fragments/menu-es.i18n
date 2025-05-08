@@ -26,6 +26,7 @@ master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
+master.menu.administrator.recommendation = Ver recomendaciones
 
 # master.menu.provider ########################################################
 
@@ -87,11 +88,8 @@ master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimi
 master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados
 
 # Customer > Recomendación
-customer.recommendation.list.title=Recomendación para %s
-customer.recommendation.list.noRecommendation=No se encontró recomendación para la ciudad '%s'. Esto puede ser porque es tu ciudad de origen o no hay datos de viajes recientes.
-customer.recommendation.label.name=Nombre
-customer.recommendation.label.address=Dirección
-customer.recommendation.label.categories=Categorías
+customer.recommendation.list.title=Recomendaciones
+master.menu.customer.recommendation=Ver recomendaciones
 # master.menu.flight-crew-member #################################################
 master.menu.flight-crew-member = Miembro de tripulación de vuelo
 master.menu.flight-crew-member.flight-assignment.list.completeLeg = Asignaciones con segmento completado

@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.administrator.recommendation;
 
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 	@Autowired
 	private AdministratorRecommendationRepository repository;
 
+
 	@Override
 	public void authorise() {
 		super.getResponse().setAuthorised(true);
@@ -35,17 +37,14 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 	public void load() {
 		Collection<Booking> bookings = this.repository.findDistinctCities();
 		Collection<Recommendation> existingRecs = this.repository.findAllRecommendations();
-		Set<String> recommendedCityCountry = existingRecs.stream().map(r -> r.getCity() + "," + r.getCountry())
-				.collect(Collectors.toSet());
+		Set<String> recommendedCityCountry = existingRecs.stream().map(r -> r.getCity() + "," + r.getCountry()).collect(Collectors.toSet());
 
 		for (Booking booking : bookings) {
 			String city = booking.getFlight().getDestinationCity();
 			if (city.equals("Not defined yet"))
 				continue;
 
-			String country = booking.getFlight().getDestinationCountry() != null
-					? booking.getFlight().getDestinationCountry()
-					: "";
+			String country = booking.getFlight().getDestinationCountry() != null ? booking.getFlight().getDestinationCountry() : "";
 			String key = city + "," + country;
 			if (!recommendedCityCountry.contains(key)) {
 				Collection<Recommendation> recommendations = this.fetchAndSaveRecommendations(city, country);
@@ -57,8 +56,7 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 	private Collection<Recommendation> fetchAndSaveRecommendations(final String city, final String country) {
 		String apiKey = "1ebf282bc72a47c2a584be663584b6c3";
 		String location = city + (country != null && !country.isEmpty() ? ", " + country : "");
-		String geocodeUrl = String.format("https://api.geoapify.com/v1/geocode/search?text=%s&apiKey=%s", location,
-				apiKey);
+		String geocodeUrl = String.format("https://api.geoapify.com/v1/geocode/search?text=%s&apiKey=%s", location, apiKey);
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> geocodeResponse = restTemplate.getForEntity(geocodeUrl, String.class);
 
@@ -75,9 +73,7 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 			String lat = coordinates.get(1).asText();
 
 			int radius = 5000;
-			String placesUrl = String.format(
-					"https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:%s,%s,%d&limit=5&apiKey=%s",
-					lon, lat, radius, apiKey);
+			String placesUrl = String.format("https://api.geoapify.com/v2/places?categories=tourism.sights&filter=circle:%s,%s,%d&limit=5&apiKey=%s", lon, lat, radius, apiKey);
 
 			ResponseEntity<String> placesResponse = restTemplate.getForEntity(placesUrl, String.class);
 			JsonNode placesRootNode = objectMapper.readTree(placesResponse.getBody());
@@ -87,18 +83,34 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 			for (int i = 0; i < placesFeatures.size(); i++) {
 				JsonNode feature = placesFeatures.get(i);
 				Recommendation rec = new Recommendation();
-				rec.setName(feature.path("properties").path("name").asText(""));
+				rec.setName(feature.path("properties").path("name").asText("Not available"));
 				String state = feature.path("properties").path("state").asText("");
-				if (state.isEmpty()) {
+				if (state.isEmpty())
 					state = feature.path("properties").path("suburb").asText("");
-				}
+				if (state.isEmpty())
+					state = "Not available";
 				rec.setState(state);
-				rec.setCity(city);
-				rec.setCountry(country);
-				rec.setOpeningHours(feature.path("properties").path("opening_hours").asText(""));
-				rec.setFormatted(feature.path("properties").path("formatted").asText(""));
-				rec.setUrl(feature.path("properties").path("url").asText(""));
-
+				rec.setCity(city != null && !city.isEmpty() ? city : "Not available");
+				rec.setCountry(country != null && !country.isEmpty() ? country : "Not available");
+				rec.setOpeningHours(feature.path("properties").path("opening_hours").asText("Not available"));
+				rec.setFormatted(feature.path("properties").path("formatted").asText("Not available"));
+				String url = feature.path("properties").path("website").asText("");
+				if (url.isEmpty()) {
+					url = feature.path("properties").path("datasource").path("raw").path("website").asText("");
+				}
+				if (url.isEmpty()) {
+					url = feature.path("properties").path("datasource").path("raw").path("url").asText("");
+				}
+				if (url.isEmpty()) {
+					url = feature.path("properties").path("datasource").path("url").asText("");
+				}
+				if (url.isEmpty()) {
+					url = feature.path("properties").path("url").asText("");
+				}
+				if (url.isEmpty()) {
+					url = "not available";
+				}
+				rec.setUrl(url);
 				recs[i] = rec;
 				this.repository.save(rec);
 			}
@@ -110,8 +122,7 @@ public class AdministratorRecommendationPerformService extends AbstractGuiServic
 
 	@Override
 	public void unbind(final Recommendation recommendation) {
-		Dataset dataset = super.unbindObject(recommendation, "name", "state", "city", "country", "openingHours",
-				"formatted", "url");
+		Dataset dataset = super.unbindObject(recommendation, "name", "state", "city", "country", "openingHours", "formatted", "url");
 		super.getResponse().addData(dataset);
 	}
 }
