@@ -1,9 +1,10 @@
-authenticated.manager.form.title = Datos del manager
+authenticated.technician.form.title = Datos del técnico
 
-authenticated.manager.form.label.identifier = Identificador: 
-authenticated.manager.form.label.yearsOfExperience = Años de Experiencia:
-authenticated.manager.form.label.dateOfBirth = Fecha de Nacimiento:
-authenticated.manager.form.label.profilePicture = Foto de perfil:
+authenticated.technician.form.label.licenseNumber = Número de Licencia
+authenticated.technician.form.label.phoneNumber = Número de Teléfono
+authenticated.technician.form.label.specialisation = Especialización
+authenticated.technician.form.label.annualHealthTest = Examen de Salud Anual
+authenticated.technician.form.label.experienceYears = Años de Experiencia
+authenticated.technician.form.label.certifications = Certificaciones
 
-authenticated.manager.form.button.create = Registrarse
-authenticated.manager.form.button.update = Actualizar
+authenticated.technician.form.button.create = Registrarse

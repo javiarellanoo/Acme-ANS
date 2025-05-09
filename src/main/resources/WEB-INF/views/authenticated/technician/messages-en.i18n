@@ -7,5 +7,4 @@ authenticated.technician.form.label.annualHealthTest = Annual Health Test
 authenticated.technician.form.label.experienceYears = Years of Experience
 authenticated.technician.form.label.certifications = Certifications
 
-
 authenticated.technician.form.button.create = Register
