@@ -39,18 +39,27 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		int memberId;
 		int airlineId;
 
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-		legStatus = legId == 0 || leg != null;
-		fcmId = super.getRequest().getData("flightCrewMember", int.class);
-		fcm = this.repository.findCrewMemberById(fcmId);
-		memberStatus = fcmId == 0 || fcm != null;
-
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentById(assignmentId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && legStatus && memberStatus;
+
+		if (assignment == null)
+			status = false;
+		else if (!assignment.getDraftMode() || assignment.getFlightCrewMember().getAirline().getId() != airlineId)
+			status = false;
+		else if (super.getRequest().getMethod().equals("GET"))
+			status = true;
+		else {
+			legId = super.getRequest().getData("leg", int.class);
+			leg = this.repository.findLegById(legId);
+			legStatus = legId == 0 || leg != null;
+			fcmId = super.getRequest().getData("flightCrewMember", int.class);
+			fcm = this.repository.findCrewMemberById(fcmId);
+			memberStatus = fcmId == 0 || fcm != null;
+
+			status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && legStatus && memberStatus;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
