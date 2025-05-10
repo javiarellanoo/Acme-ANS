@@ -27,16 +27,24 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		boolean status;
 		int legId;
 		Leg leg;
+		Collection<Leg> validLegs;
+		int fcmId;
+		FlightCrewMember fcm;
+		Collection<FlightCrewMember> validMembers;
 		int memberId;
-		FlightCrewMember member;
+		int airlineId;
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
+			memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
+			validLegs = this.repository.findLegsByAirlineId(airlineId);
+			validMembers = this.repository.findCrewMembersByAirlineId(airlineId);
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			memberId = super.getRequest().getData("flightCrewMember", int.class);
-			member = this.repository.findCrewMemberById(memberId);
-			status = (legId == 0 || leg != null) && (memberId == 0 || member != null);
+			fcmId = super.getRequest().getData("flightCrewMember", int.class);
+			fcm = this.repository.findCrewMemberById(fcmId);
+			status = (legId == 0 || leg != null && validLegs.contains(leg)) && (fcmId == 0 || fcm != null && validMembers.contains(fcm));
 		}
 		super.getResponse().setAuthorised(status);
 	}

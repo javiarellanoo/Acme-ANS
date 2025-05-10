@@ -34,8 +34,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		FlightAssignment assignment;
 		int legId;
 		Leg leg;
+		Collection<Leg> validLegs;
 		int fcmId;
 		FlightCrewMember fcm;
+		Collection<FlightCrewMember> validMembers;
 		int memberId;
 		int airlineId;
 
@@ -51,12 +53,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
+			validLegs = this.repository.findLegsByAirlineId(airlineId);
+			validMembers = this.repository.findCrewMembersByAirlineId(airlineId);
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			legStatus = legId == 0 || leg != null;
+			legStatus = legId == 0 || leg != null && validLegs.contains(leg);
 			fcmId = super.getRequest().getData("flightCrewMember", int.class);
 			fcm = this.repository.findCrewMemberById(fcmId);
-			memberStatus = fcmId == 0 || fcm != null;
+			memberStatus = fcmId == 0 || fcm != null && validMembers.contains(fcm);
 
 			status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && legStatus && memberStatus;
 		}
