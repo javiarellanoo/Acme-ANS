@@ -100,12 +100,12 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 
-		dataset = super.unbindObject(assignment, "lastUpdate", "remarks", "duty", "status", "draftMode", "leg", "flightCrewMember");
+		dataset = super.unbindObject(assignment, "lastUpdate", "remarks", "duty", "status", "draftMode");
 		dataset.put("duties", dutyChoices);
 		dataset.put("statuses", statusChoices);
-		dataset.put("l", legChoices.getSelected().getKey());
+		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("fcm", memberChoices.getSelected().getKey());
+		dataset.put("flightCrewMember", memberChoices.getSelected().getKey());
 		dataset.put("flightCrewMembers", memberChoices);
 
 		super.getResponse().addData(dataset);
