@@ -39,3 +39,6 @@ acme.validation.flight-assignment.null-leg-or-flight.message = Ni el segmento ni
 acme.validation.activity-log.not-published-assignment.message = Un registro de actividad no puede ser publicado hasta que la asignación asociada no sea publicada.
 acme.validation.flightNumber.format = Este número de vuelo no corresponde con el formato esperado. Por favor, introduzca el código IATA de la aerolínea junto a 4 dígitos.
 acme.validation.leg.scheduledDeparture = La salida esperada de este vuelo debe ser en el futuro
+acme.validation.airline.iataCode = El código IATA debe estar formado por tres letras mayúsculas
+acme.validation.manager.identifier = El identificador debe comenzar con sus iniciales acompañadas de 6 dígitos.
+acme.validation.manager.yearsOfExperience.message = Los años de experience deben ser menores a la edad del manager.
