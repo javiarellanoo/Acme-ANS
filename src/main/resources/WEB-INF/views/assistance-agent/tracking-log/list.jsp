@@ -19,7 +19,8 @@
 	<acme:list-column code="assistance-agent.tracking-log.list.label.claim" path="claim.id" width="20%"/>
 	<acme:list-column code="assistance-agent.tracking-log.list.label.resolutionPercentage" path="resolutionPercentage" width="20%"/>
 	<acme:list-column code="assistance-agent.tracking-log.list.label.status" path="status" width="30%"/>
-	<acme:list-column code="assistance-agent.tracking-log.list.label.lastUpdateMoment" path="lastUpdateMoment" width="20%"/>
+	<acme:list-column code="assistance-agent.tracking-log.list.label.lastUpdateMoment" path="lastUpdateMoment" width="10%"/>
+	<acme:list-column code="assistance-agent.tracking-log.list.label.creationMoment" path="creationMoment" width="10%"/>
 	<acme:list-column code="assistance-agent.tracking-log.list.label.draftMode" path="draftMode" width="10%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>

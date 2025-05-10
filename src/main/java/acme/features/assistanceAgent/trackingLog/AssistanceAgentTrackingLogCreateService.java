@@ -65,6 +65,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		tLog.setClaim(claim);
 		tLog.setDraftMode(true);
 		tLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		tLog.setCreationMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		claim = this.repository.findClaimById(masterId);
 		statusChoices = SelectChoices.from(TrackingLogStatus.class, tLog.getStatus());
 
-		dataset = super.unbindObject(tLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", //
+		dataset = super.unbindObject(tLog, "lastUpdateMoment", "creationMoment", "stepUndergoing", "resolutionPercentage", //
 			"resolution", "draftMode");
 		dataset.put("claim", claim);
 		dataset.put("statuses", statusChoices);

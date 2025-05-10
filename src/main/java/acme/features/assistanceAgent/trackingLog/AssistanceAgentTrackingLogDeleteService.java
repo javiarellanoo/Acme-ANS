@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
@@ -76,6 +77,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void perform(final TrackingLog tLog) {
+		tLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 		this.repository.delete(tLog);
 	}
 
@@ -86,7 +88,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 		statusChoices = SelectChoices.from(TrackingLogStatus.class, tLog.getStatus());
 
-		dataset = super.unbindObject(tLog, "lastUpdateMoment", "stepUndergoing", "resolutionPercentage", //
+		dataset = super.unbindObject(tLog, "lastUpdateMoment", "creationMoment", "stepUndergoing", "resolutionPercentage", //
 			"resolution", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());

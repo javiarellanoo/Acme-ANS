@@ -4,6 +4,7 @@
 
 <acme:form>
     <acme:input-moment code="assistance-agent.tracking-log.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
+    <acme:input-moment code="assistance-agent.tracking-log.form.label.creationMoment" path="creationMoment" readonly="true"/>
     <acme:input-double code="assistance-agent.tracking-log.form.label.resolutionPercentage" path="resolutionPercentage"/>
     <acme:input-textarea code="assistance-agent.tracking-log.form.label.resolution" path="resolution"/>
     <acme:input-textbox code="assistance-agent.tracking-log.form.label.stepUndergoing" path="stepUndergoing"/>
