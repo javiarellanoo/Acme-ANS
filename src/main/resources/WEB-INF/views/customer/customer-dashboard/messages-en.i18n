@@ -1,0 +1,21 @@
+# --- Customer Dashboard ---
+customer.customer-dashboard.form.title = Customer Dashboard
+customer.dashboard.label.lastFiveDestinations = Last 5 Destinations
+customer.dashboard.label.moneySpentLastYear = Money Spent In The Last Year
+customer.dashboard.label.travelClassGrouped = Bookings by Travel Class
+customer.dashboard.label.travelClassGrouped.class = Class
+customer.dashboard.label.travelClassGrouped.count = Count
+customer.dashboard.label.bookingCostStats = Booking Cost Statistics (Last 5 Years)
+customer.dashboard.label.averageBookingCostLastFiveYears = Average Cost
+customer.dashboard.label.minBookingCostLastFiveYears = Minimum Cost
+customer.dashboard.label.maxBookingCostLastFiveYears = Maximum Cost
+customer.dashboard.label.countBookingCostLastFiveYears = Number of Bookings
+customer.dashboard.label.stdDevBookingCostLastFiveYears = Standard Deviation (Cost)
+customer.dashboard.label.passengerStats = Passenger Statistics
+customer.dashboard.label.countPassengers = Total Passengers
+customer.dashboard.label.averagePassengers = Average Passengers per Booking
+customer.dashboard.label.minPassengers = Minimum Passengers per Booking
+customer.dashboard.label.maxPassengers = Maximum Passengers per Booking
+customer.dashboard.label.stdDevPassengers = Standard Deviation (Passengers)
+customer.dashboard.label.allCurrencies = All Currencies
+customer.dashboard.label.selectedCurrency = Select a currency
