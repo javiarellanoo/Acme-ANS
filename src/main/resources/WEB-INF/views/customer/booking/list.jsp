@@ -3,10 +3,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-    <acme:list-column code="customer.booking.list.label.locatorCode" path="locatorCode" width="20%"/>
-    <acme:list-column code="customer.booking.list.label.purchaseMoment" path="purchaseMoment" width="25%"/>
-    <acme:list-column code="customer.booking.list.label.price" path="price" width="20%"/>
-    <acme:list-column code="customer.booking.list.label.lastCardNibble" path="lastCardNibble" width="15%"/>
+    <acme:list-column code="customer.booking.list.label.locatorCode" path="locatorCode"/>
+    <acme:list-column code="customer.booking.list.label.price" path="price"/>
+    <acme:list-column code="customer.booking.list.label.flight" path="flight"/>
+    <acme:list-column code="customer.booking.list.label.draftMode" path="draftMode"/>
     <acme:list-payload path="payload"/>
 </acme:list>
 
