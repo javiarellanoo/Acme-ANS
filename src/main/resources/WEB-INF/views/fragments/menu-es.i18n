@@ -73,6 +73,8 @@ master.menu.flight.list = Vuelos
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente
 master.menu.customer.passenger = Mis Pasajeros
+master.menu.customer.dashboard = Panel de control
+
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = Mis reservas
 master.menu.customer = Área del cliente
