@@ -1,0 +1,19 @@
+
+manager.manager-dashboard.form.title = Panel de control de Manager
+manager.dashboard.label.managerRanking = Manager Ranking
+manager.dashboard.label.yearsToRetire = Años para la jubilación
+manager.dashboard.label.onTimeRatio = Ratio de vuelos puntuales
+manager.dashboard.label.delayedRatio = Ratio de vuelos retrasados
+manager.dashboard.label.mostPopularAirport = Aeropuerto más Popular
+manager.dashboard.label.lessPopularAirport = Aeropuerto menos Popular
+manager.dashboard.label.airport = Aeropuerto
+manager.dashboard.label.count = Vuelos
+manager.dashboard.label.numberOfLegsPerStatus = Número de segmentos por estado
+manager.dashboard.label.status = Estado
+manager.dashboard.label.selectedCurrency = Selecciona una moneda
+manager.dashboard.label.allCurrencies = Todas las monedas
+manager.dashboard.label.flightCostStats = Estadísticas sobre el coste de los vuelos
+manager.dashboard.label.averageCostOfFlights = Coste medio
+manager.dashboard.label.minimumCostOfFlights = Coste mínimo
+manager.dashboard.label.maximumCostOfFlights = Coste máximo
+manager.dashboard.label.stdDevCostOfFlights = Desviación típica (Coste)

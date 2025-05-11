@@ -1,0 +1,19 @@
+# --- Manager Dashboard ---
+manager.manager-dashboard.form.title = Manager Dashboard
+manager.dashboard.label.managerRanking = Manager Ranking
+manager.dashboard.label.yearsToRetire = Years to Retire
+manager.dashboard.label.onTimeRatio = On-Time Ratio
+manager.dashboard.label.delayedRatio = Delayed Ratio
+manager.dashboard.label.mostPopularAirport = Most Popular Airport
+manager.dashboard.label.lessPopularAirport = Less Popular Airport
+manager.dashboard.label.airport = Airport
+manager.dashboard.label.count = Count
+manager.dashboard.label.numberOfLegsPerStatus = Number of Legs by Status
+manager.dashboard.label.status = Status
+manager.dashboard.label.selectedCurrency = Select a Currency
+manager.dashboard.label.allCurrencies = All Currencies
+manager.dashboard.label.flightCostStats = Flight Cost Statistics
+manager.dashboard.label.averageCostOfFlights = Average Cost
+manager.dashboard.label.minimumCostOfFlights = Minimum Cost
+manager.dashboard.label.maximumCostOfFlights = Maximum Cost
+manager.dashboard.label.stdDevCostOfFlights = Standard Deviation (Cost)
