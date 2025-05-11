@@ -20,7 +20,10 @@ public class AuthenticatedCustomerController extends AbstractGuiController<Authe
 
     @PostConstruct
     protected void initialise() {
+        // Task 118
         super.addBasicCommand("create", this.createService);
+        
+        // Task 119
         super.addBasicCommand("update", this.updateService);
     }
 }
