@@ -1,3 +1,4 @@
+
 package acme.features.customer.bookingRecord;
 
 import java.util.Collection;
@@ -21,6 +22,7 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 
 	// AbstractGuiService interface -------------------------------------------
 
+
 	@Override
 	public void authorise() {
 		boolean status;
@@ -28,13 +30,12 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 		Customer customer;
 
 		Integer bookingId = null;
-		if (super.getRequest().hasData("bookingId", int.class)) {
+		if (super.getRequest().hasData("bookingId", int.class))
 			bookingId = super.getRequest().getData("bookingId", int.class);
-		} else if (super.getRequest().hasData("id", int.class)) {
+		else if (super.getRequest().hasData("id", int.class))
 			bookingId = super.getRequest().getData("id", int.class);
-		}
 
-		booking = (bookingId != null) ? this.repository.findBookingById(bookingId) : null;
+		booking = bookingId != null ? this.repository.findBookingById(bookingId) : null;
 		customer = booking == null ? null : booking.getCustomer();
 
 		status = booking != null && customer != null && super.getRequest().getPrincipal().hasRealm(customer);
@@ -48,11 +49,10 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 		Integer bookingId = null;
 		boolean isDraftMode;
 
-		if (super.getRequest().hasData("bookingId", int.class)) {
+		if (super.getRequest().hasData("bookingId", int.class))
 			bookingId = super.getRequest().getData("bookingId", int.class);
-		} else if (super.getRequest().hasData("id", int.class)) {
+		else if (super.getRequest().hasData("id", int.class))
 			bookingId = super.getRequest().getData("id", int.class);
-		}
 
 		isDraftMode = this.repository.findBookingById(bookingId).getDraftMode();
 		bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
