@@ -1,3 +1,4 @@
+
 package acme.features.customer.booking;
 
 import java.util.Collection;
@@ -24,6 +25,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	// AbstractGuiService interface -------------------------------------------
 
+
 	@Override
 	public void authorise() {
 		boolean status;
@@ -38,19 +40,18 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		booking = this.repository.findBookingkById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (booking == null) {
+		if (booking == null)
 			status = false;
-		} else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer)) {
+		else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer))
 			status = false;
-		} else if (super.getRequest().getMethod().equals("GET")) {
+		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-		} else {
+		else {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || (flight != null && !flight.getDraftMode());
+			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
 
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer)
-					&& flightStatus;
+			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -90,7 +91,9 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	@Override
 	public void perform(final Booking booking) {
 		booking.setDraftMode(false);
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(booking);
+
 	}
 
 	@Override
@@ -103,8 +106,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream()
-				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
 

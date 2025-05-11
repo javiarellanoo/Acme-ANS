@@ -1,0 +1,41 @@
+administrator.booking.form.title = Formulario de reserva
+administrator.booking.list.title = Listado de reservas
+
+administrator.booking.form.label.locatorCode = Localizador:
+administrator.booking.form.label.price = Precio:
+administrator.booking.form.label.travelClass = Clase de viaje:
+administrator.booking.form.label.purchaseMoment = Momento de compra:
+administrator.booking.form.label.lastCardNibble = Últimos dígitos de la tarjeta:
+administrator.booking.form.label.customer = Cliente:
+administrator.booking.form.label.flight = Vuelo:
+administrator.booking.form.label.draftMode = Borrador
+administrator.booking.form.label.passengers = Pasajeros
+administrator.booking.form.label.passengerName = Nombre
+administrator.booking.form.label.passengerPassport = Pasaporte
+
+administrator.booking.list.label.locatorCode = Localizador
+administrator.booking.list.label.price = Precio
+administrator.booking.list.label.travelClass = Clase de viaje
+administrator.booking.list.label.flight = Vuelo
+administrator.booking.list.label.customer = Cliente
+administrator.booking.form.title = Booking form
+administrator.booking.list.title = Listing of bookings
+
+administrator.booking.form.label.locatorCode = Locator code:
+administrator.booking.form.label.price = Price:
+administrator.booking.form.label.travelClass = Travel class:
+administrator.booking.form.label.purchaseMoment = Purchase moment:
+administrator.booking.form.label.lastCardNibble = Last card nibble:
+administrator.booking.form.label.customer = Customer:
+administrator.booking.form.label.flight = Flight:
+administrator.booking.form.label.draftMode = Draft mode
+administrator.booking.form.label.passengers = Passengers
+administrator.booking.form.label.passengerName = Name
+administrator.booking.form.label.passengerPassport = Passport
+
+administrator.booking.list.label.locatorCode = Locator code
+administrator.booking.list.label.price = Price
+administrator.booking.list.label.travelClass = Travel class
+administrator.booking.list.label.flight = Flight
+administrator.booking.list.label.customer = Customer
+administrator.booking.form.button.passengers = Listar pasajeros

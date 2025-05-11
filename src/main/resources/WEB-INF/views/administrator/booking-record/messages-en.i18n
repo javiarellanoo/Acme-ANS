@@ -1,0 +1,5 @@
+administrator.booking-record.list.label.passenger.fullName = Passenger full name
+administrator.booking-record.list.label.passenger.passportNumber = Passenger passport number
+administrator.booking-record.form.label.passenger = Passenger
+administrator.booking-record.form.title = Passenger details
+administrator.booking-record.list.title = Passengers
