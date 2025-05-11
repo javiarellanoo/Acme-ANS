@@ -1,6 +1,6 @@
 
 manager.manager-dashboard.form.title = Panel de control de Manager
-manager.dashboard.label.managerRanking = Manager Ranking
+manager.dashboard.label.managerRanking = Posición en el ranking
 manager.dashboard.label.yearsToRetire = Años para la jubilación
 manager.dashboard.label.onTimeRatio = Ratio de vuelos puntuales
 manager.dashboard.label.delayedRatio = Ratio de vuelos retrasados
