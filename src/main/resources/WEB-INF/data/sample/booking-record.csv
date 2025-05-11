@@ -1,28 +1,14 @@
 key,key:passenger,key:booking
-booking-record-01,passenger-01,booking-01
+booking-record-01,passenger-45,booking-01
 # passenger variants
-booking-record-02,passenger-02,booking-01
-booking-record-03,passenger-02,booking-01
-booking-record-04,passenger-03,booking-01
-booking-record-05,passenger-04,booking-01
-booking-record-06,passenger-05,booking-01
+booking-record-02,passenger-45,booking-01
+booking-record-03,passenger-46,booking-01
+booking-record-04,passenger-47,booking-01
+booking-record-05,passenger-48,booking-01
+booking-record-06,passenger-49,booking-01
 # booking variants
-booking-record-08,passenger-01,booking-02
-booking-record-09,passenger-01,booking-03
-booking-record-10,passenger-01,booking-04
-booking-record-11,passenger-01,booking-05
-booking-record-12,passenger-01,booking-06
-
-# Nuevos booking records para cada booking con draft-mode FALSE y passenger con draft-mode FALSE
-booking-record-13,passenger-45,booking-41
-booking-record-14,passenger-46,booking-42
-booking-record-15,passenger-47,booking-43
-booking-record-16,passenger-48,booking-44
-booking-record-17,passenger-49,booking-45
-booking-record-18,passenger-50,booking-46
-booking-record-19,passenger-45,booking-47
-booking-record-20,passenger-46,booking-48
-booking-record-21,passenger-47,booking-49
-booking-record-22,passenger-48,booking-50
-booking-record-23,passenger-49,booking-51
-booking-record-24,passenger-50,booking-52
+booking-record-08,passenger-45,booking-02
+booking-record-09,passenger-45,booking-03
+booking-record-10,passenger-45,booking-04
+booking-record-11,passenger-45,booking-05
+booking-record-12,passenger-45,booking-06
