@@ -19,6 +19,7 @@ public class CustomerDashboardController extends AbstractGuiController<Customer,
 
 	@PostConstruct
 	protected void initialise() {
+		// Task125
 		super.addBasicCommand("show", this.showService);
 	}
 }
