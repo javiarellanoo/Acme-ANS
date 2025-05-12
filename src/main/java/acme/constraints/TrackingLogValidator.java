@@ -86,29 +86,24 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			boolean notUpdatedBeforeCreation = MomentHelper.isAfterOrEqual(trackingLog.getLastUpdateMoment(), trackingLog.getCreationMoment());
 			super.state(context, notUpdatedBeforeCreation, "lastUpdateMoment", "acme.validation.trackingLog.updateMoment");
 
-			// Number of completed tracking logs
-			List<TrackingLog> tLogs = this.repository.findAllByClaimId(trackingLog.getClaim().getId());
-
-			if (!tLogs.contains(trackingLog))
-				tLogs.add(trackingLog);
-
-			boolean twoCompleted = tLogs.stream().filter(t -> t.getResolutionPercentage() == 100.00).count() <= 2;
-			super.state(context, twoCompleted, "resolutionPercentage", "acme.validation.trackingLog.numberCompleted");
-
 			// Incrementing resolution percentage check
 			boolean greaterPercentage = true;
 
-			tLogs.remove(trackingLog);
+			List<TrackingLog> tLogs = this.repository.findAllByClaimId(trackingLog.getClaim().getId());
+			if (tLogs.contains(trackingLog))
+				tLogs.remove(trackingLog);
+
 			List<TrackingLog> beforeActual = tLogs.stream().filter(t -> MomentHelper.isBeforeOrEqual(t.getCreationMoment(), trackingLog.getCreationMoment())).collect(Collectors.toList());
 
 			if (!beforeActual.isEmpty()) {
-				beforeActual.sort(Comparator.comparing(TrackingLog::getCreationMoment).reversed());
+				beforeActual.sort(Comparator.comparing(TrackingLog::getCreationMoment).reversed() //
+					.thenComparing(TrackingLog::getResolutionPercentage, Comparator.reverseOrder()));
 				TrackingLog previous = beforeActual.get(0);
-
-				if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION))
-					greaterPercentage = trackingLog.getResolutionPercentage() == previous.getResolutionPercentage();
-				else
-					greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+				if (!(trackingLog.getResolutionPercentage() == 100.00 && previous.getResolutionPercentage() == 100.00))
+					if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION))
+						greaterPercentage = trackingLog.getResolutionPercentage().equals(previous.getResolutionPercentage());
+					else
+						greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
 			}
 
 			super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
