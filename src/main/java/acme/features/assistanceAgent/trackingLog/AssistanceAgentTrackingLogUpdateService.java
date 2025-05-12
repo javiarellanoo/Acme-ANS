@@ -28,9 +28,9 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		int tLogId;
 		int agentId;
 		int claimId;
+		int masterId;
 		TrackingLog tLog;
 		AssistanceAgent agent;
-		Claim claim;
 
 		tLogId = super.getRequest().getData("id", int.class);
 		tLog = this.repository.findTrackingLogById(tLogId);
@@ -39,10 +39,10 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		agent = this.repository.findAssistanceAgentById(agentId);
 
 		claimId = super.getRequest().getData("claim", int.class);
-		claim = this.repository.findClaimById(claimId);
+		masterId = super.getRequest().getData("masterId", int.class);
 
 		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null //
-			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claim != null && claim.getDraftMode();
+			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claimId == masterId;
 
 		super.getResponse().setAuthorised(status);
 	}
