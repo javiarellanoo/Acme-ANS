@@ -14,12 +14,16 @@ import acme.realms.Technician;
 public class AuthenticatedTechnicianController extends AbstractGuiController<Authenticated, Technician> {
 
 	@Autowired
-	private AuthenticatedTechnicianCreateService createService;
+	private AuthenticatedTechnicianCreateService	createService;
+
+	@Autowired
+	private AuthenticatedTechnicianUpdateService	updateService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 	}
 
 }

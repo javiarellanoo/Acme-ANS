@@ -8,3 +8,5 @@ authenticated.technician.form.label.experienceYears = Años de Experiencia
 authenticated.technician.form.label.certifications = Certificaciones
 
 authenticated.technician.form.button.create = Registrarse
+authenticated.technician.form.button.update = Actualizar
+
