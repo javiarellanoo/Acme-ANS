@@ -56,7 +56,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 			bookingStatus = booking != null && booking.getDraftMode();
 			Date date = flight.getScheduledDeparture();
 
-			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(date, MomentHelper.getCurrentMoment());
+			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -106,7 +106,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

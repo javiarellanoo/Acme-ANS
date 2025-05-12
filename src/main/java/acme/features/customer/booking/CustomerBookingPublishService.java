@@ -2,6 +2,7 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,11 +29,12 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
+		boolean flightStatus;
+		boolean bookingStatus;
 		int bookingId;
 		Booking booking;
 		Customer customer;
-		boolean flightStatus;
 		int flightId;
 		Flight flight;
 
@@ -50,8 +52,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
 			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
+			bookingStatus = booking != null && booking.getDraftMode();
+			Date date = flight.getScheduledDeparture();
 
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -106,7 +110,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
 
