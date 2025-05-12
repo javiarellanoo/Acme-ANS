@@ -3,6 +3,7 @@ package acme.features.customer.booking;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,8 +30,9 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		boolean flightStatus;
+		boolean bookingStatus;
 		int bookingId;
 		Booking booking;
 		Customer customer;
@@ -51,8 +53,10 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
 			flightStatus = flightId == 0 || flight != null;
+			bookingStatus = booking != null && booking.getDraftMode();
+			Date date = flight.getScheduledDeparture();
 
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(date, MomentHelper.getCurrentMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
