@@ -51,5 +51,9 @@ passenger-43,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing eli
 passenger-44,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,' or 'A' = 'A ,TRUE
 #Draft mode variants
 passenger-45,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
+passenger-46,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
+passenger-47,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
+passenger-48,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
+passenger-49,customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
 # Customer variants
-passenger-46,customer-02,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE
+passenger-50,customer-02,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",acme@lorem-ipsum.org,ABCDF6,2012/07/02 00:00,Lorem ipsum dolor sit amet,FALSE

@@ -38,7 +38,7 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
 
-			status = leg != null && !leg.getDraftMode() || legId == 0;
+			status = legId == 0 || leg != null && !leg.getDraftMode();
 		}
 		super.getResponse().setAuthorised(status);
 	}

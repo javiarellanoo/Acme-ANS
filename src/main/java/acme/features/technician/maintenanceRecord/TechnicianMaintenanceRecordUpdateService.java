@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.maintenanceRecords.MaintenanceRecord;
 import acme.entities.maintenanceRecords.MaintenanceRecordStatus;
+import acme.entities.tasks.Task;
 import acme.realms.Technician;
 
 @GuiService
@@ -31,12 +32,21 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		int maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
+		int aircraftId;
+		Aircraft aircraft;
+		boolean aircraftStatus = false;
 
 		maintenanceRecordId = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+		if (super.getRequest().hasData("aircraft", int.class)) {
+			aircraftId = super.getRequest().getData("aircraft", int.class);
+			aircraft = this.repository.findValidAircraftById(aircraftId);
+			aircraftStatus = aircraftId == 0 || aircraft != null;
+		}
+
+		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && aircraftStatus;
 
 		super.getResponse().setAuthorised(status);
 
@@ -55,15 +65,19 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		Technician technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
+		int aircraftId;
+		Aircraft aircraft;
 
-		super.bindObject(maintenanceRecord, "status", "moment", "nextInspectionDate", "estimatedCost", "notes", "aircraft");
-		maintenanceRecord.setTechnician(technician);
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findValidAircraftById(aircraftId);
+
+		super.bindObject(maintenanceRecord, "status", "moment", "nextInspectionDate", "estimatedCost", "notes");
+		maintenanceRecord.setAircraft(aircraft);
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-
+		;
 	}
 
 	@Override
@@ -77,6 +91,11 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		SelectChoices statusChoices;
 		SelectChoices aircraftChoices;
 		Collection<Aircraft> aircrafts;
+		boolean publishable;
+		Collection<Task> tasks;
+
+		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
+		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
@@ -89,6 +108,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		dataset.put("id", maintenanceRecord.getId());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("publishable", publishable);
 
 		super.getResponse().addData(dataset);
 	}
