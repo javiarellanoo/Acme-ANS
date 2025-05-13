@@ -48,12 +48,15 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 				booking = this.repository.findBookingById(bookingId);
 				passenger = this.repository.findPassengerById(passengerId);
 				passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
-
 				boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null && booking.getCustomer().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 
 				boolean validPassenger = passenger != null && passengers != null && passengers.contains(passenger) && !passenger.getDraftMode();
 
-				status = validBooking && validPassenger;
+				if (passengerId == 0)
+					status = validBooking;
+				else
+					status = validBooking && validPassenger;
+
 			} catch (Exception e) {
 				status = false;
 			}
