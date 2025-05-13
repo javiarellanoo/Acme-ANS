@@ -33,10 +33,13 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
-		flight = this.repository.findFlightById(leg.getFlight().getId());
-		manager = flight == null ? null : flight.getManager();
-		status = flight != null && (!flight.getDraftMode() && !leg.getDraftMode() || super.getRequest().getPrincipal().hasRealm(manager));
-
+		if (leg == null)
+			status = false;
+		else {
+			flight = this.repository.findFlightById(leg.getFlight().getId());
+			manager = flight == null ? null : flight.getManager();
+			status = flight != null && (!flight.getDraftMode() && !leg.getDraftMode() || super.getRequest().getPrincipal().hasRealm(manager));
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -60,7 +63,7 @@ public class ManagerLegShowService extends AbstractGuiService<Manager, Leg> {
 		SelectChoices choicesStatus;
 		SelectChoices choicesDepartureAirport;
 		SelectChoices choicesDestinationAirport;
-		aircrafts = this.repository.findAircraftsByAirlineId(leg.getFlight().getAirline().getId());
+		aircrafts = this.repository.findAllAircrafts();
 		airports = this.repository.findAllAirports();
 		choicesAircraft = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 		choicesDepartureAirport = SelectChoices.from(airports, "name", leg.getDepartureAirport());

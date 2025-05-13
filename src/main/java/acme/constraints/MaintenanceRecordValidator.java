@@ -26,7 +26,7 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 
 		if (maintenanceRecord == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		else if (maintenanceRecord.getNextInspectionDate() != null && maintenanceRecord.getMoment() != null) {
 
 			Date moment = maintenanceRecord.getMoment();
 

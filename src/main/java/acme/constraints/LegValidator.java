@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
+import acme.client.helpers.StringHelper;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
@@ -38,33 +39,36 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 		if (leg == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else if (leg.getFlightNumber() != null) {
+		else {
+			if (!StringHelper.isBlank(leg.getFlightNumber())) {
 
-			Leg existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
-			Boolean uniqueFlightNumber = UniquenessHelper.checkUniqueness(existingLeg, leg);
-			super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flightNumberUnique.message");
+				Leg existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
+				Boolean uniqueFlightNumber = UniquenessHelper.checkUniqueness(existingLeg, leg);
+				super.state(context, uniqueFlightNumber, "flightNumber", "acme.validation.leg.flightNumberUnique.message");
 
-			Boolean matches;
-			String airlineCode = leg.getFlight().getAirline().getIataCode();
-			String flightNumber = leg.getFlightNumber();
+				Boolean matches;
+				String airlineCode = leg.getFlight().getAirline().getIataCode();
+				String flightNumber = leg.getFlightNumber();
 
-			matches = flightNumber.trim().startsWith(airlineCode.trim());
-			super.state(context, matches, "flightNumber", "acme.validation.leg.flightNumber.message");
-
+				matches = flightNumber.trim().startsWith(airlineCode.trim());
+				super.state(context, matches, "flightNumber", "acme.validation.leg.flightNumber.message");
+			}
 			Date scheduledDeparture = leg.getScheduledDeparture();
 			Date scheduledArrival = leg.getScheduledArrival();
-			Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
-			Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
-			super.state(context, validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
+			if (scheduledArrival != null && scheduledDeparture != null) {
+				Date minimumArrival = MomentHelper.deltaFromMoment(scheduledDeparture, 1, ChronoUnit.MINUTES);
+				Boolean validArrival = MomentHelper.isAfterOrEqual(scheduledArrival, minimumArrival);
+				super.state(context, validArrival, "scheduledArrival", "acme.validation.leg.scheduledArrival.message");
 
-			if (leg.getAircraft() != null) {
-				Aircraft aircraft = leg.getAircraft();
-				Collection<Leg> legsWithSameAircraft = this.repository.findLegsByAircraftId(aircraft.getId(), leg.getId());
-				boolean validAircraft = true;
-				for (Leg l : legsWithSameAircraft)
-					if (MomentHelper.isBefore(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
-						validAircraft = false;
-				super.state(context, validAircraft, "aircraft", "acme.validation.leg.occupiedAircraft.message");
+				if (leg.getAircraft() != null) {
+					Aircraft aircraft = leg.getAircraft();
+					Collection<Leg> legsWithSameAircraft = this.repository.findLegsByAircraftId(aircraft.getId(), leg.getId());
+					boolean validAircraft = true;
+					for (Leg l : legsWithSameAircraft)
+						if (MomentHelper.isBefore(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfter(leg.getScheduledArrival(), l.getScheduledDeparture()))
+							validAircraft = false;
+					super.state(context, validAircraft, "aircraft", "acme.validation.leg.occupiedAircraft.message");
+				}
 			}
 
 			if (leg.getFlight() != null && leg.getDraftMode() == false) {
