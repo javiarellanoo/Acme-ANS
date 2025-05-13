@@ -52,6 +52,8 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.manager-profile = Perfil de manager
 master.menu.user-account.become-manager = Hazte manager
 master.menu.user-account.become-technician = Hazte técnico
+master.menu.user-account.technician-profile = Perfil de técnico
+
 
 # master.menu.technician ########################################################
 master.menu.technician = Técnico
