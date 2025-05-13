@@ -38,7 +38,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		else {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			status = flight != null && !flight.getDraftMode() && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+			status = flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 			;
 		}
 
@@ -92,7 +92,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

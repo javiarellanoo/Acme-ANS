@@ -51,7 +51,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		else {
 			flightId = super.getRequest().getData("flight", int.class);
 			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
+			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null;
 			bookingStatus = booking != null && booking.getDraftMode();
 			Date date = flight.getScheduledDeparture();
 
@@ -110,7 +110,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
 
