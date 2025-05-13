@@ -31,9 +31,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		boolean status;
 		int claimId;
 		int agentId;
-		int legId;
 		Claim claim;
-		Leg leg;
 		AssistanceAgent agent;
 
 		claimId = super.getRequest().getData("id", int.class);
@@ -42,11 +40,8 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		agent = this.repository.findAssistanceAgentById(agentId);
 
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-
 		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent() != null && //
-			claim.getAssistanceAgent().equals(agent) && (legId == 0 || leg != null && !leg.getDraftMode());
+			claim.getAssistanceAgent().equals(agent);
 
 		super.getResponse().setAuthorised(status);
 	}

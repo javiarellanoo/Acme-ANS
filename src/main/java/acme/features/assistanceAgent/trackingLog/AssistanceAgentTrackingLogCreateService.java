@@ -26,17 +26,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void authorise() {
 		boolean status;
-		int claimId;
+		Claim claim;
 		int masterId;
 
-		if (super.getRequest().getMethod().equals("GET"))
-			status = true;
-		else {
-			claimId = super.getRequest().getData("claim", int.class);
-			masterId = super.getRequest().getData("masterId", int.class);
+		masterId = super.getRequest().getData("masterId", int.class);
+		claim = this.repository.findClaimById(masterId);
 
-			status = masterId == claimId;
-		}
+		status = claim.getAssistanceAgent().equals(super.getRequest().getPrincipal().getActiveRealm());
+
 		super.getResponse().setAuthorised(status);
 	}
 

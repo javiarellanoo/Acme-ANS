@@ -62,12 +62,7 @@ public class AssistanceAgentTrackingLogShowService extends AbstractGuiService<As
 			"resolution", "draftMode", "claim.assistanceAgent.identity.fullName", "claim.id");
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
-		dataset.put("claim", tLog.getClaim());
 
-		if (tLog.getClaim() != null)
-			super.getResponse().addGlobal("isClaimDraftMode", tLog.getClaim().getDraftMode());
-		else
-			super.getResponse().addGlobal("isClaimDraftMode", false);
 		super.getResponse().addData(dataset);
 	}
 }

@@ -48,6 +48,7 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 		tLogs = this.repository.findTrackingLogsByClaim(masterId);
 
 		super.getBuffer().addData(tLogs);
+		super.getResponse().addGlobal("masterId", masterId);
 	}
 
 	@Override
@@ -62,19 +63,4 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 
 		super.getResponse().addData(dataset);
 	}
-
-	@Override
-	public void unbind(final Collection<TrackingLog> tLogs) {
-		int masterId;
-		Claim claim;
-		boolean isClaimDraftMode;
-
-		masterId = super.getRequest().getData("masterId", int.class);
-		claim = this.repository.findClaimById(masterId);
-		isClaimDraftMode = claim.getDraftMode() && super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent());
-
-		super.getResponse().addGlobal("masterId", masterId);
-		super.getResponse().addGlobal("isClaimDraftMode", isClaimDraftMode);
-	}
-
 }

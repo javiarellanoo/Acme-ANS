@@ -27,8 +27,6 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		boolean status;
 		int tLogId;
 		int agentId;
-		int claimId;
-		int masterId;
 		TrackingLog tLog;
 		AssistanceAgent agent;
 
@@ -38,11 +36,8 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		agent = this.repository.findAssistanceAgentById(agentId);
 
-		claimId = super.getRequest().getData("claim", int.class);
-		masterId = super.getRequest().getData("masterId", int.class);
-
 		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null //
-			&& tLog.getClaim().getAssistanceAgent().equals(agent) && claimId == masterId;
+			&& tLog.getClaim().getAssistanceAgent().equals(agent) && tLog.getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -60,14 +55,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog tLog) {
-		int claimId;
-		Claim claim;
-
-		claimId = super.getRequest().getData("claim", int.class);
-		claim = this.repository.findClaimById(claimId);
-
 		super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "status", "resolution");
-		tLog.setClaim(claim);
 	}
 
 	@Override
@@ -95,12 +83,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			"resolution", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
-		dataset.put("claim", tLog.getClaim());
 
-		if (tLog.getClaim() != null)
-			super.getResponse().addGlobal("isClaimDraftMode", tLog.getClaim().getDraftMode());
-		else
-			super.getResponse().addGlobal("isClaimDraftMode", false);
 		super.getResponse().addData(dataset);
 	}
 }
