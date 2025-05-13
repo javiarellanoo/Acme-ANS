@@ -41,7 +41,10 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			try {
 				flightId = Integer.parseInt(flightIdStr);
 				flight = this.repository.findFlightById(flightId);
-				status = flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+				if (flightId == 0)
+					status = true;
+				else
+					status = flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 			} catch (NumberFormatException e) {
 				status = false;
 			}

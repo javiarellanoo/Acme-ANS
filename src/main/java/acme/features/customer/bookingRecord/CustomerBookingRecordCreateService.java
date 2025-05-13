@@ -36,9 +36,12 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		String bookingIdStr;
 		String passengerIdStr;
 
-		if (super.getRequest().getMethod().equals("GET"))
-			status = true;
-		else {
+		if (super.getRequest().getMethod().equals("GET")) {
+			bookingIdStr = super.getRequest().getData("bookingId", String.class);
+			bookingId = Integer.parseInt(bookingIdStr);
+			booking = this.repository.findBookingById(bookingId);
+			status = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		} else {
 			bookingIdStr = super.getRequest().getData("bookingId", String.class);
 			passengerIdStr = super.getRequest().getData("passenger", String.class);
 
@@ -48,16 +51,17 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 				booking = this.repository.findBookingById(bookingId);
 				passenger = this.repository.findPassengerById(passengerId);
 				passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
-				boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null && booking.getCustomer().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 
+				boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null;
+				boolean validCustomer = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 				boolean validPassenger = passenger != null && passengers != null && passengers.contains(passenger) && !passenger.getDraftMode();
 
 				if (passengerId == 0)
-					status = validBooking;
+					status = validBooking && validCustomer;
 				else
-					status = validBooking && validPassenger;
+					status = validBooking && validPassenger && validCustomer;
 
-			} catch (Exception e) {
+			} catch (AssertionError | Exception e) {
 				status = false;
 			}
 		}

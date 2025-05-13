@@ -29,15 +29,20 @@ public class CustomerBookingRecordShowService extends AbstractGuiService<Custome
 	public void authorise() {
 		boolean status;
 		Booking booking;
-		Customer customer;
+		String bookingRecordIdStr;
+		int bookingRecordId;
+		BookingRecord bookingRecord;
 
-		int bookingId = super.getRequest().getData("id", int.class);
+		try {
+			bookingRecordIdStr = super.getRequest().getData("id", String.class);
+			bookingRecordId = Integer.parseInt(bookingRecordIdStr);
+			bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
+			booking = bookingRecord != null ? this.repository.findBookingById(bookingRecord.getBooking().getId()) : null;
+			status = bookingRecord != null && booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 
-		BookingRecord bookingRecord = this.repository.findBookingRecordById(bookingId);
-
-		booking = bookingRecord.getBooking();
-		customer = bookingRecord != null && booking == null ? null : bookingRecord.getBooking().getCustomer();
-		status = bookingRecord != null && booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+		} catch (AssertionError | Exception e) {
+			status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -1,3 +1,4 @@
+
 package acme.features.customer.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,25 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	@Autowired
 	private CustomerPassengerRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
 
+	// AbstractGuiService interface -------------------------------------------
 	@Override
 	public void authorise() {
 		boolean status;
-		int passengerId;
 		Passenger passenger;
+		String passengerStrId;
+		int passengerId;
 		Customer customer;
-
-		passengerId = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(passengerId);
-		customer = passenger == null ? null : passenger.getCustomer();
-
-		status = passenger != null && (!passenger.getDraftMode()
-				|| customer.getId() == super.getRequest().getPrincipal().getActiveRealm().getId());
-
+		try {
+			passengerStrId = super.getRequest().getData("id", String.class);
+			passengerId = Integer.parseInt(passengerStrId);
+			passenger = this.repository.findPassengerById(passengerId);
+			customer = passenger == null ? null : passenger.getCustomer();
+			passenger = this.repository.findPassengerById(passengerId) != null ? this.repository.findPassengerById(passengerId) : null;
+			status = passenger != null && super.getRequest().getPrincipal().hasRealm(customer);
+		} catch (AssertionError | Exception e) {
+			status = false;
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -50,8 +54,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds",
-				"draftMode");
+		dataset = super.unbindObject(passenger, "fullName", "email", "passportNumber", "birthDate", "specialNeeds", "draftMode");
 
 		super.getResponse().addData(dataset);
 	}
