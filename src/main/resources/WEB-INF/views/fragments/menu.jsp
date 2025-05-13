@@ -45,6 +45,7 @@
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.manager" access="hasRealm('Manager')">
 		<acme:menu-suboption code="master.menu.manager.flight" action="/manager/flight/list"/>
+		<acme:menu-suboption code="master.menu.manager.dashboard" action="/manager/manager-dashboard/show"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>

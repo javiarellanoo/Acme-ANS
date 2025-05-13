@@ -40,6 +40,7 @@ master.menu.consumer.favourite-link = Enlace favorito
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
 master.menu.manager.flight = Ver mis vuelos
+master.menu.manager.dashboard = Panel de control
 
 # master.menu.user-account ####################################################
 
