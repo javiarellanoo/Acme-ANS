@@ -2,7 +2,6 @@
 package acme.features.customer.booking;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -57,11 +56,13 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			try {
 				flightId = Integer.parseInt(flightIdStr);
 				flight = this.repository.findFlightById(flightId);
-				flightStatus = flightId == 0 || flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null;
+				flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
 				bookingStatus = booking != null && booking.getDraftMode();
-				Date date = flight.getScheduledDeparture();
+				if (flightId == 0)
+					status &= bookingStatus && flightStatus;
+				else
+					status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 
-				status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
 			} catch (NumberFormatException e) {
 				status = false;
 			}

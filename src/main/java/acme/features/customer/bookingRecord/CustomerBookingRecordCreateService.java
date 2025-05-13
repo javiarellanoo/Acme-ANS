@@ -33,22 +33,30 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		int passengerId;
 		Passenger passenger;
 		Collection<Passenger> passengers;
+		String bookingIdStr;
+		String passengerIdStr;
 
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-			bookingId = super.getRequest().getData("bookingId", int.class);
-			passengerId = super.getRequest().getData("passenger", int.class);
+			bookingIdStr = super.getRequest().getData("bookingId", String.class);
+			passengerIdStr = super.getRequest().getData("passenger", String.class);
 
-			booking = this.repository.findBookingById(bookingId);
-			passenger = this.repository.findPassengerById(passengerId);
-			passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
+			try {
+				bookingId = Integer.parseInt(bookingIdStr);
+				passengerId = Integer.parseInt(passengerIdStr);
+				booking = this.repository.findBookingById(bookingId);
+				passenger = this.repository.findPassengerById(passengerId);
+				passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
 
-			boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null && booking.getCustomer().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
+				boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null && booking.getCustomer().getId() == super.getRequest().getPrincipal().getActiveRealm().getId();
 
-			boolean validPassenger = passenger != null && passengers != null && passengers.contains(passenger);
+				boolean validPassenger = passenger != null && passengers != null && passengers.contains(passenger) && !passenger.getDraftMode();
 
-			status = validBooking && validPassenger;
+				status = validBooking && validPassenger;
+			} catch (Exception e) {
+				status = false;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
