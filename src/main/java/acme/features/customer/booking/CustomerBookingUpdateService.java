@@ -38,6 +38,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Customer customer;
 		int flightId;
 		Flight flight;
+		String flightIdStr;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingkById(bookingId);
@@ -50,13 +51,18 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || flight != null  && flight.getScheduledDeparture()!= null;;
-			bookingStatus = booking != null && booking.getDraftMode();
-			Date date = flight.getScheduledDeparture();
+			flightIdStr = super.getRequest().getData("flight", String.class);
+			try {
+				flightId = Integer.parseInt(flightIdStr);
+				flight = this.repository.findFlightById(flightId);
+				flightStatus = flightId == 0 || flight != null && flight.getScheduledDeparture() != null;
+				bookingStatus = booking != null && booking.getDraftMode();
+				Date date = flight.getScheduledDeparture();
+				status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
+			} catch (NumberFormatException e) {
+				status = false;
+			}
 
-			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -106,7 +112,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null  && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

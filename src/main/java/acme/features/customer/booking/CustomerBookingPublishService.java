@@ -32,13 +32,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		boolean status = true;
 		boolean flightStatus;
 		boolean bookingStatus;
-		int bookingId;
+		String idStr;
 		Booking booking;
 		Customer customer;
 		int flightId;
-		Flight flight;
+		int bookingId;
 
+		Flight flight;
+		String flightIdStr;
 		bookingId = super.getRequest().getData("id", int.class);
+
 		booking = this.repository.findBookingkById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
@@ -48,14 +51,20 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			status = false;
 		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-		else {
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null;
-			bookingStatus = booking != null && booking.getDraftMode();
-			Date date = flight.getScheduledDeparture();
 
-			status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
+		else {
+			flightIdStr = super.getRequest().getData("flight", String.class);
+			try {
+				flightId = Integer.parseInt(flightIdStr);
+				flight = this.repository.findFlightById(flightId);
+				flightStatus = flightId == 0 || flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null;
+				bookingStatus = booking != null && booking.getDraftMode();
+				Date date = flight.getScheduledDeparture();
+
+				status &= bookingStatus && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfterOrEqual(date, MomentHelper.getCurrentMoment());
+			} catch (NumberFormatException e) {
+				status = false;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);

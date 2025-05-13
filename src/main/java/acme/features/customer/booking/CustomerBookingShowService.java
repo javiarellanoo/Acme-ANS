@@ -29,10 +29,11 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int bookingId;
+		boolean status = true;
+		String idStr;
 		Booking booking;
 		Customer customer;
+		int bookingId;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingkById(bookingId);
