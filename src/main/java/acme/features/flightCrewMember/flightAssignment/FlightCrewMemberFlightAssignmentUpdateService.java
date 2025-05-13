@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignments.AssignmentStatus;
@@ -85,9 +86,10 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		memberId = super.getRequest().getData("flightCrewMember", int.class);
 		Leg leg = this.repository.findLegById(legId);
 		FlightCrewMember member = this.repository.findCrewMemberById(memberId);
-		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
+		super.bindObject(assignment, "duty", "status", "remarks");
 		assignment.setLeg(leg);
 		assignment.setFlightCrewMember(member);
+		assignment.setLastUpdate(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
