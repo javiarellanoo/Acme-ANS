@@ -25,10 +25,10 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 	@Query("select COALESCE(1.0 * count(a) / NULLIF((select count(l) from Leg l where l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false), 0), 0.0) from Leg a where a.status = acme.entities.legs.LegStatus.DELAYED and a.flight.manager.id = :managerId and a.flight.draftMode = false and a.draftMode = false")
 	public Double findDelayedRatio(Integer managerId);
 
-	@Query("select a.name as flightCount from Leg l join l.departureAirport a where l.departureAirport = a or l.destinationAirport = a and l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false group by a order by flightCount asc")
+	@Query("select a.name as flightCount from Leg l join l.departureAirport a where (l.departureAirport = a or l.destinationAirport = a) and l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false group by a order by flightCount asc")
 	public String findLeastPopularAirports(Integer managerId, PageRequest pageRequest);
 
-	@Query("select a.name as flightCount from Leg l join l.departureAirport a where l.departureAirport = a or l.destinationAirport = a and l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false  group by a order by flightCount desc")
+	@Query("select a.name as flightCount from Leg l join l.departureAirport a where (l.departureAirport = a or l.destinationAirport = a) and l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false  group by a order by flightCount desc")
 	public String findMostPopularAirports(Integer managerId, PageRequest pageRequest);
 
 	@Query("select l.status, count(l) from Leg l where l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false group by l.status")
