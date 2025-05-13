@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.flights.Flight;
 
 @Repository
 public interface ManagerDashboardRepository extends AbstractRepository {
@@ -35,6 +34,9 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 	@Query("select l.status, count(l) from Leg l where l.flight.manager.id = :managerId and l.flight.draftMode = false and l.draftMode = false group by l.status")
 	public List<Object[]> findLegsGroupedByStatus(Integer managerId);
 
-	@Query("select f from Flight f where f.manager.id = :managerId and f.draftMode = false")
-	public Collection<Flight> findAllFlights(Integer managerId);
+	@Query("select distinct f.cost.currency from Flight f where f.manager.id = :managerId and f.draftMode = false")
+	public Collection<String> findCurrencies(int managerId);
+
+	@Query("select f.cost.amount from Flight f where f.manager.id=:managerId and f.draftMode = false and f.cost.currency = :currency")
+	public List<Double> findCostsByCurrency(int managerId, String currency);
 }
