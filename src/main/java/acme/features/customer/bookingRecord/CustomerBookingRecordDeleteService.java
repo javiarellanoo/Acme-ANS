@@ -27,7 +27,7 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 	@Override
 	public void authorise() {
-		boolean status = true;
+		boolean status; // Not initialized to true upfront
 		Booking booking;
 		String bookingRecordIdStr;
 		int bookingRecordId;
@@ -37,9 +37,12 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 			bookingRecordIdStr = super.getRequest().getData("id", String.class);
 			bookingRecordId = Integer.parseInt(bookingRecordIdStr);
 			bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
-			if (bookingRecord != null) {
+
+			if (bookingRecord == null)
+				status = false;
+			else {
 				booking = this.repository.findBookingById(bookingRecord.getBooking().getId());
-				status &= booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+				status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 			}
 		} catch (AssertionError | Exception e) {
 			status = false;
@@ -78,8 +81,9 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 		Collection<Passenger> passengers;
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int bookingId = bookingRecord.getBooking().getId();
 
-		passengers = this.repository.findPassengersNotInBooking(customerId, bookingRecord.getBooking().getId());
+		passengers = this.repository.findPassengersNotInBooking(customerId, bookingId);
 		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord, "passenger");
@@ -88,4 +92,5 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 		super.getResponse().addData(dataset);
 	}
+
 }
