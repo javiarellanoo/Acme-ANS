@@ -69,6 +69,10 @@ public class Passenger extends AbstractEntity {
 
 	@Transient
 	public String getDisplayString() {
-		return String.format("%s - %s", this.getFullName(), this.getPassportNumber());
+		String fullName = this.getFullName();
+		if (fullName != null && fullName.length() > 80)
+			fullName = fullName.substring(0, 80) + "...";
+		return String.format("%s - %s", fullName, this.getPassportNumber());
 	}
+
 }

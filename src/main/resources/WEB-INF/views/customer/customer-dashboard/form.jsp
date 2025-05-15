@@ -14,7 +14,6 @@
 
 <h2><fmt:message key="customer.dashboard.label.selectedCurrency"/></h2>
 <select name="selectedCurrency" id="selectedCurrency" onchange="updateDisplayedCurrencyData(this.value);">
-	<option value=""><fmt:message key="customer.dashboard.label.allCurrencies"/></option>
 	<jstl:forEach var="currency" items="${currencies}">
 		<option value="${currency}" ${currency == selectedCurrency ? 'selected' : ''}>${currency}</option>
 	</jstl:forEach>
