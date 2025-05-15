@@ -1,12 +1,23 @@
 # validation-en.i18n
 #
 acme.validation.manager.identifier.message = The identifier must start with the manager's initials.
+acme.validation.manager.identifierNonUnique.message = The identifier is not unique
+
 acme.validation.leg.flightNumber.message = The flightNumber must start with the Airline's IATA code.
-acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure
-acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
+acme.validation.leg.scheduledArrival.message = The scheduled arrival must be after the departure.
+acme.validation.leg.flightNumberUnique.message = The flightNumber must be unique.
+acme.validation.leg.occupiedAircraft.message = The selected Aircraft is occupied for the selected time slot.
+acme.validation.leg.conflictiveLeg.message = The selected time slot of this leg is conflictive respect the published legs of the flight.
+acme.validation.leg.scheduledDeparture = The scheduled departure for this flight must be in the future
+acme.validation.flight.legs.message = The legs of this flight overlap.
+acme.validation.flight.nonPublishedLegs.message = This flight has either no legs or legs that have not been published.
+
 acme.validation.flightCrewMember.employeeCode.message = The employeeCode must start with the member's initials.
 acme.validation.flightCrewMember.duplicated-employeeCode.message = The employeeCode must be unique.
+
 acme.validation.customer.identifier.message = The identifier must start with the initials of the customer.
+acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
+
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
 acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
 acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking log is finally at a 100% resolution percentage.
@@ -14,30 +25,43 @@ acme.validation.trackingLog.percentage.message = The resolution percentage must 
 acme.validation.trackingLog.draftMode.message = A trackingLog can not be published until its corresponding claim is published.
 acme.validation.trackingLog.draftModeDissatisfaction.message = A tracking log can not be in DISSATISFACTION status until it has first been published.
 acme.validation.trackingLog.statusDissatisfaction = There must be only one tracking log in DISSATISFACTION state.
+acme.validation.trackingLog.momentClaim = You can't create a tracking log before the creation of its claim
+acme.validation.trackingLog.updateMoment = The last update can not be before the creation
+acme.validation.trackingLog.numberCompleted = There can not be more than 2 completed tracking logs.
+
 acme.validation.service.promotionCode.message = The last two characters of the promotion code must correspond to the current year and must be unique.  
-acme.validation.technician.licenseNumber.message = The license number must start with the client's initials and must be unique.  
+acme.validation.technician.licenseNumber.message = The license number must start with the client's initials and must be unique. 
+acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
+acme.validation.maintenanceRecordsTasks.task.message = Published maintenance records cannot contain tasks that are not published. 
+
 acme.validation.phone.message = The phone number is not valid.
-acme.validation.flight.legs.message = The legs of this flight overlap.
-acme.validation.manager.identifierNonUnique.message = The identifier is not unique
+
 acme.validation.aircraft.registrationNumber.message = The registration number of an aircraft must be unique.
-acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
-acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique.
 acme.validation.airline.iataCode.message = The iataCode is not unique.
 acme.validation.airport.duplicated-iataCode.message = The iataCode is not unique.
+
+acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique.
+
 acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
 acme.validation.leg.flightNumberUnique.message = The flightNumber must be unique.
 acme.validation.leg.occupiedAircraft.message = The selected Aircraft is occupied for the selected time slot.
 acme.validation.leg.conflictiveLeg.message = The selected time slot of this leg is conflictive respect the published legs of the flight.
 acme.validation.flight.nonPublishedLegs.message = This flight has either no legs or legs that have not been published.
 acme.validation.maintenanceRecordsTasks.task.message = Published maintenance records cannot contain tasks that are not published
+
 acme.validation.flight-assignment.completed-leg.message = A flight assignment cannot be linked to a leg that has already occurred.
 acme.validation.flight-assignment.not-available-crew-member.message = The crew member assigned is not available.
 acme.validation.flight-assignment.pilot-already-assigned.message = A pilot is already assigned to this leg.
 acme.validation.flight-assignment.copilot-already-assigned.message = A copilot is already assigned to this leg.
+
+acme.validation.flight-assignment.simultaneous-leg.message = This member is assigned to a simultaneous leg.
+acme.validation.flight-assignment.null-leg-or-flight.message = Neither leg or flight crew member can be null
+
 acme.validation.activity-log.not-published-assignment.message = An activity log cannot be published until its corresponding assignment is published.
 acme.validation.booking.locatorCode.message = The locator code is not valid
 acme.validation.booking.lastCreditCardNibble.message = The card nibble is not valid
 acme.validation.flightNumber.format = This Flight Number does not match the expected pattern. Please introduce the Airline's IATA code and follow it by 4 digits.
+
 acme.validation.leg.scheduledDeparture = The scheduled departure for this flight must be in the future
 acme.validation.booking.passengers.message = There must be passengers
 acme.validation.airline.iataCode = The iataCode must consist of 3 capital letters

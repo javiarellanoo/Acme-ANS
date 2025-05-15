@@ -1,44 +1,52 @@
-key,key:claim,last-update-moment,step-undergoing,resolution-percentage,status,resolution,draftMode
+key,key:claim,last-update-moment,step-undergoing,resolution-percentage,status,resolution,draftMode,creation-moment
 # base entity
-track-01,claim-01,2012/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE
+track-01,claim-01,2013/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE,2012/07/02  00:00
 # lastUpdateMoment - standard variations
-track-02,claim-02,2000/01/01  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE
-track-03,claim-02,2000/01/01  00:01,"Lorem ipsum dolor sit ame",12.00,PENDING,null,TRUE
-track-04,claim-03,2024/12/31  23:59,"Lorem ipsum dolor sit ame",12.00,PENDING,null,TRUE
-track-05,claim-03,2025/01/01  00:00,"Lorem ipsum dolor sit ame",13.00,PENDING,null,TRUE
+track-02,claim-02,2000/01/01  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE,2000/01/01  00:00
+track-03,claim-03,2000/01/01  00:01,"Lorem ipsum dolor sit ame",11.00,PENDING,null,TRUE,2000/01/01  00:01
+track-04,claim-01,2024/12/31  23:59,"Lorem ipsum dolor sit ame",32.00,PENDING,null,TRUE,2012/07/02  00:11
+track-05,claim-01,2025/01/01  00:00,"Lorem ipsum dolor sit ame",33.00,PENDING,null,TRUE,2012/07/02  00:12
 # lastUpdateMoment - singular values
-track-06,claim-02,2012/02/29  00:00,"Lorem ipsum dolor sit ame",14.00,PENDING,null,TRUE
+track-06,claim-03,2012/02/29  00:00,"Lorem ipsum dolor sit ame",14.00,PENDING,null,TRUE,2012/01/02  00:00
 # stepUndergoing - standard variations
-track-07,claim-01,2012/07/03  00:00,"L",11.00,PENDING,null,TRUE
-track-08,claim-01,2012/07/04  00:00,"Lo",12.00,PENDING,null,TRUE
-track-09,claim-01,2012/07/05  00:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",13.00,PENDING,null,TRUE
-track-10,claim-01,2012/07/06  00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",14.00,PENDING,null,TRUE
-track-11,claim-01,2012/07/07  00:00,โลเร็ม อิปซัม,15.00,PENDING,null,TRUE
-track-12,claim-01,2012/07/08  00:00,لوريم إيبسوم,16.00,PENDING,null,TRUE
-track-13,claim-01,2012/07/09  00:00,洛伦·伊普森,17.00,PENDING,null,TRUE
-track-14,claim-01,2012/07/10  00:00,<marquee>Hacked</marquee>,18.00,PENDING,null,TRUE
-track-15,claim-01,2012/07/11  00:00,<script>alert(‘Hacked!’);</script>,20.00,PENDING,null,TRUE
-track-16,claim-01,2012/07/12  00:00,'' or 'A' = 'A ,22.00,PENDING,null,TRUE
+track-07,claim-01,2013/07/03  00:00,"L",11.00,PENDING,null,TRUE,2012/07/02  00:01
+track-08,claim-01,2013/07/04  00:00,"Lo",12.00,PENDING,null,TRUE,2012/07/02  00:02
+track-09,claim-01,2013/07/05  00:00,"Lorem ipsum dolor sit amet, consectetur adipiscin",13.00,PENDING,null,TRUE,2012/07/02  00:03
+track-10,claim-01,2013/07/06  00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing",14.00,PENDING,null,TRUE,2012/07/02  00:04
+track-11,claim-01,2013/07/07  00:00,โลเร็ม อิปซัม,15.00,PENDING,null,TRUE,2012/07/02  00:05
+track-12,claim-01,2013/07/08  00:00,لوريم إيبسوم,16.00,PENDING,null,TRUE,2012/07/02  00:06
+track-13,claim-01,2013/07/09  00:00,洛伦·伊普森,17.00,PENDING,null,TRUE,2012/07/02  00:07
+track-14,claim-01,2013/07/10  00:00,<marquee>Hacked</marquee>,18.00,PENDING,null,TRUE,2012/07/02  00:08
+track-15,claim-01,2013/07/11  00:00,<script>alert(‘Hacked!’);</script>,20.00,PENDING,null,TRUE,2012/07/02  00:09
+track-16,claim-01,2013/07/12  00:00,'' or 'A' = 'A ,22.00,PENDING,null,TRUE,2012/07/02  00:10
 # stepUndergoing - no singular values
 # resolutionPercentage - standard variations
-track-20,claim-05,2012/07/02  00:00,"Lorem ipsum dolor sit ame",0.01,PENDING,null,TRUE
-track-21,claim-05,2012/07/03  00:00,"Lorem ipsum dolor sit ame",0.02,PENDING,null,TRUE
-track-22,claim-05,2012/07/04  00:00,"Lorem ipsum dolor sit ame",99.99,PENDING,null,TRUE
-track-23,claim-05,2012/07/05  00:00,"Lorem ipsum dolor sit ame",100.00,REJECTED,"Lorem ipsum dolor sit ame",TRUE
+track-20,claim-10,2013/07/02  00:00,"Lorem ipsum dolor sit ame",0.01,PENDING,null,TRUE,2012/07/02  00:00
+track-21,claim-10,2013/07/03  00:00,"Lorem ipsum dolor sit ame",0.02,PENDING,null,TRUE,2012/07/02  00:01
+track-22,claim-10,2013/07/04  00:00,"Lorem ipsum dolor sit ame",99.99,PENDING,null,TRUE,2012/07/02  00:02
+track-23,claim-10,2013/07/05  00:00,"Lorem ipsum dolor sit ame",100.00,REJECTED,"Lorem ipsum dolor sit ame",TRUE,2012/07/02  00:03
 # resolutionPercentage - no singular values
 # status - standard variations
-track-24,claim-06,2012/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE
-track-25,claim-07,2012/07/02  00:00,"Lorem ipsum dolor sit ame",100.00,ACCEPTED,"Lorem ipsum dolor sit ame",FALSE
-track-26,claim-08,2012/07/02  00:00,"Lorem ipsum dolor sit ame",100.00,REJECTED,"Lorem ipsum dolor sit ame",FALSE
+track-24,claim-01,2013/07/02  00:00,"Lorem ipsum dolor sit ame",50.00,PENDING,null,TRUE,2012/07/02  00:13
+track-25,claim-07,2013/07/02  00:00,"Lorem ipsum dolor sit ame",100.00,ACCEPTED,"Lorem ipsum dolor sit ame",FALSE,2012/07/02  00:00
+track-26,claim-08,2013/07/02  00:00,"Lorem ipsum dolor sit ame",100.00,REJECTED,"Lorem ipsum dolor sit ame",FALSE,2012/07/02  00:00
 # status - no singular values
 # resolution - standard variations
-track-27,claim-09,2012/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,"L",TRUE
-track-28,claim-09,2012/07/03  00:00,"Lorem ipsum dolor sit ame",11.00,PENDING,"Lo",TRUE
-track-29,claim-09,2012/07/04  00:00,"Lorem ipsum dolor sit ame",13.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",TRUE
-track-30,claim-09,2012/07/05  00:00,"Lorem ipsum dolor sit ame",14.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure doloro",TRUE
-track-31,claim-09,2012/07/06  00:00,"Lorem ipsum dolor sit ame",15.00,PENDING,โลเร็ม อิปซัม,TRUE
-track-32,claim-09,2012/07/07  00:00,"Lorem ipsum dolor sit ame",16.00,PENDING,لوريم إيبسوم,TRUE
-track-33,claim-09,2012/07/08  00:00,"Lorem ipsum dolor sit ame",17.00,PENDING,洛伦·伊普森,TRUE
-track-34,claim-09,2012/07/09  00:00,"Lorem ipsum dolor sit ame",18.00,PENDING,<marquee>Hacked</marquee>,TRUE
-track-35,claim-09,2012/07/10  00:00,"Lorem ipsum dolor sit ame",19.00,PENDING,<script>alert(‘Hacked!’);</script>,TRUE
-track-36,claim-09,2012/07/11  00:00,"Lorem ipsum dolor sit ame",20.00,PENDING,'' or 'A' = 'A,TRUE
+track-27,claim-09,2013/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,"L",TRUE,2012/07/02  00:00
+track-28,claim-09,2013/07/03  00:00,"Lorem ipsum dolor sit ame",11.00,PENDING,"Lo",TRUE,2012/07/02  00:01
+track-29,claim-09,2013/07/04  00:00,"Lorem ipsum dolor sit ame",13.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",TRUE,2012/07/02  00:02
+track-30,claim-09,2013/07/05  00:00,"Lorem ipsum dolor sit ame",14.00,PENDING,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure doloro",TRUE,2012/07/02  00:03
+track-31,claim-09,2013/07/06  00:00,"Lorem ipsum dolor sit ame",15.00,PENDING,โลเร็ม อิปซัม,TRUE,2012/07/02  00:04
+track-32,claim-09,2013/07/07  00:00,"Lorem ipsum dolor sit ame",16.00,PENDING,لوريم إيبسوم,TRUE,2012/07/02  00:05
+track-33,claim-09,2013/07/08  00:00,"Lorem ipsum dolor sit ame",17.00,PENDING,洛伦·伊普森,TRUE,2012/07/02  00:06
+track-34,claim-09,2013/07/09  00:00,"Lorem ipsum dolor sit ame",18.00,PENDING,<marquee>Hacked</marquee>,TRUE,2012/07/02  00:07
+track-35,claim-09,2013/07/10  00:00,"Lorem ipsum dolor sit ame",19.00,PENDING,<script>alert(‘Hacked!’);</script>,TRUE,2012/07/02  00:08
+track-36,claim-09,2013/07/11  00:00,"Lorem ipsum dolor sit ame",20.00,PENDING,'' or 'A' = 'A,TRUE,2012/07/02  00:09
+# resolution - no singular values
+# creationMoment - standard variations
+track-37,claim-11,2013/07/02  00:00,"Lorem ipsum dolor sit ame",10.00,PENDING,null,TRUE,2000/01/01  00:00
+track-38,claim-11,2013/07/02  00:00,"Lorem ipsum dolor sit ame",11.00,PENDING,null,TRUE,2000/01/01  00:01
+track-39,claim-04,2025/01/01  00:00,"Lorem ipsum dolor sit ame",12.00,PENDING,null,TRUE,2024/12/31  23:59
+track-40,claim-05,2025/01/01  00:00,"Lorem ipsum dolor sit ame",13.00,PENDING,null,TRUE,2025/01/01  00:00
+# creationMoment - singular values
+track-41,claim-11,2013/07/02  00:00,"Lorem ipsum dolor sit ame",14.00,PENDING,null,TRUE,2012/02/29  00:00

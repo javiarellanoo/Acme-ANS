@@ -48,7 +48,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 			masterId = super.getRequest().getData("masterId", int.class);
 			flight = this.repository.findFlightById(masterId);
 			aircraftId = super.getRequest().getData("aircraft", int.class);
-			aircraft = this.repository.findValidAircraftById(aircraftId, flight.getAirline().getId());
+			aircraft = this.repository.findAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;
 			destinationAirportId = super.getRequest().getData("destinationAirport", int.class);
 			destinationAirport = this.repository.findAirportById(destinationAirportId);
@@ -132,7 +132,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		SelectChoices choicesStatus;
 		SelectChoices choicesDepartureAirport;
 		SelectChoices choicesDestinationAirport;
-		aircrafts = this.repository.findAircraftsByAirlineId(leg.getFlight().getAirline().getId());
+		aircrafts = this.repository.findAllAircrafts();
 		airports = this.repository.findAllAirports();
 		choicesAircraft = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 		choicesDepartureAirport = SelectChoices.from(airports, "name", leg.getDepartureAirport());
