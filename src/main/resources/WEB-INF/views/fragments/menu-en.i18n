@@ -27,6 +27,7 @@ master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
+master.menu.administrator.maintenance-record = List maintenance records
 
 # master.menu.provider ########################################################
 

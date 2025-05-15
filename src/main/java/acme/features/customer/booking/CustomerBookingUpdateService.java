@@ -1,3 +1,4 @@
+
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -25,33 +26,45 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
+
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
 		boolean flightStatus;
+		boolean bookingStatus;
 		int bookingId;
 		Booking booking;
 		Customer customer;
 		int flightId;
 		Flight flight;
+		String flightIdStr;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingkById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
-		if (booking == null) {
+		if (booking == null)
 			status = false;
-		} else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer)) {
+		else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer))
 			status = false;
-		} else if (super.getRequest().getMethod().equals("GET")) {
+		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-		} else {
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || flight != null;
+		else {
+			flightIdStr = super.getRequest().getData("flight", String.class);
+			try {
+				flightId = Integer.parseInt(flightIdStr);
+				flight = this.repository.findFlightById(flightId);
+				flightStatus = flightId == 0 || flight != null;
+				bookingStatus = booking != null && booking.getDraftMode();
+				if (flightId == 0)
+					status &= bookingStatus && flightStatus;
+				else
+					status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer)
-					&& flightStatus;
+			} catch (NumberFormatException e) {
+				status = false;
+			}
+
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -87,6 +100,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void perform(final Booking booking) {
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(booking);
 	}
 
@@ -100,8 +114,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream()
-				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

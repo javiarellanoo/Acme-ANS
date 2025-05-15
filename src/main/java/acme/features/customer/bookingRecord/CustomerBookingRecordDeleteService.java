@@ -27,17 +27,26 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status; // Not initialized to true upfront
 		Booking booking;
-		Customer customer;
+		String bookingRecordIdStr;
+		int bookingRecordId;
+		BookingRecord bookingRecord;
 
-		int bookingId = super.getRequest().getData("id", int.class);
+		try {
+			bookingRecordIdStr = super.getRequest().getData("id", String.class);
+			bookingRecordId = Integer.parseInt(bookingRecordIdStr);
+			bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
 
-		BookingRecord bookingRecord = this.repository.findBookingRecordById(bookingId);
-
-		booking = bookingRecord.getBooking();
-		customer = booking == null ? null : bookingRecord.getBooking().getCustomer();
-		status = bookingRecord.getBooking() != null && bookingRecord.getBooking().getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
+			if (bookingRecord == null)
+				status = false;
+			else {
+				booking = this.repository.findBookingById(bookingRecord.getBooking().getId());
+				status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+			}
+		} catch (AssertionError | Exception e) {
+			status = false;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -72,8 +81,9 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 		Collection<Passenger> passengers;
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int bookingId = bookingRecord.getBooking().getId();
 
-		passengers = this.repository.findPassengersNotInBooking(customerId, bookingRecord.getBooking().getId());
+		passengers = this.repository.findPassengersNotInBooking(customerId, bookingId);
 		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord, "passenger");
@@ -82,4 +92,5 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 		super.getResponse().addData(dataset);
 	}
+
 }

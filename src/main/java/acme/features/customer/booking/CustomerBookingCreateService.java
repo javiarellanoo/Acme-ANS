@@ -1,3 +1,4 @@
+
 package acme.features.customer.booking;
 
 import java.util.ArrayList;
@@ -25,18 +26,29 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	// AbstractGuiService interface -------------------------------------------
 
+
 	@Override
 	public void authorise() {
 		boolean status;
 		int flightId;
 		Flight flight;
+		String flightIdStr;
 
-		if (super.getRequest().getMethod().equals("GET")) {
+		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-		} else {
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			status = flight != null && !flight.getDraftMode();
+		else {
+			flightIdStr = super.getRequest().getData("flight", String.class);
+			try {
+				flightId = Integer.parseInt(flightIdStr);
+				flight = this.repository.findFlightById(flightId);
+				if (flightId == 0)
+					status = true;
+				else
+					status = flight != null && !flight.getDraftMode() && flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+			} catch (NumberFormatException e) {
+				status = false;
+			}
+
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -89,8 +101,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream()
-				.filter(f -> f.getScheduledArrival().compareTo(MomentHelper.getCurrentMoment()) > 0).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
 

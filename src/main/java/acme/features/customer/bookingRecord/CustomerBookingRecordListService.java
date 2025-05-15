@@ -1,3 +1,4 @@
+
 package acme.features.customer.bookingRecord;
 
 import java.util.Collection;
@@ -21,24 +22,21 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 
 	// AbstractGuiService interface -------------------------------------------
 
+
 	@Override
 	public void authorise() {
 		boolean status;
 		Booking booking;
-		Customer customer;
-
-		Integer bookingId = null;
-		if (super.getRequest().hasData("bookingId", int.class)) {
-			bookingId = super.getRequest().getData("bookingId", int.class);
-		} else if (super.getRequest().hasData("id", int.class)) {
-			bookingId = super.getRequest().getData("id", int.class);
+		String bookingIdStr;
+		int bookingId;
+		try {
+			bookingIdStr = super.getRequest().getData("bookingId", String.class);
+			bookingId = Integer.parseInt(bookingIdStr);
+			booking = this.repository.findBookingById(bookingId) != null ? this.repository.findBookingById(bookingId) : null;
+			status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+		} catch (AssertionError | Exception e) {
+			status = false;
 		}
-
-		booking = (bookingId != null) ? this.repository.findBookingById(bookingId) : null;
-		customer = booking == null ? null : booking.getCustomer();
-
-		status = booking != null && customer != null && super.getRequest().getPrincipal().hasRealm(customer);
-
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -48,11 +46,7 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 		Integer bookingId = null;
 		boolean isDraftMode;
 
-		if (super.getRequest().hasData("bookingId", int.class)) {
-			bookingId = super.getRequest().getData("bookingId", int.class);
-		} else if (super.getRequest().hasData("id", int.class)) {
-			bookingId = super.getRequest().getData("id", int.class);
-		}
+		bookingId = super.getRequest().getData("bookingId", int.class);
 
 		isDraftMode = this.repository.findBookingById(bookingId).getDraftMode();
 		bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
@@ -67,7 +61,6 @@ public class CustomerBookingRecordListService extends AbstractGuiService<Custome
 		Dataset dataset;
 
 		dataset = super.unbindObject(bookingRecord, "passenger.fullName", "passenger.passportNumber");
-		super.addPayload(dataset, bookingRecord, "passenger.birthDate");
 		super.getResponse().addData(dataset);
 	}
 }

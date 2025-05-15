@@ -121,21 +121,22 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 
 			super.state(notSimultaneousAssignment, "leg", "acme.validation.flight-assignment.simultaneous-leg.message");
 
-			boolean onlyOnePilot;
-			FlightAssignment pilotAssignment;
+			if (assignment.getDuty() != null) {
+				boolean onlyOnePilot;
+				FlightAssignment pilotAssignment;
+				pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
+				onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+				super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
 
-			pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
-			onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+				boolean onlyOneCopilot;
+				FlightAssignment copilotAssignment;
 
-			super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
+				copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
+				onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
 
-			boolean onlyOneCopilot;
-			FlightAssignment copilotAssignment;
+				super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
+			}
 
-			copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
-			onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
-
-			super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
 		} else
 			super.state(false, "*", "acme.validation.flight-assignment.null-leg-or-flight.message");
 

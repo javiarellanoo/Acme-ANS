@@ -3,7 +3,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select code="customer.booking-record.form.label.passenger" path="passenger" choices="${passengers}"/>
+	<acme:input-select code="customer.booking-record.form.label.passenger" path="passenger" readonly="${_command == 'show'}" choices="${passengers}"/>
     <jstl:choose>    
         <jstl:when test="${acme:anyOf(_command, 'show|delete') && isDraftMode == true}">
             <acme:submit code="customer.booking-record.form.button.delete" action="/customer/booking-record/delete"/>
