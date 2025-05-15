@@ -40,7 +40,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 			bookingIdStr = super.getRequest().getData("bookingId", String.class);
 			bookingId = Integer.parseInt(bookingIdStr);
 			booking = this.repository.findBookingById(bookingId);
-			status = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+			status = booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
 		} else {
 			bookingIdStr = super.getRequest().getData("bookingId", String.class);
 			passengerIdStr = super.getRequest().getData("passenger", String.class);
