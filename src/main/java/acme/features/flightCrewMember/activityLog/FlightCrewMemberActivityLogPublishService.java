@@ -21,15 +21,26 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	public void authorise() {
 		boolean status;
 		int activityLogId;
+		ActivityLog log;
 		FlightAssignment assignment;
 		int memberId;
 		int airlineId;
 
 		activityLogId = super.getRequest().getData("id", int.class);
-		assignment = this.repository.findActivityLogById(activityLogId).getAssignment();
+		log = this.repository.findActivityLogById(activityLogId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && (!assignment.getDraftMode() || assignment.getFlightCrewMember().getAirline().getId() == airlineId);
+		if (log == null)
+			status = false;
+		else {
+			assignment = log.getAssignment();
+			if (!log.getDraftMode() || assignment.getFlightCrewMember().getAirline().getId() != airlineId)
+				status = false;
+			else if (super.getRequest().getMethod().equals("GET"))
+				status = true;
+			else
+				status = assignment != null && log.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -58,7 +69,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 
 		assignmentIsPublished = !activityLog.getAssignment().getDraftMode();
 
-		super.state(assignmentIsPublished, "severityLevel", "acme.validation.activity-log.not-published-assignment.message");
+		super.state(assignmentIsPublished, "*", "acme.validation.activity-log.not-published-assignment.message");
 
 	}
 
@@ -72,7 +83,8 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel");
+		dataset = super.unbindObject(activityLog, "registrationMoment", "typeOfIncident", "description", "severityLevel", "draftMode");
+		dataset.put("assignmentIsPublished", false);
 
 		super.getResponse().addData(dataset);
 

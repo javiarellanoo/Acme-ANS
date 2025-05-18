@@ -17,7 +17,7 @@
 
 <acme:form readonly="${readonly}">
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.duty" path="duty" choices="${duties}"/>	
-	<acme:input-moment code="flight-crew-member.flight-assignment.form.label.lastUpdate" path="lastUpdate"/>
+	<acme:input-moment code="flight-crew-member.flight-assignment.form.label.lastUpdate" path="lastUpdate" readonly="true"/>
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.status" path="status" choices="${statuses}"/>
 	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks"/>	
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
@@ -26,13 +26,13 @@
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
 			<acme:button code="flight-crew-member.flight-assignment.form.button.activity-log" action="/flight-crew-member/activity-log/list?masterId=${id}"/>
-			<acme:button code="flight-crew-member.flight-assignment.form.button.leg" action="/flight-crew-member/leg/show?id=${leg.id}"/>
-			<acme:button code="flight-crew-member.flight-assignment.form.button.flight-crew-member" action="/flight-crew-member/flight-crew-member/show?id=${flightCrewMember.id}"/>			
+			<acme:button code="flight-crew-member.flight-assignment.form.button.leg" action="/flight-crew-member/leg/show?id=${legId}"/>
+			<acme:button code="flight-crew-member.flight-assignment.form.button.flight-crew-member" action="/flight-crew-member/flight-crew-member/show?id=${flightCrewMemberId}"/>			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|delete|update|publish') && draftMode == true}">
 			<acme:button code="flight-crew-member.flight-assignment.form.button.activity-log" action="/flight-crew-member/activity-log/list?masterId=${id}"/>
-			<acme:button code="flight-crew-member.flight-assignment.form.button.leg" action="/flight-crew-member/leg/show?id=${leg.id}"/>
-			<acme:button code="flight-crew-member.flight-assignment.form.button.flight-crew-member" action="/flight-crew-member/flight-crew-member/show?id=${flightCrewMember.id}"/>
+			<acme:button code="flight-crew-member.flight-assignment.form.button.leg" action="/flight-crew-member/leg/show?id=${legId}"/>
+			<acme:button code="flight-crew-member.flight-assignment.form.button.flight-crew-member" action="/flight-crew-member/flight-crew-member/show?id=${flightCrewMemberId}"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.update" action="/flight-crew-member/flight-assignment/update"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.publish" action="/flight-crew-member/flight-assignment/publish"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.delete" action="/flight-crew-member/flight-assignment/delete"/>

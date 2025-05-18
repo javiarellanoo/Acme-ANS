@@ -12,6 +12,7 @@ assistance-agent.tracking-log.form.title = Tracking log form
 assistance-agent.tracking-log.list.title = Listing of tracking logs
 
 assistance-agent.tracking-log.form.label.lastUpdateMoment = Last update moment:
+assistance-agent.tracking-log.form.label.creationMoment = Creation moment:
 assistance-agent.tracking-log.form.label.resolutionPercentage = Resolution Percentage: 
 assistance-agent.tracking-log.form.label.resolution = Resolution:
 assistance-agent.tracking-log.form.label.stepUndergoing = Step undergoing:
@@ -29,6 +30,7 @@ assistance-agent.tracking-log.list.label.claim = Claim
 assistance-agent.tracking-log.list.label.resolutionPercentage = Resolution Percentage
 assistance-agent.tracking-log.list.label.status = Status
 assistance-agent.tracking-log.list.label.lastUpdateMoment = Last Update Moment
+assistance-agent.tracking-log.list.label.creationMoment = Creation Moment
 assistance-agent.tracking-log.list.label.draftMode = Draft Mode
 
 assistance-agent.tracking-log.list.button.create = Create

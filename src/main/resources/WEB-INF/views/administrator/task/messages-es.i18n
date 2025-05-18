@@ -1,0 +1,12 @@
+administrator.task.list.title = Tareas
+administrator.task.list.label.type = Tipo
+administrator.task.list.label.description = Descripción
+administrator.task.list.label.priority = Prioridad
+administrator.task.list.label.estimatedHoursDuration = Horas Est.
+
+# Página de detalles de tareas
+administrator.task.form.title = Detalles de la Tarea
+administrator.task.form.label.type = Tipo
+administrator.task.form.label.description = Descripción
+administrator.task.form.label.priority = Prioridad
+administrator.task.form.label.estimatedHoursDuration = Horas Estimadas

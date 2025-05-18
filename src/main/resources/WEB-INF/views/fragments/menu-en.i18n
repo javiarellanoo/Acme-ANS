@@ -28,6 +28,9 @@ master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
 master.menu.administrator.recommendation = List recommendations
+master.menu.administrator.booking = List bookings
+master.menu.administrator.booking-record = List booking records
+master.menu.administrator.maintenance-record = List maintenance records
 
 # master.menu.provider ########################################################
 
@@ -42,10 +45,12 @@ master.menu.consumer.favourite-link = Favourite link
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
 master.menu.manager.flight = List my flights
+master.menu.manager.dashboard = Dashboard
 
 # master.menu.customer ##########################################################
 master.menu.customer = Customer
 master.menu.customer.passenger = My Passengers
+master.menu.customer.dashboard = Dashboard
 
 # master.menu.user-account ####################################################
 
@@ -57,11 +62,17 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.manager-profile = Manager profile
 master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.become-customer = Become a customer
+master.menu.user-account.customer-profile = Customer profile
+master.menu.user-account.become-technician = Become a technician
+master.menu.user-account.technician-profile = Technician profile                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
 
 # master.menu.technician ########################################################
 master.menu.technician = Technician
 master.menu.technician.tasks.list.mine = My tasks
 master.menu.technician.tasks.list.published = Published tasks
+master.menu.technician.dashboard.show = My dashboard
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Assistance Agent

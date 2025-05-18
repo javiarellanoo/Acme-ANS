@@ -21,15 +21,21 @@ public class FlightCrewMemberActivityLogDeleteService extends AbstractGuiService
 	public void authorise() {
 		boolean status;
 		int activityLogId;
+		ActivityLog log;
 		FlightAssignment assignment;
 		int memberId;
 		int airlineId;
 
 		activityLogId = super.getRequest().getData("id", int.class);
-		assignment = this.repository.findActivityLogById(activityLogId).getAssignment();
+		log = this.repository.findActivityLogById(activityLogId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && (!assignment.getDraftMode() || assignment.getFlightCrewMember().getAirline().getId() == airlineId);
+		if (log == null)
+			status = false;
+		else {
+			assignment = log.getAssignment();
+			status = assignment != null && log.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

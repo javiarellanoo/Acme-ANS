@@ -26,14 +26,14 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 	public void authorise() {
 		boolean status;
 		int agentId;
-		int claimId;
+		int masterId;
 		Claim claim;
 		AssistanceAgent agent;
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		agent = this.repository.findAssistanceAgentById(agentId);
-		claimId = super.getRequest().getData("claim", int.class);
-		claim = this.repository.findClaimById(claimId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		claim = this.repository.findClaimById(masterId);
 		status = claim != null && (!claim.getDraftMode() || claim.getAssistanceAgent().equals(agent));
 
 		super.getResponse().setAuthorised(status);
@@ -42,24 +42,25 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 	@Override
 	public void load() {
 		Collection<TrackingLog> tLogs;
-		int claimId;
+		int masterId;
 
-		claimId = super.getRequest().getData("claim", int.class);
-		tLogs = this.repository.findTrackingLogsByClaim(claimId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		tLogs = this.repository.findTrackingLogsByClaim(masterId);
 
 		super.getBuffer().addData(tLogs);
+		super.getResponse().addGlobal("masterId", masterId);
 	}
 
 	@Override
 	public void unbind(final TrackingLog tLog) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(tLog, "claim.id", "resolutionPercentage", "status", "lastUpdateMoment", "draftMode");
+		dataset = super.unbindObject(tLog, "claim.id", "resolutionPercentage", "status", "lastUpdateMoment", "draftMode", "creationMoment");
+
 		super.addPayload(dataset, tLog, //
-			"lastUpdateMoment", "stepUndergoing", "resolutionPercentage", "status", "resolution", //
+			"lastUpdateMoment", "creationMoment", "stepUndergoing", "resolutionPercentage", "status", "resolution", //
 			"draftMode", "claim.assistanceAgent.identity.fullName", "claim.leg.flightNumber");
 
 		super.getResponse().addData(dataset);
 	}
-
 }
