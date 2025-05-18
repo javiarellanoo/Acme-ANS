@@ -2,10 +2,10 @@ key,key:assignment,registration-moment,type-of-incident,description,severity-lev
 # Base Entity
 activity-log-01,flight-assignment-01,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
 #Assignment
-activity-log-02,flight-assignment-02,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
-activity-log-03,flight-assignment-03,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
-activity-log-04,flight-assignment-04,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
-#Registration Moment
+activity-log-02,flight-assignment-28,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
+activity-log-03,flight-assignment-02,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
+activity-log-04,flight-assignment-03,2012/07/02 0:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
+#Registration Moment,""
 activity-log-05,flight-assignment-01,2000/01/01 00:00,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
 activity-log-06,flight-assignment-01,2000/01/01 00:01,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE
 activity-log-07,flight-assignment-01,2024/12/31 23:59,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,5,TRUE

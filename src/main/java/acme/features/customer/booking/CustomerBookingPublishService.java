@@ -28,15 +28,19 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int bookingId;
+		boolean status = true;
+		boolean flightStatus;
+		boolean bookingStatus;
+		String idStr;
 		Booking booking;
 		Customer customer;
-		boolean flightStatus;
 		int flightId;
-		Flight flight;
+		int bookingId;
 
+		Flight flight;
+		String flightIdStr;
 		bookingId = super.getRequest().getData("id", int.class);
+
 		booking = this.repository.findBookingkById(bookingId);
 		customer = booking == null ? null : booking.getCustomer();
 
@@ -46,12 +50,22 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			status = false;
 		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-		else {
-			flightId = super.getRequest().getData("flight", int.class);
-			flight = this.repository.findFlightById(flightId);
-			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
 
-			status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer) && flightStatus && MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+		else {
+			flightIdStr = super.getRequest().getData("flight", String.class);
+			try {
+				flightId = Integer.parseInt(flightIdStr);
+				flight = this.repository.findFlightById(flightId);
+				flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
+				bookingStatus = booking != null && booking.getDraftMode();
+				if (flightId == 0)
+					status &= bookingStatus && flightStatus;
+				else
+					status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+
+			} catch (NumberFormatException e) {
+				status = false;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -106,7 +120,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
 		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfter(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
 		Collection<Flight> displayFlights = new java.util.ArrayList<>(futureFlights);
 

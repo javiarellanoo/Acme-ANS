@@ -12,10 +12,10 @@
 
 	<jstl:choose>  
 		<jstl:when test="${_command == 'show' && draftMode == false}">
-			<acme:button code="assistance-agent.claim.form.button.tracking-logs" action="/assistance-agent/tracking-log/list?claim=${id}"/>
+			<acme:button code="assistance-agent.claim.form.button.tracking-logs" action="/assistance-agent/tracking-log/list?masterId=${id}"/>
 		</jstl:when>  
 	    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-	    	<acme:button code="assistance-agent.claim.form.button.tracking-logs" action="/assistance-agent/tracking-log/list?claim=${id}"/>
+	    	<acme:button code="assistance-agent.claim.form.button.tracking-logs" action="/assistance-agent/tracking-log/list?masterId=${id}"/>
 	    	<acme:submit code="assistance-agent.claim.form.button.update" action="/assistance-agent/claim/update?id=${id}"/>
 	    	<jstl:if test="${acme:anyOf(status, 'ACCEPTED|REJECTED')}">
 	    		<acme:submit code="assistance-agent.claim.form.button.publish" action="/assistance-agent/claim/publish?id=${id}"/>

@@ -28,6 +28,7 @@ master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
 master.menu.administrator.booking = Ver reservas
 master.menu.administrator.booking-record = Ver registros de reserva
+master.menu.administrator.maintenance-record = Ver registros de mantenimiento
 
 # master.menu.provider ########################################################
 
@@ -42,6 +43,7 @@ master.menu.consumer.favourite-link = Enlace favorito
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
 master.menu.manager.flight = Ver mis vuelos
+master.menu.manager.dashboard = Panel de control
 
 # master.menu.user-account ####################################################
 
@@ -55,11 +57,15 @@ master.menu.user-account.manager-profile = Perfil de manager
 master.menu.user-account.become-manager = Hazte manager
 master.menu.user-account.become-customer = Hazte cliente
 master.menu.user-account.customer-profile = Perfil de cliente
+master.menu.user-account.become-technician = Hazte técnico
+master.menu.user-account.technician-profile = Perfil de técnico
+
 
 # master.menu.technician ########################################################
 master.menu.technician = Técnico
 master.menu.technician.tasks.list.mine = Mis tareas
 master.menu.technician.tasks.list.published = Tareas publicadas
+master.menu.technician.dashboard.show = Mi panel de control
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Asistente
