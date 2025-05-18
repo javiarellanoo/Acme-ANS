@@ -42,7 +42,6 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.booking" action="/administrator/booking/list"/>
 		</acme:menu-option>
-
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
