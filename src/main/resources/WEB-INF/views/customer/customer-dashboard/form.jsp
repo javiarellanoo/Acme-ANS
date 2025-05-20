@@ -17,7 +17,7 @@
         </ul>
     </jstl:when>
     <jstl:otherwise>
-        <p>-</p>
+        <p><acme:print code="customer.dashboard.form.label.no-data"/></p>
     </jstl:otherwise>
 </jstl:choose>
 
@@ -43,7 +43,7 @@
         </table>
     </jstl:when>
     <jstl:otherwise>
-        <p>-</p>
+        <p><acme:print code="customer.dashboard.form.label.no-data"/></p>
     </jstl:otherwise>
 </jstl:choose>
 
@@ -69,7 +69,7 @@
         </table>
     </jstl:when>
     <jstl:otherwise>
-        <p>-</p>
+        <p><acme:print code="customer.dashboard.form.label.no-data"/></p>
     </jstl:otherwise>
 </jstl:choose>
 
@@ -96,14 +96,23 @@
                         <td><acme:print value="${entry.value.min()}" format="{0,number,#.##}"/></td>
                         <td><acme:print value="${entry.value.max()}" format="{0,number,#.##}"/></td>
                         <td><acme:print value="${entry.value.count()}"/></td>
-                        <td><acme:print value="${entry.value.stddev()}" format="{0,number,#.##}"/></td>
+                        <td>
+                            <jstl:choose>
+                                <jstl:when test="${entry.value.count() <= 1}">
+                                    <acme:print code="customer.dashboard.form.label.not-available"/>
+                                </jstl:when>
+                                <jstl:otherwise>
+                                    <acme:print value="${entry.value.stddev()}" format="{0,number,#.##}"/>
+                                </jstl:otherwise>
+                            </jstl:choose>
+                        </td>
                     </tr>
                 </jstl:forEach>
             </tbody>
         </table>
     </jstl:when>
     <jstl:otherwise>
-        <p>-</p>
+        <p><acme:print code="customer.dashboard.form.label.no-data"/></p>
     </jstl:otherwise>
 </jstl:choose>
 
@@ -118,24 +127,60 @@
             </tr>
             <tr>
                 <th><acme:print code="customer.dashboard.label.averagePassengers"/></th>
-                <td><acme:print value="${passengersStatistics.average()}" format="{0,number,#.##}"/></td>
+                <td>
+                    <jstl:choose>
+                        <jstl:when test="${passengersStatistics.count() == 0}">
+                            <acme:print code="customer.dashboard.form.label.not-available"/>
+                        </jstl:when>
+                        <jstl:otherwise>
+                            <acme:print value="${passengersStatistics.average()}" format="{0,number,#.##}"/>
+                        </jstl:otherwise>
+                    </jstl:choose>
+                </td>
             </tr>
             <tr>
                 <th><acme:print code="customer.dashboard.label.minPassengers"/></th>
-                <td><acme:print value="${passengersStatistics.min()}"/></td>
+                <td>
+                    <jstl:choose>
+                        <jstl:when test="${passengersStatistics.count() == 0}">
+                            <acme:print code="customer.dashboard.form.label.not-available"/>
+                        </jstl:when>
+                        <jstl:otherwise>
+                            <acme:print value="${passengersStatistics.min()}"/>
+                        </jstl:otherwise>
+                    </jstl:choose>
+                </td>
             </tr>
             <tr>
                 <th><acme:print code="customer.dashboard.label.maxPassengers"/></th>
-                <td><acme:print value="${passengersStatistics.max()}"/></td>
+                <td>
+                    <jstl:choose>
+                        <jstl:when test="${passengersStatistics.count() == 0}">
+                            <acme:print code="customer.dashboard.form.label.not-available"/>
+                        </jstl:when>
+                        <jstl:otherwise>
+                            <acme:print value="${passengersStatistics.max()}"/>
+                        </jstl:otherwise>
+                    </jstl:choose>
+                </td>
             </tr>
             <tr>
                 <th><acme:print code="customer.dashboard.label.stdDevPassengers"/></th>
-                <td><acme:print value="${passengersStatistics.stddev()}" format="{0,number,#.##}"/></td>
+                <td>
+                    <jstl:choose>
+                        <jstl:when test="${passengersStatistics.count() <= 1}">
+                            <acme:print code="customer.dashboard.form.label.not-available"/>
+                        </jstl:when>
+                        <jstl:otherwise>
+                            <acme:print value="${passengersStatistics.stddev()}" format="{0,number,#.##}"/>
+                        </jstl:otherwise>
+                    </jstl:choose>
+                </td>
             </tr>
         </table>
     </jstl:when>
     <jstl:otherwise>
-        <p>-</p>
+        <p><acme:print code="customer.dashboard.form.label.no-data"/></p>
     </jstl:otherwise>
 </jstl:choose>
 

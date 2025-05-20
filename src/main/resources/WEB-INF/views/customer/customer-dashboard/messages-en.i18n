@@ -19,3 +19,5 @@ customer.dashboard.label.maxPassengers = Maximum Passengers per Booking
 customer.dashboard.label.stdDevPassengers = Standard Deviation (Passengers)
 customer.dashboard.label.allCurrencies = All Currencies
 customer.dashboard.label.selectedCurrency = Select a currency
+customer.dashboard.form.label.no-data = No data available
+customer.dashboard.form.label.not-available = Not available
