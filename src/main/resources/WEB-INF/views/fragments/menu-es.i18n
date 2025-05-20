@@ -26,6 +26,8 @@ master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
+master.menu.administrator.booking = Ver reservas
+master.menu.administrator.booking-record = Ver registros de reserva
 master.menu.administrator.maintenance-record = Ver registros de mantenimiento
 
 # master.menu.provider ########################################################
@@ -53,6 +55,8 @@ master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.manager-profile = Perfil de manager
 master.menu.user-account.become-manager = Hazte manager
+master.menu.user-account.become-customer = Hazte cliente
+master.menu.user-account.customer-profile = Perfil de cliente
 master.menu.user-account.become-technician = Hazte técnico
 master.menu.user-account.technician-profile = Perfil de técnico
 

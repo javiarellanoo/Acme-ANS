@@ -13,7 +13,7 @@ flight-assignment-08,member-01,leg-05,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ips
 flight-assignment-09,member-01,leg-06,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 flight-assignment-28,member-01,leg-18,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE
 flight-assignment-29,member-01,leg-19,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE
-flight-assignment-30,member-01,leg-20,PILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
+flight-assignment-30,member-01,leg-20,COPILOT,2012/07/02 00:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE
 #Last update
 flight-assignment-10,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
 flight-assignment-11,member-01,leg-01,PILOT,2000/01/01 00:01,CONFIRMED,Lorem ipsum dolor sit amet,TRUE
@@ -36,3 +36,4 @@ flight-assignment-25,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,<script>a
 flight-assignment-26,member-01,leg-01,PILOT,2000/01/01 00:00,CONFIRMED,' or 'A' = 'A,TRUE
 #Draft mode
 flight-assignment-27,member-01,leg-01,PILOT,2012/07/02 0:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE
+flight-assignment-31,member-01,leg-01,COPILOT,2012/07/02 0:00,CONFIRMED,Lorem ipsum dolor sit amet,FALSE

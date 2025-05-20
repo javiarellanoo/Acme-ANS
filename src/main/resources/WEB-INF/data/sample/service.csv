@@ -1,35 +1,48 @@
 key,name,picture-link,average-dwell-time,promotion-code,discount-money
 # Base entity
-service-01,Lorem ipsum dolor sit ame,https://i.imgur.com/8YcXhS0.png,50.50,AJAB-25,50.00
+service-01,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,AJAB-25,50.00
 # Name variants
-service-02,L,https://i.imgur.com/MtBRoNP.png,50.50,MATG-25,50.00
-service-03,Lo,https://i.imgur.com/NGLSjk6.png,50.50,INEG-25,50.00
-service-04,"Lorem ipsum dolor sit amet, consectetur adipiscin",https://i.imgur.com/fihihcF.png,50.50,PNEG-25,50.00
-service-05,"Lorem ipsum dolor sit amet, consectetur adipiscing",https://i.imgur.com/2eVF1HG.png,50.50,GDRG-25,50.00
-service-06,โลเร็ม อิปซัม,https://i.imgur.com/CqtMSmM.png,50.50,HSHD-25,50.00
-service-07,لوريم إيبسوم,https://i.imgur.com/sgx1bFo.png,50.50,SSHH-25,50.00
-service-08,洛伦·伊普森,https://i.imgur.com/qu5SrLN.png,50.50,JAGO-25,50.00
-service-09,<marquee>Hacked</marquee>,https://i.imgur.com/8n7KfX1.png,50.50,EHAB-25,50.00
-service-10,<script>alert('Hacked!');</script>,https://i.imgur.com/8YcXhS0.png,50.50,PKAB-25,50.00
-service-11,'' or 'A' = 'A,https://i.imgur.com/MtBRoNP.png,50.50,KOAB-25,50.00
+service-02,L,http://lorem.com/ipsum,50.50,MATG-25,50.00
+service-03,Lo,http://lorem.com/ipsum,50.50,INEG-25,50.00
+service-04,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,50.50,PNEG-25,50.00
+service-05,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,50.50,GDRG-25,50.00
+service-06,โลเร็ม อิปซัม,http://lorem.com/ipsum,50.50,HSHD-25,50.00
+service-07,لوريم إيبسوم,http://lorem.com/ipsum,50.50,SSHH-25,50.00
+service-08,洛伦·伊普森,http://lorem.com/ipsum,50.50,JAGO-25,50.00
+service-09,<marquee>Hacked</marquee>,http://lorem.com/ipsum,50.50,EHAB-25,50.00
+service-10,<script>alert('Hacked!');</script>,http://lorem.com/ipsum,50.50,PKAB-25,50.00
+service-11,'' or 'A' = 'A,http://lorem.com/ipsum,50.50,KOAB-25,50.00
 # Picture link variants
-service-12,Lorem ipsum dolor sit ame,https://i.imgur.com/NGLSjk6.png,50.50,NOAG-25,50.00
-service-13,Lorem ipsum dolor sit ame,https://i.imgur.com/fihihcF.png,50.50,GYMM-25,50.00
-service-14,Lorem ipsum dolor sit ame,https://i.imgur.com/2eVF1HG.png,50.50,OIBG-25,50.00
-service-15,Lorem ipsum dolor sit ame,https://i.imgur.com/CqtMSmM.png,50.50,FAUR-25,50.00
-service-16,Lorem ipsum dolor sit ame,https://i.imgur.com/sgx1bFo.png,50.50,OINE-25,50.00
+service-12,Lorem ipsum dolor sit ame,http://a.b,50.50,GAUN-25,50.00
+service-13,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",50.50,AHHD-25,50.00
+service-14,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",50.50,RRDH-25,50.00
+service-15,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org,50.50,GDHT-25,50.00
+service-16,Lorem ipsum dolor sit ame,https://www.lorem-ipsum.org,50.50,PONW-25,50.00
+service-17,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html,50.50,AJHD-25,50.00
+service-18,Lorem ipsum dolor sit ame,http://www.lorem-ipsum.org/dolor/sit.html#dolor,50.50,PONG-25,50.00
+service-19,Lorem ipsum dolor sit ame,http://example.org?a=1&b=2,50.50,POUB-25,50.00
+service-20,Lorem ipsum dolor sit ame,http://example.org?,50.50,GANG-25,50.00
+service-21,Lorem ipsum dolor sit ame,http://example.org?a,50.50,DOLS-25,50.00
+service-22,Lorem ipsum dolor sit ame,http://example.org?a&b,50.50,POEL-25,50.00
+service-23,Lorem ipsum dolor sit ame,http://example.org/,50.50,ABGR-25,50.00
+service-24,Lorem ipsum dolor sit ame,http://example.org/a,50.50,PGNA-25,50.00
+service-25,Lorem ipsum dolor sit ame,http://example.org/a/b,50.50,PYEW-25,50.00
+service-26,Lorem ipsum dolor sit ame,http://example.org/a/b?,50.50,PITY-25,50.00
+service-27,Lorem ipsum dolor sit ame,http://example.org/a/b?a&b,50.50,TURF-25,50.00
 # Average dwell time variants
-service-17,Lorem ipsum dolor sit ame,https://i.imgur.com/qu5SrLN.png,1.00,ETSI-25,50.00
-service-18,Lorem ipsum dolor sit ame,https://i.imgur.com/8n7KfX1.png,1.01,ISSI-25,50.00
-service-19,Lorem ipsum dolor sit ame,https://i.imgur.com/8YcXhS0.png,99.99,DPDP-25,50.00
-service-20,Lorem ipsum dolor sit ame,https://i.imgur.com/MtBRoNP.png,100.00,PSGI-25,50.00
+service-28,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,1.00,ETSI-25,50.00
+service-29,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,1.01,ISSI-25,50.00
+service-30,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99.99,DPDP-25,50.00
+service-31,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,100.00,PSGI-25,50.00
 # Promotion code variants
-service-21,Lorem ipsum dolor sit ame,https://i.imgur.com/NGLSjk6.png,50.50,AAAA-25,50.00
-service-22,Lorem ipsum dolor sit ame,https://i.imgur.com/fihihcF.png,50.50,BBBB-25,50.00
-service-23,Lorem ipsum dolor sit ame,https://i.imgur.com/2eVF1HG.png,50.50,ZZZZ-25,50.00
+service-32,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,AAAA-25,50.00
+service-33,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,BBBB-25,50.00
+service-34,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,ZZZZ-25,50.00
 # Discount money variants
-service-24,Lorem ipsum dolor sit ame,https://i.imgur.com/CqtMSmM.png,50.50,JAJA-25,0.00
-service-25,Lorem ipsum dolor sit ame,https://i.imgur.com/sgx1bFo.png,50.50,KAKA-25,0.01
-service-26,Lorem ipsum dolor sit ame,https://i.imgur.com/qu5SrLN.png,50.50,LALA-25,99.99
-service-27,Lorem ipsum dolor sit ame,https://i.imgur.com/8n7KfX1.png,50.50,ADDA-25,100.00
-service-28,Lorem ipsum dolor sit ame,https://i.imgur.com/8YcXhS0.png,50.50,NANA-25,33.33
+service-35,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,JAJA-25,0.00
+service-36,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,KAKA-25,0.01
+service-37,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,LALA-25,99.99
+service-38,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,ADDA-25,100.00
+service-39,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50.50,NANA-25,33.33
+
+

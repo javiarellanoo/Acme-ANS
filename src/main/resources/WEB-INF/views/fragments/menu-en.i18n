@@ -27,6 +27,8 @@ master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
+master.menu.administrator.booking = List bookings
+master.menu.administrator.booking-record = List booking records
 master.menu.administrator.maintenance-record = List maintenance records
 
 # master.menu.provider ########################################################
@@ -59,6 +61,8 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.manager-profile = Manager profile
 master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.become-customer = Become a customer
+master.menu.user-account.customer-profile = Customer profile
 master.menu.user-account.become-technician = Become a technician
 master.menu.user-account.technician-profile = Technician profile                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 
