@@ -35,12 +35,17 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		int aircraftId;
 		Aircraft aircraft;
 		boolean aircraftStatus = false;
+		String method;
 
 		maintenanceRecordId = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 
-		if (super.getRequest().hasData("aircraft", int.class)) {
+		method = super.getRequest().getMethod();
+
+		if (method.equals("GET"))
+			aircraftStatus = true;
+		else if (super.getRequest().hasData("aircraft", int.class)) {
 			aircraftId = super.getRequest().getData("aircraft", int.class);
 			aircraft = this.repository.findValidAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;

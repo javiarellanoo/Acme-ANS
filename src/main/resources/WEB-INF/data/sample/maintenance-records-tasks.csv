@@ -15,3 +15,7 @@ maintenance-records-tasks-10,maintenance-record-01,task-04
 maintenance-records-tasks-11,maintenance-record-01,task-05
 maintenance-records-tasks-12,maintenance-record-01,task-06
 maintenance-records-tasks-13,maintenance-record-01,task-07
+# Combination variants for testing
+maintenance-records-tasks-14,maintenance-record-07,task-23
+maintenance-records-tasks-15,maintenance-record-08,task-23
+maintenance-records-tasks-16,maintenance-record-09,task-01
