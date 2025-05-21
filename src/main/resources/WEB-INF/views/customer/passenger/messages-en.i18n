@@ -13,7 +13,7 @@ customer.passenger.form.label.email = Email
 customer.passenger.form.label.passportNumber = Passport Number
 customer.passenger.form.label.birthDate = Date of Birth
 customer.passenger.form.label.specialNeeds = Special Needs
-customer.passenger.form.label.draftMode = Draft Mode
+customer.passenger.list.label.draftMode = Status
 
 # Buttons
 customer.passenger.form.button.update = Update

@@ -1,4 +1,3 @@
-
 package acme.features.customer.dashboard;
 
 import javax.annotation.PostConstruct;
@@ -14,12 +13,10 @@ import acme.realms.Customer;
 public class CustomerDashboardController extends AbstractGuiController<Customer, CustomerDashboard> {
 
 	@Autowired
-	protected CustomerDashboardShowService showService;
-
+	private CustomerDashboardShowService showService;
 
 	@PostConstruct
 	protected void initialise() {
-		// Task125
 		super.addBasicCommand("show", this.showService);
 	}
 }
