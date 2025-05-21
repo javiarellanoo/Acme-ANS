@@ -30,6 +30,7 @@ master.menu.administrator.recommendation = Ver recomendaciones
 master.menu.administrator.booking = Ver reservas
 master.menu.administrator.booking-record = Ver registros de reserva
 master.menu.administrator.maintenance-record = Ver registros de mantenimiento
+master.menu.administrator.aircraft = Ver aeronaves
 
 # master.menu.provider ########################################################
 
