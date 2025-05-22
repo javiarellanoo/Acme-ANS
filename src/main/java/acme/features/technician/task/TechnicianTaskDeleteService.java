@@ -73,8 +73,4 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 		this.repository.delete(task);
 	}
 
-	@Override
-	public void unbind(final Task task) {
-		;
-	}
 }
