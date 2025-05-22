@@ -72,5 +72,4 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 		this.repository.deleteAll(relationships);
 		this.repository.delete(task);
 	}
-
 }
