@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>16</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>368</x>
+      <y>368</y>
+      <w>288</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+TaskType
+--
++ MAINTENANCE
++ INSPECTION
++ REPAIR
++ SYSTEM_CHECK
+
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>832</x>
+      <y>384</y>
+      <w>288</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+MaintenanceRecordStatus
+--
++ PENDING
++ IN_PROGRESS
++ COMPLETED
+
+bg=LIGHT_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
