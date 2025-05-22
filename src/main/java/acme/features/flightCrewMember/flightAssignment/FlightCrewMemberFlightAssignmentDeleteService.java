@@ -75,9 +75,4 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		this.repository.delete(assignment);
 	}
 
-	@Override
-	public void unbind(final FlightAssignment assignment) {
-		;
-	}
-
 }

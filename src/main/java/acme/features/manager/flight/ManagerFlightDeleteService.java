@@ -62,11 +62,6 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 	}
 
 	@Override
-	public void unbind(final Flight flight) {
-		;
-	}
-
-	@Override
 	public void perform(final Flight flight) {
 		Collection<Leg> legs;
 
