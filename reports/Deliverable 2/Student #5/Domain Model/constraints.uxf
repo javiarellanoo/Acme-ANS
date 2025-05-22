@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>288</y>
+      <w>720</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidMaintenanceRecord
+--
++ The next inspection date must be after the moment when a maintenance record took place
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>648</y>
+      <w>528</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidTechnician
+--
++ The license number must be unique
++ The license number must start with the initials of the technician
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>456</y>
+      <w>816</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidMaintenanceRecordsTasks
+--
++ There cannot be a relationship between a published maintenance record and a task that is in draft mode
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
