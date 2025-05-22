@@ -22,6 +22,7 @@ import acme.client.helpers.SpringHelper;
 import acme.entities.legs.Leg;
 import acme.entities.trackingLogs.TrackingLog;
 import acme.entities.trackingLogs.TrackingLogRepository;
+import acme.entities.trackingLogs.TrackingLogStatus;
 import acme.realms.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
@@ -69,10 +70,13 @@ public class Claim extends AbstractEntity {
 
 		repository = SpringHelper.getBean(TrackingLogRepository.class);
 		List<TrackingLog> allTrackingLogs = repository.findAllByClaimId(this.getId());
-		if (!allTrackingLogs.isEmpty()) {
-			allTrackingLogs.sort(Comparator.comparing(TrackingLog::getCreationMoment).reversed());
-			return allTrackingLogs.get(0).getStatus().toString();
-		}
+		if (!allTrackingLogs.isEmpty())
+			if (allTrackingLogs.stream().anyMatch(t -> t.getStatus().equals(TrackingLogStatus.DISSATISFACTION)))
+				return TrackingLogStatus.DISSATISFACTION.toString();
+			else {
+				allTrackingLogs.sort(Comparator.comparing(TrackingLog::getCreationMoment).thenComparing(TrackingLog::getResolutionPercentage).reversed());
+				return allTrackingLogs.get(0).getStatus().toString();
+			}
 		return "PENDING";
 	}
 
