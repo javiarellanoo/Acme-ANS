@@ -47,7 +47,7 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 			taskStatus = taskId == 0 || task != null;
 		}
 
-		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && super.getRequest().getPrincipal().getActiveRealm().getId() == maintenanceRecord.getTechnician().getId() && taskStatus;
+		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && taskStatus;
 
 		super.getResponse().setAuthorised(status);
 	}

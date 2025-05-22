@@ -32,7 +32,7 @@ public class TechnicianTaskMaintenanceRecordListService extends AbstractGuiServi
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
-		status = maintenanceRecord != null && (!maintenanceRecord.getDraftMode() || maintenanceRecord.getTechnician().getId() == super.getRequest().getPrincipal().getActiveRealm().getId());
+		status = maintenanceRecord != null && (!maintenanceRecord.getDraftMode() || super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()));
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -41,7 +41,7 @@ public class TechnicianTaskMaintenanceRecordListService extends AbstractGuiServi
 	public void load() {
 		Collection<Task> tasks;
 		int maintenanceRecordId;
-		boolean draftMode;
+		boolean draftMode = false;
 		MaintenanceRecord maintenanceRecord;
 
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
@@ -49,7 +49,9 @@ public class TechnicianTaskMaintenanceRecordListService extends AbstractGuiServi
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecordId);
 
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
-		draftMode = maintenanceRecord != null && maintenanceRecord.getDraftMode();
+
+		if (maintenanceRecord != null)
+			draftMode = maintenanceRecord.getDraftMode();
 
 		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 		super.getResponse().addGlobal("draftMode", draftMode);
