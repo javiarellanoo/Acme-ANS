@@ -62,7 +62,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			fcm = this.repository.findCrewMemberById(fcmId);
 			memberStatus = fcmId == 0 || fcm != null && validMembers.contains(fcm);
 
-			status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && legStatus && memberStatus;
+			status = legStatus && memberStatus;
 		}
 
 		super.getResponse().setAuthorised(status);

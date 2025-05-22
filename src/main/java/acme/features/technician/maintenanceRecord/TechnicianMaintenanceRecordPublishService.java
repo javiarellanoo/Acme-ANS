@@ -46,18 +46,19 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecordId);
 
-		if (method.equals("GET"))
-			aircraftStatus = true;
-		else if (super.getRequest().hasData("aircraft", int.class)) {
+		if (maintenanceRecord == null)
+			status = false;
+		else if (!maintenanceRecord.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(technician))
+			status = false;
+		else if (method.equals("GET"))
+			status = true;
+		else {
 			aircraftId = super.getRequest().getData("aircraft", int.class);
 			aircraft = this.repository.findValidAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;
+
+			status = aircraftStatus && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 		}
-
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && aircraftStatus;
-		tasksPublished = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
-
-		status &= tasksPublished;
 
 		super.getResponse().setAuthorised(status);
 	}
