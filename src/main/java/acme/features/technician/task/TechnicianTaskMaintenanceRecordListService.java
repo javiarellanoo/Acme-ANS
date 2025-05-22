@@ -41,7 +41,7 @@ public class TechnicianTaskMaintenanceRecordListService extends AbstractGuiServi
 	public void load() {
 		Collection<Task> tasks;
 		int maintenanceRecordId;
-		boolean draftMode = false;
+		boolean draftMode;
 		MaintenanceRecord maintenanceRecord;
 
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
@@ -50,8 +50,7 @@ public class TechnicianTaskMaintenanceRecordListService extends AbstractGuiServi
 
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
-		if (maintenanceRecord != null)
-			draftMode = maintenanceRecord.getDraftMode();
+		draftMode = maintenanceRecord.getDraftMode();
 
 		super.getResponse().addGlobal("maintenanceRecordId", maintenanceRecordId);
 		super.getResponse().addGlobal("draftMode", draftMode);
