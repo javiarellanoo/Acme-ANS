@@ -70,7 +70,7 @@ public class Claim extends AbstractEntity {
 		repository = SpringHelper.getBean(TrackingLogRepository.class);
 		List<TrackingLog> allTrackingLogs = repository.findAllByClaimId(this.getId());
 		if (!allTrackingLogs.isEmpty()) {
-			allTrackingLogs.sort(Comparator.comparing(TrackingLog::getResolutionPercentage).reversed());
+			allTrackingLogs.sort(Comparator.comparing(TrackingLog::getCreationMoment).reversed());
 			return allTrackingLogs.get(0).getStatus().toString();
 		}
 		return "PENDING";

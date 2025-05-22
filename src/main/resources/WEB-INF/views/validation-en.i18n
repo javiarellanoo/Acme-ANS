@@ -19,6 +19,7 @@ acme.validation.customer.identifier.message = The identifier must start with the
 acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials
+acme.validation.claim.draftMode.message = A claim can not be published until one of its tracking logs is completed
 acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING"
 acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking log is finally at a 100% resolution percentage
 acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented

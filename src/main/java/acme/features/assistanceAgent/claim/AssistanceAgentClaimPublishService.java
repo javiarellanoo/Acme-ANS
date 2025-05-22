@@ -12,6 +12,7 @@ import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
 import acme.entities.claims.ClaimType;
 import acme.entities.legs.Leg;
+import acme.entities.trackingLogs.TrackingLog;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -62,6 +63,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 		id = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaimById(id);
+		claim.getStatus();
 
 		super.getBuffer().addData(claim);
 	}
@@ -80,6 +82,9 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void validate(final Claim claim) {
+		Collection<TrackingLog> tLogs = this.repository.findTrackingLogsByClaim(claim.getId());
+		Boolean tLogPublished = tLogs.stream().anyMatch(t -> t.getResolutionPercentage() == 100.00);
+		super.state(tLogPublished, "*", "acme.validation.claim.draftMode.message");
 
 	}
 
@@ -101,7 +106,7 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "status");
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
 		dataset.put("leg", choicesLeg.getSelected().getKey());

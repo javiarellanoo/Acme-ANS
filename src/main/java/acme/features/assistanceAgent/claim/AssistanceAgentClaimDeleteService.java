@@ -96,7 +96,7 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "status");
 		dataset.put("type", choicesType.getSelected().getKey());
 		dataset.put("types", choicesType);
 		dataset.put("leg", choicesLeg.getSelected().getKey());

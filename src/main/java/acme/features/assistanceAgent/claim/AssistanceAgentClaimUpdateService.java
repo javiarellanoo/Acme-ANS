@@ -100,7 +100,7 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "status");
 
 		dataset.put("types", choicesType);
 		dataset.put("type", choicesType.getSelected().getKey());
