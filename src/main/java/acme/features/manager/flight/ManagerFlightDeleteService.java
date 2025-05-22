@@ -5,8 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airlines.Airline;
@@ -31,7 +29,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 		masterId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlightById(masterId);
 		manager = flight == null ? null : flight.getManager();
-		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(manager) && !super.getRequest().getMethod().equals("GET");
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -65,18 +63,7 @@ public class ManagerFlightDeleteService extends AbstractGuiService<Manager, Flig
 
 	@Override
 	public void unbind(final Flight flight) {
-		Collection<Airline> airlines;
-		SelectChoices choices;
-		Dataset dataset;
-
-		airlines = this.repository.findAllAirlines();
-		choices = SelectChoices.from(airlines, "name", flight.getAirline());
-
-		dataset = super.unbindObject(flight, "tag", "requiresSelfTransfer", "cost", "description", "draftMode");
-		dataset.put("airline", choices.getSelected().getKey());
-		dataset.put("airlines", choices);
-
-		super.getResponse().addData(dataset);
+		;
 	}
 
 	@Override
