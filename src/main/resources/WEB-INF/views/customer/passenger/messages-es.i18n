@@ -13,7 +13,7 @@ customer.passenger.form.label.email = Correo Electrónico
 customer.passenger.form.label.passportNumber = Número de Pasaporte
 customer.passenger.form.label.birthDate = Fecha de Nacimiento
 customer.passenger.form.label.specialNeeds = Necesidades Especiales
-customer.passenger.form.label.draftMode = Modo Borrador
+customer.passenger.list.label.draftMode = Estado
 
 # Botones
 customer.passenger.form.button.update = Actualizar

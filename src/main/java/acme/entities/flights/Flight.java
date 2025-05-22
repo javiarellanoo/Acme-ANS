@@ -81,6 +81,20 @@ public class Flight extends AbstractEntity {
 	}
 
 	@Transient
+	public String getDestinationCountry() {
+		LegRepository repository;
+		String destinationCountry;
+		repository = SpringHelper.getBean(LegRepository.class);
+		PageRequest pageRequest = PageRequest.of(0, 1);
+		List<String> countries = repository.findDestinationCountry(this.getId(), pageRequest);
+		if (countries.isEmpty())
+			destinationCountry = "Not defined yet";
+		else
+			destinationCountry = countries.get(0);
+		return destinationCountry;
+	}
+
+	@Transient
 	public String getDestinationCity() {
 		LegRepository repository;
 		String destinationCity;

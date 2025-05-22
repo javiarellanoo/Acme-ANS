@@ -26,9 +26,11 @@ master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
+master.menu.administrator.recommendation = Ver recomendaciones
 master.menu.administrator.booking = Ver reservas
 master.menu.administrator.booking-record = Ver registros de reserva
 master.menu.administrator.maintenance-record = Ver registros de mantenimiento
+master.menu.administrator.aircraft = Ver aeronaves
 
 # master.menu.provider ########################################################
 
@@ -69,12 +71,19 @@ master.menu.technician.dashboard.show = Mi panel de control
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Asistente
+master.menu.assistance-agent.claims.list.mine = Mis reclamaciones
+master.menu.assistance-agent.claims.list.published = Reclamaciones publicadas
 master.menu.assistance-agent.claims.list.completed = Reclamaciones completadas
 master.menu.assistance-agent.claims.list.undergoing = Reclamaciones en progreso
 
 # master.menu.review ########################################################
 master.menu.review = Reseñas
 master.menu.review.list = Reseñas
+
+# master.menu.customer ##########################################################
+master.menu.customer = Cliente
+master.menu.customer.passenger = Mis Pasajeros
+master.menu.customer.dashboard = Panel de control
 
 # master.menu.flights ########################################################
 master.menu.flight = Vuelos
@@ -91,6 +100,9 @@ master.menu.customer = Área del cliente
 master.menu.technician.maintenance-record.list.mine = Mis registros de mantenimiento
 master.menu.technician.maintenance-record.list.published = Registros de mantenimiento publicados
 
+# Customer > Recomendación
+customer.recommendation.list.title=Recomendaciones
+master.menu.customer.recommendation=Ver recomendaciones
 # master.menu.flight-crew-member #################################################
 master.menu.flight-crew-member = Miembro de tripulación de vuelo
 master.menu.flight-crew-member.flight-assignment.list.completeLeg = Asignaciones con segmento completado

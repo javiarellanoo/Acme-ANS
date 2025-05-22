@@ -27,6 +27,7 @@ master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
+master.menu.administrator.recommendation = List recommendations
 master.menu.administrator.booking = List bookings
 master.menu.administrator.booking-record = List booking records
 master.menu.administrator.maintenance-record = List maintenance records
@@ -75,6 +76,8 @@ master.menu.technician.dashboard.show = My dashboard
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.claims.list.mine = My claims
+master.menu.assistance-agent.claims.list.published = Published claims
 master.menu.assistance-agent.claims.list.completed = Completed claims
 master.menu.assistance-agent.claims.list.undergoing = Undergoing claims
 
@@ -92,6 +95,9 @@ master.menu.customer = Customer area
 master.menu.technician.maintenance-record.list.mine = My maintenance records
 master.menu.technician.maintenance-record.list.published = Published maintenance records
 
+# Customer > Recommendation
+customer.recommendation.list.title=Recommendations
+master.menu.customer.recommendation=List Recommendations
 
 # master.menu.flight-crew-member #################################################
 master.menu.flight-crew-member = Flight Crew Member

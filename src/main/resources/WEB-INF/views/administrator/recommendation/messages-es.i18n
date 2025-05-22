@@ -1,0 +1,9 @@
+administrator.recommendation.form.label.name = Nombre
+administrator.recommendation.form.label.city = Ciudad
+administrator.recommendation.form.label.state = Estado
+administrator.recommendation.form.label.formatted = Dirección formateada
+administrator.recommendation.form.label.openingHours = Horario de apertura
+administrator.recommendation.form.label.url = URL
+administrator.recommendation.form.label.country = País
+administrator.recommendation.form.button.perform = Guardar
+administrator.recommendation.form.title = Añade recomendaciones
