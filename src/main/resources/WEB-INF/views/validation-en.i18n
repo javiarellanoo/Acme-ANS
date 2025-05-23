@@ -69,3 +69,5 @@ acme.validation.booking.passengers.message = There must be passengers
 acme.validation.airline.iataCode = The iataCode must consist of 3 capital letters
 acme.validation.manager.identifier = The identifier must start with your initials and be followed by 6 digits.
 acme.validation.manager.yearsOfExperience.message = The years of experience must be smaller than the manager's age
+
+acme.validation.maintenanceRecord.nextInspectionDateInFuture.message = The next inspection due date must be in the future
