@@ -1,6 +1,8 @@
 
 package acme.features.assistanceAgent.trackingLog;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -28,11 +30,20 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		boolean status;
 		Claim claim;
 		int masterId;
+		Collection<TrackingLog> tLogs;
+		boolean twoCompleted;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(masterId);
 
-		status = claim.getAssistanceAgent().equals(super.getRequest().getPrincipal().getActiveRealm());
+		if (claim == null)
+			status = false;
+		else {
+			tLogs = this.repository.findTrackingLogsByClaim(claim.getId());
+			twoCompleted = tLogs.stream().filter(t -> !t.getStatus().equals(TrackingLogStatus.PENDING)).count() < 2L;
+
+			status = claim.getAssistanceAgent().equals(super.getRequest().getPrincipal().getActiveRealm()) && twoCompleted;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -92,6 +103,11 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		dataset.put("claim", claim);
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
+
+		if (claim != null)
+			super.getResponse().addGlobal("claimDraftMode", claim.getDraftMode());
+		else
+			super.getResponse().addGlobal("claimDraftMode", true);
 
 		super.getResponse().addData(dataset);
 		super.getResponse().addGlobal("masterId", masterId);
