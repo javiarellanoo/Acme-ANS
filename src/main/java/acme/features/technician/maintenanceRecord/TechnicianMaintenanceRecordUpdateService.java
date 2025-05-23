@@ -103,7 +103,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		Collection<Task> tasks;
 
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
+		publishable = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());

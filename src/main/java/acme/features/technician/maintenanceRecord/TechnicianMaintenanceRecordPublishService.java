@@ -59,7 +59,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 			aircraft = this.repository.findValidAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;
 
-			status = publishable && aircraftStatus;
+			status = aircraftStatus;
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -103,7 +103,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Collection<Task> tasks;
 
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
+		publishable = true;
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
