@@ -10,6 +10,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
 import acme.entities.trackingLogs.TrackingLog;
+import acme.entities.trackingLogs.TrackingLogStatus;
 import acme.realms.AssistanceAgent;
 
 @GuiService
@@ -62,5 +63,14 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 			"draftMode", "claim.assistanceAgent.identity.fullName", "claim.leg.flightNumber");
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<TrackingLog> tLogs) {
+		boolean twoCompleted;
+
+		twoCompleted = tLogs.stream().filter(t -> !t.getStatus().equals(TrackingLogStatus.PENDING)).count() < 2L;
+
+		super.getResponse().addGlobal("twoCompleted", twoCompleted);
 	}
 }
