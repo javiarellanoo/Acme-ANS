@@ -35,7 +35,7 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 		agent = this.repository.findAssistanceAgentById(agentId);
 		masterId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(masterId);
-		status = claim != null && (!claim.getDraftMode() || claim.getAssistanceAgent().equals(agent));
+		status = claim != null && claim.getAssistanceAgent().equals(agent);
 
 		super.getResponse().setAuthorised(status);
 	}
