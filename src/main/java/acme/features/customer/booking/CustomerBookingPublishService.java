@@ -50,22 +50,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			status = false;
 		else if (super.getRequest().getMethod().equals("GET"))
 			status = true;
-
 		else {
-			flightIdStr = super.getRequest().getData("flight", String.class);
-			try {
-				flightId = Integer.parseInt(flightIdStr);
-				flight = this.repository.findFlightById(flightId);
-				flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
-				bookingStatus = booking != null && booking.getDraftMode();
-				if (flightId == 0)
-					status &= bookingStatus && flightStatus;
-				else
-					status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			flightStatus = flightId == 0 || flight != null && !flight.getDraftMode();
+			bookingStatus = booking != null && booking.getDraftMode();
+			if (flightId == 0)
+				status &= bookingStatus && flightStatus;
+			else
+				status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 
-			} catch (NumberFormatException e) {
-				status = false;
-			}
 		}
 
 		super.getResponse().setAuthorised(status);
