@@ -35,10 +35,15 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(masterId);
-		tLogs = this.repository.findTrackingLogsByClaim(claim.getId());
-		twoCompleted = tLogs.stream().filter(t -> !t.getStatus().equals(TrackingLogStatus.PENDING)).count() < 2L;
 
-		status = claim.getAssistanceAgent().equals(super.getRequest().getPrincipal().getActiveRealm()) && twoCompleted;
+		if (claim == null)
+			status = false;
+		else {
+			tLogs = this.repository.findTrackingLogsByClaim(claim.getId());
+			twoCompleted = tLogs.stream().filter(t -> !t.getStatus().equals(TrackingLogStatus.PENDING)).count() < 2L;
+
+			status = claim.getAssistanceAgent().equals(super.getRequest().getPrincipal().getActiveRealm()) && twoCompleted;
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
