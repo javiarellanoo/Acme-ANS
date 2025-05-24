@@ -10,3 +10,5 @@
 
 	<acme:list-payload path="payload"/>	
 </acme:list>
+
+<acme:button code="administrator.service.list.button.create" action="/administrator/service/create"/>

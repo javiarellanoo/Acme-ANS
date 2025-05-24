@@ -10,3 +10,9 @@ administrator.service.form.label.pictureLink = Imagen
 administrator.service.form.label.averageDwellTime = Promedio de tiempo en horas
 administrator.service.form.label.promotionCode = Código de promoción
 administrator.service.form.label.discountMoney = Descuento
+
+administrator.service.form.button.edit = Editar
+administrator.service.form.button.update = Actualizar
+administrator.service.form.button.create = Crear
+
+administrator.service.list.button.create = Crear
