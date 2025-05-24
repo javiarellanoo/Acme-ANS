@@ -83,7 +83,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		boolean validDate;
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		if (leg.getScheduledDeparture() != null) {
-			validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
+			validDate = MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), currentMoment);
 			super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 		}
 		Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
@@ -91,7 +91,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 		if (leg.getScheduledArrival() != null && leg.getScheduledDeparture() != null) {
 			for (Leg l : legsOfFlight)
 				if (MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), l.getScheduledArrival()) && MomentHelper.isAfterOrEqual(leg.getScheduledArrival(), l.getScheduledDeparture()))
-					validLeg = false;
+					validLeg = true;
 			super.state(validLeg, "*", "acme.validation.leg.conflictiveLeg.message");
 		}
 	}

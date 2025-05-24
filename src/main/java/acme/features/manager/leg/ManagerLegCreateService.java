@@ -112,7 +112,7 @@ public class ManagerLegCreateService extends AbstractGuiService<Manager, Leg> {
 		boolean validDate;
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		if (leg.getScheduledDeparture() != null) {
-			validDate = MomentHelper.isAfterOrEqual(leg.getScheduledDeparture(), currentMoment);
+			validDate = MomentHelper.isBeforeOrEqual(leg.getScheduledDeparture(), currentMoment);
 			super.state(validDate, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 		}
 

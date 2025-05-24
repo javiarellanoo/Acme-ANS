@@ -37,7 +37,7 @@ public class Flight extends AbstractEntity {
 	// Attributes
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 51)
 	@Automapped
 	private String				tag;
 
@@ -57,7 +57,7 @@ public class Flight extends AbstractEntity {
 	private Money				cost;
 
 	@Optional
-	@ValidString(min = 0, max = 255)
+	@ValidString(min = 0, max = 256)
 	@Automapped
 	private String				description;
 
