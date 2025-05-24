@@ -1,0 +1,13 @@
+any.service.form.title = Service form
+any.service.list.title = Listing of services
+
+any.service.list.label.name = Name
+any.service.list.label.pictureLink = Image
+any.service.list.label.averageDwellTime = Average dwell time in hours
+
+any.service.form.label.name = Name
+any.service.form.label.pictureLink = Image
+any.service.form.label.averageDwellTime = Average dwell time in hours
+any.service.form.label.promotionCode = Promotion code
+any.service.form.label.discountMoney = Discount money
+
