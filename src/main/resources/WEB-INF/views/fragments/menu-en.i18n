@@ -76,8 +76,6 @@ master.menu.technician.dashboard.show = My dashboard
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Assistance Agent
-master.menu.assistance-agent.claims.list.mine = My claims
-master.menu.assistance-agent.claims.list.published = Published claims
 master.menu.assistance-agent.claims.list.completed = Completed claims
 master.menu.assistance-agent.claims.list.undergoing = Undergoing claims
 

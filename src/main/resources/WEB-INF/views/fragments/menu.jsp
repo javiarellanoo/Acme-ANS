@@ -69,8 +69,6 @@
 		</acme:menu-option>
     
 		<acme:menu-option code="master.menu.assistance-agent" access="hasRole('AssistanceAgent')">
-		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.mine" action="/assistance-agent/claim/list?published=false"/>
-		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.published" action="/assistance-agent/claim/list?published=true"/>
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.completed" action="/assistance-agent/claim/list?completed=true"/>
 		    <acme:menu-suboption code="master.menu.assistance-agent.claims.list.undergoing" action="/assistance-agent/claim/list?completed=false"/>
 		</acme:menu-option>

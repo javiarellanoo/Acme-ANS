@@ -17,9 +17,7 @@
 	    <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 	    	<acme:button code="assistance-agent.claim.form.button.tracking-logs" action="/assistance-agent/tracking-log/list?masterId=${id}"/>
 	    	<acme:submit code="assistance-agent.claim.form.button.update" action="/assistance-agent/claim/update?id=${id}"/>
-	    	<jstl:if test="${acme:anyOf(status, 'ACCEPTED|REJECTED')}">
-	    		<acme:submit code="assistance-agent.claim.form.button.publish" action="/assistance-agent/claim/publish?id=${id}"/>
-	    	</jstl:if>
+	    	<acme:submit code="assistance-agent.claim.form.button.publish" action="/assistance-agent/claim/publish?id=${id}"/>
 	        <acme:submit code="assistance-agent.claim.form.button.delete" action="/assistance-agent/claim/delete?id=${id}"/>
 	    </jstl:when>    
 	    <jstl:when test="${_command == 'create'}">

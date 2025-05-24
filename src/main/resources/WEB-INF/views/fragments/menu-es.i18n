@@ -71,8 +71,6 @@ master.menu.technician.dashboard.show = Mi panel de control
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Asistente
-master.menu.assistance-agent.claims.list.mine = Mis reclamaciones
-master.menu.assistance-agent.claims.list.published = Reclamaciones publicadas
 master.menu.assistance-agent.claims.list.completed = Reclamaciones completadas
 master.menu.assistance-agent.claims.list.undergoing = Reclamaciones en progreso
 

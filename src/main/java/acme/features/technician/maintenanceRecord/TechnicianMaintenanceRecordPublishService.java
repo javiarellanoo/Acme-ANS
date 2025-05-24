@@ -29,7 +29,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 	@Override
 	public void authorise() {
 		boolean status;
-		boolean tasksPublished;
+		boolean publishable;
 		int maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
 		Technician technician;
@@ -46,18 +46,21 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecordId);
 
-		if (method.equals("GET"))
-			aircraftStatus = true;
-		else if (super.getRequest().hasData("aircraft", int.class)) {
+		publishable = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
+
+		if (maintenanceRecord == null)
+			status = false;
+		else if (!maintenanceRecord.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(technician))
+			status = false;
+		else if (method.equals("GET"))
+			status = publishable;
+		else {
 			aircraftId = super.getRequest().getData("aircraft", int.class);
 			aircraft = this.repository.findValidAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;
+
+			status = aircraftStatus;
 		}
-
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && aircraftStatus;
-		tasksPublished = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
-
-		status &= tasksPublished;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -100,7 +103,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Collection<Task> tasks;
 
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
+		publishable = true;
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());

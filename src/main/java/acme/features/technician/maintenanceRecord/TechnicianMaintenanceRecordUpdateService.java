@@ -40,18 +40,21 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		maintenanceRecordId = super.getRequest().getData("id", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 		technician = maintenanceRecord == null ? null : maintenanceRecord.getTechnician();
-
 		method = super.getRequest().getMethod();
 
-		if (method.equals("GET"))
-			aircraftStatus = true;
-		else if (super.getRequest().hasData("aircraft", int.class)) {
+		if (maintenanceRecord == null)
+			status = false;
+		else if (!maintenanceRecord.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(technician))
+			status = false;
+		else if (method.equals("GET"))
+			status = true;
+		else {
 			aircraftId = super.getRequest().getData("aircraft", int.class);
 			aircraft = this.repository.findValidAircraftById(aircraftId);
 			aircraftStatus = aircraftId == 0 || aircraft != null;
-		}
 
-		status = maintenanceRecord != null && maintenanceRecord.getDraftMode() && technician.getId() == super.getRequest().getPrincipal().getActiveRealm().getId() && aircraftStatus;
+			status = aircraftStatus;
+		}
 
 		super.getResponse().setAuthorised(status);
 
@@ -100,7 +103,7 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		Collection<Task> tasks;
 
 		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		publishable = maintenanceRecord.getDraftMode() && !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
+		publishable = !tasks.isEmpty() && tasks.stream().allMatch(x -> !x.getDraftMode());
 
 		aircrafts = this.repository.findAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", maintenanceRecord.getAircraft());
