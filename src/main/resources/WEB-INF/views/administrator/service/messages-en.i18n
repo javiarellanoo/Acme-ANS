@@ -1,0 +1,12 @@
+administrator.service.form.title = Service form
+administrator.service.list.title = Listing of services
+
+administrator.service.list.label.name = Name
+administrator.service.list.label.pictureLink = Image
+administrator.service.list.label.averageDwellTime = Average dwell time in hours
+
+administrator.service.form.label.name = Name
+administrator.service.form.label.pictureLink = Image
+administrator.service.form.label.averageDwellTime = Average dwell time in hours
+administrator.service.form.label.promotionCode = Promotion code
+administrator.service.form.label.discountMoney = Discount money
