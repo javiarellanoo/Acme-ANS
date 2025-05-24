@@ -1,6 +1,7 @@
 
 package acme.features.any.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,9 @@ public interface AnyServiceRepository extends AbstractRepository {
 
 	@Query("select s from Service s")
 	List<Service> findAllServices(PageRequest pageRequest);
+
+	@Query("select s from Service s")
+	Collection<Service> findAllServices();
 
 	@Query("select count(s) from Service s")
 	int countServices();
