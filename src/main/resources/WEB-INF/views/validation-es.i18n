@@ -50,7 +50,6 @@ acme.validation.flight-assignment.pilot-already-assigned.message = Un piloto ya 
 acme.validation.flight-assignment.copilot-already-assigned.message = Un copiloto ya ha sido asignado a este segmento.
 
 acme.validation.flight-assignment.simultaneous-leg.message = Este miembro ya está asignado a un segmento simultáneo.
-acme.validation.flight-assignment.null-leg-or-flight.message = Ni el segmento ni el miembro de la tripulación de vuelo puede ser nulo
 
 acme.validation.activity-log.not-published-assignment.message = Un registro de actividad no puede ser publicado hasta que la asignación asociada no sea publicada.
 acme.validation.booking.locatorCode.message = El código localizador no es válido
