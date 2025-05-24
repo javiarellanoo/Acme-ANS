@@ -13,17 +13,13 @@ import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.aircrafts.AircraftStatus;
 import acme.entities.airlines.Airline;
-import acme.features.authenticated.administrator.airlines.AdministratorAirlineRepository;
 
 @GuiService
 public class AdministratorAircraftShowService extends AbstractGuiService<Administrator, Aircraft> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AdministratorAircraftRepository	repository;
-
-	@Autowired
-	private AdministratorAirlineRepository	airlineRepository;
+	private AdministratorAircraftRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -58,7 +54,7 @@ public class AdministratorAircraftShowService extends AbstractGuiService<Adminis
 		Dataset dataset;
 		Collection<Airline> airlines;
 
-		airlines = this.airlineRepository.findAllAirlines();
+		airlines = this.repository.findAllAirlines();
 
 		statusChoices = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 		airlineChoices = SelectChoices.from(airlines, "name", aircraft.getAirline());
