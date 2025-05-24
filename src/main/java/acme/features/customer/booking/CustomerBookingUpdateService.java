@@ -1,7 +1,6 @@
 
 package acme.features.customer.booking;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Override
 	public void authorise() {
 		boolean status;
-		boolean flightStatus;
-		boolean bookingStatus;
 		int bookingId;
 		Booking booking;
 		Customer customer;
@@ -96,16 +93,10 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Dataset dataset;
 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
-		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
-		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
-
-		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
-			displayFlights.add(bookingFlight);
-
-		flightChoices = SelectChoices.from(displayFlights, "displayString", booking.getFlight());
+		flightChoices = SelectChoices.from(futureFlights, "displayString", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCardNibble", "draftMode");

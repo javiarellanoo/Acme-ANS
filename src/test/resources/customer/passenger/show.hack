@@ -143,4 +143,3 @@ request-id,request-method,request-path,request-query,request-payload,response-st
 "1622ca97-095b-40a0-8ab6-5ef36f7bb2af",GET,"/libraries/acme/js/acme.js",,,200,application/javascript,,,34621460784400,34621463554700,34621464116400
 "bedc209c-897d-4466-a75a-04508453e71d",GET,/images/banner.png,,,200,image/png,,,34621486023500,34621492157000,34621493519099
 "78b5073d-73b3-4f75-bb18-51208e39d406",GET,/images/logo.png,,,200,image/png,,,34621501864899,34621507694200,34621508917900
-"ee837c45-785c-40f9-9e27-1f9012833cef",GET,"/administrator/system/shut-down",,,200,,,,34626579659199,34631202366100,34631205395700

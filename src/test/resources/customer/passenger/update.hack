@@ -158,4 +158,3 @@ request-id,request-method,request-path,request-query,request-payload,response-st
 "d2fecba4-18a9-493b-a41c-600ea150fb70",GET,"/libraries/acme/js/acme.js",,,200,application/javascript,,,35750269129200,35750272379000,35750273080700
 "e7fb26c2-1571-43ac-bfe3-b4f9773f05fa",GET,/images/banner.png,,,200,image/png,,,35750293986800,35750297389500,35750298348100
 "495bc3d4-bb2f-47d9-98ee-4500596b4958",GET,/images/logo.png,,,200,image/png,,,35750303895600,35750314442300,35750315720900
-"efca5264-4434-4a9c-a772-c4586edc3efc",GET,"/administrator/system/shut-down",,,200,,,,35758790213800,35763636628800,35763638119300

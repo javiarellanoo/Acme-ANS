@@ -25,15 +25,15 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 		boolean status;
 		Passenger passenger;
 		int passengerId;
-		Customer customer;
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
-		customer = passenger == null ? null : passenger.getCustomer();
-		passenger = this.repository.findPassengerById(passengerId) != null ? this.repository.findPassengerById(passengerId) : null;
-		status = passenger != null && passenger.getDraftMode() && super.getRequest().getPrincipal().hasRealm(customer);
-
+		if (passenger != null && super.getRequest().getPrincipal().hasRealm(passenger.getCustomer()))
+			status = passenger.getDraftMode();
+		else
+			status = false;
 		super.getResponse().setAuthorised(status);
 	}
+
 	@Override
 	public void load() {
 		Passenger passenger;
