@@ -59,11 +59,13 @@ public class ManagerLegListService extends AbstractGuiService<Manager, Leg> {
 	public void unbind(final Collection<Leg> legs) {
 		int masterId;
 		Flight flight;
-		final boolean showCreate;
+		boolean showCreate;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		flight = this.repository.findFlightById(masterId);
-		showCreate = flight.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager());
+		showCreate = false;
+		if (flight.getDraftMode())
+			showCreate = super.getRequest().getPrincipal().hasRealm(flight.getManager());
 
 		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addGlobal("showCreate", showCreate);
