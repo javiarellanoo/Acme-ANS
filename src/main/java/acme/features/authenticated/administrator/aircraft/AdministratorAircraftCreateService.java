@@ -13,29 +13,25 @@ import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.aircrafts.AircraftStatus;
 import acme.entities.airlines.Airline;
-import acme.features.authenticated.administrator.airlines.AdministratorAirlineRepository;
 
 @GuiService
 public class AdministratorAircraftCreateService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	private AdministratorAircraftRepository	repository;
-
-	@Autowired
-	private AdministratorAirlineRepository	airlineRepository;
+	private AdministratorAircraftRepository repository;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int airlineId;
 		Airline airline;
 		if (super.getRequest().getMethod().equals("GET"))
 			status = true;
 		else {
-			id = super.getRequest().getData("id", int.class);
-			airline = this.airlineRepository.findAirlineById(id);
-			status = id == 0 || airline != null;
+			airlineId = super.getRequest().getData("airline", int.class);
+			airline = this.repository.findAirlineById(airlineId);
+			status = airlineId == 0 || airline != null;
 		}
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,7 +50,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 		int airlineId;
 
 		airlineId = super.getRequest().getData("airline", int.class);
-		airline = this.airlineRepository.findAirlineById(airlineId);
+		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
 		aircraft.setAirline(airline);
@@ -80,7 +76,7 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 		Dataset dataset;
 		Collection<Airline> airlines;
 
-		airlines = this.airlineRepository.findAllAirlines();
+		airlines = this.repository.findAllAirlines();
 
 		statusChoices = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 		airlineChoices = SelectChoices.from(airlines, "name", aircraft.getAirline());
