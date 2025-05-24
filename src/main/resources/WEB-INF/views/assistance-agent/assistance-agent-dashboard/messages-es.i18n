@@ -1,0 +1,23 @@
+assistance-agent.assistance-agent-dashboard.form.title = Dashboard
+
+assistance-agent.dashboard.form.title.claims-succesfully-resolved = Reclamaciones resueltas exitosamente
+assistance-agent.dashboard.form.label.ratio = Proporción
+
+assistance-agent.dashboard.form.title.claims-rejected = Reclamaciones rechazadas
+
+assistance-agent.dashboard.form.title.months-more-claims = Meses con mayor número de reclamaciones
+
+assistance-agent.dashboard.form.title.tLogs-statistics = Estadísticas de registros de seguimiento por reclamación
+assistance-agent.dashboard.form.label.average-tLogs = Media de registros
+assistance-agent.dashboard.form.label.maximum-tLogs = Máximo número de registros
+assistance-agent.dashboard.form.label.minimum-tLogs = Mínimo número de registros
+assistance-agent.dashboard.form.label.stddev-tLogs = Desviación estandar
+
+assistance-agent.dashboard.form.title.claims-month-statistics = Reclamaciones por semana en este mes
+assistance-agent.dashboard.form.label.average-claims = Media de reclamaciones
+assistance-agent.dashboard.form.label.maximum-claims = Máximo número de reclamaciones
+assistance-agent.dashboard.form.label.minimum-claims = Mínimo número de reclamaciones
+assistance-agent.dashboard.form.label.stddev-claims = Desviación estandar
+
+assistance-agent.dashboard.form.label.not-available = No disponible
+assistance-agent.dashboard.form.label.no-data = No hay datos
