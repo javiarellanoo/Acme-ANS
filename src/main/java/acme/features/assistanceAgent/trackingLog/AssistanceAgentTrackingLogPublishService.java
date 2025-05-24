@@ -37,7 +37,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		agent = this.repository.findAssistanceAgentById(agentId);
 
 		status = tLog != null && tLog.getClaim() != null && tLog.getClaim().getAssistanceAgent() != null //
-			&& tLog.getClaim().getAssistanceAgent().equals(agent) && tLog.getDraftMode();
+			&& tLog.getClaim().getAssistanceAgent().equals(agent) && tLog.getDraftMode() && !tLog.getClaim().getDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -55,7 +55,10 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog tLog) {
-		super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "status", "resolution");
+		if (tLog.getClaim().getDraftMode())
+			super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "status", "resolution");
+		else
+			super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "resolution");
 	}
 
 	@Override
@@ -84,6 +87,10 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
 
+		if (tLog.getClaim() != null)
+			super.getResponse().addGlobal("claimDraftMode", tLog.getClaim().getDraftMode());
+		else
+			super.getResponse().addGlobal("claimDraftMode", true);
 		super.getResponse().addData(dataset);
 	}
 }

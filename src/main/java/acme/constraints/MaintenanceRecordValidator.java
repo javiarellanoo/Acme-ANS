@@ -1,6 +1,7 @@
 
 package acme.constraints;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.validation.ConstraintValidatorContext;
@@ -35,6 +36,12 @@ public class MaintenanceRecordValidator extends AbstractValidator<ValidMaintenan
 			Boolean isNextInspectionAfterMoment = MomentHelper.isAfter(nextInspectionDate, moment);
 
 			super.state(context, isNextInspectionAfterMoment, "nextInspectionDate", "acme.validation.maintenanceRecord.nextInspectionDate.message");
+
+			Date currentMomentPlusDelta = MomentHelper.deltaFromCurrentMoment(1, ChronoUnit.MINUTES);
+
+			Boolean nextInspectionDateInFuture = MomentHelper.isAfterOrEqual(nextInspectionDate, currentMomentPlusDelta);
+
+			super.state(context, nextInspectionDateInFuture, "nextInspectionDate", "acme.validation.maintenanceRecord.nextInspectionDateInFuture.message");
 
 		}
 		result = !super.hasErrors(context);

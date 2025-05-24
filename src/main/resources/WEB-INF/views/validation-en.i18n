@@ -18,16 +18,18 @@ acme.validation.flightCrewMember.duplicated-employeeCode.message = The employeeC
 acme.validation.customer.identifier.message = The identifier must start with the initials of the customer.
 acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
 
-acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials.
-acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING".
-acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking log is finally at a 100% resolution percentage.
-acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented.
-acme.validation.trackingLog.draftMode.message = A trackingLog can not be published until its corresponding claim is published.
-acme.validation.trackingLog.draftModeDissatisfaction.message = A tracking log can not be in DISSATISFACTION status until it has first been published.
-acme.validation.trackingLog.statusDissatisfaction = There must be only one tracking log in DISSATISFACTION state.
+acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials
+acme.validation.claim.draftMode.message = A claim can not be published until one of its tracking logs is completed
+acme.validation.trackingLog.status.message = The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING"
+acme.validation.trackingLog.resolution.message = There must be a resolution message when the tracking log is finally at a 100% resolution percentage
+acme.validation.trackingLog.percentage.message = The resolution percentage must be greater than the last one implemented
+acme.validation.trackingLog.draftMode.message = A trackingLog can not be published until its corresponding claim is published
+acme.validation.trackingLog.draftModeDissatisfaction.message = An exceptional tracking log can't be created until another tracking log has been published
+acme.validation.trackingLog.statusDissatisfaction = There must be only one tracking log in DISSATISFACTION state
 acme.validation.trackingLog.momentClaim = You can't create a tracking log before the creation of its claim
 acme.validation.trackingLog.updateMoment = The last update can not be before the creation
-acme.validation.trackingLog.numberCompleted = There can not be more than 2 completed tracking logs.
+acme.validation.trackingLog.numberCompleted = There can not be more than 2 completed tracking logs
+acme.validation.trackingLog.newCompletedTLog = If you wish to create an exceptional completed tracking log, this one can only be in "DISSATISFACTION" status
 
 acme.validation.service.promotionCode.message = The last two characters of the promotion code must correspond to the current year and must be unique.  
 acme.validation.technician.licenseNumber.message = The license number must start with the client's initials and must be unique. 
@@ -67,3 +69,5 @@ acme.validation.booking.passengers.message = There must be passengers
 acme.validation.airline.iataCode = The iataCode must consist of 3 capital letters
 acme.validation.manager.identifier = The identifier must start with your initials and be followed by 6 digits.
 acme.validation.manager.yearsOfExperience.message = The years of experience must be smaller than the manager's age
+
+acme.validation.maintenanceRecord.nextInspectionDateInFuture.message = The next inspection due date must be in the future

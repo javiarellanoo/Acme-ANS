@@ -25,7 +25,7 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
+<jstl:if test="${twoCompleted}">
 	<acme:button code="assistance-agent.tracking-log.list.button.create" action="/assistance-agent/tracking-log/create?masterId=${masterId}"/>
 </jstl:if>		
 	

@@ -125,14 +125,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 				boolean onlyOnePilot;
 				FlightAssignment pilotAssignment;
 				pilotAssignment = this.repository.findPilotAssignmentsByLegId(assignment.getLeg().getId());
-				onlyOnePilot = pilotAssignment == null || pilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.PILOT);
+				onlyOnePilot = pilotAssignment == null || !assignment.getDuty().equals(Duty.PILOT);
 				super.state(onlyOnePilot, "duty", "acme.validation.flight-assignment.pilot-already-assigned.message");
 
 				boolean onlyOneCopilot;
 				FlightAssignment copilotAssignment;
 
 				copilotAssignment = this.repository.findCopilotAssignmentsByLegId(assignment.getLeg().getId());
-				onlyOneCopilot = copilotAssignment == null || copilotAssignment.equals(assignment) || !assignment.getDuty().equals(Duty.COPILOT);
+				onlyOneCopilot = copilotAssignment == null || !assignment.getDuty().equals(Duty.COPILOT);
 
 				super.state(onlyOneCopilot, "duty", "acme.validation.flight-assignment.copilot-already-assigned.message");
 			}

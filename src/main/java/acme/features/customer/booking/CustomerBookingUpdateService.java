@@ -1,7 +1,6 @@
 
 package acme.features.customer.booking;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,12 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		boolean status = true;
-		boolean flightStatus;
-		boolean bookingStatus;
+		boolean status;
 		int bookingId;
 		Booking booking;
 		Customer customer;
 		int flightId;
 		Flight flight;
-		String flightIdStr;
 
 		bookingId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingkById(bookingId);
@@ -47,23 +43,13 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 			status = false;
 		else if (!booking.getDraftMode() || !super.getRequest().getPrincipal().hasRealm(customer))
 			status = false;
-		else if (super.getRequest().getMethod().equals("GET"))
-			status = true;
 		else {
-			flightIdStr = super.getRequest().getData("flight", String.class);
-			try {
-				flightId = Integer.parseInt(flightIdStr);
-				flight = this.repository.findFlightById(flightId);
-				flightStatus = flightId == 0 || flight != null;
-				bookingStatus = booking != null && booking.getDraftMode();
-				if (flightId == 0)
-					status &= bookingStatus && flightStatus;
-				else
-					status &= bookingStatus && flightStatus && flight.getScheduledDeparture() != null && super.getRequest().getPrincipal().hasRealm(customer) && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
-
-			} catch (NumberFormatException e) {
-				status = false;
-			}
+			flightId = super.getRequest().getData("flight", int.class);
+			flight = this.repository.findFlightById(flightId);
+			if (flightId == 0)
+				status = true;
+			else
+				status = flight != null && !flight.getDraftMode() && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 
 		}
 
@@ -91,11 +77,6 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		boolean hasCreditCardNibble;
-		boolean hasSomePassengers;
-
-		hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
-		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
 	}
 
 	@Override
@@ -112,16 +93,10 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		Dataset dataset;
 
 		Collection<Flight> flights = this.repository.findAllNotDraftFlights();
-		Flight bookingFlight = booking.getFlight();
 
-		Collection<Flight> futureFlights = flights.stream().filter(flight -> flight.getScheduledDeparture() != null && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
+		Collection<Flight> futureFlights = flights.stream().filter(flight -> MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment())).toList();
 
-		Collection<Flight> displayFlights = new ArrayList<>(futureFlights);
-
-		if (bookingFlight != null && !displayFlights.contains(bookingFlight))
-			displayFlights.add(bookingFlight);
-
-		flightChoices = SelectChoices.from(displayFlights, "displayString", booking.getFlight());
+		flightChoices = SelectChoices.from(futureFlights, "displayString", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastCardNibble", "draftMode");

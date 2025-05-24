@@ -13,16 +13,12 @@ import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.aircrafts.AircraftStatus;
 import acme.entities.airlines.Airline;
-import acme.features.authenticated.administrator.airlines.AdministratorAirlineRepository;
 
 @GuiService
 public class AdministratorAircraftUpdateService extends AbstractGuiService<Administrator, Aircraft> {
 
 	@Autowired
-	private AdministratorAircraftRepository	repository;
-
-	@Autowired
-	private AdministratorAirlineRepository	airlineRepository;
+	private AdministratorAircraftRepository repository;
 
 
 	@Override
@@ -32,17 +28,23 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 		int airlineId = 0;
 		Aircraft aircraft;
 		Airline airline;
+		String method;
 
+		method = super.getRequest().getMethod();
 		aircraftId = super.getRequest().getData("id", int.class);
 		aircraft = this.repository.findAircraftById(aircraftId);
 		status = aircraft != null;
 
-		airlineId = super.getRequest().getData("airline", int.class);
-		if (airlineId != 0) {
-			airline = this.airlineRepository.findAirlineById(airlineId);
-			status = status && airline != null;
-
+		if (method.equals("GET"))
+			status = true;
+		else {
+			airlineId = super.getRequest().getData("airline", int.class);
+			if (airlineId != 0) {
+				airline = this.repository.findAirlineById(airlineId);
+				status = status && airline != null;
+			}
 		}
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -64,7 +66,7 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 		int airlineId;
 
 		airlineId = super.getRequest().getData("airline", int.class);
-		airline = this.airlineRepository.findAirlineById(airlineId);
+		airline = this.repository.findAirlineById(airlineId);
 
 		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
 		aircraft.setAirline(airline);
@@ -89,7 +91,7 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 		Dataset dataset;
 		Collection<Airline> airlines;
 
-		airlines = this.airlineRepository.findAllAirlines();
+		airlines = this.repository.findAllAirlines();
 
 		statusChoices = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 		airlineChoices = SelectChoices.from(airlines, "name", aircraft.getAirline());

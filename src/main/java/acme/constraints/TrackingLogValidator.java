@@ -3,7 +3,6 @@ package acme.constraints;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -66,19 +65,6 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				super.state(context, claimPublished, "publish", "acme.validation.trackingLog.draftMode.message");
 			}
 
-			// Unique dissatisfaction check
-			if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION)) {
-				boolean isPublished = this.repository.findAllByClaimId(trackingLog.getClaim().getId()) //
-					.stream().anyMatch(t -> !t.getDraftMode());
-				super.state(context, isPublished, "status", "acme.validation.trackingLog.draftModeDissatisfaction.message");
-
-				boolean isUnique = this.repository.findAllByClaimId(trackingLog.getClaim().getId()) //
-					.stream().filter(t -> t.getId() != trackingLog.getId()) //
-					.noneMatch(t -> t.getStatus().equals(TrackingLogStatus.DISSATISFACTION));
-				super.state(context, isUnique, "status", "acme.validation.trackingLog.statusDissatisfaction");
-
-			}
-
 			// Time stamps check
 			boolean notBeforeClaim = MomentHelper.isAfterOrEqual(trackingLog.getCreationMoment(), trackingLog.getClaim().getRegistrationMoment());
 			super.state(context, notBeforeClaim, "creationMoment", "acme.validation.trackingLog.momentClaim");
@@ -90,23 +76,45 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			boolean greaterPercentage = true;
 
 			List<TrackingLog> tLogs = this.repository.findAllByClaimId(trackingLog.getClaim().getId());
-			if (tLogs.contains(trackingLog))
-				tLogs.remove(trackingLog);
+			int index = tLogs.indexOf(trackingLog);
 
-			List<TrackingLog> beforeActual = tLogs.stream().filter(t -> MomentHelper.isBeforeOrEqual(t.getCreationMoment(), trackingLog.getCreationMoment())).collect(Collectors.toList());
+			if (index != -1)
+				tLogs.set(index, trackingLog);
+			else
+				tLogs.add(trackingLog);
 
-			if (!beforeActual.isEmpty()) {
-				beforeActual.sort(Comparator.comparing(TrackingLog::getCreationMoment).reversed() //
-					.thenComparing(TrackingLog::getResolutionPercentage, Comparator.reverseOrder()));
-				TrackingLog previous = beforeActual.get(0);
-				if (!(trackingLog.getResolutionPercentage() == 100.00 && previous.getResolutionPercentage() == 100.00))
-					if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION))
-						greaterPercentage = trackingLog.getResolutionPercentage().equals(previous.getResolutionPercentage());
-					else
-						greaterPercentage = trackingLog.getResolutionPercentage() > previous.getResolutionPercentage();
+			super.state(context, tLogs.stream().filter(t -> t.getResolutionPercentage() == 100.00).count() <= 2, "resolutionPercentage", "acme.validation.trackingLog.numberCompleted");
+
+			tLogs.sort(Comparator.comparing(t -> t.getCreationMoment()));
+			index = tLogs.indexOf(trackingLog);
+
+			if (index > 0) {
+				TrackingLog prev = tLogs.get(index - 1);
+				if (prev.getResolutionPercentage() == 100.00 && trackingLog.getResolutionPercentage() == 100.00) {
+					super.state(context, !prev.getDraftMode(), "status", "acme.validation.trackingLog.draftModeDissatisfaction.message");
+					super.state(context, trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION), "status", "acme.validation.trackingLog.newCompletedTLog");
+				} else
+					greaterPercentage = prev.getResolutionPercentage() < trackingLog.getResolutionPercentage();
 			}
 
+			if (index < tLogs.size() - 1) {
+				TrackingLog next = tLogs.get(index + 1);
+				if (next.getResolutionPercentage() == 100.00 && trackingLog.getResolutionPercentage() == 100.00) {
+					super.state(context, !trackingLog.getDraftMode(), "status", "acme.validation.trackingLog.draftModeDissatisfaction.message");
+					super.state(context, next.getStatus().equals(TrackingLogStatus.DISSATISFACTION), "status", "acme.validation.trackingLog.newCompletedTLog");
+				} else
+					greaterPercentage = next.getResolutionPercentage() > trackingLog.getResolutionPercentage();
+			}
 			super.state(context, greaterPercentage, "resolutionPercentage", "acme.validation.trackingLog.percentage.message");
+
+			// Unique dissatisfaction check
+			if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION)) {
+				boolean isUnique = tLogs.stream().filter(t -> t.getId() != trackingLog.getId()) //
+					.noneMatch(t -> t.getStatus().equals(TrackingLogStatus.DISSATISFACTION));
+				super.state(context, isUnique, "status", "acme.validation.trackingLog.statusDissatisfaction");
+
+			}
+
 		}
 
 		result = !super.hasErrors(context);

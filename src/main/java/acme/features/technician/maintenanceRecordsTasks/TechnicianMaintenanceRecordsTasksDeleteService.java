@@ -37,18 +37,21 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 		maintenanceRecordId = super.getRequest().getData("maintenanceRecordId", int.class);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(maintenanceRecordId);
 
-		if (super.getRequest().getMethod().equals("GET"))
-			taskStatus = true;
+		if (maintenanceRecord == null)
+			status = false;
 		else {
-			technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			if (super.getRequest().getMethod().equals("GET"))
+				taskStatus = true;
+			else {
+				technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-			taskId = super.getRequest().getData("task", int.class);
-			task = this.repository.findValidTaskByIdAndMaintenanceRecord(taskId, maintenanceRecordId);
-			taskStatus = taskId == 0 || task != null;
+				taskId = super.getRequest().getData("task", int.class);
+				task = this.repository.findValidTaskByIdAndMaintenanceRecord(taskId, maintenanceRecordId);
+				taskStatus = taskId == 0 || task != null;
+			}
+
+			status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && taskStatus;
 		}
-
-		status = maintenanceRecord.getDraftMode() && super.getRequest().getPrincipal().hasRealm(maintenanceRecord.getTechnician()) && taskStatus;
-
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -82,12 +85,8 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 	public void validate(final MaintenanceRecordsTasks relationship) {
 		boolean exists;
 
-		if (relationship.getTask() != null) {
-			exists = this.repository.findByMaintenanceRecordAndTask(relationship.getMaintenanceRecord().getId(), relationship.getTask().getId()) != null;
-			super.state(exists, "task", "technician.maintenance-records-tasks.form.error.not-null");
-		} else
+		if (relationship.getTask() == null)
 			super.state(false, "task", "technician.maintenance-records-tasks.form.error.not-null");
-
 	}
 
 	@Override
@@ -95,9 +94,7 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 		MaintenanceRecordsTasks maintenanceRecordsTasks;
 
 		maintenanceRecordsTasks = this.repository.findByMaintenanceRecordAndTask(relationship.getMaintenanceRecord().getId(), relationship.getTask().getId());
-
-		if (maintenanceRecordsTasks != null)
-			this.repository.delete(maintenanceRecordsTasks);
+		this.repository.delete(maintenanceRecordsTasks);
 	}
 
 	@Override
