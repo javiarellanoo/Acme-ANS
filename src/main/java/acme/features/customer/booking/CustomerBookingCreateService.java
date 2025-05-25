@@ -40,7 +40,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 			if (flightId == 0)
 				status = true;
 			else
-				status = flight != null && !flight.getDraftMode() && MomentHelper.isAfterOrEqual(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
+				status = flight != null && !flight.getDraftMode() && MomentHelper.isBefore(flight.getScheduledDeparture(), MomentHelper.getCurrentMoment());
 
 		}
 
