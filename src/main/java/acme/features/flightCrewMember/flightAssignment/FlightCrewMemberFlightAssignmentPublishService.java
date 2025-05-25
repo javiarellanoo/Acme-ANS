@@ -79,6 +79,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		Leg leg = this.repository.findLegById(legId);
 		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
 		assignment.setLeg(leg);
+		assignment.setLastUpdate(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
