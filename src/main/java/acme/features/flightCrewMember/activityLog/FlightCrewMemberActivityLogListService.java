@@ -25,13 +25,11 @@ public class FlightCrewMemberActivityLogListService extends AbstractGuiService<F
 		int assignmentId;
 		FlightAssignment assignment;
 		int memberId;
-		int airlineId;
 
 		assignmentId = super.getRequest().getData("masterId", int.class);
 		assignment = this.repository.findAssignmentById(assignmentId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && assignment.getFlightCrewMember().getAirline().getId() == airlineId;
+		status = assignment != null && assignment.getFlightCrewMember().getId() == memberId;
 
 		super.getResponse().setAuthorised(status);
 	}

@@ -21,7 +21,6 @@
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.status" path="status" choices="${statuses}"/>
 	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks"/>	
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.leg" path="leg" choices="${legs}"/>
-	<acme:input-select code="flight-crew-member.flight-assignment.form.label.flightCrewMember" path="flightCrewMember" choices="${flightCrewMembers}"/>
 	
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">
