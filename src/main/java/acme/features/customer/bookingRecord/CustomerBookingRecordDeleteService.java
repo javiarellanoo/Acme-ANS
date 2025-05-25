@@ -1,17 +1,12 @@
 
 package acme.features.customer.bookingRecord;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.bookings.Booking;
 import acme.entities.bookings.BookingRecord;
-import acme.entities.passenger.Passenger;
 import acme.realms.Customer;
 
 @GuiService
@@ -27,25 +22,18 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 
 	@Override
 	public void authorise() {
-		boolean status; // Not initialized to true upfront
+		boolean status;
 		Booking booking;
-		String bookingRecordIdStr;
 		int bookingRecordId;
 		BookingRecord bookingRecord;
+		bookingRecordId = super.getRequest().getData("id", int.class);
+		bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
 
-		try {
-			bookingRecordIdStr = super.getRequest().getData("id", String.class);
-			bookingRecordId = Integer.parseInt(bookingRecordIdStr);
-			bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
-
-			if (bookingRecord == null)
-				status = false;
-			else {
-				booking = this.repository.findBookingById(bookingRecord.getBooking().getId());
-				status = booking != null && booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
-			}
-		} catch (AssertionError | Exception e) {
+		if (bookingRecord == null)
 			status = false;
+		else {
+			booking = this.repository.findBookingById(bookingRecord.getBooking().getId());
+			status = booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && !super.getRequest().getMethod().equals("GET");
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -72,25 +60,6 @@ public class CustomerBookingRecordDeleteService extends AbstractGuiService<Custo
 	@Override
 	public void perform(final BookingRecord bookingRecord) {
 		this.repository.delete(bookingRecord);
-	}
-
-	@Override
-	public void unbind(final BookingRecord bookingRecord) {
-		SelectChoices passengersChoices;
-		Dataset dataset;
-		Collection<Passenger> passengers;
-
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		int bookingId = bookingRecord.getBooking().getId();
-
-		passengers = this.repository.findPassengersNotInBooking(customerId, bookingId);
-		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
-
-		dataset = super.unbindObject(bookingRecord, "passenger");
-		dataset.put("passengerId", passengersChoices.getSelected().getKey());
-		dataset.put("passengers", passengersChoices);
-
-		super.getResponse().addData(dataset);
 	}
 
 }

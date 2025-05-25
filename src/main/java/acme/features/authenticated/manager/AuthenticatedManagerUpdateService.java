@@ -46,7 +46,6 @@ public class AuthenticatedManagerUpdateService extends AbstractGuiService<Authen
 
 	@Override
 	public void validate(final Manager manager) {
-		;
 	}
 
 	@Override

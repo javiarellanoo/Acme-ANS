@@ -87,6 +87,10 @@ master.menu.review.list = Reviews
 master.menu.flight = Flights
 master.menu.flight.list = Flights
 
+# master.menu.service ########################################################
+master.menu.service = Services
+master.menu.service.list = Services
+
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings
 master.menu.customer = Customer area

@@ -14,7 +14,6 @@ import acme.client.components.validation.Validator;
 import acme.client.helpers.MomentHelper;
 import acme.client.helpers.StringHelper;
 import acme.entities.aircrafts.Aircraft;
-import acme.entities.flights.Flight;
 import acme.entities.legs.Leg;
 import acme.entities.legs.LegRepository;
 import acme.helpers.UniquenessHelper;
@@ -71,8 +70,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 				}
 			}
 
-			if (leg.getFlight() != null && leg.getDraftMode() == false) {
-				Flight flight = leg.getFlight();
+			if (leg.getFlight() != null && !leg.getDraftMode()) {
 				Collection<Leg> legsOfFlight = this.repository.findOtherLegsByFlightId(leg.getFlight().getId(), leg.getId());
 				boolean validLeg = true;
 				for (Leg l : legsOfFlight)

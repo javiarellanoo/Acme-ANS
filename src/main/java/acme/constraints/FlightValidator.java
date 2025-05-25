@@ -38,9 +38,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 			List<Leg> legs = this.repository.findAllLegsByFlightId(flight.getId());
 
 			Boolean validFlight = true;
-			if (flight.getDraftMode().equals(true))
-				validFlight = true;
-			else {
+			if (flight.getDraftMode().equals(false)) {
 				for (int i = 1; i < legs.size(); i++) {
 					Date previousArrival = legs.get(i - 1).getScheduledArrival();
 					Date currentDeparture = legs.get(i).getScheduledDeparture();
@@ -49,7 +47,7 @@ public class FlightValidator extends AbstractValidator<ValidFlight, Flight> {
 				}
 				super.state(context, validFlight, "scheduledArrival", "acme.validation.flight.legs.message");
 
-				boolean legsStatus = flight.getDraftMode().equals(true) || !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+				boolean legsStatus = flight.getDraftMode().equals(true) || !legs.isEmpty() && legs.stream().allMatch(l -> !l.getDraftMode());
 				super.state(context, legsStatus, "*", "acme.validation.flight.nonPublishedLegs.message");
 			}
 		}

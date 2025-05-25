@@ -25,24 +25,22 @@ public class AdministratorAircraftUpdateService extends AbstractGuiService<Admin
 	public void authorise() {
 		boolean status;
 		int aircraftId;
-		int airlineId = 0;
+		int airlineId;
 		Aircraft aircraft;
 		Airline airline;
-		String method;
 
-		method = super.getRequest().getMethod();
 		aircraftId = super.getRequest().getData("id", int.class);
 		aircraft = this.repository.findAircraftById(aircraftId);
+
 		status = aircraft != null;
 
-		if (method.equals("GET"))
-			status = true;
-		else {
+		if (!super.getRequest().getMethod().equals("GET")) {
 			airlineId = super.getRequest().getData("airline", int.class);
-			if (airlineId != 0) {
-				airline = this.repository.findAirlineById(airlineId);
-				status = status && airline != null;
-			}
+			airline = this.repository.findAirlineById(airlineId);
+			if (airlineId == 0)
+				status = true;
+			else
+				status = airline != null;
 		}
 
 		super.getResponse().setAuthorised(status);
