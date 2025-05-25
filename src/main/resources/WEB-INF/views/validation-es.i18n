@@ -64,3 +64,6 @@ acme.validation.manager.identifier = El identificador debe comenzar con sus inic
 acme.validation.manager.yearsOfExperience.message = Los años de experience deben ser menores a la edad del manager.
 
 acme.validation.maintenanceRecord.nextInspectionDateInFuture.message = La fecha de próxima inspección debe ser en el futuro
+acme.validation.systemConfiguration.acceptedCurrencies.message = El listado de divisas no sigue el formato esperado, sepárelas por comas y un espacio. Asegúrese de que cada una está conformada por 3 letras mayúsculas
+cme.validation.systemConfiguration.acceptedCurrencies.repeated = Alguna divisa está repetida
+acme.validation.systemConfiguration.acceptedCurrencies.contained = La divisa seleccionada no está entre las opciones

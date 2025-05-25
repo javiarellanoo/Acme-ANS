@@ -71,3 +71,6 @@ acme.validation.manager.identifier = The identifier must start with your initial
 acme.validation.manager.yearsOfExperience.message = The years of experience must be smaller than the manager's age
 
 acme.validation.maintenanceRecord.nextInspectionDateInFuture.message = The next inspection due date must be in the future
+acme.validation.systemConfiguration.acceptedCurrencies.message = The list of currencies does not follow the required pattern, please separate them by commas and a space. Make sure that all of them are composed of 3 capital letters
+cme.validation.systemConfiguration.acceptedCurrencies.repeated = Some currency is repeated
+acme.validation.systemConfiguration.acceptedCurrencies.contained = The introduced currency is not in the list

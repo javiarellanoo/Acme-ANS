@@ -87,6 +87,10 @@ master.menu.review.list = Reviews
 master.menu.flight = Flights
 master.menu.flight.list = Flights
 
+# master.menu.system-configuration ########################################################
+master.menu.system-configuration = Configuration
+master.menu.system-configuration.show = See system configuration
+
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings
 master.menu.customer = Customer area
