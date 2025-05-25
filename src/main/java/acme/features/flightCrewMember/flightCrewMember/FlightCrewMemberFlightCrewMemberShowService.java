@@ -26,13 +26,11 @@ public class FlightCrewMemberFlightCrewMemberShowService extends AbstractGuiServ
 		int masterId;
 		FlightCrewMember fcm;
 		int memberId;
-		FlightCrewMember loggedMember;
 
 		masterId = super.getRequest().getData("id", int.class);
 		fcm = this.repository.findCrewMemberById(masterId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		loggedMember = this.repository.findCrewMemberById(memberId);
-		status = fcm != null && fcm.getAirline().getId() == loggedMember.getAirline().getId();
+		status = fcm != null && masterId == memberId;
 
 		super.getResponse().setAuthorised(status);
 

@@ -29,9 +29,6 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		int legId;
 		Leg leg;
 		Collection<Leg> validLegs;
-		int fcmId;
-		FlightCrewMember fcm;
-		Collection<FlightCrewMember> validMembers;
 		int memberId;
 		int airlineId;
 		if (super.getRequest().getMethod().equals("GET"))
@@ -40,12 +37,9 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 			memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
 			validLegs = this.repository.findLegsByAirlineId(airlineId);
-			validMembers = this.repository.findCrewMembersByAirlineId(airlineId);
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
-			fcmId = super.getRequest().getData("flightCrewMember", int.class);
-			fcm = this.repository.findCrewMemberById(fcmId);
-			status = (legId == 0 || leg != null && validLegs.contains(leg)) && (fcmId == 0 || fcm != null && validMembers.contains(fcm));
+			status = legId == 0 || leg != null && validLegs.contains(leg);
 		}
 		super.getResponse().setAuthorised(status);
 	}
@@ -53,8 +47,12 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	@Override
 	public void load() {
 		FlightAssignment assignment;
+		FlightCrewMember member;
+
+		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
 		assignment = new FlightAssignment();
+		assignment.setFlightCrewMember(member);
 		assignment.setDraftMode(true);
 		assignment.setDuty(Duty.PILOT);
 		assignment.setStatus(AssignmentStatus.PENDING);
@@ -65,16 +63,12 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	@Override
 	public void bind(final FlightAssignment assignment) {
 		int legId;
-		int memberId;
 
 		legId = super.getRequest().getData("leg", int.class);
-		memberId = super.getRequest().getData("flightCrewMember", int.class);
 		Leg leg = this.repository.findLegById(legId);
-		FlightCrewMember member = this.repository.findCrewMemberById(memberId);
 		super.bindObject(assignment, "duty", "status", "remarks");
 		assignment.setDraftMode(true);
 		assignment.setLeg(leg);
-		assignment.setFlightCrewMember(member);
 		assignment.setLastUpdate(MomentHelper.getCurrentMoment());
 
 	}
@@ -96,8 +90,6 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		SelectChoices statusChoices;
 		Collection<Leg> legs;
 		SelectChoices legChoices;
-		Collection<FlightCrewMember> members;
-		SelectChoices memberChoices;
 		int memberId;
 		int airlineId;
 
@@ -105,8 +97,6 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
 		legs = this.repository.findLegsByAirlineId(airlineId);
 		legChoices = SelectChoices.from(legs, "flightNumber", assignment.getLeg());
-		members = this.repository.findCrewMembersByAirlineId(airlineId);
-		memberChoices = SelectChoices.from(members, "employeeCode", assignment.getFlightCrewMember());
 		dutyChoices = SelectChoices.from(Duty.class, assignment.getDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, assignment.getStatus());
 
@@ -115,8 +105,6 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		dataset.put("statuses", statusChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("flightCrewMember", memberChoices.getSelected().getKey());
-		dataset.put("flightCrewMembers", memberChoices);
 		dataset.put("draftMode", true);
 
 		super.getResponse().addData(dataset);
