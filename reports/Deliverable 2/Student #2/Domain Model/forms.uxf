@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>230</y>
+      <w>360</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+ManagerDashboard
+--
++ managerRanking: Integer
++ yearsToRetire: Integer
++ onTimeRatio: Double
++ delayedRatio: Double
++ mostPopularAirport: String
++ leastPopularAirport: String
++ numberOfLegsPerStatus: Map&lt;String, Integer&gt;
++ priceStatistics: Map&lt;String, Statistics&gt;
+
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>540</y>
+      <w>360</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Form&gt;&gt;
+Statistics
+--
++ data: List&lt;Double&gt;
+--
++ average: double
++ min: double
++ max: double
++ stddev: double
++ count: int
+
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
