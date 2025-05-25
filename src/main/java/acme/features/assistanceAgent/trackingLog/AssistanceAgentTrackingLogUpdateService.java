@@ -83,10 +83,7 @@ public class AssistanceAgentTrackingLogUpdateService extends AbstractGuiService<
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
 
-		if (tLog.getClaim() != null)
-			super.getResponse().addGlobal("claimDraftMode", tLog.getClaim().getDraftMode());
-		else
-			super.getResponse().addGlobal("claimDraftMode", true);
+		super.getResponse().addGlobal("claimDraftMode", tLog.getClaim().getDraftMode());
 		super.getResponse().addData(dataset);
 	}
 }
