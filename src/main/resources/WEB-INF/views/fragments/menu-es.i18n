@@ -87,6 +87,10 @@ master.menu.customer.dashboard = Panel de control
 master.menu.flight = Vuelos
 master.menu.flight.list = Vuelos
 
+# master.menu.service ########################################################
+master.menu.service = Servicios
+master.menu.service.list = Servicios
+
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente
 master.menu.customer.passenger = Mis Pasajeros

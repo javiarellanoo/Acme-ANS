@@ -32,8 +32,9 @@ import lombok.Setter;
 @Setter
 @ValidLeg
 @Table(indexes = {
-	@Index(columnList = "scheduledDeparture, flight_id"), @Index(columnList = "scheduledArrival, flight_id")
+	@Index(columnList = "scheduledDeparture, flight_id"), @Index(columnList = "id,flight_id,draftMode"), @Index(columnList = "scheduledArrival, flight_id")
 })
+
 public class Leg extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;

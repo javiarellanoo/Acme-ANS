@@ -92,6 +92,14 @@
 		<acme:menu-option code="master.menu.flight" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.flight.list" action="/any/flight/list"/>
 		</acme:menu-option>
+	
+		<acme:menu-option code="master.menu.service" access="isAnonymous()">
+		<acme:menu-suboption code="master.menu.service.list" action="/any/service/list"/>
+		</acme:menu-option>
+		<acme:menu-option code="master.menu.service" access="isAuthenticated()">
+		<acme:menu-suboption code="master.menu.service.list" action="/any/service/list"/>
+		</acme:menu-option>
+		
 	</acme:menu-left>
 
 	<acme:menu-right>		
