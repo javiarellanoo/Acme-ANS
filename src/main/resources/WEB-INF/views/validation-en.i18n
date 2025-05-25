@@ -15,8 +15,8 @@ acme.validation.flight.nonPublishedLegs.message = This flight has either no legs
 acme.validation.flightCrewMember.employeeCode.message = The employeeCode must start with the member's initials.
 acme.validation.flightCrewMember.duplicated-employeeCode.message = The employeeCode must be unique.
 
-acme.validation.customer.identifier.message = The identifier must start with the initials of the customer.
-acme.validation.customer.identifierUniqueness.message = The identifier must be unique.
+acme.validation.customer.identifier.message = The identifier must start with the initials of the customer
+acme.validation.customer.identifierUniqueness.message = The identifier must be unique
 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must start with the agent's initials
 acme.validation.claim.draftMode.message = A claim can not be published until one of its tracking logs is completed
@@ -42,7 +42,7 @@ acme.validation.aircraft.registrationNumber.message = The registration number of
 acme.validation.airline.iataCode.message = The iataCode is not unique.
 acme.validation.airport.duplicated-iataCode.message = The iataCode is not unique.
 
-acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique.
+acme.validation.booking.uniqueLocatorCode.message = The locator code of a booking must be unique
 
 acme.validation.maintenanceRecord.nextInspectionDate.message = Next inspection date must be after the moment of the maintenance record.
 acme.validation.leg.flightNumberUnique.message = The flightNumber must be unique.
