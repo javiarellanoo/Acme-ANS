@@ -14,5 +14,6 @@ administrator.service.form.label.discountMoney = Descuento
 administrator.service.form.button.edit = Editar
 administrator.service.form.button.update = Actualizar
 administrator.service.form.button.create = Crear
+administrator.service.form.button.delete = Eliminar
 
 administrator.service.list.button.create = Crear

@@ -13,6 +13,7 @@
 	<jstl:choose>
 		<jstl:when test="${_command == 'show'}">
 			<acme:button code="administrator.service.form.button.edit" action="/administrator/service/update?id=${id}"/>
+			<acme:button code="administrator.service.form.button.delete" action="/administrator/service/delete?id=${id}"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'update'}">
 			<acme:submit code="administrator.service.form.button.update" action="/administrator/service/update"/>

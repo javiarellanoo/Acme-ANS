@@ -27,6 +27,9 @@ public class AdministratorServiceController extends AbstractGuiController<Admini
 	@Autowired
 	private AdministratorServiceUpdateService	updateService;
 
+	@Autowired
+	private AdministratorServiceDeleteService	deleteService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -36,5 +39,6 @@ public class AdministratorServiceController extends AbstractGuiController<Admini
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 }
