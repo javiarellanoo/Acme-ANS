@@ -39,6 +39,7 @@
 			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="master.menu.administrator.recommendation" action="/administrator/recommendation/perform"/>
 			<acme:menu-suboption code="master.menu.administrator.maintenance-record" action="/administrator/maintenance-record/list"/>
+					<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/administrator-dashboard/show"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.booking" action="/administrator/booking/list"/>
 		</acme:menu-option>
