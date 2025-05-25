@@ -50,7 +50,6 @@ public class AdministratorServiceCreateService extends AbstractGuiService<Admini
 		Dataset dataset;
 
 		dataset = super.unbindObject(service, "name", "pictureLink", "averageDwellTime", "promotionCode", "discountMoney");
-		dataset.put("readonly", false);
 
 		super.getResponse().addData(dataset);
 	}

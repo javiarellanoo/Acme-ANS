@@ -22,7 +22,16 @@ public class AdministratorServiceShowService extends AbstractGuiService<Administ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int id;
+		Service service;
+		boolean status;
+
+		id = super.getRequest().getData("id", int.class);
+		service = this.repository.findServiceById(id);
+
+		status = service != null;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
