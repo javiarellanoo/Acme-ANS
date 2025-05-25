@@ -1,0 +1,23 @@
+assistance-agent.assistance-agent-dashboard.form.title = Dashboard
+
+assistance-agent.dashboard.form.title.claims-succesfully-resolved = Claims succesfully resolved ratio
+assistance-agent.dashboard.form.label.ratio = Ratio
+
+assistance-agent.dashboard.form.title.claims-rejected = Claim rejected
+
+assistance-agent.dashboard.form.title.months-more-claims = Months with more claims
+
+assistance-agent.dashboard.form.title.tLogs-statistics = Tracking Logs per claim statistics
+assistance-agent.dashboard.form.label.average-tLogs = Average tracking logs
+assistance-agent.dashboard.form.label.maximum-tLogs = Maximum tracking logs
+assistance-agent.dashboard.form.label.minimum-tLogs = Minimum tracking logs
+assistance-agent.dashboard.form.label.stddev-tLogs = Standard deviation
+
+assistance-agent.dashboard.form.title.claims-month-statistics = Claims per week on this month statistics
+assistance-agent.dashboard.form.label.average-claims = Average claims
+assistance-agent.dashboard.form.label.maximum-claims = Maximum number of claims
+assistance-agent.dashboard.form.label.minimum-claims = Minimum number of claims
+assistance-agent.dashboard.form.label.stddev-claims = Standard deviation
+
+assistance-agent.dashboard.form.label.not-available = Not available
+assistance-agent.dashboard.form.label.no-data = No data
