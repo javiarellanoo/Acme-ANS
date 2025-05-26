@@ -31,6 +31,7 @@ master.menu.administrator.recommendation = List recommendations
 master.menu.administrator.booking = List bookings
 master.menu.administrator.booking-record = List booking records
 master.menu.administrator.maintenance-record = List maintenance records
+master.menu.administrator.service = List services
 
 # master.menu.provider ########################################################
 
