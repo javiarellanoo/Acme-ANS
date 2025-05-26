@@ -22,6 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidAircraft
+@Table(indexes = {
+    @Index(columnList = "registrationNumber", unique = true)
+})
 public class Aircraft extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------

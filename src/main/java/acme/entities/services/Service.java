@@ -20,6 +20,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @ValidService
+@Table(indexes = {
+    @Index(columnList = "promotionCode", unique = true)
+})
 public class Service extends AbstractEntity {
 
 	// Serialisation version
