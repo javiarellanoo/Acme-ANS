@@ -13,6 +13,9 @@ who have enrolled the Design and Testing subject of the Software Engineering cur
 University of Seville.  This project helps them start working on their new information system 
 projects.
 
+NOTE: THE REQUIREMENT DOCUMENTS TO BE TAKEN INTO ACCOUNT FOR THE FINAL EVALUATION ARE THE ONES PLACED UNDER THE DELIVERY 04 SUBFOLDER, THE PREVIOUS ONES CONTAIN PREVIOUS VERSIONS OF THE DOCUMENTS THAT HAVE EVOLVED DURING THE PROJECT
+
+
 NOTES REGARDING THE IMPLEMENTATION OF CERTAIN REQUIREMENTS, USEFUL FOR THEIR EVALUATION:
 
 Regarding the showing of services in all pages: Whenever services have a picture, their picture will be shown. In case that they do not have one, the name of the service will appear instead, in a similar way to how it is done on Acme Jobs. This was validated by the lecturer during D02.
