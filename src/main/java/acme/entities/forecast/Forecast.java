@@ -27,12 +27,12 @@ public class Forecast extends AbstractEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@Optional
+	@Mandatory
 	@ValidString(max = 255, min = 1)
 	@Automapped
 	private String				city;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Integer				weatherCode;
@@ -42,27 +42,27 @@ public class Forecast extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				predictionMoment;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Double				maximumTemperature;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Double				minimumTemperature;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Double				precipitationSum;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Double				windSpeed;
 
-	@Mandatory
+	@Optional
 	@ValidNumber
 	@Automapped
 	private Double				windGusts;

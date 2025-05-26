@@ -100,9 +100,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		SelectChoices aircraftChoices;
 		Collection<Aircraft> aircrafts;
 		boolean publishable;
-		Collection<Task> tasks;
 
-		tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
 		publishable = true;
 
 		aircrafts = this.repository.findAircrafts();
