@@ -66,7 +66,7 @@ private String description;
 	}
 ```
 
-## 4. Enabling to create/update/publish Legs of Flights in the Past
+## 4. Enabling to create Legs of Flights in the Past
 
 **File:** `/Acme-ANS-D04/src/main/java/acme/features/manager/leg/ManagerLegCreateService.java` , 
 
