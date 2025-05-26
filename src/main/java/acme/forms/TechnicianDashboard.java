@@ -17,14 +17,14 @@ public class TechnicianDashboard extends AbstractForm {
 
 	// Serialisation version --------------------------------------------------
 
-	private static final long				serialVersionUID	= 1L;
+	private static final long						serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
-	Map<MaintenanceRecordStatus, Integer>	mapStatusNumberRecords;
-	MaintenanceRecord						recordNearestInspectionDueDate;
-	List<Aircraft>							topAircraftsNumberRecords;
-	Map<String, Statistics>					costStatisticsLastYear;
-	Statistics								durationStatistics;
+	private Map<MaintenanceRecordStatus, Integer>	mapStatusNumberRecords;
+	private MaintenanceRecord						recordNearestInspectionDueDate;
+	private List<Aircraft>							topAircraftsNumberRecords;
+	private Map<String, Statistics>					costStatisticsLastYear;
+	private Statistics								durationStatistics;
 
 }
