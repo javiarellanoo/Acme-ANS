@@ -8,14 +8,11 @@
       <y>90</y>
       <w>160</w>
       <h>120</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Enum&gt;&gt;
-LegStatus
+    </coordinates>    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+TravelClass
 --
-+ ON_TIME
-+ DELAYED
-+ CANCELLED
-+ LANDED
++ ECONOMY
++ BUSINESS
 bg=LIGHT_GRAY</panel_attributes>
     <additional_attributes/>
   </element>

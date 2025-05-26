@@ -10,4 +10,9 @@ ValidCustomer
 --
 + The identifier must be unique
 + The identifier must start with the customer's initials (name + first surname)
+bg=RED</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>120</x><y>360</y><w>450</w><h>64</h></coordinates><panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidBookingRecord
+--
++ A passenger can only appear once per booking (unique passenger in booking)
+
 bg=RED</panel_attributes><additional_attributes></additional_attributes></element></diagram>

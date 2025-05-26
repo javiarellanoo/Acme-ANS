@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
+import acme.constraints.ValidBookingRecord;
 import acme.entities.passenger.Passenger;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,24 +18,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-		@Index(columnList = "booking_id"),
-		@Index(columnList = "passenger_id"),
-		@Index(columnList = "booking_id, passenger_id"),
-		@Index(columnList = "passenger_id, booking_id")
+	@Index(columnList = "booking_id"), @Index(columnList = "passenger_id"), @Index(columnList = "booking_id, passenger_id"), @Index(columnList = "passenger_id, booking_id")
 })
+@ValidBookingRecord
 public class BookingRecord extends AbstractEntity {
 	// Serialisation version --------------------------------------------------
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Booking booking;
+	private Booking				booking;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Passenger passenger;
+	private Passenger			passenger;
 
 }
