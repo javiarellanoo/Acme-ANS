@@ -14,7 +14,8 @@ import acme.helpers.UniquenessHelper;
 @Validator
 public class BookingRecordValidator extends AbstractValidator<ValidBookingRecord, BookingRecord> {
 
-	// ConstraintValidator Interface ----------------------------------------------------------------------------
+	// ConstraintValidator Interface
+	// ----------------------------------------------------------------------------
 
 	@Autowired
 	private BookingRepository repository;
@@ -33,7 +34,7 @@ public class BookingRecordValidator extends AbstractValidator<ValidBookingRecord
 
 		if (bookingRecord == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
+		else if (bookingRecord.getBooking() != null && bookingRecord.getPassenger() != null) {
 			BookingRecord bookingRecordObtained = this.repository.findBookingRecordByPassengerAndBooking(bookingRecord.getPassenger().getId(), bookingRecord.getBooking().getId());
 			boolean uniquePassengerInBooking = UniquenessHelper.checkUniqueness(bookingRecordObtained, bookingRecord);
 
