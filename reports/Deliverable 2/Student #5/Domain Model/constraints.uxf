@@ -13,6 +13,7 @@
 ValidMaintenanceRecord
 --
 + The next inspection date must be after the moment when a maintenance record took place
++ The next inspection date must be in the future
 
 bg=RED</panel_attributes>
     <additional_attributes/>

@@ -61,7 +61,7 @@ m2=*
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 MaintenanceRecord{ValidMaintenanceRecord}
 --
-+ moment: Date {Mandatory, ValidMoment, Temporal(TIMESTAMP)}
++ moment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
 + status: MaintenanceRecordStatus {Mandatory, Valid, Automapped}
 + nextInspectionDate: Date {Mandatory, ValidMoment, Temporal(TIMESTAMP)}
 + estimatedCost: Money {Mandatory, ValidMoney, Automapped}
