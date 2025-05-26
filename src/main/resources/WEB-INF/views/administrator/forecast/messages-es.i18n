@@ -1,0 +1,7 @@
+administrator.forecast.form.label.predictionMoment = Momento de la predicción
+administrator.forecast.form.label.city = Ciudad
+administrator.forecast.form.button.perform = Guardar
+administrator.forecast.form.title = Añadir pronóstico
+
+administration.forecast.form.label.api-error = Lo sentimos, la API no acepta más llamadas gratuitas
+administrator.forecast.not-found = La ciudad dada no tiene datos. 
