@@ -77,6 +77,7 @@ master.menu.technician = Technician
 master.menu.technician.tasks.list.mine = My tasks
 master.menu.technician.tasks.list.published = Published tasks
 master.menu.technician.dashboard.show = My dashboard
+master.menu.technician.course.list = Courses
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Assistance Agent
