@@ -111,8 +111,9 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			if (trackingLog.getStatus().equals(TrackingLogStatus.DISSATISFACTION)) {
 				boolean isUnique = tLogs.stream().filter(t -> t.getId() != trackingLog.getId()) //
 					.noneMatch(t -> t.getStatus().equals(TrackingLogStatus.DISSATISFACTION));
+				boolean anotherCompleted = tLogs.stream().filter(t -> t.getId() != trackingLog.getId()).anyMatch(t -> t.getResolutionPercentage() == 100.00);
 				super.state(context, isUnique, "status", "acme.validation.trackingLog.statusDissatisfaction");
-
+				super.state(context, anotherCompleted, "status", "acme.validation.trackingLog.newCompletedTLog");
 			}
 
 		}

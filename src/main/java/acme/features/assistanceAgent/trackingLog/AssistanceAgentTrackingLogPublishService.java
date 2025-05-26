@@ -8,7 +8,6 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claims.Claim;
 import acme.entities.trackingLogs.TrackingLog;
 import acme.entities.trackingLogs.TrackingLogStatus;
 import acme.realms.AssistanceAgent;
@@ -55,17 +54,12 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog tLog) {
-		if (tLog.getClaim().getDraftMode())
-			super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "status", "resolution");
-		else
-			super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "resolution");
+		super.bindObject(tLog, "stepUndergoing", "resolutionPercentage", "resolution");
 	}
 
 	@Override
 	public void validate(final TrackingLog tLog) {
-		Claim claim = tLog.getClaim();
-		Boolean claimPublished = !claim.getDraftMode();
-		super.state(claimPublished, "*", "acme.validation.trackingLog.draftMode.message");
+
 	}
 
 	@Override
@@ -87,10 +81,8 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		dataset.put("statuses", statusChoices);
 		dataset.put("status", statusChoices.getSelected().getKey());
 
-		if (tLog.getClaim() != null)
-			super.getResponse().addGlobal("claimDraftMode", tLog.getClaim().getDraftMode());
-		else
-			super.getResponse().addGlobal("claimDraftMode", true);
+		super.getResponse().addGlobal("claimDraftMode", tLog.getClaim().getDraftMode());
+
 		super.getResponse().addData(dataset);
 	}
 }

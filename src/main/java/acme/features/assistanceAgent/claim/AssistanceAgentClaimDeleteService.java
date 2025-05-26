@@ -5,12 +5,9 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claims.Claim;
-import acme.entities.claims.ClaimType;
 import acme.entities.legs.Leg;
 import acme.entities.trackingLogs.TrackingLog;
 import acme.realms.AssistanceAgent;
@@ -29,19 +26,11 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 	@Override
 	public void authorise() {
 		boolean status;
-		int claimId;
-		int agentId;
-		Claim claim;
-		AssistanceAgent agent;
 
-		claimId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findClaimById(claimId);
-
-		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		agent = this.repository.findAssistanceAgentById(agentId);
-
-		status = claim != null && claim.getDraftMode() && claim.getAssistanceAgent() != null && //
-			claim.getAssistanceAgent().equals(agent);
+		if (super.getRequest().getMethod().equals("GET"))
+			status = false;
+		else
+			status = true;
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -83,26 +72,4 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		this.repository.deleteAll(relationships);
 		this.repository.delete(claim);
 	}
-
-	@Override
-	public void unbind(final Claim claim) {
-		Collection<Leg> legs;
-		SelectChoices choicesType;
-		SelectChoices choicesLeg;
-		Dataset dataset;
-
-		legs = this.repository.findAllLegsPublishedForFlightsPublished();
-		choicesLeg = SelectChoices.from(legs, "flightNumber", claim.getLeg());
-
-		choicesType = SelectChoices.from(ClaimType.class, claim.getType());
-
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "draftMode", "status");
-		dataset.put("type", choicesType.getSelected().getKey());
-		dataset.put("types", choicesType);
-		dataset.put("leg", choicesLeg.getSelected().getKey());
-		dataset.put("legs", choicesLeg);
-
-		super.getResponse().addData(dataset);
-	}
-
 }
