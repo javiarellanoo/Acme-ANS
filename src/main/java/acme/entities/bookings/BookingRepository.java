@@ -12,9 +12,6 @@ public interface BookingRepository extends AbstractRepository {
 	@Query("select b from Booking b where b.locatorCode = :locatorCode")
 	Booking getBookingByLocatorCode(String locatorCode);
 
-	@Query("select count(b) from Booking b where b.locatorCode = :locatorCode")
-	Long countSameLocatorCode(String locatorCode);
-
 	@Query("select count(br) from BookingRecord br where br.booking.id = :bookingId")
 	Long countNumberOfPassengers(int bookingId);
 }
