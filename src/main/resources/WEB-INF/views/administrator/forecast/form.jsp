@@ -18,5 +18,5 @@
 <acme:form>
     <acme:input-textbox code="administrator.forecast.form.label.city" path="city"/>
 	<acme:input-moment code="administrator.forecast.form.label.predictionMoment" path="predictionMoment"/>
-	<acme:submit code="administrator.recommendation.form.button.perform" action="/administrator/forecast/perform"/>
+	<acme:submit code="administrator.forecast.form.button.perform" action="/administrator/forecast/perform"/>
 </acme:form>
