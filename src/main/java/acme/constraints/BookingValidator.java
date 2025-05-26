@@ -34,10 +34,12 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 		if (booking == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			Booking existingBooking = this.repository.getBookingByLocatorCode(booking.getLocatorCode());
-			boolean uniqueLocatorCode = UniquenessHelper.checkUniqueness(existingBooking, booking);
-			super.state(context, uniqueLocatorCode, "locatorCode", "acme.validation.booking.uniqueLocatorCode.message");
 
+			if (booking.getLocatorCode() != null) {
+				Booking existingBooking = this.repository.getBookingByLocatorCode(booking.getLocatorCode());
+				boolean uniqueLocatorCode = UniquenessHelper.checkUniqueness(existingBooking, booking);
+				super.state(context, uniqueLocatorCode, "locatorCode", "acme.validation.booking.uniqueLocatorCode.message");
+			}
 			if (!booking.getDraftMode()) {
 				Boolean hasCreditCardNibble = booking.getLastCardNibble() != null && !booking.getLastCardNibble().isBlank();
 				super.state(context, hasCreditCardNibble, "lastCardNibble", "acme.validation.booking.lastCardNibble.message");

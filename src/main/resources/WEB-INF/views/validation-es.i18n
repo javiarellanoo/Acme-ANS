@@ -17,6 +17,7 @@ acme.validation.flightCrewMember.duplicated-employeeCode.message = El código de
 
 acme.validation.customer.identifier.message = El identificador debe empezar con las iniciales del cliente.
 acme.validation.customer.identifierUniqueness.message = El identificador debe ser único.
+acme.validation.bookingRecord.uniqueBookingRecord.message = El pasajero ya está asociado a dicha reserva
 
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales
 acme.validation.claim.draftMode.message = Una reclamación no puede ser publicada hasta que uno de sus registros de seguimiento sea publicado

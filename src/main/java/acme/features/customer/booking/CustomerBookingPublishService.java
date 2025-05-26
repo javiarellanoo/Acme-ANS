@@ -77,7 +77,12 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+		boolean hasCreditCardNibble;
 		boolean hasSomePassengers;
+
+		hasCreditCardNibble = !booking.getLastCardNibble().isBlank();
+		super.state(hasCreditCardNibble, "*", "acme.validation.booking.lastCreditCardNibble.message");
+
 		hasSomePassengers = this.repository.countNumberOfPassengers(booking.getId()).compareTo(0L) > 0;
 		super.state(hasSomePassengers, "*", "acme.validation.booking.passengers.message");
 	}

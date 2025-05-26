@@ -29,7 +29,6 @@ public class AdministratorBookingRecordListService extends AbstractGuiService<Ad
     public void load() {
         Collection<BookingRecord> bookingRecords;
         Integer bookingId = null;
-        boolean isDraftMode = false;
 
         if (super.getRequest().hasData("bookingId", int.class))
             bookingId = super.getRequest().getData("bookingId", int.class);
@@ -38,7 +37,6 @@ public class AdministratorBookingRecordListService extends AbstractGuiService<Ad
 
         Booking booking = this.repository.findBookingById(bookingId);
         if (booking != null) {
-            isDraftMode = booking.getDraftMode();
             bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
         } else
             bookingRecords = Collections.emptyList();
