@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>192</y>
+      <w>570</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidTrackingLog
+--
++ The tracking log status must be either "ACCEPTED" or "REJECTED" only when the resolution percentage is 100%, otherwise it must be "PENDING"
++ There must be a resolution message when the tracking log is finally at a 100% resolution percentage
++ The resolution percentage must be greater than the last one implemented
++ A trackingLog can not be published until its corresponding claim is published
++ An exceptional tracking log can't be created until another tracking log has been published
++ There must be only one tracking log in DISSATISFACTION state
++ You can't create a tracking log before the creation of its claim
++ The last update can not be before the creation
++ There can not be more than 2 completed tracking logs
++ If you wish to create an exceptional completed tracking log, this one can only be in "DISSATISFACTION" status
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>126</y>
+      <w>222</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidAssistanceAgent
+--
++ The employeeCode must start with the agent's initials
+
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

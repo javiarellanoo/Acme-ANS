@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>25</x>
+      <y>125</y>
+      <w>290</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim
+--
++ registrationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
++ passengerEmail: String {Mandatory, ValidEmail, Automapped}
++ description: String {Mandatory, ValidString(min = 1, max = 255), Automapped}
++ type: ClaimType {Mandatory, Valid, Automapped}
++ draftMode: Boolean {Mandatory, Valid, Automapped}
+--
++ status: String {Transient}
+bg=green
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>375</x>
+      <y>245</y>
+      <w>165</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>+ status = it has the TrackingLogStatus.toString()
+value of its last tracking log (ordered by creation 
+date, then by resolution percentage).
+
+If it does not have tracking logs, then the value
+its "PENDING".
+
+If it has one tracking log with DISSATISFACTION, 
+then the value is "DISSATISFACTION"
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>185</y>
+      <w>170</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>320.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>255</y>
+      <w>290</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+TrackingLog {ValidTrackingLog}
+--
++ lastUpdateMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
++ creationMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
++ stepUndergoing: String {Mandatory, ValidString(min = 1, max = 50), Automapped}
++ resolutionPercentage: Double {Mandatory, ValidScore, Automapped}
++ status: TrackingLogStatus {Mandatory, Valid, Automapped}
++ resolution: String {Optional, ValidString(min = 1, max = 255), Automapped}
++ draftMode: Boolean {Mandatory, Valid, Automapped}
+
+bg=green
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>195</y>
+      <w>45</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Tracks ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>150</y>
+      <w>75</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+AssistanceAgent
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>155</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Registered by &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>135</x>
+      <y>40</y>
+      <w>75</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>165</x>
+      <y>60</y>
+      <w>60</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>Talks about ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>
