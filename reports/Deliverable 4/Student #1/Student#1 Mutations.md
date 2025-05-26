@@ -70,7 +70,7 @@ private String description;
 
 **File:** `/Acme-ANS-D04/src/main/java/acme/features/manager/leg/ManagerLegCreateService.java` , 
 
-**Status:** Detected - Multiple tests have failed, allowing for legs to be created/published/updated with a departure in the past.
+**Status:** Detected - Multiple tests have failed, allowing for legs to be created with a departure in the past.
 
 **Code Change:**
 ```java
