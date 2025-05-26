@@ -92,6 +92,10 @@ master.menu.customer.dashboard = Panel de control
 master.menu.flight = Vuelos
 master.menu.flight.list = Vuelos
 
+# master.menu.system-configuration ########################################################
+master.menu.system-configuration = Configuración
+master.menu.system-configuration.show = Ver configuración del sistema
+
 # master.menu.service ########################################################
 master.menu.service = Servicios
 master.menu.service.list = Servicios

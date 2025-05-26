@@ -92,6 +92,11 @@ master.menu.review.list = Reviews
 master.menu.flight = Flights
 master.menu.flight.list = Flights
 
+
+# master.menu.system-configuration ########################################################
+master.menu.system-configuration = Configuration
+master.menu.system-configuration.show = See system configuration
+
 # master.menu.service ########################################################
 master.menu.service = Services
 master.menu.service.list = Services
