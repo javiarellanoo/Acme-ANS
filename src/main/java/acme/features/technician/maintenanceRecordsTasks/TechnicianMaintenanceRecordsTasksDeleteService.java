@@ -29,7 +29,6 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 		int maintenanceRecordId;
 		MaintenanceRecord maintenanceRecord;
 		boolean status;
-		int technicianId;
 		int taskId;
 		Task task;
 		boolean taskStatus;
@@ -43,7 +42,6 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 			if (super.getRequest().getMethod().equals("GET"))
 				taskStatus = true;
 			else {
-				technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 				taskId = super.getRequest().getData("task", int.class);
 				task = this.repository.findValidTaskByIdAndMaintenanceRecord(taskId, maintenanceRecordId);
@@ -83,7 +81,6 @@ public class TechnicianMaintenanceRecordsTasksDeleteService extends AbstractGuiS
 
 	@Override
 	public void validate(final MaintenanceRecordsTasks relationship) {
-		boolean exists;
 
 		if (relationship.getTask() == null)
 			super.state(false, "task", "technician.maintenance-records-tasks.form.error.not-null");
