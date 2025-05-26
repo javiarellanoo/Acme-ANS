@@ -1,0 +1,12 @@
+technician.course.list.title = Cursos
+technician.course.list.label.title = Título
+technician.course.list.label.editionCount = Número de ediciones
+technician.course.list.label.firstPublishYear = Año de publicación
+technician.course.list.label.authors = Autores
+
+# Tasks details page
+technician.course.form.title = Detalles del curso
+technician.course.form.label.title = Título
+technician.course.form.label.editionCount = Número de ediciones
+technician.course.form.label.firstPublishYear = Año de publicación
+technician.course.form.label.authors = Autores
