@@ -2,9 +2,10 @@
 package acme.entities.aircrafts;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Setter
 @ValidAircraft
 @Table(indexes = {
-    @Index(columnList = "registrationNumber", unique = true)
+	@Index(columnList = "registrationNumber", unique = true)
 })
 public class Aircraft extends AbstractEntity {
 
