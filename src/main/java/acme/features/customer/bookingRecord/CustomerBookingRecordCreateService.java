@@ -33,37 +33,21 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		int passengerId;
 		Passenger passenger;
 		Collection<Passenger> passengers;
-		String bookingIdStr;
-		String passengerIdStr;
-
+		bookingId = super.getRequest().getData("bookingId", int.class);
 		if (super.getRequest().getMethod().equals("GET")) {
-			bookingIdStr = super.getRequest().getData("bookingId", String.class);
-			bookingId = Integer.parseInt(bookingIdStr);
 			booking = this.repository.findBookingById(bookingId);
-			status = booking.getDraftMode() && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+			status = booking != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer()) && booking.getDraftMode();
 		} else {
-			bookingIdStr = super.getRequest().getData("bookingId", String.class);
-			passengerIdStr = super.getRequest().getData("passenger", String.class);
+			passengerId = super.getRequest().getData("passenger", int.class);
+			booking = this.repository.findBookingById(bookingId);
+			passenger = this.repository.findPassengerById(passengerId);
+			passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
+			boolean validPassenger = passenger != null && passengers.contains(passenger);
+			if (passengerId == 0)
+				status = true;
+			else
+				status = validPassenger;
 
-			try {
-				bookingId = Integer.parseInt(bookingIdStr);
-				passengerId = Integer.parseInt(passengerIdStr);
-				booking = this.repository.findBookingById(bookingId);
-				passenger = this.repository.findPassengerById(passengerId);
-				passengers = this.repository.findPassengersNotInBooking(super.getRequest().getPrincipal().getActiveRealm().getId(), bookingId);
-
-				boolean validBooking = booking != null && booking.getDraftMode() && booking.getCustomer() != null;
-				boolean validCustomer = super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
-				boolean validPassenger = passenger != null && passengers != null && passengers.contains(passenger) && !passenger.getDraftMode();
-
-				if (passengerId == 0)
-					status = validBooking && validCustomer;
-				else
-					status = validBooking && validPassenger && validCustomer;
-
-			} catch (AssertionError | Exception e) {
-				status = false;
-			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -109,7 +93,6 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 		passengers = this.repository.findPassengersNotInBooking(customerId, bookingRecord.getBooking().getId());
 
-		passengers = passengers.stream().filter(x -> !x.getDraftMode()).toList();
 		passengersChoices = SelectChoices.from(passengers, "displayString", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord, "passenger");

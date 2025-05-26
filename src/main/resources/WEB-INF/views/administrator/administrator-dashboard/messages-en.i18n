@@ -1,0 +1,22 @@
+# --- Administrator Dashboard ---
+administrator.administrator-dashboard.form.title = Administrator Dashboard
+administrator.dashboard.label.reviewRatio = Reviews with Score >5 Ratio
+administrator.dashboard.label.airlinesWithMailAndPhoneRatio = Airlines with Mail and Phone Ratio
+administrator.dashboard.label.activeAircraftsRatio = Active Aircrafts Ratio
+administrator.dashboard.label.nonActiveAircraftsRatio = Aircrafts under maintenance ratio
+administrator.dashboard.label.numberOfAirlinesPerType = Number of Airlines per Type
+administrator.dashboard.label.numberOfAirportsPerScope = Number of Airports per Scope
+administrator.dashboard.label.status = Status
+administrator.dashboard.label.status.LUXURY = LUXURY
+administrator.dashboard.label.status.LOW_COST = LOW COST
+administrator.dashboard.label.status.STANDARD = STANDARD
+administrator.dashboard.label.status.INTERNATIONAL = INTERNATIONAL
+administrator.dashboard.label.status.DOMESTIC = DOMESTIC
+administrator.dashboard.label.status.REGIONAL = REGIONAL
+administrator.dashboard.label.numberOfReviewsStats = Statistics on the Number of Reviews in the last 10 weeks
+
+administrator.dashboard.label.numberOfReviews = Number of Reviews in the last 10 weeks
+administrator.dashboard.label.averageNumberOfReviews = Average Number of Reviews in the last 10 weeks
+administrator.dashboard.label.minimumNumberOfReviews = Minimum Number of Reviews in the last 10 weeks
+administrator.dashboard.label.maximumNumberOfReviews = Maximum Number of Reviews in the last 10 weeks
+administrator.dashboard.label.stdDevReviews = Standard Deviation of the Number of Reviews in the last 10 weeks

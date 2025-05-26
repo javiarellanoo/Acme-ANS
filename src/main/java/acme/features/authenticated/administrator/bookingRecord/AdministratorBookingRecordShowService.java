@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.administrator.bookingRecord;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,16 @@ public class AdministratorBookingRecordShowService extends AbstractGuiService<Ad
 	@Autowired
 	private AdministratorBookingRepository repository;
 
+
 	@Override
 	public void authorise() {
-		// Administrador siempre autorizado
-		super.getResponse().setAuthorised(true);
+		int bookingRecordId;
+		BookingRecord bookingRecord;
+		boolean status;
+		bookingRecordId = super.getRequest().getData("id", int.class);
+		bookingRecord = this.repository.findBookingRecordById(bookingRecordId);
+		status = bookingRecord != null;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -36,9 +43,8 @@ public class AdministratorBookingRecordShowService extends AbstractGuiService<Ad
 	public void unbind(final BookingRecord bookingRecord) {
 		Dataset dataset;
 		dataset = super.unbindObject(bookingRecord, "booking", "passenger");
-		if (bookingRecord.getPassenger() != null) {
+		if (bookingRecord.getPassenger() != null)
 			dataset.put("passenger", bookingRecord.getPassenger().getDisplayString());
-		}
 		super.getResponse().addData(dataset);
 	}
 }

@@ -31,7 +31,7 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 			status = false;
 		else {
 			flight = this.repository.findFlightById(leg.getFlight().getId());
-			status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && !super.getRequest().getMethod().equals("GET");
+			status = leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && !super.getRequest().getMethod().equals("GET");
 		}
 		super.getResponse().setAuthorised(status);
 	}
@@ -73,11 +73,6 @@ public class ManagerLegDeleteService extends AbstractGuiService<Manager, Leg> {
 		leg.setAircraft(aircraft);
 		leg.setDepartureAirport(departureAirport);
 		leg.setDestinationAirport(destinationAirport);
-	}
-
-	@Override
-	public void unbind(final Leg leg) {
-		;
 	}
 
 }

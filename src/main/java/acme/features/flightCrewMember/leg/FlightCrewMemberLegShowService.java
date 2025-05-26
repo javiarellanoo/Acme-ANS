@@ -11,6 +11,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircrafts.Aircraft;
 import acme.entities.airports.Airport;
+import acme.entities.flightAssignments.FlightAssignment;
 import acme.entities.legs.Leg;
 import acme.entities.legs.LegStatus;
 import acme.realms.FlightCrewMember;
@@ -28,13 +29,13 @@ public class FlightCrewMemberLegShowService extends AbstractGuiService<FlightCre
 		int legId;
 		Leg leg;
 		int memberId;
-		FlightCrewMember fcm;
+		Collection<FlightAssignment> assignments;
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		fcm = this.repository.findCrewMemberById(memberId);
-		status = leg != null && (!leg.getDraftMode() || fcm.getAirline().getId() == leg.getFlight().getAirline().getId());
+		assignments = this.repository.findAssignmentsByLegAndMemberId(legId, memberId);
+		status = leg != null && !assignments.isEmpty();
 
 		super.getResponse().setAuthorised(status);
 

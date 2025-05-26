@@ -9,7 +9,6 @@ import acme.client.components.principals.UserAccount;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.realms.Customer;
 import acme.realms.Manager;
 
 @GuiService
@@ -50,12 +49,10 @@ public class AuthenticatedManagerCreateService extends AbstractGuiService<Authen
 
 	@Override
 	public void validate(final Manager manager) {
-		;
 	}
 
 	@Override
 	public void perform(final Manager manager) {
-		Customer customer;
 
 		this.repository.save(manager);
 	}

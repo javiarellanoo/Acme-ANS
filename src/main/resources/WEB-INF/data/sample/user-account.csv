@@ -70,15 +70,15 @@ user-account-customer-58,true,"UserIdentity{name: 'Name58', surname: 'ValidSurna
 user-account-technician-01,true,"UserIdentity{name: 'John', surname: 'Technician', email: 'fahjbaa324@lorem-ipsum.org'}",technician1,technician1
 user-account-technician-02,true,"UserIdentity{name: 'Jane', surname: 'Technician', email: 'aiubaga777@lorem-ipsum.org'}",technician2,technician2
 user-account-technician-03,true,"UserIdentity{name: 'Pablo', surname: 'Technician', email: 'gahahhfga3225@lorem-ipsum.org'}",technician3,technician3
-user-account-manager-1,true, "UserIdentity{name: 'Mary', surname: 'Sue', email: 'marysue@acme.com'}",manager1,manager1
-user-account-manager-2,true, "UserIdentity{name: 'John', surname: 'Travolta', email: 'johnt@acme.com'}",manager2,manager2
-user-account-manager-3,true, "UserIdentity{name: 'Peter', surname: 'Parker', email: 'peterparker@acme.com'}",manager3,manager3
+user-account-manager-1,true,"UserIdentity{name: 'Mary', surname: 'Sue', email: 'marysue@acme.com'}",manager1,manager1
+user-account-manager-2,true,"UserIdentity{name: 'John', surname: 'Travolta', email: 'johnt@acme.com'}",manager2,manager2
+user-account-manager-3,true,"UserIdentity{name: 'Peter', surname: 'Parker', email: 'peterparker@acme.com'}",manager3,manager3
 #Flight Crew Members
 user-account-member-1,true,"UserIdentity{name: 'Baldomero', surname: 'Osborne', email: 'baldomosb@acme.com'}",member1,member1
 user-account-member-2,true,"UserIdentity{name: 'Sonsoles', surname: 'Garcia', email: 'sonsog@acme.com'}",member2,member2
 user-account-member-3,true,"UserIdentity{name: 'Alvaro', surname: 'Barragan', email: 'barra123@acme.com'}",member3,member3
 user-account-member-4,true,"UserIdentity{name: 'Martin', surname: 'Ozandar', email: 'martozan@acme.com'}",member4,member4
-user-account-member-5,true,"UserIdentity{name: 'Gabriela', surname: 'Jimenez', email: 'gabijim@acme.com'}",member5,member5
+user-account-member-5,true,"UserIdentity{name: 'Gabriela', surname: 'Jimenez', email: 'gabijim@acme.com'}",member,member
 # Admin
 user-account-administrator-1,true,"UserIdentity{name: 'Admin1', surname: 'Admin', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-administrator-2,true,"UserIdentity{name: 'Admin2', surname: 'Admin', email: 'admin2@acme.com'}",administrator2,administrator2

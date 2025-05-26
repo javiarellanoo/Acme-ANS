@@ -75,7 +75,7 @@ public class ManagerFlightPublishService extends AbstractGuiService<Manager, Fli
 	@Override
 	public void validate(final Flight flight) {
 		Collection<Leg> legs = this.repository.findLegsByFlightId(flight.getId());
-		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> l.getDraftMode() == false);
+		boolean legsStatus = !legs.isEmpty() && legs.stream().allMatch(l -> !l.getDraftMode());
 		super.state(legsStatus, "*", "acme.validation.flight.nonPublishedLegs.message");
 	}
 

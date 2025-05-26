@@ -25,13 +25,11 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		int assignmentId;
 		FlightAssignment assignment;
 		int memberId;
-		int airlineId;
 
 		assignmentId = super.getRequest().getData("id", int.class);
 		assignment = this.repository.findAssignmentById(assignmentId);
 		memberId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		airlineId = this.repository.findAirlineIdByFlightCrewMemberId(memberId);
-		status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getAirline().getId() == airlineId && !super.getRequest().getMethod().equals("GET");
+		status = assignment != null && assignment.getDraftMode() && assignment.getFlightCrewMember().getId() == memberId && !super.getRequest().getMethod().equals("GET");
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,15 +48,11 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 	@Override
 	public void bind(final FlightAssignment assignment) {
 		int legId;
-		int memberId;
 
 		legId = super.getRequest().getData("leg", int.class);
-		memberId = super.getRequest().getData("flightCrewMember", int.class);
 		Leg leg = this.repository.findLegById(legId);
-		FlightCrewMember member = this.repository.findCrewMemberById(memberId);
 		super.bindObject(assignment, "duty", "lastUpdate", "status", "remarks");
 		assignment.setLeg(leg);
-		assignment.setFlightCrewMember(member);
 	}
 
 	@Override

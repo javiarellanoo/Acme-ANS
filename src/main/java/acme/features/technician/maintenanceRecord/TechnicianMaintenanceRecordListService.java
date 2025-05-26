@@ -24,7 +24,14 @@ public class TechnicianMaintenanceRecordListService extends AbstractGuiService<T
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Boolean published;
+		boolean status;
+
+		published = super.getRequest().getData("published", Boolean.class);
+
+		status = published != null;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

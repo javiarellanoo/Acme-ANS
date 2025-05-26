@@ -61,7 +61,7 @@ public class ManagerLegPublishService extends AbstractGuiService<Manager, Leg> {
 				departureAirport = this.repository.findAirportById(departureAirportId);
 				destinationAirportStatus = destinationAirportId == 0 || destinationAirport != null;
 				departureAirportStatus = departureAirportId == 0 || departureAirport != null;
-				status = flight != null && flight.getDraftMode() && leg.getDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && aircraftStatus && departureAirportStatus && destinationAirportStatus;
+				status = aircraftStatus && departureAirportStatus && destinationAirportStatus;
 			}
 		}
 		super.getResponse().setAuthorised(status);

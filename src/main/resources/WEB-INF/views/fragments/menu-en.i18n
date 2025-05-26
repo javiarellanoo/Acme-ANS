@@ -27,10 +27,14 @@ master.menu.administrator.shut-system-down = Shut system down
 master.menu.administrator.airport = List airports
 master.menu.administrator.airline = List airlines
 master.menu.administrator.aircraft = List aircrafts
-master.menu.administrator.recommendation = List recommendations
+master.menu.administrator.recommendation = Add recommendations
 master.menu.administrator.booking = List bookings
 master.menu.administrator.booking-record = List booking records
 master.menu.administrator.maintenance-record = List maintenance records
+master.menu.administrator.dashboard = Dashboard
+master.menu.administrator.populate-db-recommendations = Populate DB (recommendations)
+master.menu.administrator.service = List services
+master.menu.administrator.populate-db-forecast = Populate DB (forecast)
 
 # master.menu.provider ########################################################
 
@@ -78,6 +82,7 @@ master.menu.technician.dashboard.show = My dashboard
 master.menu.assistance-agent = Assistance Agent
 master.menu.assistance-agent.claims.list.completed = Completed claims
 master.menu.assistance-agent.claims.list.undergoing = Undergoing claims
+master.menu.assistance-agent.dashboard.show = My dashboard
 
 # master.menu.review ########################################################
 master.menu.review = Reviews
@@ -87,9 +92,14 @@ master.menu.review.list = Reviews
 master.menu.flight = Flights
 master.menu.flight.list = Flights
 
+
 # master.menu.system-configuration ########################################################
 master.menu.system-configuration = Configuration
 master.menu.system-configuration.show = See system configuration
+
+# master.menu.service ########################################################
+master.menu.service = Services
+master.menu.service.list = Services
 
 # master.menu.customer ########################################################
 master.menu.customer.list-bookings = My bookings

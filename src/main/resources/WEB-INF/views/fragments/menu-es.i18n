@@ -26,11 +26,15 @@ master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.administrator.airport = Ver aeropuertos
 master.menu.administrator.airline = Ver aerolineas
-master.menu.administrator.recommendation = Ver recomendaciones
+master.menu.administrator.recommendation = Añadir recomendaciones
 master.menu.administrator.booking = Ver reservas
 master.menu.administrator.booking-record = Ver registros de reserva
 master.menu.administrator.maintenance-record = Ver registros de mantenimiento
 master.menu.administrator.aircraft = Ver aeronaves
+master.menu.administrator.dashboard = Panel de control
+master.menu.administrator.populate-db-recommendations = Poblar BD (recomendaciones)
+master.menu.administrator.service = Ver servicios
+master.menu.administrator.populate-db-forecast = Poblar BD (pronóstico del clima)
 
 # master.menu.provider ########################################################
 
@@ -73,6 +77,7 @@ master.menu.technician.dashboard.show = Mi panel de control
 master.menu.assistance-agent = Asistente
 master.menu.assistance-agent.claims.list.completed = Reclamaciones completadas
 master.menu.assistance-agent.claims.list.undergoing = Reclamaciones en progreso
+master.menu.assistance-agent.dashboard.show = Mi panel de control
 
 # master.menu.review ########################################################
 master.menu.review = Reseñas
@@ -91,6 +96,9 @@ master.menu.flight.list = Vuelos
 master.menu.system-configuration = Configuración
 master.menu.system-configuration.show = Ver configuración del sistema
 
+# master.menu.service ########################################################
+master.menu.service = Servicios
+master.menu.service.list = Servicios
 
 # master.menu.customer ##########################################################
 master.menu.customer = Cliente

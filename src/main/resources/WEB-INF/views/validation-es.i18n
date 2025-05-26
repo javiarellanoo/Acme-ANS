@@ -17,6 +17,7 @@ acme.validation.flightCrewMember.duplicated-employeeCode.message = El código de
 
 acme.validation.customer.identifier.message = El identificador debe empezar con las iniciales del cliente.
 acme.validation.customer.identifierUniqueness.message = El identificador debe ser único.
+acme.validation.bookingRecord.uniqueBookingRecord.message = El pasajero ya está asociado a dicha reserva
 
 acme.validation.assistanceAgent.employeeCode.message = El código de empleado del agente debe comenzar con sus iniciales
 acme.validation.claim.draftMode.message = Una reclamación no puede ser publicada hasta que uno de sus registros de seguimiento sea publicado
@@ -42,7 +43,7 @@ acme.validation.airline.iataCode.message = El código IATA no es único.
 acme.validation.aircraft.registrationNumber.message = El número de registro de un avión debe ser unico.
 acme.validation.airport.duplicated-iataCode.message = El código IATA no es único.
 
-acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único.
+acme.validation.booking.uniqueLocatorCode.message = El código localizador del booking debe ser único
 
 acme.validation.flight-assignment.completed-leg.message = Una asignación de vuelo no puede estar enlazada con un segmento que haya ocurrido.
 acme.validation.flight-assignment.not-available-crew-member.message = El miembro de tripulacíon asignado no está disponible.
@@ -50,7 +51,6 @@ acme.validation.flight-assignment.pilot-already-assigned.message = Un piloto ya 
 acme.validation.flight-assignment.copilot-already-assigned.message = Un copiloto ya ha sido asignado a este segmento.
 
 acme.validation.flight-assignment.simultaneous-leg.message = Este miembro ya está asignado a un segmento simultáneo.
-acme.validation.flight-assignment.null-leg-or-flight.message = Ni el segmento ni el miembro de la tripulación de vuelo puede ser nulo
 
 acme.validation.activity-log.not-published-assignment.message = Un registro de actividad no puede ser publicado hasta que la asignación asociada no sea publicada.
 acme.validation.booking.locatorCode.message = El código localizador no es válido
