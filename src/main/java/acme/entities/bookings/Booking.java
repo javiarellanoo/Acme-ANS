@@ -16,6 +16,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(indexes = {
-	@Index(columnList = "locatorCode", unique = true), @Index(columnList = "customer_id"), @Index(columnList = "flight_id"), @Index(columnList = "draftMode"), @Index(columnList = "customer_id, draftMode"), @Index(columnList = "purchaseMoment")
+	@Index(columnList = "locatorCode", unique = true), @Index(columnList = "customer_id"), @Index(columnList = "customer_id, draftMode"), @Index(columnList = "customer_id, draftMode, purchaseMoment")
 })
 @ValidBooking
 public class Booking extends AbstractEntity {
@@ -59,7 +60,7 @@ public class Booking extends AbstractEntity {
 	@Automapped
 	private Money				price;
 
-	@Mandatory
+	@Optional
 	@ValidString(pattern = "^\\d{4}$")
 	@Automapped
 	private String				lastCardNibble;

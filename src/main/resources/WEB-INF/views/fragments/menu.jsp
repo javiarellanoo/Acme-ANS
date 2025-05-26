@@ -28,20 +28,25 @@
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
+						<acme:menu-suboption code="master.menu.administrator.populate-db-recommendations" action="/administrator/system/populate-recommendations"/>
+			
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
+      <acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/administrator-dashboard/show"/>
+      <acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airport" action="/administrator/airport/list"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.airline" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.aircraft" action="/administrator/aircraft/list"/>
-			<acme:menu-suboption code="master.menu.administrator.recommendation" action="/administrator/recommendation/perform"/>
+			<acme:menu-suboption code="master.menu.administrator.service" action="/administrator/service/list"/>
 			<acme:menu-suboption code="master.menu.administrator.maintenance-record" action="/administrator/maintenance-record/list"/>
-					<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/administrator-dashboard/show"/>
 			<acme:menu-separator/>
+
 			<acme:menu-suboption code="master.menu.administrator.booking" action="/administrator/booking/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.recommendation" action="/administrator/recommendation/perform"/>
 		</acme:menu-option>
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>

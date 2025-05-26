@@ -1,0 +1,55 @@
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>231</y><w>682</w><h>198</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Passenger
+--
++ fullName: String {Mandatory, ValidString(min=1, max=255), Automapped}
++ email: String {Mandatory, ValidEmail, Automapped}
++ passportNumber: String {Mandatory, ValidString(pattern="^[A-Z0-9]{6,9}$"), Automapped}
++ birthDate: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
++ specialNeeds: String {Optional, ValidString(min=0, max=50), Automapped}
++ draftMode: Boolean {Mandatory, Valid, Automapped}
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1155</x><y>0</y><w>165</w><h>55</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
+Customer
+bg=pink</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>0</y><w>847</w><h>253</h></coordinates><panel_attributes>Belongs to  &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>750;20;10;20;10;210</additional_attributes></element><element><id>UMLClass</id><coordinates><x>902</x><y>231</y><w>682</w><h>198</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Booking{ValidBooking}
+--
++ locatorCode: String {Mandatory, ValidString(pattern="^[A-Z0-9]{6,8}$"), Column(unique=true)}
++ purchaseMoment: Date {Mandatory, ValidMoment(past=true), Temporal(TIMESTAMP)}
++ travelClass: TravelClass {Mandatory, Valid, Automapped}
++ price: Money {Mandatory, ValidMoney, Automapped}
++ lastCardNibble: String {Optional, ValidString(pattern="^\\d{4}$"), Automapped}
++ draftMode: Boolean {Mandatory, Valid, Automapped}
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1221</x><y>44</y><w>110</w><h>209</h></coordinates><panel_attributes>Booked by ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>10;10;10;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>561</x><y>583</y><w>462</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+BookingRecord{ValidBookingRecord}
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>308</x><y>418</y><w>275</w><h>264</h></coordinates><panel_attributes>Includes ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>30;10;30;200;230;200</additional_attributes></element><element><id>Relation</id><coordinates><x>1012</x><y>418</y><w>264</w><h>253</h></coordinates><panel_attributes>Includes ^
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>200;10;200;190;10;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1859</x><y>286</y><w>165</w><h>55</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Flight
+bg=green
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1573</x><y>297</y><w>308</w><h>66</h></coordinates><panel_attributes>Purchased for &gt;
+lt=&lt;-x
+m1=1
+m2=*
+
+</panel_attributes><additional_attributes>260;20;10;20</additional_attributes></element></diagram>

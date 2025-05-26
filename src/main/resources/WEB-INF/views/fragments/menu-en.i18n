@@ -32,6 +32,8 @@ master.menu.administrator.booking = List bookings
 master.menu.administrator.booking-record = List booking records
 master.menu.administrator.maintenance-record = List maintenance records
 master.menu.administrator.dashboard = Dashboard
+master.menu.administrator.populate-db-recommendations = Populate DB (recommendations)
+master.menu.administrator.service = List services
 
 # master.menu.provider ########################################################
 
