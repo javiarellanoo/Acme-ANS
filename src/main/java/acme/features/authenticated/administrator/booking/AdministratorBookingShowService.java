@@ -21,7 +21,13 @@ public class AdministratorBookingShowService extends AbstractGuiService<Administ
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int bookingId;
+		Booking booking;
+		boolean status;
+		bookingId = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(bookingId);
+		status = booking != null;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

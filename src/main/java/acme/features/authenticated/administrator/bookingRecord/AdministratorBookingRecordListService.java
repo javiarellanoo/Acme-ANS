@@ -16,40 +16,44 @@ import acme.entities.bookings.BookingRecord;
 @GuiService
 public class AdministratorBookingRecordListService extends AbstractGuiService<Administrator, BookingRecord> {
 
-    @Autowired
-    private AdministratorBookingRecordRepository repository;
+	@Autowired
+	private AdministratorBookingRecordRepository repository;
 
-    @Override
-    public void authorise() {
-        // Administrators are always authorised
-        super.getResponse().setAuthorised(true);
-    }
 
-    @Override
-    public void load() {
-        Collection<BookingRecord> bookingRecords;
-        Integer bookingId = null;
+	@Override
+	public void authorise() {
+		boolean status;
+		int bookingId;
 
-        if (super.getRequest().hasData("bookingId", int.class))
-            bookingId = super.getRequest().getData("bookingId", int.class);
-        else if (super.getRequest().hasData("id", int.class))
-            bookingId = super.getRequest().getData("id", int.class);
+		bookingId = super.getRequest().getData("bookingId", int.class);
 
-        Booking booking = this.repository.findBookingById(bookingId);
-        if (booking != null) {
-            bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
-        } else
-            bookingRecords = Collections.emptyList();
+		Booking booking = this.repository.findBookingById(bookingId);
+		status = booking != null;
+		super.getResponse().setAuthorised(status);
+	}
 
-        super.getBuffer().addData(bookingRecords);
-        super.getResponse().addGlobal("bookingId", bookingId);
-    }
+	@Override
+	public void load() {
+		Collection<BookingRecord> bookingRecords;
+		Integer bookingId;
 
-    @Override
-    public void unbind(final BookingRecord bookingRecord) {
-        Dataset dataset;
-        dataset = super.unbindObject(bookingRecord, "passenger.fullName", "passenger.passportNumber");
-        super.addPayload(dataset, bookingRecord, "passenger.birthDate");
-        super.getResponse().addData(dataset);
-    }
+		bookingId = super.getRequest().getData("bookingId", int.class);
+
+		Booking booking = this.repository.findBookingById(bookingId);
+		if (booking != null)
+			bookingRecords = this.repository.findAllBookingRecordsByBookingId(bookingId);
+		else
+			bookingRecords = Collections.emptyList();
+
+		super.getBuffer().addData(bookingRecords);
+		super.getResponse().addGlobal("bookingId", bookingId);
+	}
+
+	@Override
+	public void unbind(final BookingRecord bookingRecord) {
+		Dataset dataset;
+		dataset = super.unbindObject(bookingRecord, "passenger.fullName", "passenger.passportNumber");
+		super.addPayload(dataset, bookingRecord, "passenger.birthDate");
+		super.getResponse().addData(dataset);
+	}
 }
