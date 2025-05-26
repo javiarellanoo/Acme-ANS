@@ -31,8 +31,12 @@ public class AnyLegShowService extends AbstractGuiService<Any, Leg> {
 		Leg leg;
 		masterId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(masterId);
-		flight = this.repository.findFlightById(leg.getFlight().getId());
-		status = flight != null && !flight.getDraftMode() && !leg.getDraftMode();
+		if (leg == null)
+			status = false;
+		else {
+			flight = this.repository.findFlightById(leg.getFlight().getId());
+			status = flight != null && !flight.getDraftMode() && !leg.getDraftMode();
+		}
 
 		super.getResponse().setAuthorised(status);
 	}

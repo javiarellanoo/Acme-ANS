@@ -22,7 +22,15 @@ public class ReviewShowService extends AbstractGuiService<Any, Review> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		Review review;
+		int id;
+		boolean status;
+
+		id = super.getRequest().getData("id", int.class);
+		review = this.repository.findReviewById(id);
+		status = review != null;
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
