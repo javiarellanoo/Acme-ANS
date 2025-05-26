@@ -3,5 +3,5 @@ administrator.forecast.form.label.city = City
 administrator.forecast.form.button.perform = Save
 administrator.forecast.form.title = Add forecast
 
-administration.forecast.form.label.api-error = Sorry, the API does not accept more free requests :/
+administration.forecast.form.label.api-error = Sorry, the API does not accept more free requests
 administrator.forecast.not-found = The given city does not have any forecast data.
