@@ -1,3 +1,4 @@
+
 package acme.features.customer.recommendation;
 
 import java.util.Collection;
@@ -31,22 +32,16 @@ public class CustomerRecommendationListService extends AbstractGuiService<Custom
 		Collection<Booking> bookings = this.repository.findAllBookingsByCustomerId(customerId);
 		Collection<Recommendation> allRecommendations = this.repository.findRecommendations();
 
-		Set<String> cityCountryPairs = bookings.stream()
-			.filter(b -> b.getFlight() != null)
-			.map(b -> b.getFlight().getDestinationCity() + "::" + b.getFlight().getDestinationCountry())
-			.collect(Collectors.toSet());
+		Set<String> cityCountryPairs = bookings.stream().map(b -> b.getFlight().getDestinationCity() + "::" + b.getFlight().getDestinationCountry()).collect(Collectors.toSet());
 
-		Collection<Recommendation> filtered = allRecommendations.stream()
-			.filter(r -> cityCountryPairs.contains(r.getCity() + "::" + r.getCountry()))
-			.collect(Collectors.toList());
+		Collection<Recommendation> filtered = allRecommendations.stream().filter(r -> cityCountryPairs.contains(r.getCity() + "::" + r.getCountry())).collect(Collectors.toList());
 
 		super.getBuffer().addData(filtered);
 	}
 
 	@Override
 	public void unbind(final Recommendation recommendation) {
-		Dataset dataset = super.unbindObject(recommendation, "name", "city", "state", "country", "formatted",
-				"openingHours", "url");
+		Dataset dataset = super.unbindObject(recommendation, "name", "city", "state", "country", "formatted", "openingHours", "url");
 		super.addPayload(dataset, recommendation, "id");
 		super.getResponse().addData(dataset);
 	}

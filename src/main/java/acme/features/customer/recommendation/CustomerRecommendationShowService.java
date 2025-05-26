@@ -29,8 +29,10 @@ public class CustomerRecommendationShowService extends AbstractGuiService<Custom
 
 		if (recommendation == null)
 			status = false;
-		else
-			status = bookings.stream().anyMatch(b -> b.getFlight() != null && b.getFlight().getDestinationCity().equals(recommendation.getCity()) && b.getFlight().getDestinationCountry().equals(recommendation.getCountry()));
+		else {
+			status = bookings.stream().anyMatch(b -> b.getFlight().getDestinationCity().equals(recommendation.getCity()));
+			status &= bookings.stream().anyMatch(b -> b.getFlight().getDestinationCountry().equals(recommendation.getCountry()));
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
