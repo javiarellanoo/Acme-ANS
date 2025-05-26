@@ -72,6 +72,7 @@ master.menu.technician = Técnico
 master.menu.technician.tasks.list.mine = Mis tareas
 master.menu.technician.tasks.list.published = Tareas publicadas
 master.menu.technician.dashboard.show = Mi panel de control
+master.menu.technician.course.list = Cursos
 
 # master.menu.assistance-agent ########################################################
 master.menu.assistance-agent = Asistente
