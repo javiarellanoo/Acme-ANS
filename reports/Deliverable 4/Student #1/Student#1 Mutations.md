@@ -70,14 +70,7 @@ private String description;
 
 **File:** `/Acme-ANS-D04/src/main/java/acme/features/manager/leg/ManagerLegCreateService.java` , 
 
-`/Acme-ANS-D04/src/main/java/acme/features/manager/leg/ManagerLegUpdateService.java`,
-
-`/Acme-ANS-D04/src/main/java/acme/features/manager/leg/ManagerLegPublishService.java`
-
-
 **Status:** Detected - Multiple tests have failed, allowing for legs to be created/published/updated with a departure in the past.
-
-NOTE: The mutation has been implemented in all 3 files since they all use that same part of the validation. The addition of the mutation to the three files has been conducted so that proper functioning is ensured. 
 
 **Code Change:**
 ```java
