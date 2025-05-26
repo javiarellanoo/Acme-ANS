@@ -31,9 +31,9 @@ master.menu.administrator.booking = Ver reservas
 master.menu.administrator.booking-record = Ver registros de reserva
 master.menu.administrator.maintenance-record = Ver registros de mantenimiento
 master.menu.administrator.aircraft = Ver aeronaves
+master.menu.administrator.dashboard = Panel de control
 master.menu.administrator.populate-db-recommendations Poblar BD (recomendaciones)
 master.menu.administrator.service = Ver servicios
-
 
 # master.menu.provider ########################################################
 
