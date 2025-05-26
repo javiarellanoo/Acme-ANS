@@ -43,6 +43,8 @@ public class TechnicianTaskListService extends AbstractGuiService<Technician, Ta
 		published = super.getRequest().getData("published", boolean.class);
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
+		published = true;
+
 		tasks = published ? this.repository.findTasksPublished() : this.repository.findTasksByTechnicianId(technicianId);
 
 		super.getBuffer().addData(tasks);
